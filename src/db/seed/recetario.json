@@ -1,0 +1,4752 @@
+{
+  "meta": {
+    "name": "Recetario para bebés desde los 7 meses — edición ampliada",
+    "generatedAt": "2026-10-21",
+    "language": "es",
+    "recipeCount": 71
+  },
+  "allergens": [
+    {
+      "slug": "huevo",
+      "name": "Huevo",
+      "howToIntroduce": "Bien cocido: huevo duro aplastado, tortilla o tortitas bien cuajadas."
+    },
+    {
+      "slug": "mani",
+      "name": "Maní",
+      "howToIntroduce": "Crema 100% maní, disuelta en avena, yogur o agua tibia (nunca entero ni a cucharadas)."
+    },
+    {
+      "slug": "lacteos",
+      "name": "Lácteos",
+      "howToIntroduce": "Yogur natural entero sin azúcar; leche entera en cocción; queso fresco bajo en sal."
+    },
+    {
+      "slug": "trigo",
+      "name": "Trigo (gluten)",
+      "howToIntroduce": "Pasta bien cocida, cuscús, pan integral (en tiras)."
+    },
+    {
+      "slug": "pescado",
+      "name": "Pescado",
+      "howToIntroduce": "Blanco (merluza, pargo, corvina) o azul pequeño (sardina, salmón), sin espinas."
+    },
+    {
+      "slug": "sesamo",
+      "name": "Sésamo",
+      "howToIntroduce": "Tahini (crema de ajonjolí) en hummus o mezclado en yogur."
+    },
+    {
+      "slug": "frutos_secos",
+      "name": "Frutos secos",
+      "howToIntroduce": "Crema de almendra o merey 100%, en capa muy fina o diluida; o almendra molida en masas."
+    },
+    {
+      "slug": "soya",
+      "name": "Soya",
+      "howToIntroduce": "Tofu firme en bastones blandos."
+    },
+    {
+      "slug": "mariscos",
+      "name": "Mariscos",
+      "howToIntroduce": "Camarón bien cocido y picado fino (sin cabeza), mezclado en un guiso o una tortilla."
+    }
+  ],
+  "recipes": [
+    {
+      "code": "P1",
+      "title": "Caldo casero sin sal",
+      "mealType": "base",
+      "minAgeMonths": null,
+      "sortOrder": 1,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Reemplaza los cubitos",
+          "slug": "reemplaza-los-cubitos",
+          "label": "Reemplaza los cubitos"
+        },
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congela 3 meses"
+        }
+      ],
+      "ingredients": [
+        "1 muslo de pollo o huesos de pollo",
+        "1 cebolla, 2 ajíes dulces, 1 diente de ajo",
+        "1 zanahoria, ½ pimentón",
+        "Cilantro y cebollín",
+        "1,5 litros de agua"
+      ],
+      "steps": [
+        "Pon todo en una olla, hierve y cocina tapado a fuego bajo 45 min.",
+        "Cuela, deja enfriar y retira la grasa de la superficie.",
+        "Congela en cubitera; usa 2–4 cubos para cocinar arroz, pasta, cremas o guisos."
+      ],
+      "ageAdaptations": [],
+      "note": "El pollo cocido se aprovecha desmechado en otras recetas (A15, C9, C10).",
+      "references": [
+        "A15",
+        "C9",
+        "C10"
+      ]
+    },
+    {
+      "code": "P2",
+      "title": "Sofrito base venezolano",
+      "mealType": "base",
+      "minAgeMonths": null,
+      "sortOrder": 2,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Sabor sin sal",
+          "slug": "sabor-sin-sal",
+          "label": "Sabor sin sal"
+        },
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congela 3 meses"
+        }
+      ],
+      "ingredients": [
+        "1 cebolla",
+        "1 pimentón rojo",
+        "4 ajíes dulces sin semillas",
+        "2 dientes de ajo",
+        "2 tomates maduros",
+        "Cebollín",
+        "2 cdas de aceite de oliva o vegetal"
+      ],
+      "steps": [
+        "Pica todo muy fino (o licúa con muy poca agua).",
+        "Cocina a fuego bajo 10–15 min, removiendo, hasta que esté blando y fragante.",
+        "Enfría y congela en cubitera: 1 cubo = 1 cucharada de sofrito."
+      ],
+      "ageAdaptations": [],
+      "note": "El ají dulce no pica: es un gran aliado. El pimentón rojo y el tomate aportan vitamina C, que ayuda a absorber el hierro de legumbres y cereales.",
+      "references": []
+    },
+    {
+      "code": "P3",
+      "title": "Caraotas negras base (sin sal)",
+      "mealType": "base",
+      "minAgeMonths": null,
+      "sortOrder": 3,
+      "iron": {
+        "isSource": true,
+        "note": "vegetal"
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congelan 3 meses"
+        }
+      ],
+      "ingredients": [
+        "1 taza de caraotas negras secas",
+        "Agua para remojar y cocinar",
+        "Opcional: 1 cubo de sofrito (P2) al final"
+      ],
+      "steps": [
+        "Lávalas y déjalas en remojo 8–12 horas. Desecha el agua del remojo.",
+        "Cocina en agua nueva: olla de presión 30–40 min, u olla normal 1,5–2 h, hasta que se deshagan al apretarlas.",
+        "No añadas sal. Guárdalas con su caldo, en porciones."
+      ],
+      "ageAdaptations": [],
+      "note": "Las legumbres crudas o poco cocidas tienen lectinas que se destruyen con una cocción larga a hervor: no uses olla lenta sin hervirlas antes. Lo mismo sirve para frijoles, quinchonchos y garbanzos.",
+      "references": [
+        "P2"
+      ]
+    },
+    {
+      "code": "P4",
+      "title": "Plátano maduro horneado",
+      "mealType": "base",
+      "minAgeMonths": null,
+      "sortOrder": 4,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Sin freír",
+          "slug": "sin-freir",
+          "label": "Sin freír"
+        },
+        {
+          "name": "Dulce natural",
+          "slug": "dulce-natural",
+          "label": "Dulce natural"
+        }
+      ],
+      "ingredients": [
+        "Plátanos bien maduros (concha casi negra)"
+      ],
+      "steps": [
+        "Lávalos, córtales las puntas y haz un corte a lo largo en la concha.",
+        "Hornea 25–35 min a 200 °C, hasta que estén muy blandos (o hiérvelos con concha 15–20 min).",
+        "Pela y sirve en bastones, aplastado o en rodajas según la edad."
+      ],
+      "ageAdaptations": [],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "P5",
+      "title": "Masa de arepitas blandas (sin sal)",
+      "mealType": "base",
+      "minAgeMonths": null,
+      "sortOrder": 5,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Harina enriquecida",
+          "slug": "harina-enriquecida",
+          "label": "Harina enriquecida"
+        }
+      ],
+      "ingredients": [
+        "1 taza de harina de maíz precocida",
+        "1¼ taza de agua tibia",
+        "1 cdta de aceite",
+        "Opcional: 3 cdas de auyama, zanahoria rallada, plátano o yuca aplastados"
+      ],
+      "steps": [
+        "Mezcla y amasa 2 min. Deja reposar 2 min; si se agrieta, añade agua.",
+        "Forma arepitas finas (≈1 cm).",
+        "Cocina en budare o sartén tapada, a fuego bajo, 6–8 min por lado: quedan cocidas por dentro y sin costra dura."
+      ],
+      "ageAdaptations": [],
+      "note": "Para el bebé, la costra dura y tostada se retira o se evita. Las arepitas cocidas se congelan y se recalientan tapadas.",
+      "references": []
+    },
+    {
+      "code": "P6",
+      "title": "Tubérculos base: yuca, ocumo, ñame, apio criollo",
+      "mealType": "base",
+      "minAgeMonths": null,
+      "sortOrder": 6,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Bien cocidos siempre",
+          "slug": "bien-cocidos-siempre",
+          "label": "Bien cocidos siempre"
+        },
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congelan"
+        }
+      ],
+      "ingredients": [
+        "Yuca, ocumo, ñame o apio criollo",
+        "Agua"
+      ],
+      "steps": [
+        "Pela bien. En la yuca, retira también la capa interna rosada.",
+        "Corta en trozos y hierve hasta que estén muy blandos (20–30 min).",
+        "Desecha el agua de cocción. En la yuca, retira la hebra central.",
+        "Sirve en bastones, aplastados o como base de arepitas y croquetas."
+      ],
+      "ageAdaptations": [],
+      "note": "Pelar, trocear y hervir bien en abundante agua elimina la mayor parte de los compuestos cianogénicos de la yuca. La yuca de mercado es la dulce; la amarga solo se usa procesada (casabe, catibía).",
+      "references": []
+    },
+    {
+      "code": "D1",
+      "title": "Avena cremosa con cambur y maní",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 7,
+      "iron": {
+        "isSource": true,
+        "note": "si usas avena enriquecida"
+      },
+      "allergens": [
+        {
+          "slug": "mani",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Avena: puede contener gluten",
+          "slug": "avena-puede-contener-gluten",
+          "label": "Avena: puede contener gluten"
+        }
+      ],
+      "ingredients": [
+        "3 cdas de copos de avena finos",
+        "120 ml de agua (o leche entera, apta en cocción)",
+        "½ cambur (plátano) bien maduro",
+        "½ cdta de crema de maní 100% (sin sal ni azúcar)",
+        "Opcional: 2–3 cdas de leche materna o fórmula al final",
+        "Pizca de canela"
+      ],
+      "steps": [
+        "Cocina la avena con el agua 3–5 min, removiendo, hasta que esté cremosa.",
+        "Retira del fuego. Si usas leche materna o fórmula, añádela ahora (no la hiervas).",
+        "Aplasta el cambur con un tenedor e incorpóralo.",
+        "Añade la crema de maní a la avena aún caliente y mezcla bien hasta que se disuelva por completo, sin grumos espesos.",
+        "Sirve tibia."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Crema espesa con grumos suaves. Cuchara precargada para que el bebé la tome solo, o en su boca cuando la abra."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Más espesa, con trocitos de cambur. Se puede dejar enfriar y cortar en cuadritos blandos para comer con la mano."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Copos normales, fruta en trozos, se puede preparar con leche entera de vaca."
+        }
+      ],
+      "note": "La crema de maní nunca se da sola ni a cucharadas: es espesa y pegajosa. Siempre diluida.",
+      "references": []
+    },
+    {
+      "code": "D2",
+      "title": "Tortitas de cambur y huevo",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 8,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "huevo",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Avena opcional",
+          "slug": "avena-opcional",
+          "label": "Avena opcional"
+        },
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congelan"
+        }
+      ],
+      "ingredients": [
+        "1 cambur muy maduro",
+        "1 huevo",
+        "2 cdas de avena molida (opcional, da consistencia)",
+        "Pizca de canela",
+        "Unas gotas de aceite de oliva o de girasol"
+      ],
+      "steps": [
+        "Aplasta el cambur y bate con el huevo, la avena y la canela.",
+        "Calienta una sartén antiadherente a fuego medio-bajo con muy poco aceite.",
+        "Vierte cucharadas pequeñas de mezcla. Cocina 2–3 min por lado.",
+        "Comprueba que el centro esté totalmente cuajado (huevo bien cocido) y deja entibiar."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "En tiras del ancho de dos dedos, fáciles de agarrar con el puño."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "En trocitos pequeños para practicar la pinza. Se pueden acompañar con fresas en cuartos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Tortitas enteras con fruta y yogur."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "D3",
+      "title": "Arepitas blandas de auyama",
+      "mealType": "desayuno",
+      "minAgeMonths": 8,
+      "sortOrder": 9,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Maíz",
+          "slug": "maiz",
+          "label": "Maíz (sin gluten)"
+        },
+        {
+          "name": "Vitamina A",
+          "slug": "vitamina-a",
+          "label": "Vitamina A"
+        },
+        {
+          "name": "Sin sal",
+          "slug": "sin-sal",
+          "label": "Sin sal"
+        }
+      ],
+      "ingredients": [
+        "½ taza de harina de maíz precocida",
+        "⅓ taza de auyama (calabaza) cocida y aplastada",
+        "≈ ⅓ taza de agua tibia",
+        "1 cdta de aceite",
+        "Para rellenar: aguacate aplastado, ricota o queso fresco bajo en sal, o huevo revuelto bien cocido"
+      ],
+      "steps": [
+        "Mezcla la auyama con la harina y añade agua poco a poco hasta tener una masa suave que no se agriete.",
+        "Forma arepitas finas (≈1 cm).",
+        "Cocina en budare o sartén con tapa, a fuego bajo, 6–8 min por lado: así quedan cocidas y blandas, sin costra dura.",
+        "Ábrelas y rellena o unta."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Tiras gruesas y blandas, untadas con aguacate. Retira la parte de la costra si quedó dura."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Trocitos rellenos de huevo o queso fresco desmenuzado."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Arepita entera rellena de caraotas, pollo mechado o queso, como la familia."
+        }
+      ],
+      "note": "Los quesos blancos duros o llaneros suelen tener muchísima sal: mejor ricota, requesón o queso fresco bajo en sodio.",
+      "references": []
+    },
+    {
+      "code": "D4",
+      "title": "Revuelto de huevo con tomate y aguacate",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 10,
+      "iron": {
+        "isSource": true,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "huevo",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Vitamina C",
+          "slug": "vitamina-c",
+          "label": "Vitamina C del tomate"
+        }
+      ],
+      "ingredients": [
+        "1 huevo",
+        "1 tomate pequeño maduro, sin piel ni semillas",
+        "¼ de aguacate maduro",
+        "1 cdta de aceite de oliva",
+        "Opcional: orégano"
+      ],
+      "steps": [
+        "Pica el tomate y cocínalo 2 min en el aceite.",
+        "Añade el huevo batido y remueve a fuego bajo hasta que esté totalmente cuajado, sin partes líquidas.",
+        "Sirve con el aguacate al lado."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Revuelto aplastado y mezclado con el aguacate como una crema; o tortilla francesa en tiras + aguacate en gajo grueso."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Trocitos de revuelto y dados de aguacate."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Con una tira de pan integral o una arepita."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "D5",
+      "title": "Yogur con mango y tahini",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 11,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "lacteos",
+          "optional": false,
+          "condition": null
+        },
+        {
+          "slug": "sesamo",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Calcio",
+          "slug": "calcio",
+          "label": "Calcio"
+        }
+      ],
+      "ingredients": [
+        "4 cdas de yogur natural entero, sin azúcar",
+        "3 cdas de mango bien maduro",
+        "½ cdta de tahini (crema de ajonjolí), o semillas de chía o linaza molidas"
+      ],
+      "steps": [
+        "Aplasta el mango con un tenedor.",
+        "Disuelve el tahini en una cucharada de yogur y luego mezcla todo."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Todo mezclado; cuchara precargada."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Mango en daditos blandos sobre el yogur."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Añade copos de avena o fruta variada en trozos."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "D6",
+      "title": "Gachas de quinoa con pera y canela",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 12,
+      "iron": {
+        "isSource": true,
+        "note": "vegetal"
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Alternativa al arroz",
+          "slug": "alternativa-al-arroz",
+          "label": "Alternativa al arroz"
+        },
+        {
+          "name": "Sin gluten",
+          "slug": "sin-gluten",
+          "label": "Sin gluten"
+        }
+      ],
+      "ingredients": [
+        "¼ taza de quinoa",
+        "¾ taza de agua",
+        "½ pera madura",
+        "Pizca de canela",
+        "Opcional: leche materna o fórmula al final"
+      ],
+      "steps": [
+        "Lava muy bien la quinoa en un colador (quita el sabor amargo).",
+        "Cocínala tapada 15 min con el agua y la pera en trocitos, hasta que los granos estén muy blandos.",
+        "Tritura parcialmente con el tenedor o la batidora (no del todo liso) y añade la canela."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Triturado grueso, con algo de leche para aflojar."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Grano entero bien cocido y pera en trocitos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Con leche entera y fruta fresca troceada."
+        }
+      ],
+      "note": "Para mejorar la absorción del hierro vegetal, sirve con fruta rica en vitamina C (fresas, lechosa, mandarina).",
+      "references": []
+    },
+    {
+      "code": "D7",
+      "title": "Tortitas de plátano maduro y huevo",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 13,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "huevo",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "2 ingredientes",
+          "slug": "2-ingredientes",
+          "label": "2 ingredientes"
+        },
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congelan"
+        }
+      ],
+      "ingredients": [
+        "½ plátano bien maduro (concha casi negra)",
+        "1 huevo",
+        "Pizca de canela",
+        "Unas gotas de aceite"
+      ],
+      "steps": [
+        "Aplasta el plátano (o licúalo con el huevo para una mezcla más lisa).",
+        "Mezcla con el huevo batido y la canela.",
+        "En sartén antiadherente a fuego medio-bajo, vierte cucharadas de mezcla y cocina 3 min por lado.",
+        "Comprueba que el centro esté totalmente cuajado."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "En tiras del ancho de dos dedos."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "En trocitos para practicar la pinza."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Enteras, con yogur y fruta."
+        }
+      ],
+      "note": "El plátano muy maduro ya es dulce: no necesita azúcar ni papelón.",
+      "references": []
+    },
+    {
+      "code": "D8",
+      "title": "Fororo sin azúcar con cambur",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 14,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "lacteos",
+          "optional": true,
+          "condition": "si usas leche"
+        }
+      ],
+      "tags": [
+        {
+          "name": "Maíz",
+          "slug": "maiz",
+          "label": "Maíz tostado"
+        },
+        {
+          "name": "Sin gluten",
+          "slug": "sin-gluten",
+          "label": "Sin gluten"
+        }
+      ],
+      "ingredients": [
+        "2 cdas de fororo (harina de maíz tostado)",
+        "150 ml de agua o leche entera (apta en cocción)",
+        "½ cambur maduro",
+        "1 rama de canela o una pizca de canela molida"
+      ],
+      "steps": [
+        "Disuelve el fororo en el líquido frío para que no forme grumos.",
+        "Cocina a fuego bajo 5–7 min, removiendo, hasta que espese. Retira la rama de canela.",
+        "Aplasta el cambur e incorpóralo. Sirve tibio."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Espeso, con cuchara precargada."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Más espeso, con trocitos de fruta."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Puede prepararse con leche entera de vaca, igual sin papelón."
+        }
+      ],
+      "note": "El fororo tradicional se endulza con papelón o azúcar; aquí el dulzor lo pone el cambur. Revisa la etiqueta: algunos fororos comerciales ya traen azúcar.",
+      "references": []
+    },
+    {
+      "code": "D9",
+      "title": "Mazamorra de jojoto sin azúcar",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 15,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Maíz",
+          "slug": "maiz",
+          "label": "Maíz tierno"
+        },
+        {
+          "name": "Sin gluten",
+          "slug": "sin-gluten",
+          "label": "Sin gluten"
+        },
+        {
+          "name": "Sin azúcar",
+          "slug": "sin-azucar",
+          "label": "Sin azúcar"
+        }
+      ],
+      "ingredients": [
+        "1 taza de granos de jojoto tierno",
+        "200 ml de agua o leche entera",
+        "Canela",
+        "Opcional: ½ cambur maduro"
+      ],
+      "steps": [
+        "Licúa los granos con el líquido.",
+        "Cuela para retirar los hollejos.",
+        "Cocina a fuego bajo 8–10 min, removiendo sin parar, hasta que espese. Añade la canela.",
+        "Deja entibiar: espesa más al enfriar."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Con cuchara, tal cual."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Más espesa; fría puede cortarse en cuadritos blandos para comer con la mano."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Con fruta picada por encima."
+        }
+      ],
+      "note": "Colarla es importante: los granos de maíz enteros y los hollejos son difíciles de manejar y pueden causar atragantamiento.",
+      "references": []
+    },
+    {
+      "code": "D10",
+      "title": "Arepita dominó: caraotas negras y queso fresco",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 16,
+      "iron": {
+        "isSource": true,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "lacteos",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Harina enriquecida",
+          "slug": "harina-enriquecida",
+          "label": "Harina enriquecida"
+        }
+      ],
+      "ingredients": [
+        "1–2 arepitas blandas (P5)",
+        "3 cdas de caraotas negras sin sal (P3), con un poco de su caldo",
+        "1 cda de queso fresco bajo en sal o ricota",
+        "De acompañante: mango, lechosa o mandarina"
+      ],
+      "steps": [
+        "Calienta las caraotas y aplástalas con un tenedor hasta formar una pasta untable.",
+        "Abre las arepitas y úntalas con las caraotas; desmenuza el queso encima.",
+        "Sirve con la fruta: su vitamina C ayuda a absorber el hierro de las caraotas."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Tiras de arepa untadas, sin costra dura."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Trocitos rellenos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Arepa dominó entera."
+        }
+      ],
+      "note": "La harina de maíz precocida venezolana está enriquecida con hierro (50 mg/kg), vitamina A y vitaminas B por norma COVENIN: arepa + caraotas + fruta es un desayuno muy completo.",
+      "references": [
+        "P3",
+        "P5"
+      ]
+    },
+    {
+      "code": "D11",
+      "title": "Panquecas de avena y auyama",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 17,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "huevo",
+          "optional": false,
+          "condition": null
+        },
+        {
+          "slug": "lacteos",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Vitamina A",
+          "slug": "vitamina-a",
+          "label": "Vitamina A"
+        },
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congelan"
+        }
+      ],
+      "ingredients": [
+        "½ taza de avena en hojuelas",
+        "⅓ taza de auyama cocida",
+        "1 huevo",
+        "¼ taza de leche entera o agua",
+        "½ cdta de polvo de hornear",
+        "Canela",
+        "Unas gotas de aceite"
+      ],
+      "steps": [
+        "Licúa todo hasta tener una mezcla lisa. Deja reposar 5 min.",
+        "Cocina cucharadas en sartén antiadherente a fuego medio-bajo, 2 min por lado.",
+        "Comprueba que el centro esté cocido."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "En tiras."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "En trocitos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Enteras con fruta y yogur."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "D12",
+      "title": "Arepitas de yuca",
+      "mealType": "desayuno",
+      "minAgeMonths": 8,
+      "sortOrder": 18,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Sin gluten",
+          "slug": "sin-gluten",
+          "label": "Sin gluten"
+        },
+        {
+          "name": "Yuca bien cocida",
+          "slug": "yuca-bien-cocida",
+          "label": "Yuca bien cocida"
+        }
+      ],
+      "ingredients": [
+        "1 taza de yuca cocida y aplastada (P6), sin la hebra central",
+        "2–3 cdas de harina de maíz precocida",
+        "1 cdta de aceite",
+        "Opcional: 1 cda de queso fresco bajo en sal rallado"
+      ],
+      "steps": [
+        "Aplasta la yuca aún caliente y mézclala con la harina hasta tener una masa manejable.",
+        "Forma arepitas finas.",
+        "Cocina en budare o sartén tapada, a fuego bajo, 5 min por lado."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Tiras blandas."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Trozos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Enteras, rellenas como la familia."
+        }
+      ],
+      "note": "La yuca nunca se da cruda ni a medio cocer (ver P6).",
+      "references": [
+        "P6"
+      ]
+    },
+    {
+      "code": "D13",
+      "title": "Guasacaca suave con huevo duro",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 19,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "huevo",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Grasas saludables",
+          "slug": "grasas-saludables",
+          "label": "Grasas saludables"
+        }
+      ],
+      "ingredients": [
+        "½ aguacate maduro",
+        "½ ají dulce sin semillas, muy picado",
+        "1 cdta de cilantro o perejil picado fino",
+        "Unas gotas de limón",
+        "1 huevo duro (10–12 min de hervor)"
+      ],
+      "steps": [
+        "Aplasta o licúa el aguacate con el ají dulce, el cilantro y el limón.",
+        "Aplasta el huevo y mézclalo con la guasacaca, o sírvelo en gajos al lado.",
+        "Úntala en tiras de arepita o de pan."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Huevo aplastado dentro de la guasacaca, untado en tiras."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Huevo picado; guasacaca para mojar."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Guasacaca familiar, sin sal ni ají picante en su porción."
+        }
+      ],
+      "note": "La guasacaca tradicional lleva sal, vinagre y a veces ají picante: esta versión no.",
+      "references": []
+    },
+    {
+      "code": "D14",
+      "title": "Funche cremoso de maíz y auyama",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 20,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "lacteos",
+          "optional": true,
+          "condition": "si usas leche"
+        }
+      ],
+      "tags": [
+        {
+          "name": "Sin gluten",
+          "slug": "sin-gluten",
+          "label": "Sin gluten"
+        },
+        {
+          "name": "Vitamina A",
+          "slug": "vitamina-a",
+          "label": "Vitamina A"
+        }
+      ],
+      "ingredients": [
+        "3 cdas de harina de maíz precocida",
+        "200 ml de agua o leche entera",
+        "2 cdas de auyama cocida y aplastada",
+        "1 cdta de mantequilla sin sal o aceite",
+        "Canela"
+      ],
+      "steps": [
+        "Disuelve la harina en el líquido frío.",
+        "Cocina a fuego bajo 5 min, removiendo, hasta que espese.",
+        "Añade la auyama, la mantequilla y la canela."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Crema espesa con cuchara."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Extiéndelo en un plato, déjalo enfriar y córtalo en bastones; dóralos en la sartén (tipo polenta)."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Bastones con queso fresco o huevo."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "D15",
+      "title": "Yogur con parchita colada y cambur",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 21,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "lacteos",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Vitamina C",
+          "slug": "vitamina-c",
+          "label": "Vitamina C"
+        },
+        {
+          "name": "Sin cocinar",
+          "slug": "sin-cocinar",
+          "label": "Sin cocinar"
+        }
+      ],
+      "ingredients": [
+        "4 cdas de yogur natural entero, sin azúcar",
+        "Pulpa de ½ parchita, colada (sin semillas)",
+        "¼ de cambur maduro",
+        "Opcional: 1 cda de avena en hojuelas finas"
+      ],
+      "steps": [
+        "Cuela la pulpa de parchita.",
+        "Aplasta el cambur y mézclalo todo."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Todo mezclado, con cuchara precargada."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Cambur en trocitos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Con avena y frutas en trozos."
+        }
+      ],
+      "note": "El cambur suaviza la acidez de la parchita sin necesidad de azúcar. Retira siempre las semillas.",
+      "references": []
+    },
+    {
+      "code": "D16",
+      "title": "Torrejas sin azúcar con fresas",
+      "mealType": "desayuno",
+      "minAgeMonths": 8,
+      "sortOrder": 22,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "huevo",
+          "optional": false,
+          "condition": null
+        },
+        {
+          "slug": "trigo",
+          "optional": false,
+          "condition": null
+        },
+        {
+          "slug": "lacteos",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [],
+      "ingredients": [
+        "1 rebanada de pan integral bajo en sal (mejor del día anterior)",
+        "1 huevo",
+        "2 cdas de leche entera",
+        "Canela",
+        "1 cdta de mantequilla sin sal",
+        "2–3 fresas maduras"
+      ],
+      "steps": [
+        "Bate el huevo con la leche y la canela. Empapa el pan por ambos lados.",
+        "Cocina en sartén a fuego medio-bajo 2–3 min por lado, hasta que el centro no quede húmedo.",
+        "Corta según la edad y pon las fresas aplastadas encima."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Tiras de dos dedos de ancho."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Cuadritos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Entera, con fruta."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "A1",
+      "title": "Pollo guisado con auyama y papa",
+      "mealType": "almuerzo",
+      "minAgeMonths": 7,
+      "sortOrder": 23,
+      "iron": {
+        "isSource": true,
+        "note": "muslo"
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Vitamina A",
+          "slug": "vitamina-a",
+          "label": "Vitamina A"
+        },
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congela 2–3 meses"
+        }
+      ],
+      "ingredients": [
+        "1 muslo de pollo sin piel (≈100 g)",
+        "1 taza de auyama en cubos",
+        "1 papa pequeña",
+        "¼ de cebolla, ½ diente de ajo",
+        "1 tomate maduro",
+        "1 cdta de aceite de oliva",
+        "Comino u orégano (opcional)",
+        "Agua"
+      ],
+      "steps": [
+        "Sofríe cebolla, ajo y tomate picados en el aceite, 5 min.",
+        "Añade el pollo en trozos y séllalo.",
+        "Agrega auyama, papa y agua hasta cubrir. Cocina 25–30 min a fuego medio, hasta que el pollo se deshaga.",
+        "Retira huesos y desmecha el pollo muy fino."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Aplastado con tenedor (grumoso, no licuado). O pollo muy desmechado + bastones de auyama y papa."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Pollo picado pequeño y verduras en dados blandos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Como la familia: la sal se añade solo en el plato de los adultos."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "A2",
+      "title": "Lentejas rojas con zanahoria y tomate",
+      "mealType": "almuerzo",
+      "minAgeMonths": 7,
+      "sortOrder": 24,
+      "iron": {
+        "isSource": true,
+        "note": "vegetal"
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Vitamina C",
+          "slug": "vitamina-c",
+          "label": "Vitamina C"
+        },
+        {
+          "name": "Listo en 20 min",
+          "slug": "listo-en-20-min",
+          "label": "Listo en 20 min"
+        }
+      ],
+      "ingredients": [
+        "⅓ taza de lentejas rojas",
+        "1 zanahoria rallada",
+        "½ tomate",
+        "¼ de cebolla",
+        "Pizca de comino y de cúrcuma",
+        "1 cdta de aceite de oliva",
+        "1 taza de agua"
+      ],
+      "steps": [
+        "Haz un sofrito con la cebolla y el tomate.",
+        "Añade las lentejas lavadas, la zanahoria, las especias y el agua.",
+        "Cocina 15–20 min hasta que las lentejas se deshagan (no necesitan remojo).",
+        "De postre, fruta con vitamina C: lechosa, mango, fresas o mandarina."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Tal cual: queda naturalmente cremoso. También untado en tiras de pan o con bastones de calabacín cocido."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Más espeso, con cuscús, quinoa o pasta."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Con pan pita o arepa, como la familia."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "A3",
+      "title": "Pabellón para bebé: carne mechada, caraotas y plátano",
+      "mealType": "almuerzo",
+      "minAgeMonths": 7,
+      "sortOrder": 25,
+      "iron": {
+        "isSource": true,
+        "note": "res + caraotas"
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congela"
+        }
+      ],
+      "ingredients": [
+        "100 g de falda de res",
+        "½ taza de caraotas negras cocidas sin sal (si son de lata, bien enjuagadas)",
+        "¼ de plátano maduro",
+        "2 cdas de arroz blanco cocido",
+        "¼ de pimentón rojo, ¼ de cebolla, 1 diente de ajo, ½ tomate",
+        "Comino"
+      ],
+      "steps": [
+        "Cocina la falda con cebolla y ajo (30–40 min en olla de presión) hasta que esté muy tierna.",
+        "Desméchala muy fina y guísala 10 min con un sofrito de pimentón, cebolla y tomate.",
+        "Calienta las caraotas y aplástalas.",
+        "Hornea el plátano en rodajas o bastones 20 min a 180 °C (sin freír)."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Carne mechada muy fina mezclada con las caraotas aplastadas; plátano aplastado o en bastón."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Hebras cortas de carne; caraotas ligeramente aplastadas con el dedo; plátano en trozos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Plato familiar completo, sin sal en su porción."
+        }
+      ],
+      "note": "El pimentón rojo aporta vitamina C, que ayuda a absorber el hierro de las caraotas.",
+      "references": []
+    },
+    {
+      "code": "A4",
+      "title": "Pescado blanco con papa y brócoli",
+      "mealType": "almuerzo",
+      "minAgeMonths": 7,
+      "sortOrder": 26,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "pescado",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Proteína magra",
+          "slug": "proteina-magra",
+          "label": "Proteína magra"
+        },
+        {
+          "name": "Vitamina C",
+          "slug": "vitamina-c",
+          "label": "Vitamina C"
+        }
+      ],
+      "ingredients": [
+        "80 g de filete de merluza, mero o pargo, sin espinas",
+        "1 papa pequeña",
+        "3 arbolitos de brócoli",
+        "1 cdta de aceite de oliva",
+        "Unas gotas de limón (opcional)"
+      ],
+      "steps": [
+        "Hierve la papa 15 min. Añade el brócoli en los últimos 7 min y el pescado en los últimos 5–6 min (o todo al vapor).",
+        "Desmenuza el pescado con los dedos para detectar cualquier espina.",
+        "Aplasta la papa con el aceite."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Pescado desmenuzado dentro del puré grumoso; el brócoli entero como \"arbolito\" para agarrar por el tallo."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Escamas de pescado y brócoli en trocitos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Porción tipo familiar. Variante: añadir camarón bien cocido y picado fino (alérgeno marisco)."
+        }
+      ],
+      "note": "Evita pez espada, tiburón (incluido el cazón), atún rojo y lucio por su mercurio.",
+      "references": []
+    },
+    {
+      "code": "A5",
+      "title": "Bastones blandos de res y calabacín",
+      "mealType": "almuerzo",
+      "minAgeMonths": 7,
+      "sortOrder": 27,
+      "iron": {
+        "isSource": true,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "huevo",
+          "optional": true,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congelan"
+        }
+      ],
+      "ingredients": [
+        "150 g de carne molida de res magra",
+        "½ calabacín rallado y bien escurrido",
+        "2 cdas de avena molida o pan rallado",
+        "1 huevo (omítelo si aún no lo has introducido)",
+        "Orégano y una pizca de ajo en polvo"
+      ],
+      "steps": [
+        "Mezcla todos los ingredientes.",
+        "Forma bastones o \"deditos\" de 6–7 cm (no bolitas).",
+        "Hornea 18–20 min a 180 °C, o cocínalos tapados 15 min en salsa de tomate casera.",
+        "Deben quedar blandos y sin rosado por dentro."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Bastón entero para agarrar y chupar/morder, o desmenuzado en la salsa con cuchara."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "En rodajas pequeñas."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Con pasta y salsa de tomate, como la familia."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "A6",
+      "title": "Pasta con salmón, brócoli y ricota",
+      "mealType": "almuerzo",
+      "minAgeMonths": 7,
+      "sortOrder": 28,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "trigo",
+          "optional": false,
+          "condition": null
+        },
+        {
+          "slug": "pescado",
+          "optional": false,
+          "condition": null
+        },
+        {
+          "slug": "lacteos",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Omega-3",
+          "slug": "omega-3",
+          "label": "Omega-3"
+        }
+      ],
+      "ingredients": [
+        "½ taza de pasta (fusilli o penne)",
+        "60 g de salmón sin piel ni espinas",
+        "3 arbolitos de brócoli",
+        "2 cdas de ricota",
+        "1 cdta de aceite de oliva",
+        "Perejil o eneldo"
+      ],
+      "steps": [
+        "Cuece la pasta en agua sin sal, unos minutos más de lo habitual (muy blanda).",
+        "Cocina al vapor el salmón y el brócoli unos 8 min.",
+        "Desmenuza el salmón y aplasta el brócoli con la ricota y el aceite: queda una salsa.",
+        "Mezcla con la pasta."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Pasta grande (fusilli, penne) muy cocida para agarrar con la mano, con la salsa pegada."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Pasta corta; trocitos de salmón y brócoli."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Plato familiar."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "A7",
+      "title": "Sancocho \"seco\" de pollo",
+      "mealType": "almuerzo",
+      "minAgeMonths": 7,
+      "sortOrder": 29,
+      "iron": {
+        "isSource": true,
+        "note": "muslo"
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Receta tradicional venezolana",
+          "slug": "receta-tradicional-venezolana",
+          "label": "Tubérculos criollos"
+        },
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congela"
+        }
+      ],
+      "ingredients": [
+        "1 muslo de pollo sin piel",
+        "1 trozo de yuca (≈80 g) y 1 de ocumo o ñame (≈60 g)",
+        "1 taza de auyama en trozos",
+        "¼ de cebolla, 1 ají dulce, ½ pimentón, 1 diente de ajo",
+        "Cilantro",
+        "Agua"
+      ],
+      "steps": [
+        "Cocina el pollo con los aliños en agua 15 min.",
+        "Añade la yuca y el ocumo pelados y en trozos; 15 min más.",
+        "Agrega la auyama y cocina 10 min, hasta que todo esté muy blando.",
+        "Saca los sólidos, desmecha el pollo y retira la hebra de la yuca. Sirve los sólidos con un poco de caldo."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Aplastado espeso, con muy poco caldo."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Trozos blandos y pollo picado."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Sopa familiar; el jojoto, desgranado y aplastado."
+        }
+      ],
+      "note": "Un plato de caldo llena el estómago pequeño con pocos nutrientes: la OMS recomienda comidas espesas. Ofrece primero los sólidos; el caldo sobrante es buena base para cocinar (P1).",
+      "references": [
+        "P1"
+      ]
+    },
+    {
+      "code": "A8",
+      "title": "Picadillo de carne con papa y zanahoria",
+      "mealType": "almuerzo",
+      "minAgeMonths": 7,
+      "sortOrder": 30,
+      "iron": {
+        "isSource": true,
+        "note": null
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congela"
+        }
+      ],
+      "ingredients": [
+        "120 g de carne molida magra de res",
+        "1 papa pequeña y 1 zanahoria en cubitos",
+        "1 cubo de sofrito (P2) o ½ tomate, ¼ de cebolla y 1 ají dulce",
+        "Comino",
+        "1 cdta de aceite",
+        "½ taza de agua"
+      ],
+      "steps": [
+        "Sofríe los aliños en el aceite.",
+        "Añade la carne y desgránala bien hasta que no quede nada rosado.",
+        "Agrega papa, zanahoria y agua. Tapa y cocina 15–20 min, hasta que esté muy blando."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Aplástalo todo junto: la papa une la carne en una masa fácil de tragar."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Trocitos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Con arroz o arepa."
+        }
+      ],
+      "note": "La carne molida suelta y seca (en \"granitos\") cuesta manejarla en la boca: siempre húmeda y mezclada con el puré.",
+      "references": [
+        "P2"
+      ]
+    },
+    {
+      "code": "A9",
+      "title": "Higaditos encebollados con puré de auyama",
+      "mealType": "almuerzo",
+      "minAgeMonths": 7,
+      "sortOrder": 31,
+      "iron": {
+        "isSource": true,
+        "note": "muy alto"
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Máx. 1 vez por semana",
+          "slug": "max-1-vez-por-semana",
+          "label": "Máx. 1 vez por semana"
+        }
+      ],
+      "ingredients": [
+        "2 higaditos de pollo (≈50 g)",
+        "¼ de cebolla y ½ tomate",
+        "1 cdta de aceite",
+        "1 taza de auyama cocida",
+        "½ papa cocida"
+      ],
+      "steps": [
+        "Limpia los higaditos (quita nervios y cualquier parte verdosa).",
+        "Sofríe cebolla y tomate; añade el hígado y cocina 6–8 min, hasta que no quede rosado por dentro.",
+        "Pícalo muy fino o tritúralo con una cucharada del jugo de cocción.",
+        "Aplasta la auyama con la papa y mezcla."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Hígado triturado dentro del puré."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Hígado picado fino."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Encebollado como la familia."
+        }
+      ],
+      "note": "El hígado es la fuente más concentrada de hierro, pero también de vitamina A. Por eso, como máximo una vez por semana y en porción pequeña (1–2 cucharadas), siempre bien cocido.",
+      "references": []
+    },
+    {
+      "code": "A10",
+      "title": "Lentejas guisadas con plátano maduro",
+      "mealType": "almuerzo",
+      "minAgeMonths": 7,
+      "sortOrder": 32,
+      "iron": {
+        "isSource": true,
+        "note": "vegetal"
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Vitamina C",
+          "slug": "vitamina-c",
+          "label": "Vitamina C del pimentón"
+        },
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congela"
+        }
+      ],
+      "ingredients": [
+        "⅓ taza de lentejas",
+        "½ zanahoria y 1 trozo de auyama",
+        "1 cubo de sofrito (P2) con pimentón rojo",
+        "Comino",
+        "¼ de plátano maduro horneado (P4)",
+        "Agua"
+      ],
+      "steps": [
+        "Cocina las lentejas con los vegetales, el sofrito y agua: 30–40 min (12 min en olla de presión), hasta que estén muy blandas.",
+        "Aplasta parte para espesar.",
+        "Sirve con el plátano al lado."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Lentejas aplastadas (pásalas por pasapuré si la piel molesta) y plátano en bastón o aplastado."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Ligeramente aplastadas; plátano en trozos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Plato familiar, con arroz."
+        }
+      ],
+      "note": null,
+      "references": [
+        "P2",
+        "P4"
+      ]
+    },
+    {
+      "code": "A11",
+      "title": "Sardinas con puré de papa y tomate",
+      "mealType": "almuerzo",
+      "minAgeMonths": 7,
+      "sortOrder": 33,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "pescado",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Omega-3",
+          "slug": "omega-3",
+          "label": "Omega-3"
+        },
+        {
+          "name": "Calcio",
+          "slug": "calcio",
+          "label": "Calcio"
+        }
+      ],
+      "ingredients": [
+        "2 sardinas en lata, en agua o aceite de oliva (sin salsa), o 2 sardinas frescas",
+        "1 papa",
+        "½ tomate maduro sin piel",
+        "1 cdta de aceite de oliva",
+        "Perejil"
+      ],
+      "steps": [
+        "De lata: escúrrelas y aplástalas bien con el tenedor. Las espinas de lata son blandas, se deshacen y aportan calcio.",
+        "Frescas: hornéalas 12 min a 200 °C y retira con cuidado la espina central y todas las espinas.",
+        "Haz un puré con la papa hervida y el aceite. Ralla el tomate y caliéntalo 3 min.",
+        "Mezcla la sardina con el puré y el tomate."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Sardina aplastada dentro del puré."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Escamas de sardina y puré con grumos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Sardina sobre arepa o pan."
+        }
+      ],
+      "note": "La sardina es de los pescados con menos mercurio y más omega-3 (\"mejor opción\" para la FDA). Las de salsa picante o salsa de tomate comercial suelen tener mucha sal.",
+      "references": []
+    },
+    {
+      "code": "A12",
+      "title": "Pastel de plátano y pescado (pastel de chucho, versión segura)",
+      "mealType": "almuerzo",
+      "minAgeMonths": 8,
+      "sortOrder": 34,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "pescado",
+          "optional": false,
+          "condition": null
+        },
+        {
+          "slug": "lacteos",
+          "optional": true,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Sin cazón",
+          "slug": "sin-cazon",
+          "label": "Sin cazón"
+        },
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congela"
+        }
+      ],
+      "ingredients": [
+        "1 plátano maduro (P4)",
+        "100 g de merluza, pargo o corvina sin espinas",
+        "1 cubo de sofrito (P2)",
+        "1 cdta de aceite",
+        "Opcional: 2 cdas de queso fresco bajo en sal"
+      ],
+      "steps": [
+        "Aplasta el plátano.",
+        "Sofríe el pescado con el sofrito 5 min y desmenúzalo con los dedos, revisando espinas.",
+        "En un molde pequeño, haz capas: plátano, pescado, plátano. Queso encima si lo usas.",
+        "Hornea 15 min a 180 °C."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Porción aplastada y mezclada."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Cuadritos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Porción familiar."
+        }
+      ],
+      "note": "El pastel de chucho tradicional se hace con cazón, que es tiburón: alto en mercurio y desaconsejado en niños pequeños. Con merluza, pargo o corvina queda igual de rico.",
+      "references": [
+        "P2",
+        "P4"
+      ]
+    },
+    {
+      "code": "A13",
+      "title": "Arroz con pollo y vegetales",
+      "mealType": "almuerzo",
+      "minAgeMonths": 7,
+      "sortOrder": 35,
+      "iron": {
+        "isSource": true,
+        "note": "muslo"
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Arroz con moderación",
+          "slug": "arroz-con-moderacion",
+          "label": "Arroz con moderación"
+        }
+      ],
+      "ingredients": [
+        "1 muslo de pollo en trozos",
+        "¼ taza de arroz blanco",
+        "¼ taza de zanahoria, arvejas y pimentón picados",
+        "1 cubo de sofrito (P2)",
+        "Pizca de onoto o cúrcuma",
+        "Agua o caldo casero (P1)"
+      ],
+      "steps": [
+        "Sofríe el sofrito con el onoto y dora el pollo.",
+        "Añade el arroz, los vegetales y agua generosa (unas 3 veces el volumen del arroz).",
+        "Cocina tapado 20–25 min, hasta que el arroz quede blando y meloso.",
+        "Desmecha el pollo."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Meloso y aplastado."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Arroz suelto con pollo picado."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Plato familiar."
+        }
+      ],
+      "note": "El arroz acumula más arsénico que otros cereales: no lo des todos los días y alterna con pasta, maíz, avena, papa o yuca. Otra opción: precocerlo 5 min en mucha agua, como la pasta, y escurrirlo antes de añadirlo al guiso; así pierde parte del arsénico.",
+      "references": [
+        "P1",
+        "P2"
+      ]
+    },
+    {
+      "code": "A14",
+      "title": "Carne guisada con papa y vainitas",
+      "mealType": "almuerzo",
+      "minAgeMonths": 7,
+      "sortOrder": 36,
+      "iron": {
+        "isSource": true,
+        "note": null
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Olla de presión",
+          "slug": "olla-de-presion",
+          "label": "Olla de presión"
+        },
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congela"
+        }
+      ],
+      "ingredients": [
+        "120 g de pulpa negra o muchacho de res",
+        "1 papa",
+        "6 vainitas",
+        "1 cubo de sofrito (P2)",
+        "Comino y orégano",
+        "1 cdta de aceite",
+        "Agua"
+      ],
+      "steps": [
+        "Dora la carne en trozos con el aceite; añade el sofrito y las especias.",
+        "Cubre con agua y cocina en olla de presión 30–35 min (o 1,5 h en olla normal), hasta que se deshaga.",
+        "Añade la papa y las vainitas los últimos 15 min.",
+        "Desmecha la carne en la salsa."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Carne muy mechada en la salsa, papa aplastada; vainitas enteras y blandas para agarrar."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Trocitos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Plato familiar."
+        }
+      ],
+      "note": "Inspirada en el asado negro, pero sin papelón ni salsas saladas (inglesa, soya): la carne queda sabrosa con el sofrito.",
+      "references": [
+        "P2"
+      ]
+    },
+    {
+      "code": "A15",
+      "title": "Pasta con pollo en salsa de auyama",
+      "mealType": "almuerzo",
+      "minAgeMonths": 7,
+      "sortOrder": 37,
+      "iron": {
+        "isSource": true,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "trigo",
+          "optional": false,
+          "condition": null
+        },
+        {
+          "slug": "lacteos",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Vitamina A",
+          "slug": "vitamina-a",
+          "label": "Vitamina A"
+        }
+      ],
+      "ingredients": [
+        "½ taza de pasta (fusilli o penne)",
+        "½ taza de auyama cocida",
+        "2–3 cdas de pollo desmechado",
+        "2 cdas de leche entera o agua de la pasta",
+        "1 cdta de aceite de oliva",
+        "Pizca de nuez moscada"
+      ],
+      "steps": [
+        "Cuece la pasta en agua sin sal hasta que esté muy blanda.",
+        "Licúa la auyama con la leche, el aceite y la nuez moscada.",
+        "Mezcla la salsa con la pasta y el pollo."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Pasta grande para agarrar, con la salsa pegada; pollo muy fino."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Pasta corta."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Plato familiar."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "A16",
+      "title": "Ensalada tibia de atún, papa y vainitas",
+      "mealType": "almuerzo",
+      "minAgeMonths": 8,
+      "sortOrder": 38,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "pescado",
+          "optional": false,
+          "condition": null
+        },
+        {
+          "slug": "huevo",
+          "optional": true,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Atún claro",
+          "slug": "atun-claro",
+          "label": "Atún claro"
+        }
+      ],
+      "ingredients": [
+        "2 cdas de atún claro en lata, en agua, escurrido",
+        "1 papa pequeña",
+        "4 vainitas",
+        "¼ de zanahoria",
+        "1 cdta de aceite de oliva",
+        "Unas gotas de limón",
+        "Opcional: ½ huevo duro"
+      ],
+      "steps": [
+        "Hierve papa, zanahoria y vainitas hasta que estén muy blandas.",
+        "Aplasta la papa con el aceite y el limón.",
+        "Desmenuza el atún y mezcla todo."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Atún mezclado con la papa aplastada; vainitas enteras para agarrar."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Trocitos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Ensalada familiar."
+        }
+      ],
+      "note": "Elige atún \"claro\" (light) en agua: el atún blanco o albacora tiene más mercurio. Alterna con sardina, merluza o pargo dentro de las dos raciones semanales de pescado.",
+      "references": []
+    },
+    {
+      "code": "A17",
+      "title": "Quinchonchos guisados con auyama",
+      "mealType": "almuerzo",
+      "minAgeMonths": 7,
+      "sortOrder": 39,
+      "iron": {
+        "isSource": true,
+        "note": "vegetal"
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Receta tradicional venezolana",
+          "slug": "receta-tradicional-venezolana",
+          "label": "Oriente venezolano"
+        },
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congela"
+        }
+      ],
+      "ingredients": [
+        "½ taza de quinchonchos secos (remojados 8–12 h) o 1 taza de frescos",
+        "1 taza de auyama en trozos",
+        "1 cubo de sofrito (P2)",
+        "Comino",
+        "1 cdta de aceite",
+        "Agua"
+      ],
+      "steps": [
+        "Cocina los quinchonchos en agua sin sal hasta que estén muy blandos (olla de presión 20–25 min; frescos, 20 min).",
+        "Añade el sofrito, la auyama, el comino y un poco de su caldo. Cocina 15 min.",
+        "Aplasta parte para espesar."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Aplastado o pasado por pasapuré (la piel puede molestar)."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Ligeramente aplastado."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Con arroz y plátano, como la familia."
+        }
+      ],
+      "note": "Ofrece de postre una fruta con vitamina C (guayaba, mango, lechosa) para mejorar la absorción del hierro.",
+      "references": [
+        "P2"
+      ]
+    },
+    {
+      "code": "A18",
+      "title": "Croquetas al horno de pescado y yuca",
+      "mealType": "almuerzo",
+      "minAgeMonths": 8,
+      "sortOrder": 40,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "pescado",
+          "optional": false,
+          "condition": null
+        },
+        {
+          "slug": "huevo",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congelan"
+        }
+      ],
+      "ingredients": [
+        "100 g de pescado blanco cocido, sin espinas",
+        "1 taza de yuca cocida y aplastada (P6)",
+        "1 huevo",
+        "Perejil picado",
+        "2 cdas de harina de maíz para cubrir",
+        "Aceite para la bandeja"
+      ],
+      "steps": [
+        "Mezcla el pescado desmenuzado, la yuca, el huevo y el perejil.",
+        "Forma croquetas alargadas, del tamaño de un dedo (no bolitas).",
+        "Pásalas por la harina y colócalas en una bandeja engrasada.",
+        "Hornea 20 min a 200 °C, volteándolas a la mitad."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Croqueta entera para agarrar (blanda por dentro)."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "En rodajas."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Con ensalada o vegetales."
+        }
+      ],
+      "note": null,
+      "references": [
+        "P6"
+      ]
+    },
+    {
+      "code": "M1",
+      "title": "Fruta lista en 2 minutos: guía de cortes",
+      "mealType": "merienda",
+      "minAgeMonths": 7,
+      "sortOrder": 41,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Vitamina C",
+          "slug": "vitamina-c",
+          "label": "Vitamina C"
+        },
+        {
+          "name": "Sin cocinar",
+          "slug": "sin-cocinar",
+          "label": "Sin cocinar"
+        }
+      ],
+      "ingredients": [
+        "Fruta madura de temporada (ver guía de cortes por fruta)",
+        "Opcional: 2–3 cdas de yogur natural, queso fresco bajo en sal o una tira de pan con crema de frutos secos fina (M6)"
+      ],
+      "steps": [
+        "Elige una fruta bien madura y córtala según la edad (tabla de cortes por fruta).",
+        "Retira semillas, huesos y pieles duras.",
+        "Combínala con una fuente de proteína o grasa para una merienda más completa."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Tiras gruesas y blandas para agarrar con el puño, o fruta aplastada."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Dados blandos para practicar la pinza."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Trozos de bocado, como la familia."
+        }
+      ],
+      "note": "Uvas y cerezas: nunca enteras (en cuartos a lo largo). Manzana cruda en trozos: todavía no; rallada o cocida.",
+      "references": [
+        "M6"
+      ]
+    },
+    {
+      "code": "M2",
+      "title": "Muffins de avena, manzana y zanahoria (sin azúcar)",
+      "mealType": "merienda",
+      "minAgeMonths": 7,
+      "sortOrder": 42,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "huevo",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congelan 2 meses"
+        },
+        {
+          "name": "Avena: puede contener gluten",
+          "slug": "avena-puede-contener-gluten",
+          "label": "Avena: puede contener gluten"
+        }
+      ],
+      "ingredients": [
+        "1 taza de avena molida (o mitad avena, mitad harina integral)",
+        "1 cambur muy maduro",
+        "1 manzana rallada",
+        "1 zanahoria rallada fina",
+        "1 huevo",
+        "2 cdas de aceite",
+        "1 cdta de polvo de hornear",
+        "Canela"
+      ],
+      "steps": [
+        "Precalienta el horno a 180 °C.",
+        "Aplasta el cambur y mézclalo con el huevo, el aceite, la manzana y la zanahoria.",
+        "Añade la avena, el polvo de hornear y la canela.",
+        "Reparte en un molde de mini-muffins (≈ 12) y hornea 15–18 min, hasta que un palillo salga limpio."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Partido por la mitad o en tiras."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "En trozos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Entero; perfecto para salidas."
+        }
+      ],
+      "note": "El dulzor viene solo del cambur maduro: no añadas azúcar, miel ni sirope.",
+      "references": []
+    },
+    {
+      "code": "M3",
+      "title": "Hummus suave con bastones de batata",
+      "mealType": "merienda",
+      "minAgeMonths": 7,
+      "sortOrder": 43,
+      "iron": {
+        "isSource": true,
+        "note": "vegetal"
+      },
+      "allergens": [
+        {
+          "slug": "sesamo",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Vitamina A",
+          "slug": "vitamina-a",
+          "label": "Vitamina A"
+        }
+      ],
+      "ingredients": [
+        "½ taza de garbanzos cocidos sin sal",
+        "1 cda de tahini",
+        "Jugo de ½ limón",
+        "2–3 cdas de agua",
+        "1 cdta de aceite de oliva",
+        "1 batata (boniato) mediana"
+      ],
+      "steps": [
+        "Corta la batata en bastones de 5–6 cm y hornéala 25 min a 200 °C, hasta que esté muy blanda.",
+        "Tritura los garbanzos (mejor sin piel) con el tahini, el limón, el agua y el aceite hasta que quede muy liso."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Bastón de batata untado en hummus, o hummus con cuchara."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Tiras de pan pita o arepita para mojar."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Con verduras cocidas o pan, en la merienda o el almuerzo."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "M4",
+      "title": "Galletas blandas de cambur y avena",
+      "mealType": "merienda",
+      "minAgeMonths": 8,
+      "sortOrder": 44,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "2 ingredientes",
+          "slug": "2-ingredientes",
+          "label": "2 ingredientes"
+        },
+        {
+          "name": "Sin azúcar",
+          "slug": "sin-azucar",
+          "label": "Sin azúcar"
+        },
+        {
+          "name": "Avena: puede contener gluten",
+          "slug": "avena-puede-contener-gluten",
+          "label": "Avena: puede contener gluten"
+        }
+      ],
+      "ingredients": [
+        "1 cambur muy maduro",
+        "½ taza de copos de avena finos",
+        "Canela (opcional)"
+      ],
+      "steps": [
+        "Aplasta el cambur y mezcla con la avena. Deja reposar 5 min.",
+        "Forma galletas planas en una bandeja con papel de horno.",
+        "Hornea 12–15 min a 180 °C. Deben quedar blandas: que se deshagan al presionarlas entre los dedos."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "En tiras, siempre blandas (no tostadas ni duras)."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Enteras pequeñas o en trozos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Enteras."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "M5",
+      "title": "Pera o manzana asada con yogur y canela",
+      "mealType": "merienda",
+      "minAgeMonths": 7,
+      "sortOrder": 45,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "lacteos",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Fácil para días de dientes",
+          "slug": "facil-para-dias-de-dientes",
+          "label": "Fácil para días de dientes"
+        }
+      ],
+      "ingredients": [
+        "1 pera o manzana",
+        "3 cdas de yogur natural entero",
+        "Canela"
+      ],
+      "steps": [
+        "Corta la fruta en gajos, espolvorea canela y hornea 20–25 min a 180 °C (o cocina tapada en sartén con un poco de agua).",
+        "Sirve tibia con el yogur."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Gajos blandos para agarrar, o aplastada dentro del yogur."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "En dados."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Con copos de avena o frutos secos molidos por encima."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "M6",
+      "title": "Tiras de pan integral con crema de almendras y fresa",
+      "mealType": "merienda",
+      "minAgeMonths": 7,
+      "sortOrder": 46,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "frutos_secos",
+          "optional": false,
+          "condition": null
+        },
+        {
+          "slug": "trigo",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Vitamina C",
+          "slug": "vitamina-c",
+          "label": "Vitamina C"
+        }
+      ],
+      "ingredients": [
+        "1 rebanada de pan integral (sin semillas enteras, bajo en sal)",
+        "½ cdta de crema de almendras o de merey 100%",
+        "1–2 fresas maduras"
+      ],
+      "steps": [
+        "Tuesta ligeramente el pan (que quede firme por fuera pero no duro).",
+        "Diluye la crema de almendras con unas gotas de agua tibia y úntala en capa muy fina.",
+        "Aplasta las fresas encima."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "En tiras de dos dedos de ancho."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "En cuadritos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Rebanada entera; fruta en trozos."
+        }
+      ],
+      "note": "El pan es una fuente de sal oculta: elige uno bajo en sal o hazlo en casa, y no lo des todos los días.",
+      "references": []
+    },
+    {
+      "code": "M7",
+      "title": "Plátano horneado con queso fresco",
+      "mealType": "merienda",
+      "minAgeMonths": 7,
+      "sortOrder": 47,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "lacteos",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "2 ingredientes",
+          "slug": "2-ingredientes",
+          "label": "2 ingredientes"
+        }
+      ],
+      "ingredients": [
+        "½ plátano muy maduro (P4)",
+        "1–2 cdas de queso fresco bajo en sal, ricota o requesón",
+        "Canela"
+      ],
+      "steps": [
+        "Hornea el plátano hasta que esté muy blando.",
+        "Ábrelo, espolvorea canela y pon el queso desmenuzado encima."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Bastones con el queso desmenuzado encima."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Trozos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "\"Plátano con queso\" entero."
+        }
+      ],
+      "note": "Los quesos blancos duros, llanero, de mano o telita suelen ser muy salados: para el bebé, mejor ricota o requesón.",
+      "references": [
+        "P4"
+      ]
+    },
+    {
+      "code": "M8",
+      "title": "Bowl tropical: lechosa, mango y patilla con yogur",
+      "mealType": "merienda",
+      "minAgeMonths": 7,
+      "sortOrder": 48,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "lacteos",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Vitamina C",
+          "slug": "vitamina-c",
+          "label": "Vitamina C"
+        },
+        {
+          "name": "Sin cocinar",
+          "slug": "sin-cocinar",
+          "label": "Sin cocinar"
+        }
+      ],
+      "ingredients": [
+        "2 cdas de lechosa madura",
+        "2 cdas de mango maduro",
+        "2 cdas de patilla sin semillas",
+        "3 cdas de yogur natural entero, sin azúcar"
+      ],
+      "steps": [
+        "Retira todas las semillas.",
+        "Corta o aplasta la fruta según la edad y sirve con el yogur."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Tiras grandes para agarrar, o aplastada dentro del yogur."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Dados blandos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Dados, con avena por encima."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "M9",
+      "title": "Compota casera de guayaba y manzana",
+      "mealType": "merienda",
+      "minAgeMonths": 7,
+      "sortOrder": 49,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Vitamina C",
+          "slug": "vitamina-c",
+          "label": "Vitamina C (muy alta)"
+        },
+        {
+          "name": "Sin azúcar",
+          "slug": "sin-azucar",
+          "label": "Sin azúcar"
+        },
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congela"
+        }
+      ],
+      "ingredients": [
+        "2 guayabas maduras",
+        "1 manzana",
+        "Canela",
+        "3–4 cdas de agua"
+      ],
+      "steps": [
+        "Pela la manzana y córtala junto con las guayabas.",
+        "Cocina con el agua 10 min, tapado, hasta que esté blando.",
+        "Licúa y cuela para retirar las semillas de la guayaba."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Tal cual, o mezclada en avena o yogur."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Más espesa."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Para untar en pan o arepita."
+        }
+      ],
+      "note": "La guayaba es de las frutas con más vitamina C. Sírvela junto a comidas con hierro vegetal (caraotas, lentejas) para mejorar su absorción. La pulpa cruda colada conserva aún más vitamina C.",
+      "references": []
+    },
+    {
+      "code": "M10",
+      "title": "Majarete sin azúcar",
+      "mealType": "merienda",
+      "minAgeMonths": 8,
+      "sortOrder": 50,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Maíz",
+          "slug": "maiz",
+          "label": "Maíz y coco"
+        },
+        {
+          "name": "Receta tradicional venezolana",
+          "slug": "receta-tradicional-venezolana",
+          "label": "Postre tradicional"
+        },
+        {
+          "name": "Sin azúcar",
+          "slug": "sin-azucar",
+          "label": "Sin azúcar"
+        }
+      ],
+      "ingredients": [
+        "½ taza de granos de jojoto tierno (o 3 cdas de harina de maíz precocida)",
+        "½ taza de leche de coco sin azúcar",
+        "½ taza de agua",
+        "1 cambur muy maduro",
+        "Canela en rama y una pizca de nuez moscada"
+      ],
+      "steps": [
+        "Licúa el jojoto con la leche de coco y el agua; cuela.",
+        "Añade el cambur licuado, la canela y la nuez moscada.",
+        "Cocina a fuego bajo 10–12 min, removiendo sin parar, hasta que espese.",
+        "Vierte en recipientes pequeños y refrigera 1 h."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Con cuchara precargada."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Con cuchara, solo o con fruta."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "En cuadritos, como postre familiar."
+        }
+      ],
+      "note": "El majarete tradicional lleva papelón y azúcar; aquí lo endulza el cambur.",
+      "references": []
+    },
+    {
+      "code": "M11",
+      "title": "Galletas blandas de auyama y avena",
+      "mealType": "merienda",
+      "minAgeMonths": 8,
+      "sortOrder": 51,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "huevo",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Vitamina A",
+          "slug": "vitamina-a",
+          "label": "Vitamina A"
+        },
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congelan"
+        }
+      ],
+      "ingredients": [
+        "½ taza de auyama cocida y aplastada",
+        "1 taza de avena en hojuelas finas",
+        "1 huevo",
+        "Canela",
+        "1 cda de aceite"
+      ],
+      "steps": [
+        "Mezcla todo y deja reposar 10 min.",
+        "Forma galletas planas sobre papel de horno.",
+        "Hornea 15 min a 180 °C. Deben quedar blandas, no tostadas."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Tiras blandas."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Enteras pequeñas o en trozos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Enteras."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "M12",
+      "title": "Hummus de caraotas negras con bastones",
+      "mealType": "merienda",
+      "minAgeMonths": 7,
+      "sortOrder": 52,
+      "iron": {
+        "isSource": true,
+        "note": "vegetal"
+      },
+      "allergens": [
+        {
+          "slug": "sesamo",
+          "optional": true,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Vitamina C",
+          "slug": "vitamina-c",
+          "label": "Vitamina C del limón"
+        }
+      ],
+      "ingredients": [
+        "½ taza de caraotas negras sin sal (P3)",
+        "1 cdta de tahini (opcional)",
+        "Jugo de ½ limón",
+        "1 cdta de aceite de oliva",
+        "Comino",
+        "Caldo de las caraotas o agua",
+        "Para mojar: bastones de arepita (P5), yuca cocida o batata"
+      ],
+      "steps": [
+        "Licúa todo hasta que quede muy liso, añadiendo caldo si hace falta.",
+        "Sirve con los bastones para mojar."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Untado en bastones o con cuchara."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Para mojar trozos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Dip familiar."
+        }
+      ],
+      "note": null,
+      "references": [
+        "P3",
+        "P5"
+      ]
+    },
+    {
+      "code": "M13",
+      "title": "Mango con requesón y coco rallado",
+      "mealType": "merienda",
+      "minAgeMonths": 7,
+      "sortOrder": 53,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "lacteos",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Vitamina C",
+          "slug": "vitamina-c",
+          "label": "Vitamina C"
+        }
+      ],
+      "ingredients": [
+        "Tiras de mango maduro",
+        "2 cdas de requesón o ricota",
+        "1 cdta de coco rallado fino, sin azúcar"
+      ],
+      "steps": [
+        "Pasa las tiras de mango por el coco rallado: así agarran mejor y no resbalan.",
+        "Sirve con el requesón para untar o mojar."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Tiras rebozadas en coco."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Dados."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Todo mezclado."
+        }
+      ],
+      "note": "El coco rallado fino no presenta riesgo; los trozos de coco duro sí: no los des.",
+      "references": []
+    },
+    {
+      "code": "M14",
+      "title": "Huevo duro con aguacate y tomate",
+      "mealType": "merienda",
+      "minAgeMonths": 7,
+      "sortOrder": 54,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "huevo",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Grasas saludables",
+          "slug": "grasas-saludables",
+          "label": "Grasas saludables"
+        }
+      ],
+      "ingredients": [
+        "1 huevo duro (10–12 min de hervor)",
+        "¼ de aguacate",
+        "½ tomate sin piel ni semillas"
+      ],
+      "steps": [
+        "Corta el huevo en gajos a lo largo, o aplástalo con el aguacate.",
+        "Sirve el tomate picado al lado."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Gajos de huevo o huevo aplastado con aguacate."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Picado."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "En rebanadas."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "M15",
+      "title": "Arepitas dulces sin azúcar (cambur y anís)",
+      "mealType": "merienda",
+      "minAgeMonths": 8,
+      "sortOrder": 55,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Harina enriquecida",
+          "slug": "harina-enriquecida",
+          "label": "Harina enriquecida"
+        },
+        {
+          "name": "Sin freír",
+          "slug": "sin-freir",
+          "label": "Sin freír"
+        },
+        {
+          "name": "Sin azúcar",
+          "slug": "sin-azucar",
+          "label": "Sin azúcar"
+        }
+      ],
+      "ingredients": [
+        "½ taza de harina de maíz precocida",
+        "½ cambur muy maduro aplastado",
+        "Pizca de anís dulce molido",
+        "Agua tibia (la necesaria)",
+        "1 cdta de aceite"
+      ],
+      "steps": [
+        "Mezcla la harina con el cambur, el anís y el aceite; añade agua hasta tener una masa suave.",
+        "Forma arepitas pequeñas y finas.",
+        "Cocina en budare o sartén tapada, a fuego bajo, 5–6 min por lado."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Tiras blandas."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Trozos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Enteras."
+        }
+      ],
+      "note": "Las arepitas dulces tradicionales se fríen y llevan papelón; esta versión es cocida y sin azúcar.",
+      "references": []
+    },
+    {
+      "code": "C1",
+      "title": "Tortilla al horno de papa y calabacín",
+      "mealType": "cena",
+      "minAgeMonths": 8,
+      "sortOrder": 56,
+      "iron": {
+        "isSource": true,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "huevo",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congela"
+        }
+      ],
+      "ingredients": [
+        "2 huevos",
+        "1 papa pequeña cocida, en cubitos",
+        "½ calabacín rallado y escurrido",
+        "¼ de cebolla picada fina (opcional)",
+        "1 cdta de aceite de oliva"
+      ],
+      "steps": [
+        "Sofríe la cebolla y el calabacín 5 min.",
+        "Bate los huevos y mezcla con la papa y el calabacín.",
+        "Vierte en un molde pequeño engrasado y hornea 20 min a 180 °C, hasta que el centro esté firme."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Bastones de 5–6 cm."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Cuadritos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Porción como la familia. Variante: añadir camarón picado bien cocido."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "C2",
+      "title": "Crema de auyama con lentejas rojas",
+      "mealType": "cena",
+      "minAgeMonths": 8,
+      "sortOrder": 57,
+      "iron": {
+        "isSource": true,
+        "note": "vegetal"
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Vitamina A",
+          "slug": "vitamina-a",
+          "label": "Vitamina A"
+        },
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congela"
+        }
+      ],
+      "ingredients": [
+        "1 taza de auyama en cubos",
+        "2 cdas de lentejas rojas",
+        "¼ de cebolla",
+        "1 zanahoria",
+        "1 cdta de aceite de oliva",
+        "Agua o caldo casero sin sal"
+      ],
+      "steps": [
+        "Sofríe la cebolla, añade el resto y cubre con agua.",
+        "Cocina 20 min.",
+        "Tritura dejando algo de textura. De postre, una fruta con vitamina C."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Espesa, para tomar con cuchara o mojar tiras de pan o arepita."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Menos triturada, con trocitos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Como crema para toda la familia."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "C3",
+      "title": "Salmón al horno con batata y guisantes",
+      "mealType": "cena",
+      "minAgeMonths": 8,
+      "sortOrder": 58,
+      "iron": {
+        "isSource": true,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "pescado",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Omega-3",
+          "slug": "omega-3",
+          "label": "Omega-3"
+        }
+      ],
+      "ingredients": [
+        "60–80 g de salmón sin piel ni espinas",
+        "½ batata",
+        "2 cdas de guisantes (arvejas) cocidos",
+        "1 cdta de aceite de oliva",
+        "Eneldo o perejil"
+      ],
+      "steps": [
+        "Hornea la batata en bastones 25 min a 200 °C. En los últimos 12 min añade el salmón a la bandeja.",
+        "Aplasta los guisantes con el aceite (la piel entera de los guisantes puede ser difícil).",
+        "Desmenuza el salmón revisando espinas."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Salmón en escamas grandes y blandas; batata en bastón; guisantes aplastados."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Todo en trocitos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Porción familiar."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "C4",
+      "title": "Cachapitas sin azúcar con queso fresco",
+      "mealType": "cena",
+      "minAgeMonths": 9,
+      "sortOrder": 59,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "lacteos",
+          "optional": false,
+          "condition": null
+        },
+        {
+          "slug": "huevo",
+          "optional": true,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Maíz",
+          "slug": "maiz",
+          "label": "Maíz"
+        }
+      ],
+      "ingredients": [
+        "1 taza de granos de maíz tierno (jojoto)",
+        "2–3 cdas de harina de maíz precocida",
+        "2–3 cdas de leche entera",
+        "1 huevo (opcional)",
+        "Queso fresco bajo en sal o ricota"
+      ],
+      "steps": [
+        "Licúa el maíz con la leche y el huevo hasta que quede lo más liso posible; añade la harina para espesar.",
+        "Cocina cucharadas pequeñas en sartén antiadherente a fuego medio-bajo, 3 min por lado, hasta que estén bien hechas.",
+        "Unta con queso fresco o ricota."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "— (desde 9 meses) Si quieres darla antes, en tiras muy finas y bien cocidas."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Tiras o trozos pequeños untados de queso."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Cachapita entera, como la familia."
+        }
+      ],
+      "note": "Los granos de maíz enteros son un riesgo de atragantamiento: deben quedar bien licuados. La cachapa tradicional lleva azúcar; aquí no hace falta: el maíz tierno ya es dulce.",
+      "references": []
+    },
+    {
+      "code": "C5",
+      "title": "Cuscús con pollo mechado y verduras",
+      "mealType": "cena",
+      "minAgeMonths": 8,
+      "sortOrder": 60,
+      "iron": {
+        "isSource": true,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "trigo",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Listo en 15 min con sobras",
+          "slug": "listo-en-15-min-con-sobras",
+          "label": "Listo en 15 min con sobras"
+        }
+      ],
+      "ingredients": [
+        "¼ taza de cuscús",
+        "¼ taza de agua hirviendo o caldo casero sin sal",
+        "2–3 cdas de pollo mechado (sobras de A1)",
+        "Calabacín y zanahoria cocidos en dados pequeños",
+        "1 cdta de aceite de oliva",
+        "Comino"
+      ],
+      "steps": [
+        "Cubre el cuscús con el agua hirviendo, tapa y deja 5 min. Suelta con un tenedor.",
+        "Mezcla con el pollo, las verduras, el aceite y el comino."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Con cuchara; o compacta pequeñas porciones alargadas con la mano para que las agarre."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Tal cual, con cuchara o con los dedos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Como guarnición familiar."
+        }
+      ],
+      "note": null,
+      "references": [
+        "A1"
+      ]
+    },
+    {
+      "code": "C6",
+      "title": "Tortitas de brócoli, garbanzo y queso",
+      "mealType": "cena",
+      "minAgeMonths": 8,
+      "sortOrder": 61,
+      "iron": {
+        "isSource": true,
+        "note": "vegetal"
+      },
+      "allergens": [
+        {
+          "slug": "lacteos",
+          "optional": false,
+          "condition": null
+        },
+        {
+          "slug": "huevo",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [],
+      "ingredients": [
+        "½ taza de garbanzos cocidos sin sal",
+        "½ taza de brócoli cocido",
+        "2 cdas de queso fresco bajo en sal rallado",
+        "1 huevo",
+        "2 cdas de avena molida",
+        "Ajo en polvo, una pizca"
+      ],
+      "steps": [
+        "Tritura los garbanzos y el brócoli (que quede con algo de textura).",
+        "Mezcla con el huevo, el queso, la avena y el ajo.",
+        "Forma tortitas planas y hornea 18–20 min a 190 °C, o cocina en sartén 3–4 min por lado."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Tiras."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Trozos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Enteras, con yogur o hummus para mojar."
+        }
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "C7",
+      "title": "Tofu dorado en bastones con verduras",
+      "mealType": "cena",
+      "minAgeMonths": 8,
+      "sortOrder": 62,
+      "iron": {
+        "isSource": true,
+        "note": "vegetal"
+      },
+      "allergens": [
+        {
+          "slug": "soya",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Calcio",
+          "slug": "calcio",
+          "label": "Calcio"
+        }
+      ],
+      "ingredients": [
+        "80 g de tofu firme",
+        "1 cdta de aceite de oliva",
+        "Pimentón rojo y calabacín",
+        "Orégano o comino",
+        "Acompañamiento: quinoa (D6, sin la pera) o batata"
+      ],
+      "steps": [
+        "Escurre el tofu y córtalo en bastones gruesos.",
+        "Dóralos en una sartén antiadherente con el aceite y las especias, 3–4 min por lado.",
+        "Saltea el pimentón y el calabacín en tiras hasta que estén blandos."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Bastones de tofu y verduras blandas en tiras."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Dados."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Salteado familiar (sin salsa de soya: es muy salada)."
+        }
+      ],
+      "note": null,
+      "references": [
+        "D6"
+      ]
+    },
+    {
+      "code": "C8",
+      "title": "Pisca andina espesa",
+      "mealType": "cena",
+      "minAgeMonths": 8,
+      "sortOrder": 63,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "huevo",
+          "optional": false,
+          "condition": null
+        },
+        {
+          "slug": "lacteos",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Receta tradicional venezolana",
+          "slug": "receta-tradicional-venezolana",
+          "label": "Receta andina"
+        }
+      ],
+      "ingredients": [
+        "1 papa mediana en cubitos",
+        "Cebollín y cilantro picados",
+        "1 cdta de mantequilla sin sal o aceite",
+        "150 ml de agua y 50 ml de leche entera",
+        "1 huevo",
+        "1 cda de queso fresco bajo en sal"
+      ],
+      "steps": [
+        "Sofríe el cebollín; añade la papa y el agua. Cocina 15 min, hasta que esté muy blanda.",
+        "Aplasta parte de la papa para espesar y añade la leche.",
+        "Incorpora el huevo batido en hilo, removiendo, y cocina 3–4 min hasta que esté totalmente cuajado.",
+        "Termina con cilantro y queso."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Espesa y aplastada: más papa que caldo."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Con trocitos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Como la familia, con arepa (la sal, en el plato de los adultos)."
+        }
+      ],
+      "note": "Tradicionalmente es un caldo: para el bebé, sirve primero la parte sólida y espesa.",
+      "references": []
+    },
+    {
+      "code": "C9",
+      "title": "Crema de apio criollo con pollo",
+      "mealType": "cena",
+      "minAgeMonths": 8,
+      "sortOrder": 64,
+      "iron": {
+        "isSource": true,
+        "note": "muslo"
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congela"
+        }
+      ],
+      "ingredients": [
+        "1 trozo de apio criollo (≈100 g)",
+        "½ zanahoria",
+        "¼ de cebolla y ½ diente de ajo",
+        "2–3 cdas de pollo desmechado",
+        "1 cdta de aceite",
+        "Caldo casero sin sal (P1) o agua"
+      ],
+      "steps": [
+        "Pela y corta el apio criollo y la zanahoria.",
+        "Sofríe cebolla y ajo; añade los vegetales y cubre con caldo. Cocina 20 min, hasta que estén muy blandos.",
+        "Licúa con poco líquido, para que quede espesa. Añade el pollo desmechado fino."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Crema espesa con pollo muy fino."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Con trocitos de vegetales."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Crema familiar."
+        }
+      ],
+      "note": "El apio criollo es la raíz (arracacha), no el apio España de tallo verde.",
+      "references": [
+        "P1"
+      ]
+    },
+    {
+      "code": "C10",
+      "title": "Arepita reina pepiada suave",
+      "mealType": "cena",
+      "minAgeMonths": 8,
+      "sortOrder": 65,
+      "iron": {
+        "isSource": true,
+        "note": "pollo"
+      },
+      "allergens": [
+        {
+          "slug": "lacteos",
+          "optional": true,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Sin mayonesa",
+          "slug": "sin-mayonesa",
+          "label": "Sin mayonesa"
+        }
+      ],
+      "ingredients": [
+        "1–2 arepitas blandas (P5)",
+        "3 cdas de pollo desmechado fino",
+        "¼ de aguacate maduro",
+        "Unas gotas de limón",
+        "Cilantro picado fino",
+        "Opcional: 1 cda de yogur natural"
+      ],
+      "steps": [
+        "Aplasta el aguacate con el limón, el cilantro y el yogur.",
+        "Mezcla con el pollo.",
+        "Rellena o unta las arepitas."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Tiras de arepa untadas con el relleno."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Trozos rellenos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Arepa entera."
+        }
+      ],
+      "note": "La mayonesa comercial tiene sal y la casera lleva huevo crudo: el aguacate da la cremosidad.",
+      "references": [
+        "P5"
+      ]
+    },
+    {
+      "code": "C11",
+      "title": "Tortilla de plátano maduro y queso",
+      "mealType": "cena",
+      "minAgeMonths": 8,
+      "sortOrder": 66,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "huevo",
+          "optional": false,
+          "condition": null
+        },
+        {
+          "slug": "lacteos",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [],
+      "ingredients": [
+        "½ plátano maduro (P4)",
+        "2 huevos",
+        "1 cda de queso fresco bajo en sal rallado",
+        "Cebollín picado",
+        "1 cdta de aceite"
+      ],
+      "steps": [
+        "Corta el plátano en rodajas finas o aplástalo.",
+        "Bate los huevos con el queso y el cebollín.",
+        "En una sartén pequeña con el aceite, pon el plátano y vierte el huevo. Tapa y cocina a fuego bajo 6–8 min.",
+        "Voltea y cocina 2 min más, hasta que el centro esté firme."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Bastones."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Cuadritos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Porción familiar."
+        }
+      ],
+      "note": null,
+      "references": [
+        "P4"
+      ]
+    },
+    {
+      "code": "C12",
+      "title": "Crema de jojoto y calabacín con huevo",
+      "mealType": "cena",
+      "minAgeMonths": 8,
+      "sortOrder": 67,
+      "iron": {
+        "isSource": false,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "huevo",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Ligera",
+          "slug": "ligera",
+          "label": "Ligera"
+        },
+        {
+          "name": "Maíz",
+          "slug": "maiz",
+          "label": "Maíz tierno"
+        }
+      ],
+      "ingredients": [
+        "1 taza de granos de jojoto",
+        "½ calabacín",
+        "¼ de cebolla",
+        "1 cdta de aceite",
+        "Agua o caldo casero (P1)",
+        "1 huevo duro"
+      ],
+      "steps": [
+        "Sofríe la cebolla; añade el jojoto, el calabacín y el líquido justo para cubrir. Cocina 15 min.",
+        "Licúa y cuela para quitar los hollejos.",
+        "Sirve espesa, con el huevo duro rallado o aplastado encima."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Espesa, con cuchara o para mojar arepita."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Con huevo picado."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Crema familiar."
+        }
+      ],
+      "note": null,
+      "references": [
+        "P1"
+      ]
+    },
+    {
+      "code": "C13",
+      "title": "Pasta boloñesa casera",
+      "mealType": "cena",
+      "minAgeMonths": 8,
+      "sortOrder": 68,
+      "iron": {
+        "isSource": true,
+        "note": null
+      },
+      "allergens": [
+        {
+          "slug": "trigo",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Salsa congelable"
+        }
+      ],
+      "ingredients": [
+        "½ taza de pasta",
+        "100 g de carne molida de res",
+        "2 tomates maduros (o 4 cdas de tomate triturado sin sal añadida)",
+        "1 cubo de sofrito (P2)",
+        "½ zanahoria rallada",
+        "Orégano o albahaca",
+        "1 cdta de aceite"
+      ],
+      "steps": [
+        "Sofríe el sofrito; añade la carne y desgránala hasta que no quede rosada.",
+        "Agrega el tomate y la zanahoria y cocina 20 min a fuego bajo.",
+        "Cuece la pasta en agua sin sal, muy blanda, y mezcla."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Fusilli grande con la salsa pegada; carne bien mezclada."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Pasta corta."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Plato familiar."
+        }
+      ],
+      "note": "La salsa de tomate comercial y la pasta de tomate de lata suelen llevar sal y azúcar: mejor tomate natural.",
+      "references": [
+        "P2"
+      ]
+    },
+    {
+      "code": "C14",
+      "title": "Bollitos pelones en salsa",
+      "mealType": "cena",
+      "minAgeMonths": 9,
+      "sortOrder": 69,
+      "iron": {
+        "isSource": true,
+        "note": null
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Receta tradicional venezolana",
+          "slug": "receta-tradicional-venezolana",
+          "label": "Receta venezolana"
+        },
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congelan"
+        }
+      ],
+      "ingredients": [
+        "Masa de arepitas (P5), media receta",
+        "3 cdas de picadillo de carne (A8) muy fino",
+        "2 tomates licuados con 1 ají dulce y ¼ de cebolla"
+      ],
+      "steps": [
+        "Forma bollitos alargados (no esferas) con poca masa y un poco de relleno dentro.",
+        "Cocina la salsa de tomate 10 min.",
+        "Mete los bollitos en la salsa, tapa y cocina a fuego bajo 15 min, hasta que la masa esté cocida y blanda."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Desde 9 meses. Antes, ofrece el picadillo y la masa por separado."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Cortados por la mitad o en trozos, con salsa."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Enteros."
+        }
+      ],
+      "note": "No fritos y con forma alargada: más fáciles de manejar y sin el riesgo de una bolita firme.",
+      "references": [
+        "P5",
+        "A8"
+      ]
+    },
+    {
+      "code": "C15",
+      "title": "Crema de caraotas negras con arepita",
+      "mealType": "cena",
+      "minAgeMonths": 8,
+      "sortOrder": 70,
+      "iron": {
+        "isSource": true,
+        "note": "vegetal"
+      },
+      "allergens": [],
+      "tags": [
+        {
+          "name": "Harina enriquecida",
+          "slug": "harina-enriquecida",
+          "label": "Harina enriquecida"
+        },
+        {
+          "name": "Se congela",
+          "slug": "se-congela",
+          "label": "Se congela"
+        }
+      ],
+      "ingredients": [
+        "½ taza de caraotas negras sin sal (P3) con su caldo",
+        "1 cubo de sofrito (P2)",
+        "Comino",
+        "1 arepita blanda (P5)",
+        "De acompañante: tomate o mandarina"
+      ],
+      "steps": [
+        "Licúa las caraotas con el sofrito y un poco de su caldo hasta tener una crema espesa.",
+        "Calienta 5 min con el comino.",
+        "Sirve con tiras de arepita para mojar y la fruta o el tomate al lado."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Crema con cuchara o para mojar."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Tal cual."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Con queso fresco rallado, como la familia."
+        }
+      ],
+      "note": null,
+      "references": [
+        "P2",
+        "P3",
+        "P5"
+      ]
+    },
+    {
+      "code": "C16",
+      "title": "Chayote relleno de pollo y queso",
+      "mealType": "cena",
+      "minAgeMonths": 8,
+      "sortOrder": 71,
+      "iron": {
+        "isSource": true,
+        "note": "pollo"
+      },
+      "allergens": [
+        {
+          "slug": "lacteos",
+          "optional": false,
+          "condition": null
+        }
+      ],
+      "tags": [],
+      "ingredients": [
+        "½ chayote",
+        "3 cdas de pollo desmechado",
+        "1 cubo de sofrito (P2)",
+        "1 cda de ricota o queso fresco bajo en sal"
+      ],
+      "steps": [
+        "Hierve el chayote partido 20 min, hasta que esté muy blando.",
+        "Saca la pulpa con una cuchara y mézclala con el pollo y el sofrito.",
+        "Rellena la concha, pon el queso encima y hornea 10 min a 180 °C."
+      ],
+      "ageAdaptations": [
+        {
+          "minAgeMonths": 7,
+          "maxAgeMonths": 8,
+          "instructions": "Pulpa aplastada con el pollo."
+        },
+        {
+          "minAgeMonths": 9,
+          "maxAgeMonths": 11,
+          "instructions": "Trozos."
+        },
+        {
+          "minAgeMonths": 12,
+          "maxAgeMonths": null,
+          "instructions": "Medio chayote relleno."
+        }
+      ],
+      "note": null,
+      "references": [
+        "P2"
+      ]
+    }
+  ],
+  "foodGuide": [
+    {
+      "food": "Harina de maíz precocida",
+      "fromAge": "6 m",
+      "preparation": "Arepitas finas y blandas, sin sal (P5), funche, bollitos.",
+      "caution": "En Venezuela está enriquecida por norma con hierro, vitamina A y vitaminas B1, B2 y B3 desde 1993. Buena aliada.",
+      "sortOrder": 1
+    },
+    {
+      "food": "Caraotas, frijoles, lentejas, quinchonchos, arvejas",
+      "fromAge": "6 m",
+      "preparation": "Remojo 8–12 h, cocción larga hasta que se deshagan (P3). Aplastadas o pasadas por pasapuré.",
+      "caution": "Nunca poco cocidas. Las de lata: escurrir y enjuagar para quitar sal. Acompañar con fruta rica en vitamina C.",
+      "sortOrder": 2
+    },
+    {
+      "food": "Plátano maduro",
+      "fromAge": "6 m",
+      "preparation": "Horneado o hervido (P4), aplastado o en bastón.",
+      "caution": "Tostones y tajadas fritas: no (duros, aceitosos).",
+      "sortOrder": 3
+    },
+    {
+      "food": "Plátano verde",
+      "fromAge": "6 m",
+      "preparation": "Hervido hasta muy blando y aplastado.",
+      "caution": "Patacones y tostones: no.",
+      "sortOrder": 4
+    },
+    {
+      "food": "Yuca",
+      "fromAge": "6 m",
+      "preparation": "Pelada (incluida la capa rosada), en trozos, hervida hasta muy blanda; desechar el agua y la hebra central (P6).",
+      "caution": "Nunca cruda ni mal cocida (glucósidos cianogénicos). El casabe es duro: no para bebés.",
+      "sortOrder": 5
+    },
+    {
+      "food": "Ocumo, ñame, apio criollo, batata",
+      "fromAge": "6 m",
+      "preparation": "Pelados y bien cocidos, aplastados o en bastón.",
+      "caution": "Ocumo y ñame crudos irritan la boca (oxalato de calcio): siempre bien cocidos.",
+      "sortOrder": 6
+    },
+    {
+      "food": "Auyama, chayote, calabacín, zanahoria, papa",
+      "fromAge": "6 m",
+      "preparation": "Hervidos, al vapor u horneados.",
+      "caution": null,
+      "sortOrder": 7
+    },
+    {
+      "food": "Ají dulce, pimentón, cebolla, ajo, cilantro, cebollín, onoto, comino, orégano",
+      "fromAge": "6 m",
+      "preparation": "En el sofrito (P2). Dan sabor sin sal.",
+      "caution": "Ají picante: mejor no al principio.",
+      "sortOrder": 8
+    },
+    {
+      "food": "Cambur, mango, lechosa, guayaba, patilla, parchita, piña, naranja, mandarina",
+      "fromAge": "6 m",
+      "preparation": "Frutas enteras maduras, en tiras o aplastadas.",
+      "caution": "Quitar semillas (guayaba, patilla, parchita). Sin jugos antes del año.",
+      "sortOrder": 9
+    },
+    {
+      "food": "Aguacate",
+      "fromAge": "6 m",
+      "preparation": "En gajo, aplastado o en guasacaca suave.",
+      "caution": null,
+      "sortOrder": 10
+    },
+    {
+      "food": "Pollo, carne de res, cerdo magro",
+      "fromAge": "6 m",
+      "preparation": "Guisados hasta deshacerse, mechados, molidos y humedecidos.",
+      "caution": "Muslo de pollo: más hierro que la pechuga.",
+      "sortOrder": 11
+    },
+    {
+      "food": "Hígado de pollo o res",
+      "fromAge": "6 m",
+      "preparation": "Bien cocido, triturado en el puré.",
+      "caution": "Muchísimo hierro, pero también vitamina A: máximo una vez por semana, porción pequeña.",
+      "sortOrder": 12
+    },
+    {
+      "food": "Sardina, merluza, pargo, corvina, atún claro en lata",
+      "fromAge": "6 m",
+      "preparation": "Al vapor, horno o guisado, sin espinas.",
+      "caution": "Unas 2 raciones de pescado a la semana, variando. Sardinas y atún en agua o aceite, no en salsas saladas.",
+      "sortOrder": 13
+    },
+    {
+      "food": "Cazón, carite, pez espada, atún ojo grande",
+      "fromAge": "—",
+      "preparation": "No en la infancia.",
+      "caution": "Mercurio alto. El cazón es tiburón: cambia el pastel de chucho por merluza o pargo (A12).",
+      "sortOrder": 14
+    },
+    {
+      "food": "Huevo",
+      "fromAge": "6 m",
+      "preparation": "Siempre bien cuajado: duro, revuelto, tortilla.",
+      "caution": null,
+      "sortOrder": 15
+    },
+    {
+      "food": "Queso blanco duro, llanero, de mano, telita, guayanés",
+      "fromAge": "Con cautela",
+      "preparation": "Mejor ricota, requesón o queso fresco bajo en sal. Si lo usas, en poca cantidad.",
+      "caution": "Suelen ser muy salados, y los artesanales a veces no son pasteurizados (listeria).",
+      "sortOrder": 16
+    },
+    {
+      "food": "Leche en polvo completa o leche líquida entera",
+      "fromAge": "6 m (cocina)",
+      "preparation": "Para cocinar: avena, funche, cremas.",
+      "caution": "Como bebida principal, no antes de los 12 meses.",
+      "sortOrder": 17
+    },
+    {
+      "food": "Papelón, azúcar, miel, melaza",
+      "fromAge": "—",
+      "preparation": "No.",
+      "caution": "Sin azúcares añadidos antes de los 2 años; miel nunca antes de 1 año.",
+      "sortOrder": 18
+    },
+    {
+      "food": "Cubitos, adobo, sazonadores, salsa de soya, salsa inglesa",
+      "fromAge": "—",
+      "preparation": "No. Usa el caldo casero (P1) y el sofrito (P2).",
+      "caution": "Muy altos en sodio.",
+      "sortOrder": 19
+    },
+    {
+      "food": "Malta, refrescos, jugos de caja, chicha comercial, café con leche",
+      "fromAge": "—",
+      "preparation": "No.",
+      "caution": "Azúcar y/o cafeína.",
+      "sortOrder": 20
+    },
+    {
+      "food": "Jamón, mortadela, salchicha, tequeños, empanadas y pastelitos fritos",
+      "fromAge": "—",
+      "preparation": "No.",
+      "caution": "Sal, grasas, aditivos; algunos con forma de riesgo de atragantamiento.",
+      "sortOrder": 21
+    }
+  ],
+  "fruitCutGuide": [
+    {
+      "fruit": "Aguacate",
+      "age7to8": "Gajo grueso (pásalo por coco rallado o avena molida para que no resbale)",
+      "age9to11": "Dados",
+      "caution": null,
+      "sortOrder": 1
+    },
+    {
+      "fruit": "Cambur (plátano)",
+      "age7to8": "Medio cambur con algo de cáscara como asa, o bastón",
+      "age9to11": "Rodajas cortadas en cuartos",
+      "caution": null,
+      "sortOrder": 2
+    },
+    {
+      "fruit": "Mango, lechosa",
+      "age7to8": "Tiras gruesas bien maduras, o el hueso del mango con pulpa para chupar",
+      "age9to11": "Dados",
+      "caution": null,
+      "sortOrder": 3
+    },
+    {
+      "fruit": "Pera, durazno",
+      "age7to8": "Maduros y blandos en gajos; si están firmes, cocidos o asados",
+      "age9to11": "Dados",
+      "caution": null,
+      "sortOrder": 4
+    },
+    {
+      "fruit": "Manzana",
+      "age7to8": "Cocida o asada, en gajos; o rallada cruda",
+      "age9to11": "Rallada o cocida",
+      "caution": "Cruda en trozos: no hasta más adelante",
+      "sortOrder": 5
+    },
+    {
+      "fruit": "Fresas",
+      "age7to8": "Enteras si son grandes y maduras, o aplastadas",
+      "age9to11": "En cuartos",
+      "caution": null,
+      "sortOrder": 6
+    },
+    {
+      "fruit": "Uvas, cerezas",
+      "age7to8": "Aplastadas",
+      "age9to11": "En cuartos a lo largo",
+      "caution": "Nunca enteras",
+      "sortOrder": 7
+    },
+    {
+      "fruit": "Guayaba",
+      "age7to8": "Pulpa sin semillas, aplastada o colada",
+      "age9to11": "Pulpa sin semillas",
+      "caution": "Semillas duras",
+      "sortOrder": 8
+    }
+  ],
+  "mealPlan": [
+    {
+      "week": 1,
+      "dayOfWeek": 1,
+      "mealType": "desayuno",
+      "recipeCode": "D1",
+      "alternativeCodes": [],
+      "label": "D1 Avena con cambur y maní"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 1,
+      "mealType": "almuerzo",
+      "recipeCode": "A1",
+      "alternativeCodes": [],
+      "label": "A1 Pollo con auyama y papa"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 1,
+      "mealType": "merienda",
+      "recipeCode": "M5",
+      "alternativeCodes": [],
+      "label": "M5 Pera asada con yogur"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 1,
+      "mealType": "cena",
+      "recipeCode": "C1",
+      "alternativeCodes": [],
+      "label": "C1 Tortilla de papa y calabacín"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 2,
+      "mealType": "desayuno",
+      "recipeCode": "D2",
+      "alternativeCodes": [],
+      "label": "D2 Tortitas de cambur y huevo"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 2,
+      "mealType": "almuerzo",
+      "recipeCode": "A2",
+      "alternativeCodes": [],
+      "label": "A2 Lentejas rojas + lechosa"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 2,
+      "mealType": "merienda",
+      "recipeCode": "M3",
+      "alternativeCodes": [],
+      "label": "M3 Hummus con batata"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 2,
+      "mealType": "cena",
+      "recipeCode": "C3",
+      "alternativeCodes": [],
+      "label": "C3 Salmón con batata"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 3,
+      "mealType": "desayuno",
+      "recipeCode": "D6",
+      "alternativeCodes": [],
+      "label": "D6 Gachas de quinoa y pera"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 3,
+      "mealType": "almuerzo",
+      "recipeCode": "A3",
+      "alternativeCodes": [],
+      "label": "A3 Pabellón para bebé"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 3,
+      "mealType": "merienda",
+      "recipeCode": "M6",
+      "alternativeCodes": [],
+      "label": "M6 Pan con crema de almendras"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 3,
+      "mealType": "cena",
+      "recipeCode": "C2",
+      "alternativeCodes": [],
+      "label": "C2 Crema de auyama y lentejas"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 4,
+      "mealType": "desayuno",
+      "recipeCode": "D4",
+      "alternativeCodes": [],
+      "label": "D4 Revuelto con tomate y aguacate"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 4,
+      "mealType": "almuerzo",
+      "recipeCode": "A4",
+      "alternativeCodes": [],
+      "label": "A4 Pescado con papa y brócoli"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 4,
+      "mealType": "merienda",
+      "recipeCode": "M2",
+      "alternativeCodes": [],
+      "label": "M2 Muffin de avena y manzana"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 4,
+      "mealType": "cena",
+      "recipeCode": "C5",
+      "alternativeCodes": [],
+      "label": "C5 Cuscús con pollo"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 5,
+      "mealType": "desayuno",
+      "recipeCode": "D5",
+      "alternativeCodes": [],
+      "label": "D5 Yogur con mango y tahini"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 5,
+      "mealType": "almuerzo",
+      "recipeCode": "A5",
+      "alternativeCodes": [],
+      "label": "A5 Bastones de res y calabacín"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 5,
+      "mealType": "merienda",
+      "recipeCode": "M1",
+      "alternativeCodes": [],
+      "label": "M1 Fruta + queso fresco"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 5,
+      "mealType": "cena",
+      "recipeCode": "C6",
+      "alternativeCodes": [],
+      "label": "C6 Tortitas de brócoli y garbanzo"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 6,
+      "mealType": "desayuno",
+      "recipeCode": "D3",
+      "alternativeCodes": [],
+      "label": "D3 Arepitas de auyama con aguacate"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 6,
+      "mealType": "almuerzo",
+      "recipeCode": "A6",
+      "alternativeCodes": [],
+      "label": "A6 Pasta con salmón y brócoli"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 6,
+      "mealType": "merienda",
+      "recipeCode": "M4",
+      "alternativeCodes": [],
+      "label": "M4 Galletas de cambur y avena"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 6,
+      "mealType": "cena",
+      "recipeCode": "C7",
+      "alternativeCodes": [],
+      "label": "C7 Tofu con verduras"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 7,
+      "mealType": "desayuno",
+      "recipeCode": "D1",
+      "alternativeCodes": [],
+      "label": "D1 Avena con cambur y maní"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 7,
+      "mealType": "almuerzo",
+      "recipeCode": "A1",
+      "alternativeCodes": [],
+      "label": "A1 Pollo (porción congelada)"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 7,
+      "mealType": "merienda",
+      "recipeCode": "M1",
+      "alternativeCodes": [],
+      "label": "M1 Fruta + yogur"
+    },
+    {
+      "week": 1,
+      "dayOfWeek": 7,
+      "mealType": "cena",
+      "recipeCode": "C4",
+      "alternativeCodes": [
+        "C1"
+      ],
+      "label": "C4 Cachapitas (9 m +) o C1"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 1,
+      "mealType": "desayuno",
+      "recipeCode": "D10",
+      "alternativeCodes": [],
+      "label": "D10 Arepita dominó"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 1,
+      "mealType": "almuerzo",
+      "recipeCode": "A7",
+      "alternativeCodes": [],
+      "label": "A7 Sancocho seco de pollo"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 1,
+      "mealType": "merienda",
+      "recipeCode": "M8",
+      "alternativeCodes": [],
+      "label": "M8 Bowl tropical con yogur"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 1,
+      "mealType": "cena",
+      "recipeCode": "C10",
+      "alternativeCodes": [],
+      "label": "C10 Reina pepiada suave"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 2,
+      "mealType": "desayuno",
+      "recipeCode": "D8",
+      "alternativeCodes": [],
+      "label": "D8 Fororo con cambur"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 2,
+      "mealType": "almuerzo",
+      "recipeCode": "A11",
+      "alternativeCodes": [],
+      "label": "A11 Sardinas con puré"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 2,
+      "mealType": "merienda",
+      "recipeCode": "M12",
+      "alternativeCodes": [],
+      "label": "M12 Hummus de caraotas"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 2,
+      "mealType": "cena",
+      "recipeCode": "C8",
+      "alternativeCodes": [],
+      "label": "C8 Pisca andina espesa"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 3,
+      "mealType": "desayuno",
+      "recipeCode": "D11",
+      "alternativeCodes": [],
+      "label": "D11 Panquecas de avena y auyama"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 3,
+      "mealType": "almuerzo",
+      "recipeCode": "A9",
+      "alternativeCodes": [],
+      "label": "A9 Higaditos con auyama (1×/sem)"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 3,
+      "mealType": "merienda",
+      "recipeCode": "M7",
+      "alternativeCodes": [],
+      "label": "M7 Plátano con queso"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 3,
+      "mealType": "cena",
+      "recipeCode": "C13",
+      "alternativeCodes": [],
+      "label": "C13 Pasta boloñesa"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 4,
+      "mealType": "desayuno",
+      "recipeCode": "D13",
+      "alternativeCodes": [],
+      "label": "D13 Guasacaca con huevo"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 4,
+      "mealType": "almuerzo",
+      "recipeCode": "A10",
+      "alternativeCodes": [],
+      "label": "A10 Lentejas con plátano"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 4,
+      "mealType": "merienda",
+      "recipeCode": "M9",
+      "alternativeCodes": [],
+      "label": "M9 Compota de guayaba"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 4,
+      "mealType": "cena",
+      "recipeCode": "C9",
+      "alternativeCodes": [],
+      "label": "C9 Crema de apio criollo y pollo"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 5,
+      "mealType": "desayuno",
+      "recipeCode": "D9",
+      "alternativeCodes": [],
+      "label": "D9 Mazamorra de jojoto"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 5,
+      "mealType": "almuerzo",
+      "recipeCode": "A12",
+      "alternativeCodes": [],
+      "label": "A12 Pastel de plátano y pescado"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 5,
+      "mealType": "merienda",
+      "recipeCode": "M13",
+      "alternativeCodes": [],
+      "label": "M13 Mango con requesón"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 5,
+      "mealType": "cena",
+      "recipeCode": "C15",
+      "alternativeCodes": [],
+      "label": "C15 Crema de caraotas + arepita"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 6,
+      "mealType": "desayuno",
+      "recipeCode": "D7",
+      "alternativeCodes": [],
+      "label": "D7 Tortitas de plátano y huevo"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 6,
+      "mealType": "almuerzo",
+      "recipeCode": "A14",
+      "alternativeCodes": [],
+      "label": "A14 Carne guisada con papa"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 6,
+      "mealType": "merienda",
+      "recipeCode": "M15",
+      "alternativeCodes": [],
+      "label": "M15 Arepitas dulces sin azúcar"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 6,
+      "mealType": "cena",
+      "recipeCode": "C11",
+      "alternativeCodes": [],
+      "label": "C11 Tortilla de plátano y queso"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 7,
+      "mealType": "desayuno",
+      "recipeCode": "D12",
+      "alternativeCodes": [],
+      "label": "D12 Arepitas de yuca"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 7,
+      "mealType": "almuerzo",
+      "recipeCode": "A15",
+      "alternativeCodes": [],
+      "label": "A15 Pasta con pollo y auyama"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 7,
+      "mealType": "merienda",
+      "recipeCode": "M10",
+      "alternativeCodes": [],
+      "label": "M10 Majarete sin azúcar"
+    },
+    {
+      "week": 2,
+      "dayOfWeek": 7,
+      "mealType": "cena",
+      "recipeCode": "C16",
+      "alternativeCodes": [],
+      "label": "C16 Chayote relleno"
+    }
+  ]
+}
