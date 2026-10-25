@@ -1,44 +1,66 @@
 "use client";
 
+import { Clock, LoaderCircle, Lock } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
+import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 
-export function JoinButton({ code }: { code: string }) {
+export function JoinButton({ code, name }: { code: string; name: string }) {
   const router = useRouter();
-  const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
+  const [limited, setLimited] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   async function join() {
     setPending(true);
-    setError(null);
+    setLimited(false);
+    setFailed(false);
     const res = await fetch("/api/access", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ code }),
     });
     if (res.ok) {
-      router.replace("/"); // ya dentro, la URL no lleva el código
+      toast.success(`Entraste al recetario de ${name}`);
+      router.replace("/menu"); // ya dentro, la URL no lleva el código
       router.refresh();
       return;
     }
     setPending(false);
-    setError(
-      res.status === 429
-        ? "Demasiados intentos. Espera unos minutos."
-        : "No se pudo entrar. Inténtalo de nuevo.",
-    );
+    if (res.status === 429) setLimited(true);
+    else setFailed(true);
   }
 
   return (
     <>
-      {error && (
-        <p role="alert" className="text-base text-red-600">
-          {error}
-        </p>
+      {limited && (
+        <Alert variant="destructive">
+          <Clock />
+          <AlertTitle className="font-bold">
+            Demasiados intentos. Espera unos minutos.
+          </AlertTitle>
+        </Alert>
       )}
-      <Button onClick={join} disabled={pending} className="h-12 text-base">
-        Entrar al recetario
+      {failed && (
+        <Alert variant="destructive">
+          <AlertTitle className="font-bold">
+            No se pudo entrar. Inténtalo de nuevo.
+          </AlertTitle>
+        </Alert>
+      )}
+      <Button size="lg" className="w-full" onClick={join} disabled={pending}>
+        {pending ? (
+          <>
+            <LoaderCircle className="animate-spin" aria-hidden /> Entrando…
+          </>
+        ) : (
+          <>
+            {limited && <Lock aria-hidden />}
+            Entrar al recetario
+          </>
+        )}
       </Button>
     </>
   );

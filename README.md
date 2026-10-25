@@ -89,6 +89,13 @@ vez al día), así que usar la app con la sesión abierta cuenta como actividad.
 
 La app valida el entorno al arrancar y falla con un mensaje claro si falta algo. Nada lleva prefijo `NEXT_PUBLIC_`.
 
+## Diseño
+
+La referencia visual (exportada de Claude Design) está en `design/`; la **Hoja de implementación** lista tokens, tipografías,
+componentes y rutas. Los tokens viven en `src/app/globals.css` (modo claro y oscuro automático según el sistema) y las fuentes
+son Atkinson Hyperlegible, Bebas Neue y DM Mono. Rutas: `/acceso`, `/join/[código]`, `/menu`, `/recetas`, `/bebe`, `/recetario`
+(las tres primeras con sesión son provisionales hasta construir sus módulos) y `/limite`.
+
 ## Calidad
 
 ```bash

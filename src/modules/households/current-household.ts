@@ -1,5 +1,6 @@
 import "server-only";
 import { cookies } from "next/headers";
+import { cache } from "react";
 import { getEnv } from "@/lib/env";
 import { SESSION_COOKIE, verifySession } from "@/lib/session";
 import { getCodeKeys } from "./households.keys";
@@ -8,7 +9,7 @@ import { shareCodeOf } from "./households.service";
 
 // Familia de la sesión actual, con su código descifrado para poder compartirlo.
 // Cada visita cuenta como actividad (evita la purga por inactividad).
-export async function getCurrentHousehold() {
+export const getCurrentHousehold = cache(async () => {
   const token = (await cookies()).get(SESSION_COOKIE)?.value;
   const session = await verifySession(token, getEnv().SESSION_SECRET);
   if (!session) return null;
@@ -16,4 +17,4 @@ export async function getCurrentHousehold() {
   if (!row) return null;
   await householdsRepository.touch(row.id);
   return shareCodeOf(row, getCodeKeys());
-}
+});

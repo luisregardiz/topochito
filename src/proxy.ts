@@ -6,6 +6,7 @@ import { SESSION_COOKIE, verifySession } from "@/lib/session";
 
 const PUBLIC_PATHS = new Set([
   "/acceso",
+  "/limite",
   "/api/access",
   "/api/access/logout",
   "/api/health",
@@ -51,7 +52,13 @@ function clientIp(req: NextRequest) {
   );
 }
 
-function tooMany(retryAfterSeconds: number) {
+// La API responde 429 en JSON; las páginas, con una pantalla de espera.
+function tooMany(req: NextRequest, retryAfterSeconds: number) {
+  if (!req.nextUrl.pathname.startsWith("/api/")) {
+    return NextResponse.redirect(
+      new URL(`/limite?s=${retryAfterSeconds}`, req.url),
+    );
+  }
   return errorResponse(429, "rate_limited", "Demasiadas solicitudes", {
     headers: { "Retry-After": String(retryAfterSeconds) },
   });
@@ -81,7 +88,7 @@ export async function proxy(req: NextRequest) {
 
   if (isApi) {
     const general = await api.limit(ip);
-    if (!general.success) return tooMany(general.retryAfterSeconds);
+    if (!general.success) return tooMany(req, general.retryAfterSeconds);
   }
 
   // Cada superficie que acepta un código (formulario o enlace) comparte el límite anti fuerza bruta.
@@ -95,11 +102,11 @@ export async function proxy(req: NextRequest) {
         : null;
   if (attemptsLimiter) {
     const attempts = await attemptsLimiter.limit(ip);
-    if (!attempts.success) return tooMany(attempts.retryAfterSeconds);
+    if (!attempts.success) return tooMany(req, attempts.retryAfterSeconds);
   }
   if (isCreate) {
     const global = await createGlobal.limit("all");
-    if (!global.success) return tooMany(global.retryAfterSeconds);
+    if (!global.success) return tooMany(req, global.retryAfterSeconds);
   }
 
   // Complementa SameSite=Lax: los métodos que modifican datos deben venir del mismo origen.

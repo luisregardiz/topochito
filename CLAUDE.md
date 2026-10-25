@@ -19,8 +19,12 @@ src/app/                 rutas y UI; handlers en app/api/**/route.ts
 src/modules/<modulo>/    <modulo>.schemas.ts (Zod) · .service.ts (lógica pura) · .repository.ts (Drizzle)
 src/db/                  client.ts (server-only), schema/ (fuente de verdad), migrations/, seed.ts, seed/
 src/lib/                 env.ts, http.ts, rate-limit.ts, session.ts
-src/proxy.ts             rate limit + CSRF (Origin) + gate de sesión (Next 16: proxy, no middleware); públicas: /acceso, /join/*, /api/access, /api/households, /api/health, /api/cron/purge-inactive (esta última exige `CRON_SECRET`)
+src/proxy.ts             rate limit + CSRF (Origin) + gate de sesión (Next 16: proxy, no middleware); públicas: /acceso, /limite, /join/*, /api/access, /api/households, /api/health, /api/cron/purge-inactive (esta última exige `CRON_SECRET`)
 src/scripts/             CLIs (corren con tsx, fuera de Next)
+src/components/ui/       shadcn (base-nova); tamaños ajustados al diseño: Button/Input h-14 (lg) o h-12, texto 18px
+src/components/recetario/ componentes propios del diseño (EmptyState, AppNav, FamilyCodeInput, OfflineBanner…)
+src/app/(app)/           rutas con sesión y navegación: /menu, /recetas, /bebe, /recetario
+design/                  exportación de Claude Design: SOLO referencia (excluida de lint/prettier); la hoja de implementación manda
 ```
 
 ## Reglas
@@ -34,6 +38,8 @@ src/scripts/             CLIs (corren con tsx, fuera de Next)
 - El dato de usuario pertenece a un `household` (FK a `household.id`); la sesión solo lleva `householdId`.
 - Toda tabla con FK a `household.id` debe usar `ON DELETE CASCADE`: la purga por inactividad (30 días, cron diario) borra familias enteras.
 - `last_seen_at` se renueva en `getCurrentHousehold()`; toda página nueva de una familia debe pasar por ahí.
+- Diseño: tokens y valores salen de `design/…Hoja de implementación` y viven en `globals.css` (claro/oscuro por `prefers-color-scheme`). Primario verde; rojo solo para peligro; texto mínimo 16px, controles 48–56px. No inventar tokens ni tamaños.
+- Páginas con datos de la familia pasan por el layout `(app)` (`getCurrentHousehold`): cuenta como visita y redirige a `/acceso?motivo=borrado` si el recetario ya no existe.
 - Con `cacheComponents`, cualquier acceso a BD o a request corta el prerender: es esperado en handlers.
 - Tests con Vitest junto al código (`*.test.ts`); `server-only` está stubeado en `vitest.config.mts`.
 
