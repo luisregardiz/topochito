@@ -40,3 +40,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# store de pnpm (lo crea el contenedor dev)
+.pnpm-store
