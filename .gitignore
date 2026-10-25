@@ -43,3 +43,6 @@ next-env.d.ts
 
 # store de pnpm (lo crea el contenedor dev)
 .pnpm-store
+
+# referencia de diseño exportada de Claude Design (solo local)
+/design
