@@ -1,6 +1,8 @@
 # syntax=docker/dockerfile:1
 FROM node:22-alpine AS base
 RUN corepack enable
+# El store fuera de /app: con el bind mount del compose acabaría dentro del repo
+ENV npm_config_store_dir=/pnpm/store
 WORKDIR /app
 
 # Desarrollo: lo usa docker-compose (bind mount + hot reload)
