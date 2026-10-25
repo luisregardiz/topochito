@@ -29,7 +29,7 @@ Importa el repositorio (framework Next.js, gestor pnpm, Node 22). No hace falta 
 | `SESSION_SECRET`                                     | `openssl rand -base64 48` (≥32 caracteres) |
 | `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` | de Upstash                                 |
 
-Cambiar `SESSION_SECRET` cierra todas las sesiones.
+Cambiar `SESSION_SECRET` cierra todas las sesiones. **Guarda `ACCESS_CODE_KEY` en un lugar seguro:** si se pierde o cambia, los códigos de familia existentes dejan de funcionar.
 
 ## 5. Migraciones y seed contra Neon (desde tu máquina)
 
@@ -46,11 +46,13 @@ Repite `pnpm db:migrate` en cada despliegue que incluya migraciones nuevas, **an
 
 ## 6. Crear familias
 
+Lo normal es que cada persona cree su recetario desde `/acceso` y comparta el enlace con el botón "Compartir". Por CLI:
+
 ```bash
-DATABASE_URL="<cadena de Neon>" pnpm household:create "Familia Pérez"
+DATABASE_URL="<cadena de Neon>" ACCESS_CODE_KEY="<la misma de Vercel>" pnpm household:create "Familia Pérez"
 ```
 
-Guarda el código que imprime y entrégalo a la familia: no se puede recuperar.
+Debe usarse la misma `ACCESS_CODE_KEY` que tiene Vercel, o la app no podrá leer ese código.
 
 ## 7. Deploy y verificación
 
@@ -59,10 +61,9 @@ vercel --prod        # o push a la rama de producción
 curl https://<tu-dominio>/api/health      # {"status":"ok"}
 ```
 
-Abre el dominio: debe redirigir a `/acceso`; con un código válido entra y la cookie sale `Secure; HttpOnly`.
+Abre el dominio: debe redirigir a `/acceso`; crea un recetario de prueba y comprueba que entra y que la cookie sale `Secure; HttpOnly`.
 
 ## Notas
 
 - `x-forwarded-for` lo fija Vercel, por eso el rate limit por IP es fiable allí.
 - HSTS y `upgrade-insecure-requests` solo se activan con `NODE_ENV=production`.
-- Rotar un código de familia: genera uno nuevo y actualiza `access_code_hash` (hoy no hay comando; añádelo si hace falta).

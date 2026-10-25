@@ -1,10 +1,15 @@
-import { randomInt } from "node:crypto";
-import bcrypt from "bcryptjs";
+import {
+  createCipheriv,
+  createDecipheriv,
+  createHmac,
+  hkdfSync,
+  randomBytes,
+  randomInt,
+} from "node:crypto";
 
 // Sin 0/O, 1/I/L ni U/V: legible al dictarlo por teléfono.
 const ALPHABET = "ABCDEFGHJKMNPQRSTWXYZ23456789";
 const CODE_LENGTH = 8;
-const BCRYPT_ROUNDS = 10;
 
 export function generateAccessCode(rand: (max: number) => number = randomInt) {
   const chars = Array.from(
@@ -18,25 +23,90 @@ export function normalizeAccessCode(input: string) {
   return input.toUpperCase().replace(/[\s-]/g, "");
 }
 
-export function hashAccessCode(code: string) {
-  return bcrypt.hash(normalizeAccessCode(code), BCRYPT_ROUNDS);
+// Dos subclaves independientes (índice y cifrado) derivadas de ACCESS_CODE_KEY.
+export function deriveCodeKeys(secret: string) {
+  const derive = (info: string) =>
+    Buffer.from(hkdfSync("sha256", secret, "", info, 32));
+  return {
+    lookup: derive("access-code-lookup"),
+    enc: derive("access-code-enc"),
+  };
+}
+export type CodeKeys = ReturnType<typeof deriveCodeKeys>;
+
+export function lookupCode(code: string, keys: CodeKeys) {
+  return createHmac("sha256", keys.lookup)
+    .update(normalizeAccessCode(code))
+    .digest("hex");
 }
 
-export function verifyAccessCode(code: string, hash: string) {
-  return bcrypt.compare(normalizeAccessCode(code), hash);
+export function encryptCode(code: string, keys: CodeKeys) {
+  const iv = randomBytes(12);
+  const cipher = createCipheriv("aes-256-gcm", keys.enc, iv);
+  const data = Buffer.concat([
+    cipher.update(normalizeAccessCode(code), "utf8"),
+    cipher.final(),
+  ]);
+  return [iv, cipher.getAuthTag(), data]
+    .map((b) => b.toString("base64"))
+    .join(".");
 }
 
-type HouseholdRow = { id: string; name: string; accessCodeHash: string };
+// Devuelve el código con formato XXXX-XXXX.
+export function decryptCode(blob: string, keys: CodeKeys) {
+  const [iv, tag, data] = blob.split(".").map((p) => Buffer.from(p, "base64"));
+  if (!iv || !tag || !data) throw new Error("código cifrado inválido");
+  const decipher = createDecipheriv("aes-256-gcm", keys.enc, iv);
+  decipher.setAuthTag(tag);
+  const plain = Buffer.concat([
+    decipher.update(data),
+    decipher.final(),
+  ]).toString("utf8");
+  return `${plain.slice(0, 4)}-${plain.slice(4)}`;
+}
 
-// shortcut: el hash es salado, así que se compara contra cada familia (O(n) bcrypts);
-// sirve para decenas de familias, con cientos habría que añadir un prefijo público al código.
+type HouseholdRow = { id: string; name: string; accessCodeEnc: string };
+type InsertRow = {
+  name: string;
+  accessCodeLookup: string;
+  accessCodeEnc: string;
+};
+
 export async function authenticate(
-  repo: { listAll: () => Promise<HouseholdRow[]> },
+  repo: {
+    findByLookup: (
+      lookup: string,
+    ) => Promise<{ id: string; name: string } | undefined>;
+  },
   code: string,
+  keys: CodeKeys,
 ) {
-  for (const h of await repo.listAll()) {
-    if (await verifyAccessCode(code, h.accessCodeHash))
-      return { id: h.id, name: h.name };
+  return (await repo.findByLookup(lookupCode(code, keys))) ?? null;
+}
+
+export async function createHousehold(
+  repo: { insert: (row: InsertRow) => Promise<{ id: string } | undefined> },
+  name: string,
+  keys: CodeKeys,
+  rand?: (max: number) => number,
+) {
+  // El índice es único: ante una colisión (≈ imposible) se genera otro código.
+  for (let attempt = 0; attempt < 5; attempt++) {
+    const code = generateAccessCode(rand);
+    const row = await repo.insert({
+      name,
+      accessCodeLookup: lookupCode(code, keys),
+      accessCodeEnc: encryptCode(code, keys),
+    });
+    if (row) return { id: row.id, name, code };
   }
-  return null;
+  throw new Error("no se pudo generar un código único");
+}
+
+export function shareCodeOf(household: HouseholdRow, keys: CodeKeys) {
+  return {
+    id: household.id,
+    name: household.name,
+    code: decryptCode(household.accessCodeEnc, keys),
+  };
 }

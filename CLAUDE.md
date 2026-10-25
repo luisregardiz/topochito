@@ -19,7 +19,7 @@ src/app/                 rutas y UI; handlers en app/api/**/route.ts
 src/modules/<modulo>/    <modulo>.schemas.ts (Zod) · .service.ts (lógica pura) · .repository.ts (Drizzle)
 src/db/                  client.ts (server-only), schema/ (fuente de verdad), migrations/, seed.ts, seed/
 src/lib/                 env.ts, http.ts, rate-limit.ts, session.ts
-src/proxy.ts             rate limit + CSRF (Origin) + gate de sesión (Next 16: proxy, no middleware)
+src/proxy.ts             rate limit + CSRF (Origin) + gate de sesión (Next 16: proxy, no middleware); públicas: /acceso, /entrar/*, /api/access, /api/households, /api/health
 src/scripts/             CLIs (corren con tsx, fuera de Next)
 ```
 
@@ -48,5 +48,6 @@ src/scripts/             CLIs (corren con tsx, fuera de Next)
 - No lógica ni SQL en handlers o componentes.
 - No interfaces genéricas de repositorio, contenedores de DI ni capas sin uso.
 - No límites de rate en memoria como solución de producción (serverless): Upstash.
-- No guardar el código de familia en claro ni mostrarlo más de una vez.
+- El código de familia se guarda cifrado con `ACCESS_CODE_KEY` (+ índice HMAC), nunca en claro ni en logs. No reutilizar `SESSION_SECRET` para eso.
+- Todo endpoint o ruta que acepte un código o cree familias debe ir tras el rate limit de `proxy.ts` (`/api/access`, `/api/households`, `/entrar/*`).
 - No `next lint` (usar `eslint` por CLI) ni `middleware.ts` (es `proxy.ts`).

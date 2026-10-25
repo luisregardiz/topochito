@@ -9,10 +9,14 @@ const PUBLIC_PATHS = new Set([
   "/api/access",
   "/api/access/logout",
   "/api/health",
+  "/api/households",
 ]);
+const isPublic = (pathname: string) =>
+  PUBLIC_PATHS.has(pathname) || pathname.startsWith("/entrar/");
 const SAFE_METHODS = new Set(["GET", "HEAD", "OPTIONS"]);
 
-let limiters: { api: RateLimiter; access: RateLimiter } | undefined;
+let limiters:
+  { api: RateLimiter; access: RateLimiter; create: RateLimiter } | undefined;
 const getLimiters = () =>
   (limiters ??= {
     api: createRateLimiter({ prefix: "api", limit: 60, windowSeconds: 60 }),
@@ -20,6 +24,11 @@ const getLimiters = () =>
       prefix: "access",
       limit: 5,
       windowSeconds: 15 * 60,
+    }),
+    create: createRateLimiter({
+      prefix: "create",
+      limit: 3,
+      windowSeconds: 60 * 60,
     }),
   });
 
@@ -52,15 +61,24 @@ export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const isApi = pathname.startsWith("/api/");
 
+  const { api, access, create } = getLimiters();
+  const ip = clientIp(req);
+  // Cada superficie que acepta un código (formulario o enlace) comparte el límite anti fuerza bruta.
+  const attemptsLimiter =
+    (pathname === "/api/access" && req.method === "POST") ||
+    pathname.startsWith("/entrar/")
+      ? access
+      : pathname === "/api/households" && req.method === "POST"
+        ? create
+        : null;
+
   if (isApi) {
-    const { api, access } = getLimiters();
-    const ip = clientIp(req);
     const general = await api.limit(ip);
     if (!general.success) return tooMany(general.retryAfterSeconds);
-    if (pathname === "/api/access" && req.method === "POST") {
-      const attempts = await access.limit(ip);
-      if (!attempts.success) return tooMany(attempts.retryAfterSeconds);
-    }
+  }
+  if (attemptsLimiter) {
+    const attempts = await attemptsLimiter.limit(ip);
+    if (!attempts.success) return tooMany(attempts.retryAfterSeconds);
   }
 
   // Complementa SameSite=Lax: los métodos que modifican datos deben venir del mismo origen.
@@ -68,7 +86,7 @@ export async function proxy(req: NextRequest) {
     return errorResponse(403, "bad_origin", "Origen no permitido");
   }
 
-  if (PUBLIC_PATHS.has(pathname)) return NextResponse.next();
+  if (isPublic(pathname)) return NextResponse.next();
 
   const session = await verifySession(
     req.cookies.get(SESSION_COOKIE)?.value,

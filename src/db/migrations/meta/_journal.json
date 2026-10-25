@@ -8,6 +8,20 @@
       "when": 1792884402770,
       "tag": "0000_baseline",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792902445026,
+      "tag": "0001_quitar_hash_codigo",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1792902446505,
+      "tag": "0002_codigo_recuperable",
+      "breakpoints": true
     }
   ]
 }

@@ -1,11 +1,16 @@
 import { describe, expect, it } from "vitest";
 import {
   authenticate,
+  createHousehold,
+  decryptCode,
+  deriveCodeKeys,
+  encryptCode,
   generateAccessCode,
-  hashAccessCode,
+  lookupCode,
   normalizeAccessCode,
-  verifyAccessCode,
 } from "./households.service";
+
+const keys = deriveCodeKeys("k".repeat(32));
 
 describe("código de acceso", () => {
   it("genera XXXX-XXXX con el alfabeto sin ambiguos", () => {
@@ -19,32 +24,77 @@ describe("código de acceso", () => {
     expect(normalizeAccessCode(" ab12-cd34 ")).toBe("AB12CD34");
   });
 
-  it("hash y verificación, tolerante al formato", async () => {
-    const hash = await hashAccessCode("ABCD-2345");
-    expect(hash).not.toContain("ABCD");
-    expect(await verifyAccessCode("abcd 2345", hash)).toBe(true);
-    expect(await verifyAccessCode("ABCD-2346", hash)).toBe(false);
+  it("el índice es estable, tolerante al formato y depende de la clave", () => {
+    expect(lookupCode("abcd 2345", keys)).toBe(lookupCode("ABCD-2345", keys));
+    expect(lookupCode("ABCD-2345", keys)).not.toBe(
+      lookupCode("ABCD-2346", keys),
+    );
+    expect(lookupCode("ABCD-2345", keys)).not.toBe(
+      lookupCode("ABCD-2345", deriveCodeKeys("z".repeat(32))),
+    );
   });
 
-  it("authenticate devuelve la familia correcta o null", async () => {
-    const repo = {
-      listAll: async () => [
-        {
-          id: "1",
-          name: "Uno",
-          accessCodeHash: await hashAccessCode("AAAA-1111"),
-        },
-        {
-          id: "2",
-          name: "Dos",
-          accessCodeHash: await hashAccessCode("BBBB-2222"),
-        },
-      ],
+  it("cifra y descifra devolviendo XXXX-XXXX, sin dejar el código en claro", () => {
+    const blob = encryptCode("abcd2345", keys);
+    expect(blob).not.toContain("ABCD");
+    expect(decryptCode(blob, keys)).toBe("ABCD-2345");
+    expect(encryptCode("ABCD-2345", keys)).not.toBe(blob); // IV aleatorio
+  });
+
+  it("no descifra con otra clave ni con datos alterados", () => {
+    const blob = encryptCode("ABCD-2345", keys);
+    expect(() => decryptCode(blob, deriveCodeKeys("z".repeat(32)))).toThrow();
+    expect(() => decryptCode(`${blob.slice(0, -2)}AA`, keys)).toThrow();
+    expect(() => decryptCode("basura", keys)).toThrow();
+  });
+});
+
+describe("familias", () => {
+  const memoryRepo = () => {
+    const rows: { id: string; name: string; accessCodeLookup: string }[] = [];
+    return {
+      rows,
+      insert: async (r: {
+        name: string;
+        accessCodeLookup: string;
+        accessCodeEnc: string;
+      }) => {
+        if (rows.some((x) => x.accessCodeLookup === r.accessCodeLookup))
+          return undefined;
+        const row = {
+          id: String(rows.length + 1),
+          name: r.name,
+          accessCodeLookup: r.accessCodeLookup,
+        };
+        rows.push(row);
+        return row;
+      },
+      findByLookup: async (l: string) =>
+        rows.find((x) => x.accessCodeLookup === l),
     };
-    expect(await authenticate(repo, "bbbb-2222")).toEqual({
-      id: "2",
-      name: "Dos",
-    });
-    expect(await authenticate(repo, "CCCC-3333")).toBeNull();
+  };
+
+  it("crea una familia y se entra con el código devuelto (en cualquier formato)", async () => {
+    const repo = memoryRepo();
+    const created = await createHousehold(repo, "Los Pérez", keys);
+    expect(created.code).toMatch(/^[A-Z2-9]{4}-[A-Z2-9]{4}$/);
+    expect(
+      await authenticate(repo, created.code.toLowerCase(), keys),
+    ).toMatchObject({ name: "Los Pérez" });
+    expect(await authenticate(repo, "AAAA-AAAA", keys)).toBeNull();
+  });
+
+  it("ante colisión de código genera otro", async () => {
+    const repo = memoryRepo();
+    await createHousehold(repo, "Primera", keys, () => 0); // AAAA-AAAA
+    const seq = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1]; // AAAA-AAAA y luego BBBB-BBBB
+    let i = 0;
+    const second = await createHousehold(
+      repo,
+      "Segunda",
+      keys,
+      () => seq[i++]!,
+    );
+    expect(second.code).toBe("BBBB-BBBB");
   });
 });

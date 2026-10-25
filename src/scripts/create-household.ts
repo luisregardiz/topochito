@@ -1,28 +1,40 @@
-// Uso: pnpm household:create "<nombre>". Muestra el código UNA sola vez.
+// Uso: pnpm household:create "<nombre>". Imprime el código y el enlace de entrada.
 // Corre fuera de Next: no importa server-only ni lib/env.
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 import { household } from "@/db/schema";
 import { createHouseholdInput } from "@/modules/households/households.schemas";
 import {
-  generateAccessCode,
-  hashAccessCode,
+  createHousehold,
+  deriveCodeKeys,
 } from "@/modules/households/households.service";
 
 async function main() {
   const url = process.env.DATABASE_URL;
-  if (!url) throw new Error("Falta DATABASE_URL");
+  const key = process.env.ACCESS_CODE_KEY;
+  if (!url || !key) throw new Error("Faltan DATABASE_URL y/o ACCESS_CODE_KEY");
   const { name } = createHouseholdInput.parse({ name: process.argv[2] });
 
-  const code = generateAccessCode();
   const pool = new Pool({ connectionString: url });
-  await drizzle(pool)
-    .insert(household)
-    .values({ name, accessCodeHash: await hashAccessCode(code) });
+  const db = drizzle(pool);
+  const created = await createHousehold(
+    {
+      insert: async (row) =>
+        (
+          await db
+            .insert(household)
+            .values(row)
+            .onConflictDoNothing({ target: household.accessCodeLookup })
+            .returning({ id: household.id })
+        )[0],
+    },
+    name,
+    deriveCodeKeys(key),
+  );
   await pool.end();
 
   console.log(
-    `Familia "${name}" creada.\nCódigo de acceso (no se vuelve a mostrar): ${code}`,
+    `Familia "${name}" creada.\nCódigo: ${created.code}\nEnlace: /entrar/${created.code}`,
   );
 }
 

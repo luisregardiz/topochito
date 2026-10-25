@@ -12,7 +12,7 @@ Next.js 16 (App Router) + PostgreSQL + Drizzle. Nombre técnico provisional.
 
 ```bash
 pnpm install
-cp .env.example .env            # completa SESSION_SECRET: openssl rand -base64 48
+cp .env.example .env            # completa SESSION_SECRET y ACCESS_CODE_KEY: openssl rand -base64 48
 docker compose up -d db         # postgres:17 en localhost:5432
 pnpm db:migrate                 # crea el schema "recetario"
 pnpm db:seed                    # carga las recetas (idempotente)
@@ -52,15 +52,17 @@ El schema Drizzle (`src/db/schema/`) es la fuente de verdad. `src/db/seed/receta
 
 ## Acceso por código de familia
 
-No hay usuarios ni contraseñas. Cada familia (`household`) tiene un código; se entrega por fuera de la app.
+No hay usuarios ni contraseñas. Cada familia (`household`) tiene un código `XXXX-XXXX`.
 
-```bash
-pnpm household:create "Familia Pérez"
-# → Código de acceso (no se vuelve a mostrar): 7D3Z-66PB
-```
+- **Crear:** en `/acceso`, "Crear mi recetario" pide el nombre de la persona o familia, genera el código y entra directo.
+- **Compartir:** en el inicio, el botón "Compartir mi recetario" abre el menú nativo del celular (o copia el enlace en escritorio).
+  El enlace es `/entrar/XXXX-XXXX`: al abrirlo inicia sesión y redirige a `/`.
+- **Entrar con código:** `/acceso` → "Acceder al recetario de mi bebé" (acepta minúsculas, espacios y guiones).
+- **Por CLI:** `pnpm household:create "Familia Pérez"` imprime el código y la ruta del enlace.
 
-Solo se guarda el hash (bcrypt). Si se pierde un código hay que crear otra familia (o actualizar el hash a mano).
-Contra Neon: `DATABASE_URL="<cadena de Neon>" pnpm household:create "Familia"`.
+El código se guarda **cifrado** (AES-256-GCM) con `ACCESS_CODE_KEY` y se busca por un índice HMAC, para poder volver a mostrarlo
+y compartirlo. Si pierdes o cambias `ACCESS_CODE_KEY`, los códigos existentes dejan de funcionar (la sesión usa otro secreto).
+La creación de recetarios está limitada a 3 por hora por IP; los intentos de código, a 5 cada 15 minutos.
 
 ## Variables de entorno
 
