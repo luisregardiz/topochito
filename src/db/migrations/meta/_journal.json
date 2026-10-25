@@ -29,6 +29,13 @@
       "when": 1792945546184,
       "tag": "0003_last_seen_at",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1792965152399,
+      "tag": "0004_bebe_y_menu",
+      "breakpoints": true
     }
   ]
 }
