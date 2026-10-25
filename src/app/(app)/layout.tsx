@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { AppNav } from "@/components/recetario/app-nav";
+import { babyRepository } from "@/modules/babies/baby.repository";
+import { getBaby } from "@/modules/babies/baby.service";
 import { getCurrentHousehold } from "@/modules/households/current-household";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
@@ -18,5 +20,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 async function Nav() {
   const household = await getCurrentHousehold();
   if (!household) redirect("/acceso?motivo=borrado");
-  return <AppNav familyName={household.name} />;
+  const baby = await getBaby(babyRepository, household.id, new Date());
+  return (
+    <AppNav familyName={household.name} babyAge={baby?.ageMonths ?? null} />
+  );
 }

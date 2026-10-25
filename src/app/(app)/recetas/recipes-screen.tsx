@@ -33,6 +33,7 @@ import {
   type RecipeFilters as Filters,
 } from "@/modules/recipes/recipes.queries";
 import { MEAL_TYPES, type MealType } from "@/modules/recipes/recipes.schemas";
+import { avoidedAllergens, useBaby } from "@/modules/babies/baby.queries";
 import { RecipeFilters } from "./recipe-filters";
 
 const MEAL_CHIPS: { value: MealType | "all"; label: string }[] = [
@@ -45,12 +46,27 @@ const MEAL_CHIPS: { value: MealType | "all"; label: string }[] = [
 ];
 
 export function RecipesScreen() {
-  const [filters, setFilters] = useState<Filters>(EMPTY_FILTERS);
+  const baby = useBaby().data;
+  // La edad y los alérgenos a evitar del perfil son el punto de partida; lo que la persona cambie los reemplaza.
+  const defaults: Partial<Filters> = baby
+    ? {
+        age: baby.ageMonths >= 6 ? Math.min(baby.ageMonths, 36) : null,
+        exclude: avoidedAllergens(baby),
+      }
+    : {};
+  const [overrides, setOverrides] = useState<Partial<Filters>>({});
+  const filters: Filters = { ...EMPTY_FILTERS, ...defaults, ...overrides };
   const [sheetOpen, setSheetOpen] = useState(false);
   const wide = useMediaQuery("(min-width: 768px)");
-  const patch = (p: Partial<Filters>) => setFilters((f) => ({ ...f, ...p }));
+  const patch = (p: Partial<Filters>) => setOverrides((o) => ({ ...o, ...p }));
   const clear = () =>
-    setFilters((f) => ({ ...EMPTY_FILTERS, q: f.q, meal: f.meal }));
+    setOverrides((o) => ({
+      ...o,
+      age: null,
+      exclude: [],
+      iron: false,
+      tags: [],
+    }));
 
   const allergens = useAllergens().data ?? [];
   const recipes = useRecipes({
@@ -182,7 +198,7 @@ export function RecipesScreen() {
               variant="outline"
               size="lg"
               className="w-full"
-              onClick={() => setFilters(EMPTY_FILTERS)}
+              onClick={() => setOverrides({ ...EMPTY_FILTERS })}
             >
               Borrar búsqueda y filtros
             </Button>

@@ -100,3 +100,55 @@ describe("cortes de fruta", () => {
     expect(screen.getByText("9–11 meses")).toBeTruthy();
   });
 });
+
+describe("cortes de fruta con el perfil del bebé", () => {
+  const FRUITS = {
+    items: [
+      {
+        fruit: "Aguacate",
+        age7to8: "Gajo grueso",
+        age9to11: "Dados",
+        caution: null,
+      },
+    ],
+  };
+  const serve = (ageMonths: number | null) =>
+    get.mockImplementation(async (url: string) =>
+      url === "/baby"
+        ? {
+            data: {
+              baby:
+                ageMonths === null
+                  ? null
+                  : {
+                      birthMonth: 1,
+                      birthYear: 2026,
+                      ageMonths,
+                      allergens: {},
+                    },
+            },
+          }
+        : { data: FRUITS },
+    );
+
+  it("resalta el tramo del bebé", async () => {
+    serve(9);
+    renderWithQuery(<FruitGuideScreen />);
+    const marker = await screen.findByText("Tu bebé");
+    expect(marker.closest("div")!.textContent).toContain("9–11 meses");
+    expect(screen.getAllByText("Tu bebé")).toHaveLength(1);
+  });
+
+  it("sin perfil o fuera de esos tramos no resalta nada", async () => {
+    serve(null);
+    const { unmount } = renderWithQuery(<FruitGuideScreen />);
+    await screen.findByText("Aguacate");
+    expect(screen.queryByText("Tu bebé")).toBeNull();
+    unmount();
+
+    serve(14);
+    renderWithQuery(<FruitGuideScreen />);
+    await screen.findByText("Aguacate");
+    expect(screen.queryByText("Tu bebé")).toBeNull();
+  });
+});

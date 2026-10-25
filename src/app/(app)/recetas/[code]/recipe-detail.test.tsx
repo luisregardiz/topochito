@@ -144,3 +144,78 @@ describe("detalle de receta", () => {
     ).toBe("/recetas");
   });
 });
+
+describe("detalle con el perfil del bebé", () => {
+  const withMani: RecipeDetail = {
+    ...d10,
+    code: "D1",
+    title: "Avena cremosa con cambur y maní",
+    allergens: [
+      { slug: "mani", name: "Maní", isOptional: false, condition: null },
+      {
+        slug: "lacteos",
+        name: "Lácteos",
+        isOptional: true,
+        condition: "si usas leche",
+      },
+    ],
+  };
+  const baby = (ageMonths: number, allergens: Record<string, string>) => ({
+    birthMonth: 3,
+    birthYear: 2026,
+    ageMonths,
+    allergens,
+  });
+
+  function serve(recipe: RecipeDetail, b: ReturnType<typeof baby> | null) {
+    get.mockImplementation(async (url: string) =>
+      url === "/baby" ? { data: { baby: b } } : { data: recipe },
+    );
+  }
+
+  it("avisa cuando la receta lleva un alérgeno que el bebé debe evitar", async () => {
+    serve(withMani, baby(7, { mani: "avoid" }));
+    renderWithQuery(<RecipeDetailScreen code="D1" />);
+
+    expect(await screen.findByText("Tu bebé debe evitar el maní")).toBeTruthy();
+    expect(
+      screen.getByText(/En el perfil de tu bebé lo marcaste como «evitar»/),
+    ).toBeTruthy();
+    expect(screen.getByText("Maní · evitar")).toBeTruthy(); // insignia en rojo sólido
+    expect(screen.getByText("Lácteos · si usas leche")).toBeTruthy(); // los demás se quedan como estaban
+    expect(
+      screen
+        .getByRole("link", { name: /Ver recetas sin el maní/ })
+        .getAttribute("href"),
+    ).toBe("/recetas");
+  });
+
+  it("sin alérgenos a evitar no hay aviso, aunque ya los coma", async () => {
+    serve(withMani, baby(7, { mani: "introduced" }));
+    renderWithQuery(<RecipeDetailScreen code="D1" />);
+    expect(await screen.findByText("Contiene maní")).toBeTruthy();
+    expect(screen.queryByText(/Tu bebé debe evitar/)).toBeNull();
+  });
+
+  it("marca y preselecciona el tramo de edad del bebé", async () => {
+    serve(d10, baby(10, {}));
+    renderWithQuery(<RecipeDetailScreen code="D10" />);
+
+    expect(await screen.findByText("✓ Tu bebé")).toBeTruthy();
+    expect(
+      screen
+        .getByRole("button", { name: /9–11 meses/ })
+        .getAttribute("aria-pressed"),
+    ).toBe("true");
+    expect(await screen.findByText("Trocitos rellenos.")).toBeTruthy();
+  });
+
+  it("sin perfil, no hay marca «Tu bebé» y se muestra el primer tramo", async () => {
+    serve(d10, null);
+    renderWithQuery(<RecipeDetailScreen code="D10" />);
+    expect(
+      await screen.findByText("Tiras de arepa untadas, sin costra dura."),
+    ).toBeTruthy();
+    expect(screen.queryByText("✓ Tu bebé")).toBeNull();
+  });
+});

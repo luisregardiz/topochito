@@ -1,23 +1,46 @@
 "use client";
 
-import { Citrus, TriangleAlert } from "lucide-react";
+import { Check, Citrus, TriangleAlert } from "lucide-react";
 import { BackButton } from "@/components/recetario/back-button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useBaby } from "@/modules/babies/baby.queries";
 import { useFruitGuide } from "@/modules/guides/guides.queries";
+import { cn } from "@/lib/utils";
 
-// Dos bloques apilados, no columnas: el texto de cada corte es largo. `babyAge` llegará con el perfil del bebé.
-const Cut = ({ title, text }: { title: string; text: string }) => (
-  <div className="rounded-md border bg-muted/40 p-3">
-    <p className="text-base font-bold">{title}</p>
+// Dos bloques apilados, no columnas: el texto de cada corte es largo. El tramo del bebé lleva borde y «Tu bebé».
+const Cut = ({
+  title,
+  text,
+  active,
+}: {
+  title: string;
+  text: string;
+  active: boolean;
+}) => (
+  <div
+    className={cn(
+      "rounded-md border bg-muted/40 p-3",
+      active && "border-2 border-primary",
+    )}
+  >
+    <p className="flex items-center justify-between gap-2 text-base font-bold">
+      {title}
+      {active && (
+        <span className="flex items-center gap-1 text-primary">
+          <Check className="size-4" aria-hidden /> Tu bebé
+        </span>
+      )}
+    </p>
     <p>{text}</p>
   </div>
 );
 
 export function FruitGuideScreen() {
   const { data, isPending, isError, refetch } = useFruitGuide();
+  const babyAge = useBaby().data?.ageMonths ?? null;
 
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-col gap-4 p-5 md:p-8">
@@ -70,8 +93,16 @@ export function FruitGuideScreen() {
                       </AlertDescription>
                     </Alert>
                   )}
-                  <Cut title="7–8 meses" text={f.age7to8} />
-                  <Cut title="9–11 meses" text={f.age9to11} />
+                  <Cut
+                    title="7–8 meses"
+                    text={f.age7to8}
+                    active={babyAge !== null && babyAge >= 7 && babyAge <= 8}
+                  />
+                  <Cut
+                    title="9–11 meses"
+                    text={f.age9to11}
+                    active={babyAge !== null && babyAge >= 9 && babyAge <= 11}
+                  />
                 </CardContent>
               </Card>
             </li>

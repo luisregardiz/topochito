@@ -23,7 +23,7 @@ src/proxy.ts             rate limit + CSRF (Origin) + gate de sesión (Next 16: 
 src/scripts/             CLIs (corren con tsx, fuera de Next)
 src/components/ui/       shadcn (base-nova); tamaños ajustados al diseño: Button/Input h-14 (lg) o h-12, texto 18px
 src/components/recetario/ componentes propios del diseño (EmptyState, AppNav, FamilyCodeInput, OfflineBanner…)
-src/app/(app)/           rutas con sesión y navegación: /menu (provisional), /recetas, /recetas/[code], /guias/*, /bebe (provisional), /recetario
+src/app/(app)/           rutas con sesión y navegación: /menu, /recetas, /recetas/[code], /guias/*, /bebe, /recetario
 src/modules/<m>/<m>.queries.ts  hooks de TanStack Query del frontend ("use client"); los tipos viven en <m>.schemas.ts
 design/                  exportación de Claude Design: SOLO referencia (excluida de lint/prettier); la hoja de implementación manda
 ```
@@ -43,6 +43,8 @@ design/                  exportación de Claude Design: SOLO referencia (excluid
 - **Tests de componentes**: `// @vitest-environment jsdom` en la primera línea, `renderWithQuery` de `src/test/render.tsx` y `vi.mock("@/lib/api-client")`. jsdom está fijado a la v26 por compatibilidad con Node 22.14.
 - Diseño: tokens y valores salen de `design/…Hoja de implementación` y viven en `globals.css` (claro/oscuro por `prefers-color-scheme`). Primario verde; rojo solo para peligro; texto mínimo 16px, controles 48–56px. No inventar tokens ni tamaños.
 - Páginas con datos de la familia pasan por el layout `(app)` (`getCurrentHousehold`): cuenta como visita y redirige a `/acceso?motivo=borrado` si el recetario ya no existe.
+- **Drizzle y `sql` a mano**: dentro de una consulta de una sola tabla, Drizzle omite el prefijo de tabla de TODAS las columnas, incluida la de otra tabla que interpolas en un `sql`\`…\``. Una subconsulta correlacionada escrita así compara contra la tabla equivocada sin dar error (nos pasó con el pescado). Usa el constructor con joins (que califica las columnas) o consultas separadas, y verifica contra datos reales.
+- **Menú y perfil**: la generación del menú vive en `menu.generator.ts` (pura, con `random` inyectado y tests con semilla). Cualquier regla nueva (nutricional o de seguridad) se prueba ahí con varias semillas y datos con las proporciones reales del dataset. Toda mutación del menú devuelve el menú completo y los cambios son deshacibles.
 - Con `cacheComponents`, cualquier acceso a BD o a request corta el prerender: es esperado en handlers.
 - Tests con Vitest junto al código (`*.test.ts`); `server-only` está stubeado en `vitest.config.mts`.
 

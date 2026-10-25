@@ -7,6 +7,7 @@ import {
   CookingPot,
   Info,
   MapPinOff,
+  ShieldAlert,
   TriangleAlert,
 } from "lucide-react";
 import Link from "next/link";
@@ -27,10 +28,13 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { ApiError } from "@/lib/api-client";
 import { copyText } from "@/lib/clipboard";
 import { cn } from "@/lib/utils";
+import { useBaby } from "@/modules/babies/baby.queries";
+import type { BabyProfile } from "@/modules/babies/baby.schemas";
 import { useRecipe } from "@/modules/recipes/recipes.queries";
 import {
   ageInTramo,
   ageLabel,
+  allergenWithArticle,
   isPrecaution,
   tramoLabel,
 } from "@/modules/recipes/recipes.format";
@@ -53,6 +57,7 @@ const Section = ({
 
 export function RecipeDetailScreen({ code }: { code: string }) {
   const { data: recipe, error, isPending, refetch } = useRecipe(code);
+  const baby = useBaby().data ?? null;
 
   return (
     <main className="mx-auto w-full max-w-[1040px] p-5 md:p-8">
@@ -68,7 +73,7 @@ export function RecipeDetailScreen({ code }: { code: string }) {
           retry={() => refetch()}
         />
       ) : (
-        <Recipe recipe={recipe} babyAge={null} />
+        <Recipe recipe={recipe} baby={baby} />
       )}
     </main>
   );
@@ -131,14 +136,18 @@ function NotAvailable({
   );
 }
 
-// `babyAge` (meses) llegará con el perfil del bebé: marca el tramo «Tu bebé» y lo preselecciona.
+// Con el perfil del bebé: avisa si la receta lleva un alérgeno a evitar y marca el tramo «Tu bebé».
 function Recipe({
   recipe,
-  babyAge,
+  baby,
 }: {
   recipe: RecipeDetail;
-  babyAge: number | null;
+  baby: BabyProfile | null;
 }) {
+  const babyAge = baby?.ageMonths ?? null;
+  const avoided = recipe.allergens.filter(
+    (a) => baby?.allergens[a.slug] === "avoid",
+  );
   const meal = MEALS[recipe.mealType];
   const precaution = isPrecaution(recipe.note);
 
@@ -147,6 +156,32 @@ function Recipe({
     // desde md quedan dos columnas y la izquierda se fija en escritorio.
     <div className="mt-4 flex flex-col gap-8 md:grid md:grid-cols-2 md:items-start xl:gap-12">
       <div className="contents md:flex md:flex-col md:gap-8 xl:sticky xl:top-8">
+        {avoided.length > 0 && (
+          <Alert variant="destructive" className="order-first">
+            <ShieldAlert />
+            <AlertTitle className="font-bold">
+              Tu bebé debe evitar{" "}
+              {avoided.map((a) => allergenWithArticle(a)).join(" y ")}
+            </AlertTitle>
+            <AlertDescription>
+              Esta receta lleva{" "}
+              {avoided.map((a) => allergenWithArticle(a)).join(" y ")}. En el
+              perfil de tu bebé {avoided.length === 1 ? "lo" : "los"} marcaste
+              como «evitar».
+              <Link
+                href="/recetas"
+                className={cn(
+                  buttonVariants({ variant: "outline" }),
+                  "mt-3 w-full",
+                )}
+              >
+                Ver recetas sin{" "}
+                {avoided.map((a) => allergenWithArticle(a)).join(" ni ")}
+              </Link>
+            </AlertDescription>
+          </Alert>
+        )}
+
         <header className="order-1 flex flex-col gap-4">
           <RecipeImage meal={recipe.mealType} />
           <div>
@@ -166,7 +201,12 @@ function Recipe({
               <IronBadge note={recipe.ironNote} detailed />
             )}
             {recipe.allergens.map((a) => (
-              <AllergenBadge key={a.slug} allergen={a} detailed />
+              <AllergenBadge
+                key={a.slug}
+                allergen={a}
+                detailed
+                avoid={baby?.allergens[a.slug] === "avoid"}
+              />
             ))}
             {recipe.tags.map((t) => (
               <Badge key={t.slug} variant="outline">

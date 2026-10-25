@@ -95,8 +95,22 @@ La referencia visual (exportada de Claude Design) está en `design/`; la **Hoja 
 componentes y rutas. Los tokens viven en `src/app/globals.css` (modo claro y oscuro automático según el sistema) y las fuentes
 son Atkinson Hyperlegible, Bebas Neue y DM Mono. Rutas: `/acceso`, `/join/[código]`, `/menu`, `/recetas`, `/bebe`, `/recetario`
 y `/limite`. Con sesión: `/recetas` (catálogo con filtros), `/recetas/[código]` (detalle), `/guias/despensa`, `/guias/frutas`
-y `/recetario`; `/menu` y `/bebe` son provisionales hasta construir sus módulos. Los datos del catálogo llegan por `/api/recipes`,
+`/bebe` (perfil del bebé), `/menu` (menú de la semana) y `/recetario`. Los datos llegan por `/api/recipes`,
 `/api/recipes/[código]`, `/api/allergens` y `/api/guides/*`.
+
+## Perfil del bebé y menú semanal
+
+- **Perfil** (`/bebe`): mes y año de nacimiento (sin nombre ni datos sensibles) y el estado de cada alérgeno: _No introducido_
+  (sin fila), _Ya lo come_ o _Evitar_. Un bebé por familia. La edad se calcula en meses de calendario, en la hora de Caracas.
+  La edad y los alérgenos a evitar son el punto de partida de los filtros de Recetas y activan el aviso del detalle.
+- **Menú** (`/menu`): se genera al azar para la semana actual (lunes a domingo). Desayuno, almuerzo y merienda; la **cena desde los
+  8 meses**. Reglas: solo recetas de la edad del bebé y **sin ningún alérgeno que evite** (aunque sea opcional), pescado unas 2 veces
+  por semana en días no seguidos, hígado (etiqueta «máx. 1 vez por semana») como mucho 1, y 2 comidas con hierro al día.
+  Las reglas de hierro se persiguen pero pueden no cumplirse (hay pocas recetas con hierro de desayuno y merienda): el resumen de
+  la semana dice lo que realmente se cumple.
+- Cambiar una comida o un día devuelve lo anterior, y la interfaz ofrece «Deshacer» (`PUT /api/menu/entries`). Solo se conserva el
+  menú de la semana actual; las semanas pasadas se descartan al generar uno nuevo.
+- Sin fecha de nacimiento no se genera menú: el generador necesita la edad para elegir recetas seguras.
 
 ## Calidad
 

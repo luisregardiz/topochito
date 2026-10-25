@@ -13,7 +13,13 @@ const ITEMS = [
 ] as const;
 
 // Una sola navegación en tres formas: barra inferior (móvil), superior (tablet) y lateral (escritorio).
-export function AppNav({ familyName }: { familyName: string }) {
+export function AppNav({
+  familyName,
+  babyAge,
+}: {
+  familyName: string;
+  babyAge: number | null;
+}) {
   const pathname = usePathname();
   const active = (href: string) =>
     pathname === href || pathname.startsWith(`${href}/`);
@@ -69,9 +75,15 @@ export function AppNav({ familyName }: { familyName: string }) {
         <p className="font-display text-3xl leading-none">
           Recetario<span className="text-primary">.</span>
         </p>
-        <p className="mb-4 truncate text-sm text-muted-foreground">
-          {familyName}
-        </p>
+        <div className="mb-4 text-sm text-muted-foreground">
+          <p className="truncate">{familyName}</p>
+          {babyAge !== null && (
+            <p className="flex items-center gap-1">
+              <Baby className="size-4" aria-hidden />
+              Bebé de {babyAge} {babyAge === 1 ? "mes" : "meses"}
+            </p>
+          )}
+        </div>
         {ITEMS.map(({ href, label, icon: Icon }) => (
           <Link
             key={href}

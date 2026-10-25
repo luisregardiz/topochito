@@ -132,3 +132,58 @@ describe("catálogo de recetas", () => {
     expect(screen.getByRole("button", { name: "Reintentar" })).toBeTruthy();
   });
 });
+
+describe("catálogo con el perfil del bebé", () => {
+  const BABY = {
+    birthMonth: 3,
+    birthYear: 2026,
+    ageMonths: 7,
+    allergens: { mani: "avoid", huevo: "introduced" },
+  };
+
+  beforeEach(() => {
+    get.mockImplementation(async (url: string) => {
+      if (url === "/baby") return { data: { baby: BABY } };
+      if (url === "/allergens") return { data: { allergens: ALLERGENS } };
+      return { data: { recipes: LIST } };
+    });
+  });
+
+  it("parte de la edad y de los alérgenos a evitar del perfil", async () => {
+    renderWithQuery(<RecipesScreen />);
+    await waitFor(() => {
+      expect(lastRecipeParams().age).toBe(7);
+      expect(lastRecipeParams().exclude).toBe("mani");
+    });
+    expect(
+      (await screen.findAllByText("Para un bebé de 7 meses · sin maní")).length,
+    ).toBeGreaterThan(0);
+  });
+
+  it("«Borrar filtros» quita también lo que venía del perfil", async () => {
+    const user = userEvent.setup();
+    renderWithQuery(<RecipesScreen />);
+    await waitFor(() => expect(lastRecipeParams().exclude).toBe("mani"));
+
+    await user.click(screen.getByRole("button", { name: /Filtros/ }));
+    const dialog = await screen.findByRole("dialog");
+    await user.click(
+      within(dialog).getByRole("button", { name: "Borrar filtros" }),
+    );
+    await waitFor(() => {
+      expect(lastRecipeParams().exclude).toBeUndefined();
+      expect(lastRecipeParams().age).toBeUndefined();
+    });
+  });
+
+  it("un bebé menor de 6 meses no manda una edad inválida al API", async () => {
+    get.mockImplementation(async (url: string) => {
+      if (url === "/baby") return { data: { baby: { ...BABY, ageMonths: 3 } } };
+      if (url === "/allergens") return { data: { allergens: ALLERGENS } };
+      return { data: { recipes: LIST } };
+    });
+    renderWithQuery(<RecipesScreen />);
+    await screen.findByRole("link", { name: /Avena cremosa/ });
+    expect(lastRecipeParams().age).toBeUndefined();
+  });
+});
