@@ -1,0 +1,410 @@
+"use client";
+
+import {
+  Baby,
+  CalendarPlus,
+  LoaderCircle,
+  Moon,
+  RefreshCw,
+  ShieldAlert,
+  TriangleAlert,
+  WifiOff,
+} from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+import { toast } from "sonner";
+import { EmptyState } from "@/components/recetario/empty-state";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import { Button, buttonVariants } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ApiError } from "@/lib/api-client";
+import { cn } from "@/lib/utils";
+import { avoidedAllergens, useBaby } from "@/modules/babies/baby.queries";
+import { allergenWithArticle } from "@/modules/recipes/recipes.format";
+import { dayName, formatDayLong, formatRange } from "@/modules/menu/menu.dates";
+import { mealsForAge } from "@/modules/menu/menu.generator";
+import {
+  useGenerateMenu,
+  useMenu,
+  useRegenerate,
+  useSetEntries,
+} from "@/modules/menu/menu.queries";
+import type { EntryRef, Menu, MenuMeal } from "@/modules/menu/menu.schemas";
+import { MEALS } from "@/components/recetario/meal";
+import {
+  DayPicker,
+  isPending,
+  MealCard,
+  SummaryAccordion,
+  SummaryCard,
+  SummaryChips,
+  WeekGrid,
+} from "./menu-parts";
+
+const Title = ({ children }: { children?: React.ReactNode }) => (
+  <h1 className="font-display text-[40px] leading-none md:text-5xl xl:text-[40px]">
+    Menú de la semana{children}
+  </h1>
+);
+
+export function MenuScreen() {
+  const baby = useBaby();
+  const menu = useMenu();
+
+  if (baby.isPending || menu.isPending) {
+    return (
+      <>
+        <Title />
+        <div className="flex flex-col gap-3" aria-busy>
+          <Skeleton className="h-24 w-full" />
+          {Array.from({ length: 3 }, (_, i) => (
+            <Skeleton key={i} className="h-[136px] w-full" />
+          ))}
+        </div>
+      </>
+    );
+  }
+  if (baby.isError || menu.isError) {
+    return (
+      <>
+        <Title />
+        <Alert variant="destructive">
+          <WifiOff />
+          <AlertTitle className="font-bold">
+            No pudimos cargar el menú
+          </AlertTitle>
+          <AlertDescription>
+            Revisa tu conexión a internet e inténtalo de nuevo.
+            <Button
+              variant="outline"
+              className="mt-3 w-full"
+              onClick={() => (baby.isError ? baby.refetch() : menu.refetch())}
+            >
+              <RefreshCw aria-hidden /> Intentar de nuevo
+            </Button>
+          </AlertDescription>
+        </Alert>
+      </>
+    );
+  }
+  if (!baby.data) {
+    return (
+      <>
+        <Title />
+        <EmptyState
+          as="h2"
+          icon={Baby}
+          title="Primero cuéntanos de tu bebé"
+          body="Con su edad y sus alérgenos armamos un menú seguro para él."
+        >
+          <Link
+            href="/bebe"
+            className={cn(buttonVariants({ size: "lg" }), "w-full")}
+          >
+            Indicar fecha de nacimiento
+          </Link>
+        </EmptyState>
+      </>
+    );
+  }
+  return (
+    <MenuView
+      ageMonths={baby.data.ageMonths}
+      avoid={avoidedAllergens(baby.data)}
+      menu={menu.data}
+    />
+  );
+}
+
+function MenuView({
+  ageMonths,
+  avoid,
+  menu,
+}: {
+  ageMonths: number;
+  avoid: string[];
+  menu: Menu | null;
+}) {
+  const gen = useGenerateMenu();
+  const regen = useRegenerate();
+  const setEntries = useSetEntries();
+  const [day, setDay] = useState<number | null>(null);
+  const [confirmOpen, setConfirmOpen] = useState(false);
+
+  const selected = day ?? menu?.today ?? 1;
+  const mealCount = mealsForAge(ageMonths).length;
+  const pending = regen.isPending ? regen.variables : null;
+  const ageText = `${ageMonths} ${ageMonths === 1 ? "mes" : "meses"}`;
+
+  function generate() {
+    setConfirmOpen(false);
+    gen.mutate(undefined, {
+      onSuccess: () =>
+        toast.success("Menú listo", {
+          description: "Puedes cambiar cualquier comida.",
+        }),
+    });
+  }
+
+  function announce(previous: EntryRef[], done: string) {
+    if (previous.length === 0) return toast("No hay otra opción para esto");
+    toast.success(done, {
+      action: { label: "Deshacer", onClick: () => setEntries.mutate(previous) },
+    });
+  }
+  const failed = () =>
+    toast.error("No pudimos hacer el cambio", {
+      description: "Revisa tu conexión e inténtalo de nuevo.",
+    });
+
+  const changeMeal = (d: number, meal: MenuMeal) =>
+    regen.mutate(
+      { scope: "meal", day: d, meal },
+      {
+        onSuccess: ({ previous }) =>
+          announce(
+            previous,
+            `Cambiamos el ${MEALS[meal].label.toLowerCase()} del ${dayName(d)}`,
+          ),
+        onError: failed,
+      },
+    );
+  const changeDay = (d: number) =>
+    regen.mutate(
+      { scope: "day", day: d },
+      {
+        onSuccess: ({ previous }) =>
+          announce(previous, `Cambiamos las comidas del ${dayName(d)}`),
+        onError: failed,
+      },
+    );
+
+  const generateButton = (className?: string) => (
+    <Button
+      size="lg"
+      className={cn("w-full", className)}
+      disabled={gen.isPending}
+      onClick={() => (menu ? setConfirmOpen(true) : generate())}
+    >
+      {gen.isPending ? (
+        <>
+          <LoaderCircle className="animate-spin" aria-hidden /> Generando…
+        </>
+      ) : (
+        <>
+          <RefreshCw aria-hidden /> Generar menú de la semana
+        </>
+      )}
+    </Button>
+  );
+
+  const genError = gen.isError && (
+    <Alert variant="destructive">
+      {gen.error instanceof ApiError && gen.error.status === 422 ? (
+        <TriangleAlert />
+      ) : (
+        <WifiOff />
+      )}
+      <AlertTitle className="font-bold">No pudimos generar el menú</AlertTitle>
+      <AlertDescription>
+        {gen.error instanceof ApiError && gen.error.status === 422
+          ? gen.error.message
+          : "Revisa tu conexión a internet e intenta de nuevo."}
+        <Button variant="outline" className="mt-3 w-full" onClick={generate}>
+          <RefreshCw aria-hidden /> Intentar de nuevo
+        </Button>
+      </AlertDescription>
+    </Alert>
+  );
+
+  if (!menu) {
+    return (
+      <>
+        <Title />
+        {gen.isPending ? (
+          <div className="flex flex-col gap-3" aria-busy>
+            <p className="text-lg font-bold">Armando el menú…</p>
+            {Array.from({ length: 3 }, (_, i) => (
+              <Skeleton key={i} className="h-[136px] w-full" />
+            ))}
+          </div>
+        ) : (
+          <EmptyState
+            as="h2"
+            icon={CalendarPlus}
+            title="Todavía no hay menú para esta semana"
+            body={`Lo armamos al azar con recetas para un bebé de ${ageText}. Después puedes cambiar cualquier comida.`}
+          >
+            {genError}
+            {generateButton()}
+          </EmptyState>
+        )}
+      </>
+    );
+  }
+
+  const dayMeals = menu.days.find((d) => d.day === selected)?.meals ?? [];
+
+  // El perfil pudo cambiar después de generar el menú: avisa de las recetas que ya no son seguras.
+  const conflicts = menu.days
+    .flatMap((d) => d.meals)
+    .filter((m) => m.recipe.allergens.some((a) => avoid.includes(a.slug)));
+  const conflictNames = [
+    ...new Map(
+      conflicts
+        .flatMap((m) => m.recipe.allergens)
+        .filter((a) => avoid.includes(a.slug))
+        .map((a) => [a.slug, allergenWithArticle(a)]),
+    ).values(),
+  ];
+
+  return (
+    <>
+      <header className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
+        <div className="flex flex-col gap-2">
+          <Title />
+          <p className="flex flex-wrap items-center gap-2 text-muted-foreground">
+            {formatRange(menu.weekStart)} ·{" "}
+            <Badge variant="secondary">
+              <Baby aria-hidden /> Bebé de {ageText}
+            </Badge>
+            <span className="hidden xl:inline">
+              · {mealCount} comidas al día
+              {ageMonths < 8 && " (la cena aparece desde los 8 meses)"}
+            </span>
+          </p>
+        </div>
+        <div className="hidden xl:block xl:w-72">{generateButton()}</div>
+      </header>
+
+      {genError}
+
+      {conflicts.length > 0 && (
+        <Alert variant="destructive">
+          <ShieldAlert />
+          <AlertTitle className="font-bold">
+            Este menú tiene recetas con {conflictNames.join(" y ")}
+          </AlertTitle>
+          <AlertDescription>
+            Marcaste {conflictNames.join(" y ")} como «evitar» en el perfil de
+            tu bebé, pero{" "}
+            {conflicts.length === 1
+              ? "sigue en 1 comida"
+              : `siguen en ${conflicts.length} comidas`}{" "}
+            de este menú. Genera un menú nuevo para quitar
+            {conflicts.length === 1 ? "la" : "las"}.
+            <Button
+              className="mt-3 w-full"
+              onClick={() => setConfirmOpen(true)}
+            >
+              <RefreshCw aria-hidden /> Generar menú nuevo
+            </Button>
+          </AlertDescription>
+        </Alert>
+      )}
+
+      {/* Móvil y tablet: un día a la vez */}
+      <div className="flex flex-col gap-4 xl:hidden" data-testid="day-view">
+        <DayPicker menu={menu} value={selected} onChange={setDay} />
+        <div className="flex flex-col gap-6 md:grid md:grid-cols-[minmax(0,640px)_260px] md:items-start">
+          <div className="flex flex-col gap-3">
+            <h2 className="text-[22px] font-bold">
+              {formatDayLong(menu.weekStart, selected)}
+            </h2>
+            {dayMeals.map(({ meal, recipe }) => (
+              <MealCard
+                key={meal}
+                day={selected}
+                meal={meal}
+                recipe={recipe}
+                avoid={avoid}
+                busy={isPending(pending, selected, meal)}
+                onChange={() => changeMeal(selected, meal)}
+              />
+            ))}
+            {ageMonths < 8 && (
+              <Alert>
+                <Moon />
+                <AlertTitle className="font-bold">
+                  La cena aparece desde los 8 meses
+                </AlertTitle>
+                <AlertDescription>
+                  Tu bebé tiene {ageText}: por ahora son {mealCount} comidas al
+                  día.
+                </AlertDescription>
+              </Alert>
+            )}
+            <Button
+              variant="outline"
+              size="lg"
+              className="w-full"
+              disabled={pending?.day === selected}
+              onClick={() => changeDay(selected)}
+            >
+              <RefreshCw aria-hidden /> Cambiar este día
+            </Button>
+            <div className="md:hidden">
+              <SummaryAccordion checks={menu.checks} />
+            </div>
+          </div>
+          <div className="hidden md:block">
+            <SummaryCard checks={menu.checks} />
+          </div>
+        </div>
+        <div className="sticky bottom-[88px] z-30 md:static">
+          {generateButton("shadow-lg md:shadow-none")}
+        </div>
+      </div>
+
+      {/* Escritorio: la semana completa */}
+      <div className="hidden flex-col gap-4 xl:flex" data-testid="week-grid">
+        <SummaryChips checks={menu.checks} />
+        <WeekGrid
+          menu={menu}
+          pending={pending}
+          avoid={avoid}
+          onChangeMeal={changeMeal}
+          onChangeDay={changeDay}
+        />
+      </div>
+
+      <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
+        <DialogContent
+          className="p-5 text-base sm:max-w-[480px]"
+          showCloseButton={false}
+        >
+          <DialogHeader>
+            <DialogTitle className="text-[26px] leading-tight font-bold">
+              ¿Generar un menú nuevo?
+            </DialogTitle>
+            <DialogDescription className="text-lg text-foreground xl:text-base">
+              Reemplaza el menú de esta semana, incluidos los cambios que
+              hiciste a mano.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex flex-col gap-3">
+            <Button size="lg" className="w-full" onClick={generate}>
+              Generar menú nuevo
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="w-full"
+              onClick={() => setConfirmOpen(false)}
+            >
+              Cancelar
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+}

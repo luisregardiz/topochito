@@ -96,3 +96,15 @@ describe("foodAgeBadge", () => {
     });
   });
 });
+
+describe("allergenWithArticle", () => {
+  it("usa el artículo correcto y cae al nombre si el alérgeno es nuevo", async () => {
+    const { allergenWithArticle } = await import("./recipes.format");
+    expect(allergenWithArticle({ slug: "mani", name: "Maní" })).toBe("el maní");
+    expect(allergenWithArticle({ slug: "lacteos", name: "Lácteos" })).toBe(
+      "los lácteos",
+    );
+    expect(allergenWithArticle({ slug: "soya", name: "Soya" })).toBe("la soya");
+    expect(allergenWithArticle({ slug: "kiwi", name: "Kiwi" })).toBe("kiwi");
+  });
+});

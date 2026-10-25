@@ -52,3 +52,19 @@ export function foodAgeBadge(fromAge: string): FoodAgeBadge {
     text: fromAge.startsWith("6 m") ? "Desde 6 m" : fromAge,
   };
 }
+
+const WITH_ARTICLE: Record<string, string> = {
+  huevo: "el huevo",
+  mani: "el maní",
+  lacteos: "los lácteos",
+  trigo: "el trigo",
+  pescado: "el pescado",
+  sesamo: "el sésamo",
+  frutos_secos: "los frutos secos",
+  soya: "la soya",
+  mariscos: "los mariscos",
+};
+
+// «el maní», «los lácteos»…; si el alérgeno es nuevo, usa su nombre en minúsculas.
+export const allergenWithArticle = (a: Pick<RecipeAllergen, "slug" | "name">) =>
+  WITH_ARTICLE[a.slug] ?? a.name.toLowerCase();

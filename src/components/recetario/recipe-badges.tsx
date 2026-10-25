@@ -1,4 +1,4 @@
-import { TriangleAlert } from "lucide-react";
+import { Ban, TriangleAlert } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { allergenLabel, ironLabel } from "@/modules/recipes/recipes.format";
 import type { RecipeAllergen } from "@/modules/recipes/recipes.schemas";
@@ -18,14 +18,24 @@ export function IronBadge({
   );
 }
 
-// Alérgeno que contiene la receta; en el detalle se dice «Contiene …».
+// Alérgeno que contiene la receta; en el detalle se dice «Contiene …». Si la familia lo evita, va en rojo sólido.
 export function AllergenBadge({
   allergen,
   detailed,
+  avoid,
 }: {
   allergen: RecipeAllergen;
   detailed?: boolean;
+  avoid?: boolean;
 }) {
+  if (avoid) {
+    return (
+      <Badge variant="destructive">
+        <Ban aria-hidden />
+        {allergen.name} · evitar
+      </Badge>
+    );
+  }
   const text =
     detailed && !allergen.isOptional
       ? `Contiene ${allergen.name.toLowerCase()}`
