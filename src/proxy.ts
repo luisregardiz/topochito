@@ -60,7 +60,13 @@ function sameOrigin(req: NextRequest) {
   const origin = req.headers.get("origin");
   if (!origin) return false;
   try {
-    return new URL(origin).host === req.nextUrl.host;
+    // Host del navegador, no nextUrl.host: Next lo calcula con el hostname en que escucha (p. ej. 0.0.0.0 en Docker).
+    const host = (
+      req.headers.get("x-forwarded-host") ?? req.headers.get("host")
+    )
+      ?.split(",")[0]
+      ?.trim();
+    return new URL(origin).host === host;
   } catch {
     return false;
   }
