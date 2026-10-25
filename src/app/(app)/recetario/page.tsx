@@ -1,6 +1,7 @@
 import { Clock } from "lucide-react";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
+import { GuideLinks } from "@/components/recetario/guide-links";
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -11,7 +12,7 @@ import { RecetarioActions } from "./recetario-actions";
 export default function RecetarioPage() {
   return (
     <main className="mx-auto flex w-full max-w-2xl flex-col gap-6 p-5 md:p-8">
-      <h1 className="font-display text-[40px] leading-none md:text-5xl">
+      <h1 className="font-display text-[40px] leading-none md:text-5xl xl:text-[40px]">
         Mi recetario
       </h1>
       <Suspense fallback={<Skeleton className="h-80 w-full" />}>
@@ -54,6 +55,7 @@ async function Panel() {
           Si nadie abre este recetario en 30 días, se borra
         </AlertTitle>
       </Alert>
+      <GuideLinks />
     </>
   );
 }

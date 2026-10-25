@@ -23,7 +23,8 @@ src/proxy.ts             rate limit + CSRF (Origin) + gate de sesión (Next 16: 
 src/scripts/             CLIs (corren con tsx, fuera de Next)
 src/components/ui/       shadcn (base-nova); tamaños ajustados al diseño: Button/Input h-14 (lg) o h-12, texto 18px
 src/components/recetario/ componentes propios del diseño (EmptyState, AppNav, FamilyCodeInput, OfflineBanner…)
-src/app/(app)/           rutas con sesión y navegación: /menu, /recetas, /bebe, /recetario
+src/app/(app)/           rutas con sesión y navegación: /menu (provisional), /recetas, /recetas/[code], /guias/*, /bebe (provisional), /recetario
+src/modules/<m>/<m>.queries.ts  hooks de TanStack Query del frontend ("use client"); los tipos viven en <m>.schemas.ts
 design/                  exportación de Claude Design: SOLO referencia (excluida de lint/prettier); la hoja de implementación manda
 ```
 
@@ -38,6 +39,8 @@ design/                  exportación de Claude Design: SOLO referencia (excluid
 - El dato de usuario pertenece a un `household` (FK a `household.id`); la sesión solo lleva `householdId`.
 - Toda tabla con FK a `household.id` debe usar `ON DELETE CASCADE`: la purga por inactividad (30 días, cron diario) borra familias enteras.
 - `last_seen_at` se renueva en `getCurrentHousehold()`; toda página nueva de una familia debe pasar por ahí.
+- **Peticiones del frontend**: siempre con `api` (axios, `lib/api-client.ts`) dentro de hooks de TanStack Query (`*.queries.ts`); nada de `fetch` suelto. Los errores llegan como `ApiError` (`status`, `code`). Zustand no está instalado: añadirlo solo cuando exista estado global real (los filtros viven en el componente; los tokens de color siguen `prefers-color-scheme`).
+- **Tests de componentes**: `// @vitest-environment jsdom` en la primera línea, `renderWithQuery` de `src/test/render.tsx` y `vi.mock("@/lib/api-client")`. jsdom está fijado a la v26 por compatibilidad con Node 22.14.
 - Diseño: tokens y valores salen de `design/…Hoja de implementación` y viven en `globals.css` (claro/oscuro por `prefers-color-scheme`). Primario verde; rojo solo para peligro; texto mínimo 16px, controles 48–56px. No inventar tokens ni tamaños.
 - Páginas con datos de la familia pasan por el layout `(app)` (`getCurrentHousehold`): cuenta como visita y redirige a `/acceso?motivo=borrado` si el recetario ya no existe.
 - Con `cacheComponents`, cualquier acceso a BD o a request corta el prerender: es esperado en handlers.

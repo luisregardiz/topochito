@@ -1,14 +1,12 @@
-import { BookOpen } from "lucide-react";
-import { EmptyState } from "@/components/recetario/empty-state";
+import { RecipesScreen } from "./recipes-screen";
 
-export default function Page() {
+export default function RecetasPage() {
   return (
-    <main className="mx-auto w-full max-w-2xl p-5 md:p-8">
-      <EmptyState
-        icon={BookOpen}
-        title="Recetas"
-        body="Esta sección está en preparación."
-      />
+    <main className="mx-auto flex w-full max-w-5xl flex-col gap-6 p-5 md:p-8">
+      <h1 className="font-display text-[40px] leading-none md:text-5xl xl:text-[40px]">
+        Recetas
+      </h1>
+      <RecipesScreen />
     </main>
   );
 }

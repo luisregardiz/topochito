@@ -10,5 +10,8 @@ export default defineConfig({
       "server-only": r("./src/test/server-only-stub.ts"), // fuera de Next, `server-only` lanza
     },
   },
-  test: { include: ["src/**/*.test.ts"] },
+  test: {
+    include: ["src/**/*.test.{ts,tsx}"],
+    setupFiles: ["src/test/setup-dom.ts"], // los tests de componentes activan jsdom con `// @vitest-environment jsdom`
+  },
 });

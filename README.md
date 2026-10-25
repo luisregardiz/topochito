@@ -94,7 +94,9 @@ La app valida el entorno al arrancar y falla con un mensaje claro si falta algo.
 La referencia visual (exportada de Claude Design) está en `design/`; la **Hoja de implementación** lista tokens, tipografías,
 componentes y rutas. Los tokens viven en `src/app/globals.css` (modo claro y oscuro automático según el sistema) y las fuentes
 son Atkinson Hyperlegible, Bebas Neue y DM Mono. Rutas: `/acceso`, `/join/[código]`, `/menu`, `/recetas`, `/bebe`, `/recetario`
-(las tres primeras con sesión son provisionales hasta construir sus módulos) y `/limite`.
+y `/limite`. Con sesión: `/recetas` (catálogo con filtros), `/recetas/[código]` (detalle), `/guias/despensa`, `/guias/frutas`
+y `/recetario`; `/menu` y `/bebe` son provisionales hasta construir sus módulos. Los datos del catálogo llegan por `/api/recipes`,
+`/api/recipes/[código]`, `/api/allergens` y `/api/guides/*`.
 
 ## Calidad
 
