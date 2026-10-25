@@ -12,11 +12,14 @@ const PUBLIC_PATHS = new Set([
   "/api/households",
 ]);
 const isPublic = (pathname: string) =>
-  PUBLIC_PATHS.has(pathname) || pathname.startsWith("/entrar/");
+  PUBLIC_PATHS.has(pathname) || pathname.startsWith("/join/");
 const SAFE_METHODS = new Set(["GET", "HEAD", "OPTIONS"]);
 
-let limiters:
-  { api: RateLimiter; access: RateLimiter; create: RateLimiter } | undefined;
+type Limiters = Record<
+  "api" | "access" | "create" | "createGlobal",
+  RateLimiter
+>;
+let limiters: Limiters | undefined;
 const getLimiters = () =>
   (limiters ??= {
     api: createRateLimiter({ prefix: "api", limit: 60, windowSeconds: 60 }),
@@ -27,7 +30,13 @@ const getLimiters = () =>
     }),
     create: createRateLimiter({
       prefix: "create",
-      limit: 3,
+      limit: 5,
+      windowSeconds: 60 * 60,
+    }),
+    // Tope global: protege la base aunque el abuso venga de muchas IPs.
+    createGlobal: createRateLimiter({
+      prefix: "create-global",
+      limit: 30,
       windowSeconds: 60 * 60,
     }),
   });
@@ -60,25 +69,30 @@ function sameOrigin(req: NextRequest) {
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const isApi = pathname.startsWith("/api/");
-
-  const { api, access, create } = getLimiters();
+  const { api, access, create, createGlobal } = getLimiters();
   const ip = clientIp(req);
-  // Cada superficie que acepta un código (formulario o enlace) comparte el límite anti fuerza bruta.
-  const attemptsLimiter =
-    (pathname === "/api/access" && req.method === "POST") ||
-    pathname.startsWith("/entrar/")
-      ? access
-      : pathname === "/api/households" && req.method === "POST"
-        ? create
-        : null;
 
   if (isApi) {
     const general = await api.limit(ip);
     if (!general.success) return tooMany(general.retryAfterSeconds);
   }
+
+  // Cada superficie que acepta un código (formulario o enlace) comparte el límite anti fuerza bruta.
+  const isCreate = pathname === "/api/households" && req.method === "POST";
+  const attemptsLimiter =
+    (pathname === "/api/access" && req.method === "POST") ||
+    pathname.startsWith("/join/")
+      ? access
+      : isCreate
+        ? create
+        : null;
   if (attemptsLimiter) {
     const attempts = await attemptsLimiter.limit(ip);
     if (!attempts.success) return tooMany(attempts.retryAfterSeconds);
+  }
+  if (isCreate) {
+    const global = await createGlobal.limit("all");
+    if (!global.success) return tooMany(global.retryAfterSeconds);
   }
 
   // Complementa SameSite=Lax: los métodos que modifican datos deben venir del mismo origen.

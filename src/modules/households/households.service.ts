@@ -84,12 +84,20 @@ export async function authenticate(
   return (await repo.findByLookup(lookupCode(code, keys))) ?? null;
 }
 
+// Devuelve null si ya se alcanzó el tope de familias.
 export async function createHousehold(
-  repo: { insert: (row: InsertRow) => Promise<{ id: string } | undefined> },
+  repo: {
+    insert: (row: InsertRow) => Promise<{ id: string } | undefined>;
+    count: () => Promise<number>;
+  },
   name: string,
   keys: CodeKeys,
-  rand?: (max: number) => number,
+  {
+    maxHouseholds = Infinity,
+    rand,
+  }: { maxHouseholds?: number; rand?: (max: number) => number } = {},
 ) {
+  if ((await repo.count()) >= maxHouseholds) return null;
   // El índice es único: ante una colisión (≈ imposible) se genera otro código.
   for (let attempt = 0; attempt < 5; attempt++) {
     const code = generateAccessCode(rand);

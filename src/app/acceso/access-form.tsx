@@ -1,17 +1,12 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
 export function AccessForm() {
   const router = useRouter();
-  const invalidLink = useSearchParams().get("error") === "codigo";
-  const [error, setError] = useState<string | null>(
-    invalidLink
-      ? "Ese enlace o código no es válido. Pídelo de nuevo a quien te lo compartió."
-      : null,
-  );
+  const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {

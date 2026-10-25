@@ -28,7 +28,9 @@ export function CreateForm() {
     setError(
       res.status === 429
         ? "Ya se crearon varios recetarios desde esta conexión. Intenta más tarde."
-        : "No se pudo crear el recetario. Revisa el nombre e inténtalo de nuevo.",
+        : res.status === 403
+          ? "Por ahora no se están creando recetarios nuevos."
+          : "No se pudo crear el recetario. Revisa el nombre e inténtalo de nuevo.",
     );
   }
 

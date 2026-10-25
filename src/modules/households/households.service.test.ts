@@ -69,6 +69,7 @@ describe("familias", () => {
         rows.push(row);
         return row;
       },
+      count: async () => rows.length,
       findByLookup: async (l: string) =>
         rows.find((x) => x.accessCodeLookup === l),
     };
@@ -77,24 +78,37 @@ describe("familias", () => {
   it("crea una familia y se entra con el código devuelto (en cualquier formato)", async () => {
     const repo = memoryRepo();
     const created = await createHousehold(repo, "Los Pérez", keys);
-    expect(created.code).toMatch(/^[A-Z2-9]{4}-[A-Z2-9]{4}$/);
+    expect(created?.code).toMatch(/^[A-Z2-9]{4}-[A-Z2-9]{4}$/);
     expect(
-      await authenticate(repo, created.code.toLowerCase(), keys),
-    ).toMatchObject({ name: "Los Pérez" });
+      await authenticate(repo, created!.code.toLowerCase(), keys),
+    ).toMatchObject({
+      name: "Los Pérez",
+    });
     expect(await authenticate(repo, "AAAA-AAAA", keys)).toBeNull();
   });
 
   it("ante colisión de código genera otro", async () => {
     const repo = memoryRepo();
-    await createHousehold(repo, "Primera", keys, () => 0); // AAAA-AAAA
+    await createHousehold(repo, "Primera", keys, { rand: () => 0 }); // AAAA-AAAA
     const seq = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1]; // AAAA-AAAA y luego BBBB-BBBB
     let i = 0;
-    const second = await createHousehold(
-      repo,
-      "Segunda",
-      keys,
-      () => seq[i++]!,
-    );
-    expect(second.code).toBe("BBBB-BBBB");
+    const second = await createHousehold(repo, "Segunda", keys, {
+      rand: () => seq[i++]!,
+    });
+    expect(second?.code).toBe("BBBB-BBBB");
+  });
+
+  it("respeta el tope de familias (0 = cerrado)", async () => {
+    const repo = memoryRepo();
+    expect(
+      await createHousehold(repo, "Primera", keys, { maxHouseholds: 1 }),
+    ).not.toBeNull();
+    expect(
+      await createHousehold(repo, "Segunda", keys, { maxHouseholds: 1 }),
+    ).toBeNull();
+    expect(
+      await createHousehold(memoryRepo(), "X", keys, { maxHouseholds: 0 }),
+    ).toBeNull();
+    expect(repo.rows).toHaveLength(1);
   });
 });

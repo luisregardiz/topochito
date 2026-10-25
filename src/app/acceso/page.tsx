@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { AccessForm } from "./access-form";
 import { CreateForm } from "./create-form";
 
@@ -13,9 +12,7 @@ export default function AccesoPage() {
       </header>
       <CreateForm />
       <hr className="border-zinc-300 dark:border-zinc-700" />
-      <Suspense>
-        <AccessForm />
-      </Suspense>
+      <AccessForm />
     </main>
   );
 }

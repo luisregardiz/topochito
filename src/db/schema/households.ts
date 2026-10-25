@@ -2,7 +2,7 @@ import { sql } from "drizzle-orm";
 import { text, timestamp, uuid } from "drizzle-orm/pg-core";
 import { recetario } from "./_schema";
 
-// Una familia = un código de acceso (también viaja en el enlace /entrar/<código>). Futuro: `users` con FK a households.id (tabla nueva, sin tocar esta).
+// Una familia = un código de acceso (también viaja en el enlace /join/<código>). Futuro: `users` con FK a households.id (tabla nueva, sin tocar esta).
 export const household = recetario.table("household", {
   id: uuid()
     .primaryKey()

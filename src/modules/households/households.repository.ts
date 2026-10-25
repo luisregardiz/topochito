@@ -24,6 +24,7 @@ export const householdsRepository = {
         .where(eq(household.id, id))
         .limit(1)
     )[0],
+  count: () => getDb().$count(household),
   // undefined si el índice único del código ya existía (colisión)
   insert: async (row: {
     name: string;

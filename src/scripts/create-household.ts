@@ -27,14 +27,16 @@ async function main() {
             .onConflictDoNothing({ target: household.accessCodeLookup })
             .returning({ id: household.id })
         )[0],
+      count: () => db.$count(household),
     },
     name,
     deriveCodeKeys(key),
-  );
+  ); // sin tope: el administrador puede crear aunque el registro esté cerrado
+  if (!created) throw new Error("no se pudo crear la familia");
   await pool.end();
 
   console.log(
-    `Familia "${name}" creada.\nCódigo: ${created.code}\nEnlace: /entrar/${created.code}`,
+    `Familia "${name}" creada.\nCódigo: ${created.code}\nEnlace: /join/${created.code}`,
   );
 }
 

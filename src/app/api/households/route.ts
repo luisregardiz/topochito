@@ -1,4 +1,5 @@
-import { handle, json, parseJson } from "@/lib/http";
+import { getEnv } from "@/lib/env";
+import { handle, HttpError, json, parseJson } from "@/lib/http";
 import { startSession } from "@/lib/start-session";
 import { getCodeKeys } from "@/modules/households/households.keys";
 import { householdsRepository } from "@/modules/households/households.repository";
@@ -11,7 +12,17 @@ export const POST = handle(async (req) => {
     householdsRepository,
     name,
     getCodeKeys(),
+    {
+      maxHouseholds: getEnv().MAX_HOUSEHOLDS,
+    },
   );
+  if (!household) {
+    throw new HttpError(
+      403,
+      "signup_closed",
+      "Por ahora no se están creando recetarios nuevos",
+    );
+  }
 
   await startSession(household.id); // entra directo; el código se comparte desde la app
   return json({ ok: true }, { status: 201 });
