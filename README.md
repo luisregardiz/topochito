@@ -55,7 +55,7 @@ El schema Drizzle (`src/db/schema/`) es la fuente de verdad. `src/db/seed/receta
 No hay usuarios ni contraseñas. Cada familia (`household`) tiene un código `XXXX-XXXX`.
 
 - **Crear:** en `/acceso`, "Crear mi recetario" pide el nombre de la persona o familia, genera el código y entra directo.
-- **Compartir:** en el inicio, el botón "Compartir mi recetario" abre el menú nativo del celular (o copia el enlace en escritorio).
+- **Compartir:** en el inicio, el botón "Compartir recetario" copia al portapapeles solo el enlace (`{origen}/join/XXXX-XXXX`); en local, `http://localhost:3000/join/XXXX-XXXX`.
   El enlace es `/join/XXXX-XXXX`: muestra "Te invitaron al recetario de …" y, al confirmar, inicia sesión y redirige a `/` (sin el código en la URL).
   Pide confirmación porque un simple GET no debe cambiarte de cuenta.
 - **Entrar con código:** `/acceso` → "Acceder al recetario de mi bebé" (acepta minúsculas, espacios y guiones).

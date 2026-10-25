@@ -48,7 +48,7 @@ Repite `pnpm db:migrate` en cada despliegue que incluya migraciones nuevas, **an
 
 ## 6. Crear familias
 
-Lo normal es que cada persona cree su recetario desde `/acceso` y comparta el enlace con el botón "Compartir". Por CLI:
+Lo normal es que cada persona cree su recetario desde `/acceso` y comparta el enlace con el botón "Compartir recetario". Por CLI:
 
 ```bash
 DATABASE_URL="<cadena de Neon>" ACCESS_CODE_KEY="<la misma de Vercel>" pnpm household:create "Familia Pérez"

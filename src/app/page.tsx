@@ -25,7 +25,7 @@ async function Welcome() {
         Código de la familia:{" "}
         <strong className="tracking-widest">{household.code}</strong>
       </p>
-      <ShareButton code={household.code} name={household.name} />
+      <ShareButton code={household.code} />
       <LogoutButton />
     </>
   );
