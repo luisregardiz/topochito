@@ -35,6 +35,27 @@ const fold = (col: SQL | AnyColumn) =>
   sql`translate(lower(${col}), 'áéíóúü', 'aeiouu')`;
 const one = sql`1`;
 
+// Alérgenos de varias recetas en una sola consulta.
+export async function allergensByRecipeId(ids: number[]) {
+  const byRecipe = new Map<number, RecipeAllergen[]>();
+  if (ids.length === 0) return byRecipe;
+  const rows = await getDb()
+    .select({
+      recipeId: recipeAllergen.recipeId,
+      slug: allergen.slug,
+      name: allergen.name,
+      isOptional: recipeAllergen.isOptional,
+      condition: recipeAllergen.condition,
+    })
+    .from(recipeAllergen)
+    .innerJoin(allergen, eq(allergen.id, recipeAllergen.allergenId))
+    .where(inArray(recipeAllergen.recipeId, ids))
+    .orderBy(asc(allergen.id));
+  for (const { recipeId, ...a } of rows)
+    byRecipe.set(recipeId, [...(byRecipe.get(recipeId) ?? []), a]);
+  return byRecipe;
+}
+
 export const recipesRepository = {
   list: async (f: RecipeListQuery): Promise<RecipeListItem[]> => {
     const db = getDb();
@@ -110,26 +131,7 @@ export const recipesRepository = {
       .orderBy(asc(recipe.sortOrder));
     if (rows.length === 0) return [];
 
-    const al = await db
-      .select({
-        recipeId: recipeAllergen.recipeId,
-        slug: allergen.slug,
-        name: allergen.name,
-        isOptional: recipeAllergen.isOptional,
-        condition: recipeAllergen.condition,
-      })
-      .from(recipeAllergen)
-      .innerJoin(allergen, eq(allergen.id, recipeAllergen.allergenId))
-      .where(
-        inArray(
-          recipeAllergen.recipeId,
-          rows.map((r) => r.id),
-        ),
-      )
-      .orderBy(asc(allergen.id));
-    const byRecipe = new Map<number, RecipeAllergen[]>();
-    for (const { recipeId, ...a } of al)
-      byRecipe.set(recipeId, [...(byRecipe.get(recipeId) ?? []), a]);
+    const byRecipe = await allergensByRecipeId(rows.map((r) => r.id));
 
     return rows.map(({ id, ...r }) => ({
       ...r,
