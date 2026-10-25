@@ -38,13 +38,23 @@ export const recipe = recetario.table(
     ironNote: text("iron_note"),
     note: text(),
     sortOrder: smallint("sort_order").notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
-    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
   },
   (t) => [
     index("recipe_meal_age_idx").on(t.mealType, t.minAgeMonths),
-    index("recipe_title_fts_idx").using("gin", sql`to_tsvector('spanish', ${t.title})`),
-    check("recipe_min_age_months_check", sql`${t.minAgeMonths} BETWEEN 6 AND 36`),
+    index("recipe_title_fts_idx").using(
+      "gin",
+      sql`to_tsvector('spanish', ${t.title})`,
+    ),
+    check(
+      "recipe_min_age_months_check",
+      sql`${t.minAgeMonths} BETWEEN 6 AND 36`,
+    ),
   ],
 );
 
@@ -59,8 +69,14 @@ export const recipeIngredient = recetario.table(
     description: text().notNull(),
   },
   (t) => [
-    unique("recipe_ingredient_recipe_id_position_key").on(t.recipeId, t.position),
-    index("recipe_ingredient_fts_idx").using("gin", sql`to_tsvector('spanish', ${t.description})`),
+    unique("recipe_ingredient_recipe_id_position_key").on(
+      t.recipeId,
+      t.position,
+    ),
+    index("recipe_ingredient_fts_idx").using(
+      "gin",
+      sql`to_tsvector('spanish', ${t.description})`,
+    ),
   ],
 );
 
@@ -74,7 +90,9 @@ export const recipeStep = recetario.table(
     position: smallint().notNull(),
     instruction: text().notNull(),
   },
-  (t) => [unique("recipe_step_recipe_id_position_key").on(t.recipeId, t.position)],
+  (t) => [
+    unique("recipe_step_recipe_id_position_key").on(t.recipeId, t.position),
+  ],
 );
 
 export const recipeAgeAdaptation = recetario.table(
@@ -89,7 +107,10 @@ export const recipeAgeAdaptation = recetario.table(
     instructions: text().notNull(),
   },
   (t) => [
-    unique("recipe_age_adaptation_recipe_id_min_age_months_key").on(t.recipeId, t.minAgeMonths),
+    unique("recipe_age_adaptation_recipe_id_min_age_months_key").on(
+      t.recipeId,
+      t.minAgeMonths,
+    ),
     check(
       "recipe_age_adaptation_max_check",
       sql`${t.maxAgeMonths} IS NULL OR ${t.maxAgeMonths} >= ${t.minAgeMonths}`,
@@ -126,7 +147,10 @@ export const recipeTag = recetario.table(
       .references(() => tag.id),
     label: text().notNull(),
   },
-  (t) => [primaryKey({ columns: [t.recipeId, t.tagId] }), index("recipe_tag_tag_idx").on(t.tagId)],
+  (t) => [
+    primaryKey({ columns: [t.recipeId, t.tagId] }),
+    index("recipe_tag_tag_idx").on(t.tagId),
+  ],
 );
 
 export const recipeReference = recetario.table(
@@ -142,7 +166,10 @@ export const recipeReference = recetario.table(
   (t) => [
     primaryKey({ columns: [t.recipeId, t.referencedRecipeId] }),
     index("recipe_reference_ref_idx").on(t.referencedRecipeId),
-    check("recipe_reference_check", sql`${t.recipeId} <> ${t.referencedRecipeId}`),
+    check(
+      "recipe_reference_check",
+      sql`${t.recipeId} <> ${t.referencedRecipeId}`,
+    ),
   ],
 );
 
@@ -160,7 +187,11 @@ export const mealPlanEntry = recetario.table(
     label: text().notNull(),
   },
   (t) => [
-    unique("meal_plan_entry_week_day_of_week_meal_type_key").on(t.week, t.dayOfWeek, t.mealType),
+    unique("meal_plan_entry_week_day_of_week_meal_type_key").on(
+      t.week,
+      t.dayOfWeek,
+      t.mealType,
+    ),
     index("meal_plan_recipe_idx").on(t.recipeId),
     check("meal_plan_entry_week_check", sql`${t.week} >= 1`),
     check("meal_plan_entry_day_check", sql`${t.dayOfWeek} BETWEEN 1 AND 7`),
