@@ -66,15 +66,26 @@ y compartirlo. Si pierdes o cambias `ACCESS_CODE_KEY`, los códigos existentes d
 Límites: 5 creaciones por hora por IP y 30 por hora en total; 5 intentos de código cada 15 minutos por IP.
 `MAX_HOUSEHOLDS` (por defecto 200) es el tope de recetarios; con `0` se cierra la creación (en Vercel, cambiar la variable requiere un redeploy).
 
+## Purga por inactividad
+
+Las familias que no abren su recetario en **30 días** se borran. Cada visita al inicio actualiza `last_seen_at` (como mucho una
+vez al día), así que usar la app con la sesión abierta cuenta como actividad. Un cron diario de Vercel (`vercel.json`,
+04:00 UTC) llama a `GET /api/cron/purge-inactive` con `Authorization: Bearer $CRON_SECRET`.
+
+- Probar sin borrar: `curl -H "Authorization: Bearer $CRON_SECRET" "http://localhost:3000/api/cron/purge-inactive?dryRun=1"`
+- **No hay aviso previo** (no se guarda ningún correo): a los 30 días el recetario desaparece. Es irreversible.
+- Las tablas que dependan de una familia deben declarar `ON DELETE CASCADE`.
+
 ## Variables de entorno
 
-| Variable                                              | Obligatoria | Uso                                                                   |
-| ----------------------------------------------------- | ----------- | --------------------------------------------------------------------- |
-| `DATABASE_URL`                                        | sí          | PostgreSQL. En producción, la cadena **pooled** de Neon               |
-| `SESSION_SECRET`                                      | sí (≥32)    | Firma de la cookie de acceso (HS256)                                  |
-| `ACCESS_CODE_KEY`                                     | sí (≥32)    | Cifra los códigos de familia. Distinta de `SESSION_SECRET`            |
-| `MAX_HOUSEHOLDS`                                      | no          | Tope de recetarios (200 por defecto). `0` cierra la creación          |
-| `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` | prod        | Rate limit. Sin ellas usa memoria (solo desarrollo) y avisa en el log |
+| Variable                                              | Obligatoria | Uso                                                                         |
+| ----------------------------------------------------- | ----------- | --------------------------------------------------------------------------- |
+| `DATABASE_URL`                                        | sí          | PostgreSQL. En producción, la cadena **pooled** de Neon                     |
+| `SESSION_SECRET`                                      | sí (≥32)    | Firma de la cookie de acceso (HS256)                                        |
+| `ACCESS_CODE_KEY`                                     | sí (≥32)    | Cifra los códigos de familia. Distinta de `SESSION_SECRET`                  |
+| `CRON_SECRET`                                         | prod        | Autoriza el cron de purga. Sin ella `/api/cron/purge-inactive` responde 401 |
+| `MAX_HOUSEHOLDS`                                      | no          | Tope de recetarios (200 por defecto). `0` cierra la creación                |
+| `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` | prod        | Rate limit. Sin ellas usa memoria (solo desarrollo) y avisa en el log       |
 
 La app valida el entorno al arrancar y falla con un mensaje claro si falta algo. Nada lleva prefijo `NEXT_PUBLIC_`.
 

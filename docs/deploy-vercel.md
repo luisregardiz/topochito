@@ -23,13 +23,14 @@ Importa el repositorio (framework Next.js, gestor pnpm, Node 22). No hace falta 
 
 ## 4. Variables de entorno en Vercel
 
-| Variable                                             | Valor                                                                           |
-| ---------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `DATABASE_URL`                                       | cadena pooled de Neon                                                           |
-| `SESSION_SECRET`                                     | `openssl rand -base64 48` (≥32 caracteres)                                      |
-| `ACCESS_CODE_KEY`                                    | `openssl rand -base64 48` (≥32 caracteres), distinta de la anterior             |
-| `MAX_HOUSEHOLDS`                                     | opcional (200). Ponla en `0` para cerrar la creación de recetarios si hay abuso |
-| `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` | de Upstash                                                                      |
+| Variable                                             | Valor                                                                                    |
+| ---------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `DATABASE_URL`                                       | cadena pooled de Neon                                                                    |
+| `SESSION_SECRET`                                     | `openssl rand -base64 48` (≥32 caracteres)                                               |
+| `ACCESS_CODE_KEY`                                    | `openssl rand -base64 48` (≥32 caracteres), distinta de la anterior                      |
+| `CRON_SECRET`                                        | `openssl rand -base64 32`. Vercel la envía como `Authorization: Bearer` al cron de purga |
+| `MAX_HOUSEHOLDS`                                     | opcional (200). Ponla en `0` para cerrar la creación de recetarios si hay abuso          |
+| `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` | de Upstash                                                                               |
 
 Cambiar `SESSION_SECRET` cierra todas las sesiones. **Guarda `ACCESS_CODE_KEY` en un lugar seguro:** si se pierde o cambia, los códigos de familia existentes dejan de funcionar.
 
@@ -55,6 +56,13 @@ DATABASE_URL="<cadena de Neon>" ACCESS_CODE_KEY="<la misma de Vercel>" pnpm hous
 ```
 
 Debe usarse la misma `ACCESS_CODE_KEY` que tiene Vercel, o la app no podrá leer ese código.
+
+## Cron de purga por inactividad
+
+`vercel.json` programa `GET /api/cron/purge-inactive` cada día a las 04:00 UTC. Vercel solo ejecuta crons en el deploy de
+**producción** y los autentica con `Authorization: Bearer <CRON_SECRET>` si esa variable existe, así que defínela antes de desplegar.
+El plan Hobby permite crons diarios como este. Para ver qué borraría sin borrar, llama al endpoint con `?dryRun=1` y el Bearer.
+Revisa los resultados en Vercel → Logs (línea `[cron] purge-inactive`).
 
 ## 7. Deploy y verificación
 

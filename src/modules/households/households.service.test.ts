@@ -8,6 +8,7 @@ import {
   generateAccessCode,
   lookupCode,
   normalizeAccessCode,
+  purgeInactive,
 } from "./households.service";
 
 const keys = deriveCodeKeys("k".repeat(32));
@@ -110,5 +111,43 @@ describe("familias", () => {
       await createHousehold(memoryRepo(), "X", keys, { maxHouseholds: 0 }),
     ).toBeNull();
     expect(repo.rows).toHaveLength(1);
+  });
+});
+
+describe("purga por inactividad", () => {
+  const now = new Date("2026-11-30T04:00:00Z");
+  const fakeRepo = () => {
+    const calls: string[] = [];
+    return {
+      calls,
+      countInactive: async (c: Date) => (
+        calls.push(`count ${c.toISOString()}`),
+        3
+      ),
+      deleteInactive: async (c: Date) => (
+        calls.push(`delete ${c.toISOString()}`),
+        2
+      ),
+    };
+  };
+
+  it("borra con corte a 30 días", async () => {
+    const repo = fakeRepo();
+    expect(await purgeInactive(repo, { now })).toEqual({
+      dryRun: false,
+      inactiveDays: 30,
+      deleted: 2,
+    });
+    expect(repo.calls).toEqual(["delete 2026-10-31T04:00:00.000Z"]);
+  });
+
+  it("dryRun solo cuenta y no borra", async () => {
+    const repo = fakeRepo();
+    expect(await purgeInactive(repo, { now, dryRun: true })).toEqual({
+      dryRun: true,
+      inactiveDays: 30,
+      wouldDelete: 3,
+    });
+    expect(repo.calls).toEqual(["count 2026-10-31T04:00:00.000Z"]);
   });
 });

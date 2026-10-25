@@ -118,3 +118,28 @@ export function shareCodeOf(household: HouseholdRow, keys: CodeKeys) {
     code: decryptCode(household.accessCodeEnc, keys),
   };
 }
+
+export const INACTIVE_DAYS = 30;
+
+// Borra las familias sin visitas desde hace `days` días. Con dryRun solo cuenta.
+export async function purgeInactive(
+  repo: {
+    countInactive: (cutoff: Date) => Promise<number>;
+    deleteInactive: (cutoff: Date) => Promise<number>;
+  },
+  {
+    now,
+    days = INACTIVE_DAYS,
+    dryRun = false,
+  }: { now: Date; days?: number; dryRun?: boolean },
+) {
+  const cutoff = new Date(now.getTime() - days * 24 * 60 * 60 * 1000);
+  const count = dryRun
+    ? await repo.countInactive(cutoff)
+    : await repo.deleteInactive(cutoff);
+  return {
+    dryRun,
+    inactiveDays: days,
+    [dryRun ? "wouldDelete" : "deleted"]: count,
+  };
+}

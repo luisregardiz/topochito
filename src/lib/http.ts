@@ -1,3 +1,4 @@
+import { unstable_rethrow } from "next/navigation";
 import { z } from "zod";
 
 export class HttpError extends Error {
@@ -31,6 +32,7 @@ export function handle<A extends unknown[]>(
     try {
       return await fn(req, ...args);
     } catch (e) {
+      unstable_rethrow(e); // señales internas de Next (prerender, redirect...): no son errores nuestros
       if (e instanceof HttpError)
         return errorResponse(e.status, e.code, e.message);
       if (e instanceof z.ZodError)

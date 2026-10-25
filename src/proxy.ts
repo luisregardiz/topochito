@@ -10,6 +10,7 @@ const PUBLIC_PATHS = new Set([
   "/api/access/logout",
   "/api/health",
   "/api/households",
+  "/api/cron/purge-inactive", // sin sesión: se protege con CRON_SECRET
 ]);
 const isPublic = (pathname: string) =>
   PUBLIC_PATHS.has(pathname) || pathname.startsWith("/join/");

@@ -19,7 +19,7 @@ src/app/                 rutas y UI; handlers en app/api/**/route.ts
 src/modules/<modulo>/    <modulo>.schemas.ts (Zod) · .service.ts (lógica pura) · .repository.ts (Drizzle)
 src/db/                  client.ts (server-only), schema/ (fuente de verdad), migrations/, seed.ts, seed/
 src/lib/                 env.ts, http.ts, rate-limit.ts, session.ts
-src/proxy.ts             rate limit + CSRF (Origin) + gate de sesión (Next 16: proxy, no middleware); públicas: /acceso, /join/*, /api/access, /api/households, /api/health
+src/proxy.ts             rate limit + CSRF (Origin) + gate de sesión (Next 16: proxy, no middleware); públicas: /acceso, /join/*, /api/access, /api/households, /api/health, /api/cron/purge-inactive (esta última exige `CRON_SECRET`)
 src/scripts/             CLIs (corren con tsx, fuera de Next)
 ```
 
@@ -32,6 +32,8 @@ src/scripts/             CLIs (corren con tsx, fuera de Next)
 - **El schema Drizzle manda**: cambia `src/db/schema/` → `pnpm db:generate` → revisa el SQL → `pnpm db:migrate`. Nunca edites migraciones aplicadas.
 - Todo el schema vive en el schema Postgres `recetario` (`drizzle.config.ts` filtra por él).
 - El dato de usuario pertenece a un `household` (FK a `household.id`); la sesión solo lleva `householdId`.
+- Toda tabla con FK a `household.id` debe usar `ON DELETE CASCADE`: la purga por inactividad (30 días, cron diario) borra familias enteras.
+- `last_seen_at` se renueva en `getCurrentHousehold()`; toda página nueva de una familia debe pasar por ahí.
 - Con `cacheComponents`, cualquier acceso a BD o a request corta el prerender: es esperado en handlers.
 - Tests con Vitest junto al código (`*.test.ts`); `server-only` está stubeado en `vitest.config.mts`.
 

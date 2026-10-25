@@ -1,5 +1,5 @@
 import "server-only";
-import { eq } from "drizzle-orm";
+import { and, eq, lt, sql } from "drizzle-orm";
 import { getDb } from "@/db/client";
 import { household } from "@/db/schema";
 
@@ -38,4 +38,25 @@ export const householdsRepository = {
         .onConflictDoNothing({ target: household.accessCodeLookup })
         .returning({ id: household.id })
     )[0],
+  // Como mucho una escritura por día y familia: evita una escritura en cada visita.
+  touch: async (id: string) => {
+    await getDb()
+      .update(household)
+      .set({ lastSeenAt: sql`now()` })
+      .where(
+        and(
+          eq(household.id, id),
+          lt(household.lastSeenAt, sql`now() - interval '1 day'`),
+        ),
+      );
+  },
+  countInactive: (cutoff: Date) =>
+    getDb().$count(household, lt(household.lastSeenAt, cutoff)),
+  deleteInactive: async (cutoff: Date) =>
+    (
+      await getDb()
+        .delete(household)
+        .where(lt(household.lastSeenAt, cutoff))
+        .returning({ id: household.id })
+    ).length,
 };

@@ -12,6 +12,10 @@ export const household = recetario.table("household", {
   accessCodeLookup: text("access_code_lookup").notNull().unique(),
   // Código cifrado (AES-256-GCM): permite volver a mostrarlo para compartir el enlace.
   accessCodeEnc: text("access_code_enc").notNull(),
+  // Última visita; la purga por inactividad borra las familias que no vuelven en 30 días.
+  lastSeenAt: timestamp("last_seen_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),

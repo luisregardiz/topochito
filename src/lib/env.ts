@@ -14,6 +14,8 @@ const schema = z
     // Clave de los códigos de familia. Aparte de SESSION_SECRET: rotar la sesión no debe invalidar los códigos.
     // Tope de familias; 0 cierra la creación de recetarios nuevos.
     MAX_HOUSEHOLDS: z.coerce.number().int().min(0).default(200),
+    // Autoriza al cron de Vercel. Sin ella el endpoint de purga responde 401.
+    CRON_SECRET: optional,
     ACCESS_CODE_KEY: z.string().min(32, "mínimo 32 caracteres"),
     UPSTASH_REDIS_REST_URL: optional,
     UPSTASH_REDIS_REST_TOKEN: optional,
