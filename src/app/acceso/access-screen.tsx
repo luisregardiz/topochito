@@ -19,15 +19,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import { api, ApiError } from "@/lib/api-client";
 import { isFamilyCodeComplete } from "@/lib/family-code";
-
-async function errorCode(res: Response) {
-  try {
-    return ((await res.json()) as { error?: { code?: string } }).error?.code;
-  } catch {
-    return undefined;
-  }
-}
 
 export function AccessScreen({ deleted }: { deleted: boolean }) {
   const nameRef = useRef<HTMLInputElement>(null);
@@ -35,7 +28,7 @@ export function AccessScreen({ deleted }: { deleted: boolean }) {
 
   useEffect(() => {
     // Recetario borrado por inactividad: la cookie ya no sirve.
-    if (deleted) void fetch("/api/access/logout", { method: "POST" });
+    if (deleted) void api.post("/access/logout").catch(() => {});
     // Los enlaces «Escribir el código a mano» llegan con #codigo.
     if (window.location.hash === "#codigo") codeRef.current?.focus();
   }, [deleted]);
@@ -44,15 +37,15 @@ export function AccessScreen({ deleted }: { deleted: boolean }) {
     <>
       <header>
         {deleted ? (
-          <p className="font-display text-[40px] leading-none md:text-5xl">
+          <p className="font-display text-[40px] leading-none md:text-5xl xl:text-[40px]">
             Recetario<span className="text-primary">.</span>
           </p>
         ) : (
-          <h1 className="font-display text-[40px] leading-none md:text-5xl">
+          <h1 className="font-display text-[40px] leading-none md:text-5xl xl:text-[40px]">
             Recetario<span className="text-primary">.</span>
           </h1>
         )}
-        <p className="mt-2 text-lg text-muted-foreground">
+        <p className="mt-2 text-lg text-muted-foreground xl:text-base">
           Recetas y menú de la semana para la alimentación de tu bebé.
         </p>
       </header>
@@ -103,32 +96,31 @@ function CreateCard({ inputRef }: { inputRef: React.Ref<HTMLInputElement> }) {
     e.preventDefault();
     setPending(true);
     setProblem(null);
-    const res = await fetch("/api/households", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ name }),
-    });
-    if (res.ok) {
+    try {
+      await api.post("/households", { name });
       toast.success("Tu recetario está listo");
       router.replace("/menu");
       router.refresh();
-      return;
+    } catch (e) {
+      setPending(false);
+      const err = e instanceof ApiError ? e : null;
+      setProblem(
+        err?.status === 429
+          ? "limited"
+          : err?.code === "signup_closed"
+            ? "closed"
+            : "failed",
+      );
     }
-    setPending(false);
-    setProblem(
-      res.status === 429
-        ? "limited"
-        : (await errorCode(res)) === "signup_closed"
-          ? "closed"
-          : "failed",
-    );
   }
 
   return (
     <Card>
       <CardContent>
         <form onSubmit={onSubmit} className="flex flex-col gap-4">
-          <h2 className="text-[22px] font-bold">Crear mi recetario</h2>
+          <h2 className="text-[22px] font-bold xl:text-xl">
+            Crear mi recetario
+          </h2>
           <div className="flex flex-col gap-2">
             <Label htmlFor="nombre" className="text-base font-bold">
               Tu nombre o el de tu familia
@@ -207,27 +199,24 @@ function CodeCard({ inputRef }: { inputRef: React.Ref<HTMLInputElement> }) {
     if (!isFamilyCodeComplete(code)) return setProblem("incomplete"); // el botón nunca se deshabilita
     setPending(true);
     setProblem(null);
-    const res = await fetch("/api/access", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ code }),
-    });
-    if (res.ok) {
+    try {
+      await api.post("/access", { code });
       router.replace("/menu");
       router.refresh();
-      return;
+    } catch (e) {
+      setPending(false);
+      const status = e instanceof ApiError ? e.status : 0;
+      setProblem(
+        status === 429 ? "limited" : status === 401 ? "wrong" : "failed",
+      );
     }
-    setPending(false);
-    setProblem(
-      res.status === 429 ? "limited" : res.status === 401 ? "wrong" : "failed",
-    );
   }
 
   return (
     <Card>
       <CardContent>
         <form onSubmit={onSubmit} className="flex flex-col gap-4" noValidate>
-          <h2 className="text-[22px] font-bold">
+          <h2 className="text-[22px] font-bold xl:text-xl">
             Acceder al recetario de mi bebé
           </h2>
           <div className="flex flex-col gap-2">

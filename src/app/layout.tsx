@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Atkinson_Hyperlegible, Bebas_Neue, DM_Mono } from "next/font/google";
+import { Providers } from "@/components/providers";
 import { OfflineBanner } from "@/components/recetario/offline-banner";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
@@ -34,7 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${atkinson.variable} ${bebas.variable} ${dmMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        {children}
+        <Providers>{children}</Providers>
         <OfflineBanner />
         <Toaster />
       </body>

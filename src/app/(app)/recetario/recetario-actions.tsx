@@ -12,6 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { api } from "@/lib/api-client";
 import { copyText } from "@/lib/clipboard";
 
 export function RecetarioActions({ code }: { code: string }) {
@@ -35,7 +36,7 @@ export function RecetarioActions({ code }: { code: string }) {
 
   async function leave() {
     setLeaving(true);
-    await fetch("/api/access/logout", { method: "POST" });
+    await api.post("/access/logout");
     router.replace("/acceso");
     router.refresh();
   }
@@ -73,7 +74,7 @@ export function RecetarioActions({ code }: { code: string }) {
             <DialogTitle className="text-[26px] leading-tight font-bold">
               ¿Salir del recetario?
             </DialogTitle>
-            <DialogDescription className="text-lg text-foreground">
+            <DialogDescription className="text-lg text-foreground xl:text-base">
               Para volver a entrar vas a necesitar el código. Anótalo o
               compártelo antes.
             </DialogDescription>

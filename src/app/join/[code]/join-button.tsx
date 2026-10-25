@@ -6,6 +6,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
+import { api, ApiError } from "@/lib/api-client";
 
 export function JoinButton({ code, name }: { code: string; name: string }) {
   const router = useRouter();
@@ -17,20 +18,16 @@ export function JoinButton({ code, name }: { code: string; name: string }) {
     setPending(true);
     setLimited(false);
     setFailed(false);
-    const res = await fetch("/api/access", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ code }),
-    });
-    if (res.ok) {
+    try {
+      await api.post("/access", { code });
       toast.success(`Entraste al recetario de ${name}`);
       router.replace("/menu"); // ya dentro, la URL no lleva el código
       router.refresh();
-      return;
+    } catch (e) {
+      setPending(false);
+      if (e instanceof ApiError && e.status === 429) setLimited(true);
+      else setFailed(true);
     }
-    setPending(false);
-    if (res.status === 429) setLimited(true);
-    else setFailed(true);
   }
 
   return (
