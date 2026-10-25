@@ -18,7 +18,10 @@
     "household:create": "tsx --env-file=.env src/scripts/create-household.ts"
   },
   "dependencies": {
+    "@upstash/ratelimit": "^2.2.0",
+    "@upstash/redis": "^1.39.0",
     "@vercel/functions": "^3.10.3",
+    "bcryptjs": "^3.0.3",
     "drizzle-orm": "^0.45.4",
     "jose": "^6.2.13",
     "next": "16.4.3",
