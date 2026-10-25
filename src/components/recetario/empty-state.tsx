@@ -29,8 +29,10 @@ export function EmptyState({
       >
         <Icon className="size-10" aria-hidden />
       </div>
-      <Heading className="text-[26px] leading-tight font-bold">{title}</Heading>
-      {body && <p className="text-lg">{body}</p>}
+      <Heading className="text-[26px] leading-tight font-bold xl:text-2xl">
+        {title}
+      </Heading>
+      {body && <p className="text-lg xl:text-base">{body}</p>}
       {children && (
         <div className="flex w-full flex-col gap-3 pt-2">{children}</div>
       )}

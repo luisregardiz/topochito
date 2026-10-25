@@ -126,7 +126,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground text-lg leading-normal;
+    @apply bg-background text-foreground text-lg leading-normal xl:text-base;
   }
   html {
     @apply font-sans;

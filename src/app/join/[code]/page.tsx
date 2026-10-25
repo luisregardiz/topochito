@@ -76,7 +76,7 @@ async function Invitation({
             {formatFamilyCode(parsed.data.code)}
           </span>
         </p>
-        <p className="text-lg">
+        <p className="text-lg xl:text-base">
           Si no esperabas esta invitación, puedes cerrar esta página.
         </p>
         <JoinButton code={parsed.data.code} name={household.name} />

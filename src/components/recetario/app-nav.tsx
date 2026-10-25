@@ -64,12 +64,12 @@ export function AppNav({ familyName }: { familyName: string }) {
 
       <nav
         aria-label="Principal"
-        className="sticky top-0 hidden h-dvh w-60 shrink-0 flex-col gap-1 border-r bg-card p-4 xl:flex"
+        className="sticky top-0 hidden h-dvh w-56 shrink-0 flex-col gap-1 border-r bg-card p-4 xl:flex"
       >
-        <p className="font-display text-4xl leading-none">
+        <p className="font-display text-3xl leading-none">
           Recetario<span className="text-primary">.</span>
         </p>
-        <p className="mb-4 truncate text-base text-muted-foreground">
+        <p className="mb-4 truncate text-sm text-muted-foreground">
           {familyName}
         </p>
         {ITEMS.map(({ href, label, icon: Icon }) => (
@@ -78,11 +78,11 @@ export function AppNav({ familyName }: { familyName: string }) {
             href={href}
             aria-current={active(href) ? "page" : undefined}
             className={cn(
-              "flex h-12 items-center gap-3 rounded-md px-3 font-bold text-muted-foreground",
-              active(href) && "bg-secondary text-primary",
+              "flex h-10 items-center gap-3 rounded-md px-3 text-[15px] font-medium text-muted-foreground hover:bg-secondary/60",
+              active(href) && "bg-secondary font-bold text-primary",
             )}
           >
-            <Icon className="size-6" aria-hidden />
+            <Icon className="size-5" aria-hidden />
             {label}
           </Link>
         ))}
