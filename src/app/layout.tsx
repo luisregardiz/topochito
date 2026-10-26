@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
-import { Atkinson_Hyperlegible, Bebas_Neue, DM_Mono } from "next/font/google";
+import { DM_Mono, IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
 import { Providers } from "@/components/providers";
 import { OfflineBanner } from "@/components/recetario/offline-banner";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
-const atkinson = Atkinson_Hyperlegible({
-  variable: "--font-atkinson",
+// Texto: IBM Plex Sans. Títulos: Space Grotesk. Códigos de familia: DM Mono.
+const plex = IBM_Plex_Sans({
+  variable: "--font-plex",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const bebas = Bebas_Neue({
-  variable: "--font-bebas",
+const grotesk = Space_Grotesk({
+  variable: "--font-grotesk",
   subsets: ["latin"],
-  weight: "400",
+  weight: ["500", "700"],
 });
 
 const dmMono = DM_Mono({
@@ -32,7 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
-      className={`${atkinson.variable} ${bebas.variable} ${dmMono.variable} h-full antialiased`}
+      className={`${plex.variable} ${grotesk.variable} ${dmMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Providers>{children}</Providers>

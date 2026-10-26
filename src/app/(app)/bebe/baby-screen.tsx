@@ -246,7 +246,7 @@ function BabyForm({
                   Aquí verás la edad de tu bebé.
                 </p>
               ) : (
-                <p className="font-display text-[64px] leading-none">
+                <p className="font-display text-5xl leading-none">
                   {age} {age === 1 ? "mes" : "meses"}
                 </p>
               )}

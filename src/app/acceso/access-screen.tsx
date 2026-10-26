@@ -37,11 +37,11 @@ export function AccessScreen({ deleted }: { deleted: boolean }) {
     <>
       <header>
         {deleted ? (
-          <p className="font-display text-[40px] leading-none md:text-5xl xl:text-[40px]">
+          <p className="font-display text-[32px] leading-tight md:text-4xl xl:text-[32px]">
             Recetario<span className="text-primary">.</span>
           </p>
         ) : (
-          <h1 className="font-display text-[40px] leading-none md:text-5xl xl:text-[40px]">
+          <h1 className="font-display text-[32px] leading-tight md:text-4xl xl:text-[32px]">
             Recetario<span className="text-primary">.</span>
           </h1>
         )}

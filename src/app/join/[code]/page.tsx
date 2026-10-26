@@ -17,7 +17,7 @@ import { JoinButton } from "./join-button";
 export default function JoinPage({ params }: PageProps<"/join/[code]">) {
   return (
     <main className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center gap-6 p-5 md:p-8">
-      <p className="font-display text-[40px] leading-none">
+      <p className="font-display text-4xl leading-none">
         Recetario<span className="text-primary">.</span>
       </p>
       <Suspense fallback={<Skeleton className="h-64 w-full" />}>

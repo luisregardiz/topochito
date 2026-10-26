@@ -12,7 +12,7 @@ import { RecetarioActions } from "./recetario-actions";
 export default function RecetarioPage() {
   return (
     <main className="mx-auto flex w-full max-w-2xl flex-col gap-6 p-5 md:p-8">
-      <h1 className="font-display text-[40px] leading-none md:text-5xl xl:text-[40px]">
+      <h1 className="font-display text-[32px] leading-tight md:text-4xl xl:text-[32px]">
         Mi recetario
       </h1>
       <Suspense fallback={<Skeleton className="h-80 w-full" />}>

@@ -6,8 +6,8 @@
 @custom-variant dark (@media (prefers-color-scheme: dark));
 
 @theme inline {
-  --font-sans: var(--font-atkinson), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-bebas), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-dm-mono), ui-monospace, monospace;
   --font-heading: var(--font-sans);
 
@@ -86,6 +86,11 @@
   --meal-merienda: #fce8e1;
   --meal-cena: #e6e9f5;
   --meal-base: #ededed;
+
+  /* Difuminados del design system, en verde (primary). Colores fijos y no color-mix: sin soporte, el respaldo sería un
+     círculo verde sólido. El halo se limita al 8 % para que el texto siga en AA incluso en su punto más intenso. */
+  --card-glow: rgb(47 125 79 / 8%);
+  --glow-soft: 0 0 24px rgb(47 125 79 / 18%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -118,6 +123,8 @@
     --meal-merienda: #2a1814;
     --meal-cena: #171b2b;
     --meal-base: #1a1a1a;
+    --card-glow: rgb(111 203 146 / 8%);
+    --glow-soft: 0 0 24px rgb(111 203 146 / 18%);
   }
 }
 
@@ -130,5 +137,17 @@
   }
   html {
     @apply font-sans;
+  }
+  /* Títulos y cifras grandes en Space Grotesk */
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+  .font-display {
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 }

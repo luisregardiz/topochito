@@ -50,7 +50,7 @@ import {
 } from "./menu-parts";
 
 const Title = ({ children }: { children?: React.ReactNode }) => (
-  <h1 className="font-display text-[40px] leading-none md:text-5xl xl:text-[40px]">
+  <h1 className="font-display text-[32px] leading-tight md:text-4xl xl:text-[32px]">
     Menú de la semana{children}
   </h1>
 );
