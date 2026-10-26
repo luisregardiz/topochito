@@ -286,7 +286,7 @@ function BabyForm({
                           <ToggleGroupItem
                             key={c.value}
                             value={c.value}
-                            className={`h-14 flex-1 gap-1 px-1 text-base font-bold xl:h-12 ${c.className}`}
+                            className={`h-14 min-w-0 flex-1 gap-1 px-1 text-center text-sm leading-tight font-bold whitespace-normal xl:h-12 ${c.className}`}
                           >
                             {current === c.value &&
                               c.value === "introduced" && <Check aria-hidden />}

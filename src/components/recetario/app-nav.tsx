@@ -36,7 +36,7 @@ export function AppNav({
             href={href}
             aria-current={active(href) ? "page" : undefined}
             className={cn(
-              "flex flex-1 flex-col items-center justify-center gap-1 text-base font-bold text-muted-foreground",
+              "flex min-w-0 flex-1 flex-col items-center justify-center gap-1 px-1 text-sm font-bold whitespace-nowrap text-muted-foreground",
               active(href) && "text-primary",
             )}
           >

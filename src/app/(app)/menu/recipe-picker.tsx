@@ -48,6 +48,7 @@ export function RecipePicker({
     <Sheet open={!!target} onOpenChange={(open) => !open && onClose()}>
       <SheetContent
         side={wide ? "right" : "bottom"}
+        initialFocus={wide} // en móvil, el foco automático abre el teclado y estorba al desplazar
         className="max-h-[88dvh] md:max-h-none md:w-[480px] md:max-w-[480px]"
       >
         {target && (

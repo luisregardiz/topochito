@@ -89,7 +89,7 @@ export function DayPicker({
             </TabsTrigger>
           ))}
         </TabsList>
-        <ScrollBar orientation="horizontal" />
+        <ScrollBar orientation="horizontal" className="max-md:hidden" />
       </ScrollArea>
     </Tabs>
   );
