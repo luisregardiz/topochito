@@ -33,7 +33,14 @@ let cached: Env | undefined;
 // Perezoso para que `next build` no exija secretos; instrumentation.ts lo invoca al arrancar el servidor.
 export function getEnv(): Env {
   if (cached) return cached;
-  const parsed = schema.safeParse(process.env);
+  const { env } = process;
+  // La integración de Upstash en Vercel crea KV_REST_API_*; las UPSTASH_* explícitas tienen prioridad.
+  const parsed = schema.safeParse({
+    ...env,
+    UPSTASH_REDIS_REST_URL: env.UPSTASH_REDIS_REST_URL || env.KV_REST_API_URL,
+    UPSTASH_REDIS_REST_TOKEN:
+      env.UPSTASH_REDIS_REST_TOKEN || env.KV_REST_API_TOKEN,
+  });
   if (!parsed.success) {
     throw new Error(
       `Variables de entorno inválidas:\n${z.prettifyError(parsed.error)}`,

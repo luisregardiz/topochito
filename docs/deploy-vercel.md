@@ -17,21 +17,20 @@ Importa el repositorio (framework Next.js, gestor pnpm, Node 22). No hace falta 
 ## 3. Upstash Redis (rate limit)
 
 1. Storage → **Upstash** (Redis) → crea la base (plan Free) y conéctala al proyecto.
-2. La app espera `UPSTASH_REDIS_REST_URL` y `UPSTASH_REDIS_REST_TOKEN`. Si la integración inyecta otros nombres
-   (p. ej. `KV_REST_API_URL` / `KV_REST_API_TOKEN`), crea esas dos variables con los mismos valores.
+2. La integración crea `KV_REST_API_URL` y `KV_REST_API_TOKEN`, y la app las lee tal cual (no hay que copiarlas). Si defines `UPSTASH_REDIS_REST_URL` y `UPSTASH_REDIS_REST_TOKEN`, esas tienen prioridad. No uses `KV_REST_API_READ_ONLY_TOKEN`: solo lee y el límite necesita escribir.
 3. En producción esto es obligatorio: el límite en memoria no se comparte entre instancias serverless.
 
 ## 4. Variables de entorno en Vercel
 
-| Variable                                             | Valor                                                                                                        |
-| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `DATABASE_URL`                                       | cadena pooled de Neon                                                                                        |
-| `SESSION_SECRET`                                     | `openssl rand -base64 48` (≥32 caracteres)                                                                   |
-| `ACCESS_CODE_KEY`                                    | `openssl rand -base64 48` (≥32 caracteres), distinta de la anterior                                          |
-| `CRON_SECRET`                                        | `openssl rand -base64 32`. Vercel la envía como `Authorization: Bearer` al cron de purga                     |
-| `CLOUDINARY_CLOUD_NAME`                              | opcional. «Cloud name» de Cloudinary para las fotos y videos de las recetas; sin él se muestran placeholders |
-| `MAX_HOUSEHOLDS`                                     | opcional (200). Ponla en `0` para cerrar la creación de recetarios si hay abuso                              |
-| `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` | de Upstash                                                                                                   |
+| Variable                               | Valor                                                                                                        |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `DATABASE_URL`                         | cadena pooled de Neon                                                                                        |
+| `SESSION_SECRET`                       | `openssl rand -base64 48` (≥32 caracteres)                                                                   |
+| `ACCESS_CODE_KEY`                      | `openssl rand -base64 48` (≥32 caracteres), distinta de la anterior                                          |
+| `CRON_SECRET`                          | `openssl rand -base64 32`. Vercel la envía como `Authorization: Bearer` al cron de purga                     |
+| `CLOUDINARY_CLOUD_NAME`                | opcional. «Cloud name» de Cloudinary para las fotos y videos de las recetas; sin él se muestran placeholders |
+| `MAX_HOUSEHOLDS`                       | opcional (200). Ponla en `0` para cerrar la creación de recetarios si hay abuso                              |
+| `KV_REST_API_URL`, `KV_REST_API_TOKEN` | las crea la integración de Upstash (o `UPSTASH_REDIS_REST_*`)                                                |
 
 Cambiar `SESSION_SECRET` cierra todas las sesiones. **Guarda `ACCESS_CODE_KEY` en un lugar seguro:** si se pierde o cambia, los códigos de familia existentes dejan de funcionar.
 
