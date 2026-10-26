@@ -112,6 +112,37 @@ y `/limite`. Con sesión: `/recetas` (catálogo con filtros), `/recetas/[código
   menú de la semana actual; las semanas pasadas se descartan al generar uno nuevo.
 - Sin fecha de nacimiento no se genera menú: el generador necesita la edad para elegir recetas seguras.
 
+## Mi despensa: recetas según lo que la familia consigue
+
+No todas las familias consiguen los mismos alimentos (quinoa, salmón, tofu…). En `/despensa` (se llega desde Mi recetario) se marcan
+los alimentos que la familia compra; lo desmarcado se guarda como «no lo consigo» y todo lo demás se da por disponible, así que los
+alimentos nuevos que lleguen con recetas nuevas no esconden nada por sorpresa.
+
+- **Menú:** nunca incluye una receta que necesite un alimento que no consigues. Si ya tenías un menú y cambias la despensa, el menú
+  avisa de las recetas afectadas.
+- **Recetas:** el filtro «Solo lo que puedo cocinar» arranca activo si marcaste algo; cada receta afectada dice «Te falta: …» y el
+  detalle marca el ingrediente («No lo consigues»).
+- **Cómo se decide:** cada línea de ingredientes tiene _grupos_ de alimentos. Los grupos son todos necesarios y dentro de un grupo
+  basta uno (alternativas: «yuca, ocumo, ñame o apio criollo»). Las líneas opcionales nunca bloquean. Agua, aceite, hierbas y
+  especias son _básicos_: no se preguntan.
+- Una receta que usa una preparación base (p. ej. el sofrito) anota los alimentos de esa base, así que si no se consigue ají dulce,
+  las recetas con sofrito dejan de ser cocinables.
+
+## Agregar recetas nuevas
+
+Las recetas viven en `src/db/seed/` y se cargan con `pnpm db:seed` (idempotente, también contra Neon):
+
+| Archivo          | Qué es                                                                                        |
+| ---------------- | --------------------------------------------------------------------------------------------- |
+| `recetario.json` | Dataset base (71 recetas, alérgenos, guías y plan de ejemplo)                                 |
+| `foods.json`     | Catálogo de alimentos (slug, nombre, categoría; `staple: true` = básico)                      |
+| `recipes/*.json` | **Lotes de recetas nuevas**, uno por archivo: `{ "foods": [...nuevos...], "recipes": [...] }` |
+| `media.json`     | Fotos y videos por código de receta                                                           |
+
+`pnpm db:check` valida todos los archivos **sin tocar la base de datos** (formato estricto, alimentos y alérgenos que existan,
+códigos sin repetir, edades coherentes, cena desde los 8 meses) y explica cada problema. El prompt para pedirle lotes a Claude, con
+el formato exacto, el catálogo y los huecos actuales del menú, está en [docs/prompt-nuevas-recetas.md](docs/prompt-nuevas-recetas.md).
+
 ## Fotos y videos de las recetas (Cloudinary)
 
 Las recetas pueden tener una foto (se ve como miniatura de 88 px y como imagen principal 4:3) y un video (16:9, al final del detalle).

@@ -48,6 +48,10 @@ pnpm db:seed
 Un valor exportado en la shell tiene prioridad sobre `.env`. Ambos comandos se pueden repetir sin riesgo.
 Repite `pnpm db:migrate` en cada despliegue que incluya migraciones nuevas, **antes** de promover el deploy.
 
+> Cada despliegue con migraciones nuevas necesita `pnpm db:migrate` **y** `pnpm db:seed` contra Neon: el seed carga el catálogo de
+> alimentos (`foods.json`), los ingredientes estructurados y las recetas de `src/db/seed/recipes/`. Antes de cargar un lote nuevo,
+> `pnpm db:check` lo valida sin tocar la base.
+
 ## 6. Crear familias
 
 Lo normal es que cada persona cree su recetario desde `/acceso` y comparta el enlace con el botón "Compartir recetario". Por CLI:
