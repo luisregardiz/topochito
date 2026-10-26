@@ -93,7 +93,7 @@ La app valida el entorno al arrancar y falla con un mensaje claro si falta algo.
 
 La referencia visual (exportada de Claude Design) está en `design/`; la **Hoja de implementación** lista tokens, tipografías,
 componentes y rutas. Los tokens viven en `src/app/globals.css` (modo claro y oscuro automático según el sistema) y las fuentes
-son Atkinson Hyperlegible, Bebas Neue y DM Mono. Rutas: `/acceso`, `/join/[código]`, `/menu`, `/recetas`, `/bebe`, `/recetario`
+son IBM Plex Sans (texto), Space Grotesk (títulos y cifras grandes) y DM Mono (códigos). Las cards llevan el halo difuminado del design system, en verde y limitado al 8 % para no perjudicar el contraste. Rutas: `/acceso`, `/join/[código]`, `/menu`, `/recetas`, `/bebe`, `/recetario`
 y `/limite`. Con sesión: `/recetas` (catálogo con filtros), `/recetas/[código]` (detalle), `/guias/despensa`, `/guias/frutas`
 `/bebe` (perfil del bebé), `/menu` (menú de la semana) y `/recetario`. Los datos llegan por `/api/recipes`,
 `/api/recipes/[código]`, `/api/allergens` y `/api/guides/*`.
@@ -111,6 +111,20 @@ y `/limite`. Con sesión: `/recetas` (catálogo con filtros), `/recetas/[código
 - Cambiar una comida o un día devuelve lo anterior, y la interfaz ofrece «Deshacer» (`PUT /api/menu/entries`). Solo se conserva el
   menú de la semana actual; las semanas pasadas se descartan al generar uno nuevo.
 - Sin fecha de nacimiento no se genera menú: el generador necesita la edad para elegir recetas seguras.
+
+## Fotos y videos de las recetas (Cloudinary)
+
+Las recetas pueden tener una foto (se ve como miniatura de 88 px y como imagen principal 4:3) y un video (16:9, al final del detalle).
+Los archivos viven en Cloudinary y en la base solo se guarda su **public ID** (`recipe.image_public_id` y `recipe.video_public_id`);
+la URL, con recorte y formato automáticos, se arma en `src/lib/cloudinary-url.ts`. Sin foto, o si falla, se ve el placeholder de la comida.
+El video no se descarga hasta que se pulsa «Reproducir video».
+
+1. Crea la cuenta gratuita y copia el **Cloud name** del Dashboard a `CLOUDINARY_CLOUD_NAME` (en `.env` y en Vercel).
+2. Sube los archivos con una convención fija: imagen `recetario/D10`, video `recetario/D10-video` (el public ID aparece en la Media Library).
+3. Anótalos en `src/db/seed/media.json`: `{ "D10": { "image": "recetario/D10", "video": "recetario/D10-video" } }`.
+4. `pnpm db:seed` los aplica (también contra Neon). Es idempotente: solo toca las recetas del archivo; `null` borra el medio.
+
+Consejo para no gastar el plan gratuito: videos de 30–45 s y 720p, y fotos de hasta ~1600 px.
 
 ## Calidad
 
