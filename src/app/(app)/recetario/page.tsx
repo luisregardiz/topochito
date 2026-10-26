@@ -3,6 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { GuideLinks } from "@/components/recetario/guide-links";
+import { InstallHint } from "@/components/recetario/install-hint";
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -85,6 +86,7 @@ async function Panel() {
           </CardContent>
         </Card>
       </section>
+      <InstallHint />
       <GuideLinks />
     </>
   );

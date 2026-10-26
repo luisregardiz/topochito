@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Mono, IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
 import { Providers } from "@/components/providers";
 import { OfflineBanner } from "@/components/recetario/offline-banner";
@@ -27,6 +27,16 @@ const dmMono = DM_Mono({
 export const metadata: Metadata = {
   title: "topochito",
   description: "Recetas y menú semanal para la alimentación complementaria",
+  icons: { apple: "/apple-touch-icon.png" },
+  appleWebApp: { capable: true, title: "topochito" },
+};
+
+// Color de la barra del sistema en la app instalada (claro/oscuro, igual que los tokens de globals.css).
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#2f7d4f" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
