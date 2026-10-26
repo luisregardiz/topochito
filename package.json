@@ -15,7 +15,8 @@
     "db:pull": "drizzle-kit pull",
     "db:seed": "tsx --env-file=.env src/db/seed.ts",
     "db:studio": "drizzle-kit studio",
-    "household:create": "tsx --env-file=.env src/scripts/create-household.ts"
+    "household:create": "tsx --env-file=.env src/scripts/create-household.ts",
+    "db:check": "tsx src/db/seed.ts --check"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

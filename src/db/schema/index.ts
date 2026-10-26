@@ -4,3 +4,4 @@ export * from "./households";
 export * from "./relations";
 export * from "./baby";
 export * from "./menu";
+export * from "./pantry";

@@ -77,11 +77,63 @@
         }
       ],
       "ingredients": [
-        "1 muslo de pollo o huesos de pollo",
-        "1 cebolla, 2 ajíes dulces, 1 diente de ajo",
-        "1 zanahoria, ½ pimentón",
-        "Cilantro y cebollín",
-        "1,5 litros de agua"
+        {
+          "text": "1 muslo de pollo o huesos de pollo",
+          "optional": false,
+          "foods": [
+            [
+              "pollo"
+            ]
+          ]
+        },
+        {
+          "text": "1 cebolla, 2 ajíes dulces, 1 diente de ajo",
+          "optional": false,
+          "foods": [
+            [
+              "cebolla"
+            ],
+            [
+              "aji-dulce"
+            ],
+            [
+              "ajo"
+            ]
+          ]
+        },
+        {
+          "text": "1 zanahoria, ½ pimentón",
+          "optional": false,
+          "foods": [
+            [
+              "zanahoria"
+            ],
+            [
+              "pimenton"
+            ]
+          ]
+        },
+        {
+          "text": "Cilantro y cebollín",
+          "optional": false,
+          "foods": [
+            [
+              "cilantro"
+            ],
+            [
+              "cebollin"
+            ]
+          ]
+        },
+        {
+          "text": "1,5 litros de agua",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Pon todo en una olla, hierve y cocina tapado a fuego bajo 45 min.",
@@ -120,13 +172,69 @@
         }
       ],
       "ingredients": [
-        "1 cebolla",
-        "1 pimentón rojo",
-        "4 ajíes dulces sin semillas",
-        "2 dientes de ajo",
-        "2 tomates maduros",
-        "Cebollín",
-        "2 cdas de aceite de oliva o vegetal"
+        {
+          "text": "1 cebolla",
+          "optional": false,
+          "foods": [
+            [
+              "cebolla"
+            ]
+          ]
+        },
+        {
+          "text": "1 pimentón rojo",
+          "optional": false,
+          "foods": [
+            [
+              "pimenton"
+            ]
+          ]
+        },
+        {
+          "text": "4 ajíes dulces sin semillas",
+          "optional": false,
+          "foods": [
+            [
+              "aji-dulce"
+            ]
+          ]
+        },
+        {
+          "text": "2 dientes de ajo",
+          "optional": false,
+          "foods": [
+            [
+              "ajo"
+            ]
+          ]
+        },
+        {
+          "text": "2 tomates maduros",
+          "optional": false,
+          "foods": [
+            [
+              "tomate"
+            ]
+          ]
+        },
+        {
+          "text": "Cebollín",
+          "optional": false,
+          "foods": [
+            [
+              "cebollin"
+            ]
+          ]
+        },
+        {
+          "text": "2 cdas de aceite de oliva o vegetal",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Pica todo muy fino (o licúa con muy poca agua).",
@@ -156,9 +264,51 @@
         }
       ],
       "ingredients": [
-        "1 taza de caraotas negras secas",
-        "Agua para remojar y cocinar",
-        "Opcional: 1 cubo de sofrito (P2) al final"
+        {
+          "text": "1 taza de caraotas negras secas",
+          "optional": false,
+          "foods": [
+            [
+              "caraotas"
+            ]
+          ]
+        },
+        {
+          "text": "Agua para remojar y cocinar",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        },
+        {
+          "text": "Opcional: 1 cubo de sofrito (P2) al final",
+          "optional": true,
+          "foods": [
+            [
+              "cebolla"
+            ],
+            [
+              "pimenton"
+            ],
+            [
+              "aji-dulce"
+            ],
+            [
+              "ajo"
+            ],
+            [
+              "tomate"
+            ],
+            [
+              "cebollin"
+            ],
+            [
+              "aceite"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Lávalas y déjalas en remojo 8–12 horas. Desecha el agua del remojo.",
@@ -195,7 +345,15 @@
         }
       ],
       "ingredients": [
-        "Plátanos bien maduros (concha casi negra)"
+        {
+          "text": "Plátanos bien maduros (concha casi negra)",
+          "optional": false,
+          "foods": [
+            [
+              "platano"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Lávalos, córtales las puntas y haz un corte a lo largo en la concha.",
@@ -225,10 +383,45 @@
         }
       ],
       "ingredients": [
-        "1 taza de harina de maíz precocida",
-        "1¼ taza de agua tibia",
-        "1 cdta de aceite",
-        "Opcional: 3 cdas de auyama, zanahoria rallada, plátano o yuca aplastados"
+        {
+          "text": "1 taza de harina de maíz precocida",
+          "optional": false,
+          "foods": [
+            [
+              "harina-maiz"
+            ]
+          ]
+        },
+        {
+          "text": "1¼ taza de agua tibia",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Opcional: 3 cdas de auyama, zanahoria rallada, plátano o yuca aplastados",
+          "optional": true,
+          "foods": [
+            [
+              "auyama",
+              "zanahoria",
+              "platano",
+              "yuca"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Mezcla y amasa 2 min. Deja reposar 2 min; si se agrieta, añade agua.",
@@ -263,8 +456,27 @@
         }
       ],
       "ingredients": [
-        "Yuca, ocumo, ñame o apio criollo",
-        "Agua"
+        {
+          "text": "Yuca, ocumo, ñame o apio criollo",
+          "optional": false,
+          "foods": [
+            [
+              "yuca",
+              "ocumo",
+              "name",
+              "apio-criollo"
+            ]
+          ]
+        },
+        {
+          "text": "Agua",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Pela bien. En la yuca, retira también la capa interna rosada.",
@@ -301,12 +513,61 @@
         }
       ],
       "ingredients": [
-        "3 cdas de copos de avena finos",
-        "120 ml de agua (o leche entera, apta en cocción)",
-        "½ cambur (plátano) bien maduro",
-        "½ cdta de crema de maní 100% (sin sal ni azúcar)",
-        "Opcional: 2–3 cdas de leche materna o fórmula al final",
-        "Pizca de canela"
+        {
+          "text": "3 cdas de copos de avena finos",
+          "optional": false,
+          "foods": [
+            [
+              "avena"
+            ]
+          ]
+        },
+        {
+          "text": "120 ml de agua (o leche entera, apta en cocción)",
+          "optional": false,
+          "foods": [
+            [
+              "agua",
+              "leche-entera"
+            ]
+          ]
+        },
+        {
+          "text": "½ cambur (plátano) bien maduro",
+          "optional": false,
+          "foods": [
+            [
+              "cambur"
+            ]
+          ]
+        },
+        {
+          "text": "½ cdta de crema de maní 100% (sin sal ni azúcar)",
+          "optional": false,
+          "foods": [
+            [
+              "crema-mani"
+            ]
+          ]
+        },
+        {
+          "text": "Opcional: 2–3 cdas de leche materna o fórmula al final",
+          "optional": true,
+          "foods": [
+            [
+              "leche-materna"
+            ]
+          ]
+        },
+        {
+          "text": "Pizca de canela",
+          "optional": false,
+          "foods": [
+            [
+              "canela"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Cocina la avena con el agua 3–5 min, removiendo, hasta que esté cremosa.",
@@ -365,11 +626,51 @@
         }
       ],
       "ingredients": [
-        "1 cambur muy maduro",
-        "1 huevo",
-        "2 cdas de avena molida (opcional, da consistencia)",
-        "Pizca de canela",
-        "Unas gotas de aceite de oliva o de girasol"
+        {
+          "text": "1 cambur muy maduro",
+          "optional": false,
+          "foods": [
+            [
+              "cambur"
+            ]
+          ]
+        },
+        {
+          "text": "1 huevo",
+          "optional": false,
+          "foods": [
+            [
+              "huevo"
+            ]
+          ]
+        },
+        {
+          "text": "2 cdas de avena molida (opcional, da consistencia)",
+          "optional": true,
+          "foods": [
+            [
+              "avena"
+            ]
+          ]
+        },
+        {
+          "text": "Pizca de canela",
+          "optional": false,
+          "foods": [
+            [
+              "canela"
+            ]
+          ]
+        },
+        {
+          "text": "Unas gotas de aceite de oliva o de girasol",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Aplasta el cambur y bate con el huevo, la avena y la canela.",
@@ -426,11 +727,54 @@
         }
       ],
       "ingredients": [
-        "½ taza de harina de maíz precocida",
-        "⅓ taza de auyama (calabaza) cocida y aplastada",
-        "≈ ⅓ taza de agua tibia",
-        "1 cdta de aceite",
-        "Para rellenar: aguacate aplastado, ricota o queso fresco bajo en sal, o huevo revuelto bien cocido"
+        {
+          "text": "½ taza de harina de maíz precocida",
+          "optional": false,
+          "foods": [
+            [
+              "harina-maiz"
+            ]
+          ]
+        },
+        {
+          "text": "⅓ taza de auyama (calabaza) cocida y aplastada",
+          "optional": false,
+          "foods": [
+            [
+              "auyama"
+            ]
+          ]
+        },
+        {
+          "text": "≈ ⅓ taza de agua tibia",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Para rellenar: aguacate aplastado, ricota o queso fresco bajo en sal, o huevo revuelto bien cocido",
+          "optional": false,
+          "foods": [
+            [
+              "aguacate",
+              "ricota",
+              "queso-fresco",
+              "huevo"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Mezcla la auyama con la harina y añade agua poco a poco hasta tener una masa suave que no se agriete.",
@@ -483,11 +827,51 @@
         }
       ],
       "ingredients": [
-        "1 huevo",
-        "1 tomate pequeño maduro, sin piel ni semillas",
-        "¼ de aguacate maduro",
-        "1 cdta de aceite de oliva",
-        "Opcional: orégano"
+        {
+          "text": "1 huevo",
+          "optional": false,
+          "foods": [
+            [
+              "huevo"
+            ]
+          ]
+        },
+        {
+          "text": "1 tomate pequeño maduro, sin piel ni semillas",
+          "optional": false,
+          "foods": [
+            [
+              "tomate"
+            ]
+          ]
+        },
+        {
+          "text": "¼ de aguacate maduro",
+          "optional": false,
+          "foods": [
+            [
+              "aguacate"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite de oliva",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Opcional: orégano",
+          "optional": true,
+          "foods": [
+            [
+              "oregano"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Pica el tomate y cocínalo 2 min en el aceite.",
@@ -544,9 +928,34 @@
         }
       ],
       "ingredients": [
-        "4 cdas de yogur natural entero, sin azúcar",
-        "3 cdas de mango bien maduro",
-        "½ cdta de tahini (crema de ajonjolí), o semillas de chía o linaza molidas"
+        {
+          "text": "4 cdas de yogur natural entero, sin azúcar",
+          "optional": false,
+          "foods": [
+            [
+              "yogur-natural"
+            ]
+          ]
+        },
+        {
+          "text": "3 cdas de mango bien maduro",
+          "optional": false,
+          "foods": [
+            [
+              "mango"
+            ]
+          ]
+        },
+        {
+          "text": "½ cdta de tahini (crema de ajonjolí), o semillas de chía o linaza molidas",
+          "optional": false,
+          "foods": [
+            [
+              "tahini",
+              "chia-linaza"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Aplasta el mango con un tenedor.",
@@ -596,11 +1005,51 @@
         }
       ],
       "ingredients": [
-        "¼ taza de quinoa",
-        "¾ taza de agua",
-        "½ pera madura",
-        "Pizca de canela",
-        "Opcional: leche materna o fórmula al final"
+        {
+          "text": "¼ taza de quinoa",
+          "optional": false,
+          "foods": [
+            [
+              "quinoa"
+            ]
+          ]
+        },
+        {
+          "text": "¾ taza de agua",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        },
+        {
+          "text": "½ pera madura",
+          "optional": false,
+          "foods": [
+            [
+              "pera"
+            ]
+          ]
+        },
+        {
+          "text": "Pizca de canela",
+          "optional": false,
+          "foods": [
+            [
+              "canela"
+            ]
+          ]
+        },
+        {
+          "text": "Opcional: leche materna o fórmula al final",
+          "optional": true,
+          "foods": [
+            [
+              "leche-materna"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Lava muy bien la quinoa en un colador (quita el sabor amargo).",
@@ -657,10 +1106,42 @@
         }
       ],
       "ingredients": [
-        "½ plátano bien maduro (concha casi negra)",
-        "1 huevo",
-        "Pizca de canela",
-        "Unas gotas de aceite"
+        {
+          "text": "½ plátano bien maduro (concha casi negra)",
+          "optional": false,
+          "foods": [
+            [
+              "platano"
+            ]
+          ]
+        },
+        {
+          "text": "1 huevo",
+          "optional": false,
+          "foods": [
+            [
+              "huevo"
+            ]
+          ]
+        },
+        {
+          "text": "Pizca de canela",
+          "optional": false,
+          "foods": [
+            [
+              "canela"
+            ]
+          ]
+        },
+        {
+          "text": "Unas gotas de aceite",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Aplasta el plátano (o licúalo con el huevo para una mezcla más lisa).",
@@ -718,10 +1199,43 @@
         }
       ],
       "ingredients": [
-        "2 cdas de fororo (harina de maíz tostado)",
-        "150 ml de agua o leche entera (apta en cocción)",
-        "½ cambur maduro",
-        "1 rama de canela o una pizca de canela molida"
+        {
+          "text": "2 cdas de fororo (harina de maíz tostado)",
+          "optional": false,
+          "foods": [
+            [
+              "fororo"
+            ]
+          ]
+        },
+        {
+          "text": "150 ml de agua o leche entera (apta en cocción)",
+          "optional": false,
+          "foods": [
+            [
+              "agua",
+              "leche-entera"
+            ]
+          ]
+        },
+        {
+          "text": "½ cambur maduro",
+          "optional": false,
+          "foods": [
+            [
+              "cambur"
+            ]
+          ]
+        },
+        {
+          "text": "1 rama de canela o una pizca de canela molida",
+          "optional": false,
+          "foods": [
+            [
+              "canela"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Disuelve el fororo en el líquido frío para que no forme grumos.",
@@ -777,10 +1291,43 @@
         }
       ],
       "ingredients": [
-        "1 taza de granos de jojoto tierno",
-        "200 ml de agua o leche entera",
-        "Canela",
-        "Opcional: ½ cambur maduro"
+        {
+          "text": "1 taza de granos de jojoto tierno",
+          "optional": false,
+          "foods": [
+            [
+              "jojoto"
+            ]
+          ]
+        },
+        {
+          "text": "200 ml de agua o leche entera",
+          "optional": false,
+          "foods": [
+            [
+              "agua",
+              "leche-entera"
+            ]
+          ]
+        },
+        {
+          "text": "Canela",
+          "optional": false,
+          "foods": [
+            [
+              "canela"
+            ]
+          ]
+        },
+        {
+          "text": "Opcional: ½ cambur maduro",
+          "optional": true,
+          "foods": [
+            [
+              "cambur"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Licúa los granos con el líquido.",
@@ -833,10 +1380,45 @@
         }
       ],
       "ingredients": [
-        "1–2 arepitas blandas (P5)",
-        "3 cdas de caraotas negras sin sal (P3), con un poco de su caldo",
-        "1 cda de queso fresco bajo en sal o ricota",
-        "De acompañante: mango, lechosa o mandarina"
+        {
+          "text": "1–2 arepitas blandas (P5)",
+          "optional": false,
+          "foods": [
+            [
+              "harina-maiz"
+            ]
+          ]
+        },
+        {
+          "text": "3 cdas de caraotas negras sin sal (P3), con un poco de su caldo",
+          "optional": false,
+          "foods": [
+            [
+              "caraotas"
+            ]
+          ]
+        },
+        {
+          "text": "1 cda de queso fresco bajo en sal o ricota",
+          "optional": false,
+          "foods": [
+            [
+              "queso-fresco",
+              "ricota"
+            ]
+          ]
+        },
+        {
+          "text": "De acompañante: mango, lechosa o mandarina",
+          "optional": true,
+          "foods": [
+            [
+              "mango",
+              "lechosa",
+              "mandarina"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Calienta las caraotas y aplástalas con un tenedor hasta formar una pasta untable.",
@@ -901,13 +1483,70 @@
         }
       ],
       "ingredients": [
-        "½ taza de avena en hojuelas",
-        "⅓ taza de auyama cocida",
-        "1 huevo",
-        "¼ taza de leche entera o agua",
-        "½ cdta de polvo de hornear",
-        "Canela",
-        "Unas gotas de aceite"
+        {
+          "text": "½ taza de avena en hojuelas",
+          "optional": false,
+          "foods": [
+            [
+              "avena"
+            ]
+          ]
+        },
+        {
+          "text": "⅓ taza de auyama cocida",
+          "optional": false,
+          "foods": [
+            [
+              "auyama"
+            ]
+          ]
+        },
+        {
+          "text": "1 huevo",
+          "optional": false,
+          "foods": [
+            [
+              "huevo"
+            ]
+          ]
+        },
+        {
+          "text": "¼ taza de leche entera o agua",
+          "optional": false,
+          "foods": [
+            [
+              "leche-entera",
+              "agua"
+            ]
+          ]
+        },
+        {
+          "text": "½ cdta de polvo de hornear",
+          "optional": false,
+          "foods": [
+            [
+              "polvo-hornear"
+            ]
+          ]
+        },
+        {
+          "text": "Canela",
+          "optional": false,
+          "foods": [
+            [
+              "canela"
+            ]
+          ]
+        },
+        {
+          "text": "Unas gotas de aceite",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Licúa todo hasta tener una mezcla lisa. Deja reposar 5 min.",
@@ -958,10 +1597,42 @@
         }
       ],
       "ingredients": [
-        "1 taza de yuca cocida y aplastada (P6), sin la hebra central",
-        "2–3 cdas de harina de maíz precocida",
-        "1 cdta de aceite",
-        "Opcional: 1 cda de queso fresco bajo en sal rallado"
+        {
+          "text": "1 taza de yuca cocida y aplastada (P6), sin la hebra central",
+          "optional": false,
+          "foods": [
+            [
+              "yuca"
+            ]
+          ]
+        },
+        {
+          "text": "2–3 cdas de harina de maíz precocida",
+          "optional": false,
+          "foods": [
+            [
+              "harina-maiz"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Opcional: 1 cda de queso fresco bajo en sal rallado",
+          "optional": true,
+          "foods": [
+            [
+              "queso-fresco"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Aplasta la yuca aún caliente y mézclala con la harina hasta tener una masa manejable.",
@@ -1015,11 +1686,52 @@
         }
       ],
       "ingredients": [
-        "½ aguacate maduro",
-        "½ ají dulce sin semillas, muy picado",
-        "1 cdta de cilantro o perejil picado fino",
-        "Unas gotas de limón",
-        "1 huevo duro (10–12 min de hervor)"
+        {
+          "text": "½ aguacate maduro",
+          "optional": false,
+          "foods": [
+            [
+              "aguacate"
+            ]
+          ]
+        },
+        {
+          "text": "½ ají dulce sin semillas, muy picado",
+          "optional": false,
+          "foods": [
+            [
+              "aji-dulce"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de cilantro o perejil picado fino",
+          "optional": false,
+          "foods": [
+            [
+              "cilantro",
+              "perejil"
+            ]
+          ]
+        },
+        {
+          "text": "Unas gotas de limón",
+          "optional": false,
+          "foods": [
+            [
+              "limon"
+            ]
+          ]
+        },
+        {
+          "text": "1 huevo duro (10–12 min de hervor)",
+          "optional": false,
+          "foods": [
+            [
+              "huevo"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Aplasta o licúa el aguacate con el ají dulce, el cilantro y el limón.",
@@ -1076,11 +1788,53 @@
         }
       ],
       "ingredients": [
-        "3 cdas de harina de maíz precocida",
-        "200 ml de agua o leche entera",
-        "2 cdas de auyama cocida y aplastada",
-        "1 cdta de mantequilla sin sal o aceite",
-        "Canela"
+        {
+          "text": "3 cdas de harina de maíz precocida",
+          "optional": false,
+          "foods": [
+            [
+              "harina-maiz"
+            ]
+          ]
+        },
+        {
+          "text": "200 ml de agua o leche entera",
+          "optional": false,
+          "foods": [
+            [
+              "agua",
+              "leche-entera"
+            ]
+          ]
+        },
+        {
+          "text": "2 cdas de auyama cocida y aplastada",
+          "optional": false,
+          "foods": [
+            [
+              "auyama"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de mantequilla sin sal o aceite",
+          "optional": false,
+          "foods": [
+            [
+              "mantequilla",
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Canela",
+          "optional": false,
+          "foods": [
+            [
+              "canela"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Disuelve la harina en el líquido frío.",
@@ -1137,10 +1891,42 @@
         }
       ],
       "ingredients": [
-        "4 cdas de yogur natural entero, sin azúcar",
-        "Pulpa de ½ parchita, colada (sin semillas)",
-        "¼ de cambur maduro",
-        "Opcional: 1 cda de avena en hojuelas finas"
+        {
+          "text": "4 cdas de yogur natural entero, sin azúcar",
+          "optional": false,
+          "foods": [
+            [
+              "yogur-natural"
+            ]
+          ]
+        },
+        {
+          "text": "Pulpa de ½ parchita, colada (sin semillas)",
+          "optional": false,
+          "foods": [
+            [
+              "parchita"
+            ]
+          ]
+        },
+        {
+          "text": "¼ de cambur maduro",
+          "optional": false,
+          "foods": [
+            [
+              "cambur"
+            ]
+          ]
+        },
+        {
+          "text": "Opcional: 1 cda de avena en hojuelas finas",
+          "optional": true,
+          "foods": [
+            [
+              "avena"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Cuela la pulpa de parchita.",
@@ -1195,12 +1981,60 @@
       ],
       "tags": [],
       "ingredients": [
-        "1 rebanada de pan integral bajo en sal (mejor del día anterior)",
-        "1 huevo",
-        "2 cdas de leche entera",
-        "Canela",
-        "1 cdta de mantequilla sin sal",
-        "2–3 fresas maduras"
+        {
+          "text": "1 rebanada de pan integral bajo en sal (mejor del día anterior)",
+          "optional": false,
+          "foods": [
+            [
+              "pan-integral"
+            ]
+          ]
+        },
+        {
+          "text": "1 huevo",
+          "optional": false,
+          "foods": [
+            [
+              "huevo"
+            ]
+          ]
+        },
+        {
+          "text": "2 cdas de leche entera",
+          "optional": false,
+          "foods": [
+            [
+              "leche-entera"
+            ]
+          ]
+        },
+        {
+          "text": "Canela",
+          "optional": false,
+          "foods": [
+            [
+              "canela"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de mantequilla sin sal",
+          "optional": false,
+          "foods": [
+            [
+              "mantequilla"
+            ]
+          ]
+        },
+        {
+          "text": "2–3 fresas maduras",
+          "optional": false,
+          "foods": [
+            [
+              "fresa"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Bate el huevo con la leche y la canela. Empapa el pan por ambos lados.",
@@ -1251,14 +2085,82 @@
         }
       ],
       "ingredients": [
-        "1 muslo de pollo sin piel (≈100 g)",
-        "1 taza de auyama en cubos",
-        "1 papa pequeña",
-        "¼ de cebolla, ½ diente de ajo",
-        "1 tomate maduro",
-        "1 cdta de aceite de oliva",
-        "Comino u orégano (opcional)",
-        "Agua"
+        {
+          "text": "1 muslo de pollo sin piel (≈100 g)",
+          "optional": false,
+          "foods": [
+            [
+              "pollo"
+            ]
+          ]
+        },
+        {
+          "text": "1 taza de auyama en cubos",
+          "optional": false,
+          "foods": [
+            [
+              "auyama"
+            ]
+          ]
+        },
+        {
+          "text": "1 papa pequeña",
+          "optional": false,
+          "foods": [
+            [
+              "papa"
+            ]
+          ]
+        },
+        {
+          "text": "¼ de cebolla, ½ diente de ajo",
+          "optional": false,
+          "foods": [
+            [
+              "cebolla"
+            ],
+            [
+              "ajo"
+            ]
+          ]
+        },
+        {
+          "text": "1 tomate maduro",
+          "optional": false,
+          "foods": [
+            [
+              "tomate"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite de oliva",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Comino u orégano (opcional)",
+          "optional": true,
+          "foods": [
+            [
+              "comino",
+              "oregano"
+            ]
+          ]
+        },
+        {
+          "text": "Agua",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Sofríe cebolla, ajo y tomate picados en el aceite, 5 min.",
@@ -1310,13 +2212,72 @@
         }
       ],
       "ingredients": [
-        "⅓ taza de lentejas rojas",
-        "1 zanahoria rallada",
-        "½ tomate",
-        "¼ de cebolla",
-        "Pizca de comino y de cúrcuma",
-        "1 cdta de aceite de oliva",
-        "1 taza de agua"
+        {
+          "text": "⅓ taza de lentejas rojas",
+          "optional": false,
+          "foods": [
+            [
+              "lentejas"
+            ]
+          ]
+        },
+        {
+          "text": "1 zanahoria rallada",
+          "optional": false,
+          "foods": [
+            [
+              "zanahoria"
+            ]
+          ]
+        },
+        {
+          "text": "½ tomate",
+          "optional": false,
+          "foods": [
+            [
+              "tomate"
+            ]
+          ]
+        },
+        {
+          "text": "¼ de cebolla",
+          "optional": false,
+          "foods": [
+            [
+              "cebolla"
+            ]
+          ]
+        },
+        {
+          "text": "Pizca de comino y de cúrcuma",
+          "optional": false,
+          "foods": [
+            [
+              "comino"
+            ],
+            [
+              "curcuma"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite de oliva",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "1 taza de agua",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Haz un sofrito con la cebolla y el tomate.",
@@ -1363,12 +2324,69 @@
         }
       ],
       "ingredients": [
-        "100 g de falda de res",
-        "½ taza de caraotas negras cocidas sin sal (si son de lata, bien enjuagadas)",
-        "¼ de plátano maduro",
-        "2 cdas de arroz blanco cocido",
-        "¼ de pimentón rojo, ¼ de cebolla, 1 diente de ajo, ½ tomate",
-        "Comino"
+        {
+          "text": "100 g de falda de res",
+          "optional": false,
+          "foods": [
+            [
+              "res"
+            ]
+          ]
+        },
+        {
+          "text": "½ taza de caraotas negras cocidas sin sal (si son de lata, bien enjuagadas)",
+          "optional": false,
+          "foods": [
+            [
+              "caraotas"
+            ]
+          ]
+        },
+        {
+          "text": "¼ de plátano maduro",
+          "optional": false,
+          "foods": [
+            [
+              "platano"
+            ]
+          ]
+        },
+        {
+          "text": "2 cdas de arroz blanco cocido",
+          "optional": false,
+          "foods": [
+            [
+              "arroz"
+            ]
+          ]
+        },
+        {
+          "text": "¼ de pimentón rojo, ¼ de cebolla, 1 diente de ajo, ½ tomate",
+          "optional": false,
+          "foods": [
+            [
+              "pimenton"
+            ],
+            [
+              "cebolla"
+            ],
+            [
+              "ajo"
+            ],
+            [
+              "tomate"
+            ]
+          ]
+        },
+        {
+          "text": "Comino",
+          "optional": false,
+          "foods": [
+            [
+              "comino"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Cocina la falda con cebolla y ajo (30–40 min en olla de presión) hasta que esté muy tierna.",
@@ -1426,11 +2444,51 @@
         }
       ],
       "ingredients": [
-        "80 g de filete de merluza, mero o pargo, sin espinas",
-        "1 papa pequeña",
-        "3 arbolitos de brócoli",
-        "1 cdta de aceite de oliva",
-        "Unas gotas de limón (opcional)"
+        {
+          "text": "80 g de filete de merluza, mero o pargo, sin espinas",
+          "optional": false,
+          "foods": [
+            [
+              "pescado-blanco"
+            ]
+          ]
+        },
+        {
+          "text": "1 papa pequeña",
+          "optional": false,
+          "foods": [
+            [
+              "papa"
+            ]
+          ]
+        },
+        {
+          "text": "3 arbolitos de brócoli",
+          "optional": false,
+          "foods": [
+            [
+              "brocoli"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite de oliva",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Unas gotas de limón (opcional)",
+          "optional": true,
+          "foods": [
+            [
+              "limon"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Hierve la papa 15 min. Añade el brócoli en los últimos 7 min y el pescado en los últimos 5–6 min (o todo al vapor).",
@@ -1482,11 +2540,55 @@
         }
       ],
       "ingredients": [
-        "150 g de carne molida de res magra",
-        "½ calabacín rallado y bien escurrido",
-        "2 cdas de avena molida o pan rallado",
-        "1 huevo (omítelo si aún no lo has introducido)",
-        "Orégano y una pizca de ajo en polvo"
+        {
+          "text": "150 g de carne molida de res magra",
+          "optional": false,
+          "foods": [
+            [
+              "res"
+            ]
+          ]
+        },
+        {
+          "text": "½ calabacín rallado y bien escurrido",
+          "optional": false,
+          "foods": [
+            [
+              "calabacin"
+            ]
+          ]
+        },
+        {
+          "text": "2 cdas de avena molida o pan rallado",
+          "optional": false,
+          "foods": [
+            [
+              "avena",
+              "pan-rallado"
+            ]
+          ]
+        },
+        {
+          "text": "1 huevo (omítelo si aún no lo has introducido)",
+          "optional": true,
+          "foods": [
+            [
+              "huevo"
+            ]
+          ]
+        },
+        {
+          "text": "Orégano y una pizca de ajo en polvo",
+          "optional": false,
+          "foods": [
+            [
+              "oregano"
+            ],
+            [
+              "ajo-polvo"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Mezcla todos los ingredientes.",
@@ -1549,12 +2651,61 @@
         }
       ],
       "ingredients": [
-        "½ taza de pasta (fusilli o penne)",
-        "60 g de salmón sin piel ni espinas",
-        "3 arbolitos de brócoli",
-        "2 cdas de ricota",
-        "1 cdta de aceite de oliva",
-        "Perejil o eneldo"
+        {
+          "text": "½ taza de pasta (fusilli o penne)",
+          "optional": false,
+          "foods": [
+            [
+              "pasta"
+            ]
+          ]
+        },
+        {
+          "text": "60 g de salmón sin piel ni espinas",
+          "optional": false,
+          "foods": [
+            [
+              "salmon"
+            ]
+          ]
+        },
+        {
+          "text": "3 arbolitos de brócoli",
+          "optional": false,
+          "foods": [
+            [
+              "brocoli"
+            ]
+          ]
+        },
+        {
+          "text": "2 cdas de ricota",
+          "optional": false,
+          "foods": [
+            [
+              "ricota"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite de oliva",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Perejil o eneldo",
+          "optional": false,
+          "foods": [
+            [
+              "perejil",
+              "eneldo"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Cuece la pasta en agua sin sal, unos minutos más de lo habitual (muy blanda).",
@@ -1606,12 +2757,73 @@
         }
       ],
       "ingredients": [
-        "1 muslo de pollo sin piel",
-        "1 trozo de yuca (≈80 g) y 1 de ocumo o ñame (≈60 g)",
-        "1 taza de auyama en trozos",
-        "¼ de cebolla, 1 ají dulce, ½ pimentón, 1 diente de ajo",
-        "Cilantro",
-        "Agua"
+        {
+          "text": "1 muslo de pollo sin piel",
+          "optional": false,
+          "foods": [
+            [
+              "pollo"
+            ]
+          ]
+        },
+        {
+          "text": "1 trozo de yuca (≈80 g) y 1 de ocumo o ñame (≈60 g)",
+          "optional": false,
+          "foods": [
+            [
+              "yuca"
+            ],
+            [
+              "ocumo",
+              "name"
+            ]
+          ]
+        },
+        {
+          "text": "1 taza de auyama en trozos",
+          "optional": false,
+          "foods": [
+            [
+              "auyama"
+            ]
+          ]
+        },
+        {
+          "text": "¼ de cebolla, 1 ají dulce, ½ pimentón, 1 diente de ajo",
+          "optional": false,
+          "foods": [
+            [
+              "cebolla"
+            ],
+            [
+              "aji-dulce"
+            ],
+            [
+              "pimenton"
+            ],
+            [
+              "ajo"
+            ]
+          ]
+        },
+        {
+          "text": "Cilantro",
+          "optional": false,
+          "foods": [
+            [
+              "cilantro"
+            ]
+          ]
+        },
+        {
+          "text": "Agua",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Cocina el pollo con los aliños en agua 15 min.",
@@ -1660,12 +2872,69 @@
         }
       ],
       "ingredients": [
-        "120 g de carne molida magra de res",
-        "1 papa pequeña y 1 zanahoria en cubitos",
-        "1 cubo de sofrito (P2) o ½ tomate, ¼ de cebolla y 1 ají dulce",
-        "Comino",
-        "1 cdta de aceite",
-        "½ taza de agua"
+        {
+          "text": "120 g de carne molida magra de res",
+          "optional": false,
+          "foods": [
+            [
+              "res"
+            ]
+          ]
+        },
+        {
+          "text": "1 papa pequeña y 1 zanahoria en cubitos",
+          "optional": false,
+          "foods": [
+            [
+              "papa"
+            ],
+            [
+              "zanahoria"
+            ]
+          ]
+        },
+        {
+          "text": "1 cubo de sofrito (P2) o ½ tomate, ¼ de cebolla y 1 ají dulce",
+          "optional": false,
+          "foods": [
+            [
+              "tomate"
+            ],
+            [
+              "cebolla"
+            ],
+            [
+              "aji-dulce"
+            ]
+          ]
+        },
+        {
+          "text": "Comino",
+          "optional": false,
+          "foods": [
+            [
+              "comino"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "½ taza de agua",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Sofríe los aliños en el aceite.",
@@ -1713,11 +2982,54 @@
         }
       ],
       "ingredients": [
-        "2 higaditos de pollo (≈50 g)",
-        "¼ de cebolla y ½ tomate",
-        "1 cdta de aceite",
-        "1 taza de auyama cocida",
-        "½ papa cocida"
+        {
+          "text": "2 higaditos de pollo (≈50 g)",
+          "optional": false,
+          "foods": [
+            [
+              "higado-pollo"
+            ]
+          ]
+        },
+        {
+          "text": "¼ de cebolla y ½ tomate",
+          "optional": false,
+          "foods": [
+            [
+              "cebolla"
+            ],
+            [
+              "tomate"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "1 taza de auyama cocida",
+          "optional": false,
+          "foods": [
+            [
+              "auyama"
+            ]
+          ]
+        },
+        {
+          "text": "½ papa cocida",
+          "optional": false,
+          "foods": [
+            [
+              "papa"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Limpia los higaditos (quita nervios y cualquier parte verdosa).",
@@ -1769,12 +3081,81 @@
         }
       ],
       "ingredients": [
-        "⅓ taza de lentejas",
-        "½ zanahoria y 1 trozo de auyama",
-        "1 cubo de sofrito (P2) con pimentón rojo",
-        "Comino",
-        "¼ de plátano maduro horneado (P4)",
-        "Agua"
+        {
+          "text": "⅓ taza de lentejas",
+          "optional": false,
+          "foods": [
+            [
+              "lentejas"
+            ]
+          ]
+        },
+        {
+          "text": "½ zanahoria y 1 trozo de auyama",
+          "optional": false,
+          "foods": [
+            [
+              "zanahoria"
+            ],
+            [
+              "auyama"
+            ]
+          ]
+        },
+        {
+          "text": "1 cubo de sofrito (P2) con pimentón rojo",
+          "optional": false,
+          "foods": [
+            [
+              "cebolla"
+            ],
+            [
+              "pimenton"
+            ],
+            [
+              "aji-dulce"
+            ],
+            [
+              "ajo"
+            ],
+            [
+              "tomate"
+            ],
+            [
+              "cebollin"
+            ],
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Comino",
+          "optional": false,
+          "foods": [
+            [
+              "comino"
+            ]
+          ]
+        },
+        {
+          "text": "¼ de plátano maduro horneado (P4)",
+          "optional": false,
+          "foods": [
+            [
+              "platano"
+            ]
+          ]
+        },
+        {
+          "text": "Agua",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Cocina las lentejas con los vegetales, el sofrito y agua: 30–40 min (12 min en olla de presión), hasta que estén muy blandas.",
@@ -1834,11 +3215,51 @@
         }
       ],
       "ingredients": [
-        "2 sardinas en lata, en agua o aceite de oliva (sin salsa), o 2 sardinas frescas",
-        "1 papa",
-        "½ tomate maduro sin piel",
-        "1 cdta de aceite de oliva",
-        "Perejil"
+        {
+          "text": "2 sardinas en lata, en agua o aceite de oliva (sin salsa), o 2 sardinas frescas",
+          "optional": false,
+          "foods": [
+            [
+              "sardina"
+            ]
+          ]
+        },
+        {
+          "text": "1 papa",
+          "optional": false,
+          "foods": [
+            [
+              "papa"
+            ]
+          ]
+        },
+        {
+          "text": "½ tomate maduro sin piel",
+          "optional": false,
+          "foods": [
+            [
+              "tomate"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite de oliva",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Perejil",
+          "optional": false,
+          "foods": [
+            [
+              "perejil"
+            ]
+          ]
+        }
       ],
       "steps": [
         "De lata: escúrrelas y aplástalas bien con el tenedor. Las espinas de lata son blandas, se deshacen y aportan calcio.",
@@ -1901,11 +3322,69 @@
         }
       ],
       "ingredients": [
-        "1 plátano maduro (P4)",
-        "100 g de merluza, pargo o corvina sin espinas",
-        "1 cubo de sofrito (P2)",
-        "1 cdta de aceite",
-        "Opcional: 2 cdas de queso fresco bajo en sal"
+        {
+          "text": "1 plátano maduro (P4)",
+          "optional": false,
+          "foods": [
+            [
+              "platano"
+            ]
+          ]
+        },
+        {
+          "text": "100 g de merluza, pargo o corvina sin espinas",
+          "optional": false,
+          "foods": [
+            [
+              "pescado-blanco"
+            ]
+          ]
+        },
+        {
+          "text": "1 cubo de sofrito (P2)",
+          "optional": false,
+          "foods": [
+            [
+              "cebolla"
+            ],
+            [
+              "pimenton"
+            ],
+            [
+              "aji-dulce"
+            ],
+            [
+              "ajo"
+            ],
+            [
+              "tomate"
+            ],
+            [
+              "cebollin"
+            ],
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Opcional: 2 cdas de queso fresco bajo en sal",
+          "optional": true,
+          "foods": [
+            [
+              "queso-fresco"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Aplasta el plátano.",
@@ -1955,12 +3434,85 @@
         }
       ],
       "ingredients": [
-        "1 muslo de pollo en trozos",
-        "¼ taza de arroz blanco",
-        "¼ taza de zanahoria, arvejas y pimentón picados",
-        "1 cubo de sofrito (P2)",
-        "Pizca de onoto o cúrcuma",
-        "Agua o caldo casero (P1)"
+        {
+          "text": "1 muslo de pollo en trozos",
+          "optional": false,
+          "foods": [
+            [
+              "pollo"
+            ]
+          ]
+        },
+        {
+          "text": "¼ taza de arroz blanco",
+          "optional": false,
+          "foods": [
+            [
+              "arroz"
+            ]
+          ]
+        },
+        {
+          "text": "¼ taza de zanahoria, arvejas y pimentón picados",
+          "optional": false,
+          "foods": [
+            [
+              "zanahoria"
+            ],
+            [
+              "arveja"
+            ],
+            [
+              "pimenton"
+            ]
+          ]
+        },
+        {
+          "text": "1 cubo de sofrito (P2)",
+          "optional": false,
+          "foods": [
+            [
+              "cebolla"
+            ],
+            [
+              "pimenton"
+            ],
+            [
+              "aji-dulce"
+            ],
+            [
+              "ajo"
+            ],
+            [
+              "tomate"
+            ],
+            [
+              "cebollin"
+            ],
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Pizca de onoto o cúrcuma",
+          "optional": false,
+          "foods": [
+            [
+              "onoto",
+              "curcuma"
+            ]
+          ]
+        },
+        {
+          "text": "Agua o caldo casero (P1)",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Sofríe el sofrito con el onoto y dora el pollo.",
@@ -2015,13 +3567,90 @@
         }
       ],
       "ingredients": [
-        "120 g de pulpa negra o muchacho de res",
-        "1 papa",
-        "6 vainitas",
-        "1 cubo de sofrito (P2)",
-        "Comino y orégano",
-        "1 cdta de aceite",
-        "Agua"
+        {
+          "text": "120 g de pulpa negra o muchacho de res",
+          "optional": false,
+          "foods": [
+            [
+              "res"
+            ]
+          ]
+        },
+        {
+          "text": "1 papa",
+          "optional": false,
+          "foods": [
+            [
+              "papa"
+            ]
+          ]
+        },
+        {
+          "text": "6 vainitas",
+          "optional": false,
+          "foods": [
+            [
+              "vainita"
+            ]
+          ]
+        },
+        {
+          "text": "1 cubo de sofrito (P2)",
+          "optional": false,
+          "foods": [
+            [
+              "cebolla"
+            ],
+            [
+              "pimenton"
+            ],
+            [
+              "aji-dulce"
+            ],
+            [
+              "ajo"
+            ],
+            [
+              "tomate"
+            ],
+            [
+              "cebollin"
+            ],
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Comino y orégano",
+          "optional": false,
+          "foods": [
+            [
+              "comino"
+            ],
+            [
+              "oregano"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Agua",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Dora la carne en trozos con el aceite; añade el sofrito y las especias.",
@@ -2081,12 +3710,61 @@
         }
       ],
       "ingredients": [
-        "½ taza de pasta (fusilli o penne)",
-        "½ taza de auyama cocida",
-        "2–3 cdas de pollo desmechado",
-        "2 cdas de leche entera o agua de la pasta",
-        "1 cdta de aceite de oliva",
-        "Pizca de nuez moscada"
+        {
+          "text": "½ taza de pasta (fusilli o penne)",
+          "optional": false,
+          "foods": [
+            [
+              "pasta"
+            ]
+          ]
+        },
+        {
+          "text": "½ taza de auyama cocida",
+          "optional": false,
+          "foods": [
+            [
+              "auyama"
+            ]
+          ]
+        },
+        {
+          "text": "2–3 cdas de pollo desmechado",
+          "optional": false,
+          "foods": [
+            [
+              "pollo"
+            ]
+          ]
+        },
+        {
+          "text": "2 cdas de leche entera o agua de la pasta",
+          "optional": false,
+          "foods": [
+            [
+              "leche-entera",
+              "agua"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite de oliva",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Pizca de nuez moscada",
+          "optional": false,
+          "foods": [
+            [
+              "nuez-moscada"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Cuece la pasta en agua sin sal hasta que esté muy blanda.",
@@ -2143,13 +3821,69 @@
         }
       ],
       "ingredients": [
-        "2 cdas de atún claro en lata, en agua, escurrido",
-        "1 papa pequeña",
-        "4 vainitas",
-        "¼ de zanahoria",
-        "1 cdta de aceite de oliva",
-        "Unas gotas de limón",
-        "Opcional: ½ huevo duro"
+        {
+          "text": "2 cdas de atún claro en lata, en agua, escurrido",
+          "optional": false,
+          "foods": [
+            [
+              "atun"
+            ]
+          ]
+        },
+        {
+          "text": "1 papa pequeña",
+          "optional": false,
+          "foods": [
+            [
+              "papa"
+            ]
+          ]
+        },
+        {
+          "text": "4 vainitas",
+          "optional": false,
+          "foods": [
+            [
+              "vainita"
+            ]
+          ]
+        },
+        {
+          "text": "¼ de zanahoria",
+          "optional": false,
+          "foods": [
+            [
+              "zanahoria"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite de oliva",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Unas gotas de limón",
+          "optional": false,
+          "foods": [
+            [
+              "limon"
+            ]
+          ]
+        },
+        {
+          "text": "Opcional: ½ huevo duro",
+          "optional": true,
+          "foods": [
+            [
+              "huevo"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Hierve papa, zanahoria y vainitas hasta que estén muy blandas.",
@@ -2200,12 +3934,78 @@
         }
       ],
       "ingredients": [
-        "½ taza de quinchonchos secos (remojados 8–12 h) o 1 taza de frescos",
-        "1 taza de auyama en trozos",
-        "1 cubo de sofrito (P2)",
-        "Comino",
-        "1 cdta de aceite",
-        "Agua"
+        {
+          "text": "½ taza de quinchonchos secos (remojados 8–12 h) o 1 taza de frescos",
+          "optional": false,
+          "foods": [
+            [
+              "quinchonchos"
+            ]
+          ]
+        },
+        {
+          "text": "1 taza de auyama en trozos",
+          "optional": false,
+          "foods": [
+            [
+              "auyama"
+            ]
+          ]
+        },
+        {
+          "text": "1 cubo de sofrito (P2)",
+          "optional": false,
+          "foods": [
+            [
+              "cebolla"
+            ],
+            [
+              "pimenton"
+            ],
+            [
+              "aji-dulce"
+            ],
+            [
+              "ajo"
+            ],
+            [
+              "tomate"
+            ],
+            [
+              "cebollin"
+            ],
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Comino",
+          "optional": false,
+          "foods": [
+            [
+              "comino"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Agua",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Cocina los quinchonchos en agua sin sal hasta que estén muy blandos (olla de presión 20–25 min; frescos, 20 min).",
@@ -2264,12 +4064,60 @@
         }
       ],
       "ingredients": [
-        "100 g de pescado blanco cocido, sin espinas",
-        "1 taza de yuca cocida y aplastada (P6)",
-        "1 huevo",
-        "Perejil picado",
-        "2 cdas de harina de maíz para cubrir",
-        "Aceite para la bandeja"
+        {
+          "text": "100 g de pescado blanco cocido, sin espinas",
+          "optional": false,
+          "foods": [
+            [
+              "pescado-blanco"
+            ]
+          ]
+        },
+        {
+          "text": "1 taza de yuca cocida y aplastada (P6)",
+          "optional": false,
+          "foods": [
+            [
+              "yuca"
+            ]
+          ]
+        },
+        {
+          "text": "1 huevo",
+          "optional": false,
+          "foods": [
+            [
+              "huevo"
+            ]
+          ]
+        },
+        {
+          "text": "Perejil picado",
+          "optional": false,
+          "foods": [
+            [
+              "perejil"
+            ]
+          ]
+        },
+        {
+          "text": "2 cdas de harina de maíz para cubrir",
+          "optional": false,
+          "foods": [
+            [
+              "harina-maiz"
+            ]
+          ]
+        },
+        {
+          "text": "Aceite para la bandeja",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Mezcla el pescado desmenuzado, la yuca, el huevo y el perejil.",
@@ -2323,8 +4171,22 @@
         }
       ],
       "ingredients": [
-        "Fruta madura de temporada (ver guía de cortes por fruta)",
-        "Opcional: 2–3 cdas de yogur natural, queso fresco bajo en sal o una tira de pan con crema de frutos secos fina (M6)"
+        {
+          "text": "Fruta madura de temporada (ver guía de cortes por fruta)",
+          "optional": false,
+          "foods": []
+        },
+        {
+          "text": "Opcional: 2–3 cdas de yogur natural, queso fresco bajo en sal o una tira de pan con crema de frutos secos fina (M6)",
+          "optional": true,
+          "foods": [
+            [
+              "yogur-natural",
+              "queso-fresco",
+              "pan-integral"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Elige una fruta bien madura y córtala según la edad (tabla de cortes por fruta).",
@@ -2383,14 +4245,78 @@
         }
       ],
       "ingredients": [
-        "1 taza de avena molida (o mitad avena, mitad harina integral)",
-        "1 cambur muy maduro",
-        "1 manzana rallada",
-        "1 zanahoria rallada fina",
-        "1 huevo",
-        "2 cdas de aceite",
-        "1 cdta de polvo de hornear",
-        "Canela"
+        {
+          "text": "1 taza de avena molida (o mitad avena, mitad harina integral)",
+          "optional": false,
+          "foods": [
+            [
+              "avena"
+            ]
+          ]
+        },
+        {
+          "text": "1 cambur muy maduro",
+          "optional": false,
+          "foods": [
+            [
+              "cambur"
+            ]
+          ]
+        },
+        {
+          "text": "1 manzana rallada",
+          "optional": false,
+          "foods": [
+            [
+              "manzana"
+            ]
+          ]
+        },
+        {
+          "text": "1 zanahoria rallada fina",
+          "optional": false,
+          "foods": [
+            [
+              "zanahoria"
+            ]
+          ]
+        },
+        {
+          "text": "1 huevo",
+          "optional": false,
+          "foods": [
+            [
+              "huevo"
+            ]
+          ]
+        },
+        {
+          "text": "2 cdas de aceite",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de polvo de hornear",
+          "optional": false,
+          "foods": [
+            [
+              "polvo-hornear"
+            ]
+          ]
+        },
+        {
+          "text": "Canela",
+          "optional": false,
+          "foods": [
+            [
+              "canela"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Precalienta el horno a 180 °C.",
@@ -2443,12 +4369,60 @@
         }
       ],
       "ingredients": [
-        "½ taza de garbanzos cocidos sin sal",
-        "1 cda de tahini",
-        "Jugo de ½ limón",
-        "2–3 cdas de agua",
-        "1 cdta de aceite de oliva",
-        "1 batata (boniato) mediana"
+        {
+          "text": "½ taza de garbanzos cocidos sin sal",
+          "optional": false,
+          "foods": [
+            [
+              "garbanzos"
+            ]
+          ]
+        },
+        {
+          "text": "1 cda de tahini",
+          "optional": false,
+          "foods": [
+            [
+              "tahini"
+            ]
+          ]
+        },
+        {
+          "text": "Jugo de ½ limón",
+          "optional": false,
+          "foods": [
+            [
+              "limon"
+            ]
+          ]
+        },
+        {
+          "text": "2–3 cdas de agua",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite de oliva",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "1 batata (boniato) mediana",
+          "optional": false,
+          "foods": [
+            [
+              "batata"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Corta la batata en bastones de 5–6 cm y hornéala 25 min a 200 °C, hasta que esté muy blanda.",
@@ -2503,9 +4477,33 @@
         }
       ],
       "ingredients": [
-        "1 cambur muy maduro",
-        "½ taza de copos de avena finos",
-        "Canela (opcional)"
+        {
+          "text": "1 cambur muy maduro",
+          "optional": false,
+          "foods": [
+            [
+              "cambur"
+            ]
+          ]
+        },
+        {
+          "text": "½ taza de copos de avena finos",
+          "optional": false,
+          "foods": [
+            [
+              "avena"
+            ]
+          ]
+        },
+        {
+          "text": "Canela (opcional)",
+          "optional": true,
+          "foods": [
+            [
+              "canela"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Aplasta el cambur y mezcla con la avena. Deja reposar 5 min.",
@@ -2557,9 +4555,34 @@
         }
       ],
       "ingredients": [
-        "1 pera o manzana",
-        "3 cdas de yogur natural entero",
-        "Canela"
+        {
+          "text": "1 pera o manzana",
+          "optional": false,
+          "foods": [
+            [
+              "pera",
+              "manzana"
+            ]
+          ]
+        },
+        {
+          "text": "3 cdas de yogur natural entero",
+          "optional": false,
+          "foods": [
+            [
+              "yogur-natural"
+            ]
+          ]
+        },
+        {
+          "text": "Canela",
+          "optional": false,
+          "foods": [
+            [
+              "canela"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Corta la fruta en gajos, espolvorea canela y hornea 20–25 min a 180 °C (o cocina tapada en sartén con un poco de agua).",
@@ -2615,9 +4638,33 @@
         }
       ],
       "ingredients": [
-        "1 rebanada de pan integral (sin semillas enteras, bajo en sal)",
-        "½ cdta de crema de almendras o de merey 100%",
-        "1–2 fresas maduras"
+        {
+          "text": "1 rebanada de pan integral (sin semillas enteras, bajo en sal)",
+          "optional": false,
+          "foods": [
+            [
+              "pan-integral"
+            ]
+          ]
+        },
+        {
+          "text": "½ cdta de crema de almendras o de merey 100%",
+          "optional": false,
+          "foods": [
+            [
+              "crema-almendra"
+            ]
+          ]
+        },
+        {
+          "text": "1–2 fresas maduras",
+          "optional": false,
+          "foods": [
+            [
+              "fresa"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Tuesta ligeramente el pan (que quede firme por fuera pero no duro).",
@@ -2669,9 +4716,34 @@
         }
       ],
       "ingredients": [
-        "½ plátano muy maduro (P4)",
-        "1–2 cdas de queso fresco bajo en sal, ricota o requesón",
-        "Canela"
+        {
+          "text": "½ plátano muy maduro (P4)",
+          "optional": false,
+          "foods": [
+            [
+              "platano"
+            ]
+          ]
+        },
+        {
+          "text": "1–2 cdas de queso fresco bajo en sal, ricota o requesón",
+          "optional": false,
+          "foods": [
+            [
+              "queso-fresco",
+              "ricota"
+            ]
+          ]
+        },
+        {
+          "text": "Canela",
+          "optional": false,
+          "foods": [
+            [
+              "canela"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Hornea el plátano hasta que esté muy blando.",
@@ -2729,10 +4801,42 @@
         }
       ],
       "ingredients": [
-        "2 cdas de lechosa madura",
-        "2 cdas de mango maduro",
-        "2 cdas de patilla sin semillas",
-        "3 cdas de yogur natural entero, sin azúcar"
+        {
+          "text": "2 cdas de lechosa madura",
+          "optional": false,
+          "foods": [
+            [
+              "lechosa"
+            ]
+          ]
+        },
+        {
+          "text": "2 cdas de mango maduro",
+          "optional": false,
+          "foods": [
+            [
+              "mango"
+            ]
+          ]
+        },
+        {
+          "text": "2 cdas de patilla sin semillas",
+          "optional": false,
+          "foods": [
+            [
+              "patilla"
+            ]
+          ]
+        },
+        {
+          "text": "3 cdas de yogur natural entero, sin azúcar",
+          "optional": false,
+          "foods": [
+            [
+              "yogur-natural"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Retira todas las semillas.",
@@ -2787,10 +4891,42 @@
         }
       ],
       "ingredients": [
-        "2 guayabas maduras",
-        "1 manzana",
-        "Canela",
-        "3–4 cdas de agua"
+        {
+          "text": "2 guayabas maduras",
+          "optional": false,
+          "foods": [
+            [
+              "guayaba"
+            ]
+          ]
+        },
+        {
+          "text": "1 manzana",
+          "optional": false,
+          "foods": [
+            [
+              "manzana"
+            ]
+          ]
+        },
+        {
+          "text": "Canela",
+          "optional": false,
+          "foods": [
+            [
+              "canela"
+            ]
+          ]
+        },
+        {
+          "text": "3–4 cdas de agua",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Pela la manzana y córtala junto con las guayabas.",
@@ -2846,11 +4982,55 @@
         }
       ],
       "ingredients": [
-        "½ taza de granos de jojoto tierno (o 3 cdas de harina de maíz precocida)",
-        "½ taza de leche de coco sin azúcar",
-        "½ taza de agua",
-        "1 cambur muy maduro",
-        "Canela en rama y una pizca de nuez moscada"
+        {
+          "text": "½ taza de granos de jojoto tierno (o 3 cdas de harina de maíz precocida)",
+          "optional": false,
+          "foods": [
+            [
+              "jojoto",
+              "harina-maiz"
+            ]
+          ]
+        },
+        {
+          "text": "½ taza de leche de coco sin azúcar",
+          "optional": false,
+          "foods": [
+            [
+              "leche-coco"
+            ]
+          ]
+        },
+        {
+          "text": "½ taza de agua",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        },
+        {
+          "text": "1 cambur muy maduro",
+          "optional": false,
+          "foods": [
+            [
+              "cambur"
+            ]
+          ]
+        },
+        {
+          "text": "Canela en rama y una pizca de nuez moscada",
+          "optional": false,
+          "foods": [
+            [
+              "canela"
+            ],
+            [
+              "nuez-moscada"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Licúa el jojoto con la leche de coco y el agua; cuela.",
@@ -2908,11 +5088,51 @@
         }
       ],
       "ingredients": [
-        "½ taza de auyama cocida y aplastada",
-        "1 taza de avena en hojuelas finas",
-        "1 huevo",
-        "Canela",
-        "1 cda de aceite"
+        {
+          "text": "½ taza de auyama cocida y aplastada",
+          "optional": false,
+          "foods": [
+            [
+              "auyama"
+            ]
+          ]
+        },
+        {
+          "text": "1 taza de avena en hojuelas finas",
+          "optional": false,
+          "foods": [
+            [
+              "avena"
+            ]
+          ]
+        },
+        {
+          "text": "1 huevo",
+          "optional": false,
+          "foods": [
+            [
+              "huevo"
+            ]
+          ]
+        },
+        {
+          "text": "Canela",
+          "optional": false,
+          "foods": [
+            [
+              "canela"
+            ]
+          ]
+        },
+        {
+          "text": "1 cda de aceite",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Mezcla todo y deja reposar 10 min.",
@@ -2964,13 +5184,71 @@
         }
       ],
       "ingredients": [
-        "½ taza de caraotas negras sin sal (P3)",
-        "1 cdta de tahini (opcional)",
-        "Jugo de ½ limón",
-        "1 cdta de aceite de oliva",
-        "Comino",
-        "Caldo de las caraotas o agua",
-        "Para mojar: bastones de arepita (P5), yuca cocida o batata"
+        {
+          "text": "½ taza de caraotas negras sin sal (P3)",
+          "optional": false,
+          "foods": [
+            [
+              "caraotas"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de tahini (opcional)",
+          "optional": true,
+          "foods": [
+            [
+              "tahini"
+            ]
+          ]
+        },
+        {
+          "text": "Jugo de ½ limón",
+          "optional": false,
+          "foods": [
+            [
+              "limon"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite de oliva",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Comino",
+          "optional": false,
+          "foods": [
+            [
+              "comino"
+            ]
+          ]
+        },
+        {
+          "text": "Caldo de las caraotas o agua",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        },
+        {
+          "text": "Para mojar: bastones de arepita (P5), yuca cocida o batata",
+          "optional": true,
+          "foods": [
+            [
+              "harina-maiz",
+              "yuca",
+              "batata"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Licúa todo hasta que quede muy liso, añadiendo caldo si hace falta.",
@@ -3024,9 +5302,33 @@
         }
       ],
       "ingredients": [
-        "Tiras de mango maduro",
-        "2 cdas de requesón o ricota",
-        "1 cdta de coco rallado fino, sin azúcar"
+        {
+          "text": "Tiras de mango maduro",
+          "optional": false,
+          "foods": [
+            [
+              "mango"
+            ]
+          ]
+        },
+        {
+          "text": "2 cdas de requesón o ricota",
+          "optional": false,
+          "foods": [
+            [
+              "ricota"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de coco rallado fino, sin azúcar",
+          "optional": false,
+          "foods": [
+            [
+              "coco-rallado"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Pasa las tiras de mango por el coco rallado: así agarran mejor y no resbalan.",
@@ -3077,9 +5379,33 @@
         }
       ],
       "ingredients": [
-        "1 huevo duro (10–12 min de hervor)",
-        "¼ de aguacate",
-        "½ tomate sin piel ni semillas"
+        {
+          "text": "1 huevo duro (10–12 min de hervor)",
+          "optional": false,
+          "foods": [
+            [
+              "huevo"
+            ]
+          ]
+        },
+        {
+          "text": "¼ de aguacate",
+          "optional": false,
+          "foods": [
+            [
+              "aguacate"
+            ]
+          ]
+        },
+        {
+          "text": "½ tomate sin piel ni semillas",
+          "optional": false,
+          "foods": [
+            [
+              "tomate"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Corta el huevo en gajos a lo largo, o aplástalo con el aguacate.",
@@ -3134,11 +5460,51 @@
         }
       ],
       "ingredients": [
-        "½ taza de harina de maíz precocida",
-        "½ cambur muy maduro aplastado",
-        "Pizca de anís dulce molido",
-        "Agua tibia (la necesaria)",
-        "1 cdta de aceite"
+        {
+          "text": "½ taza de harina de maíz precocida",
+          "optional": false,
+          "foods": [
+            [
+              "harina-maiz"
+            ]
+          ]
+        },
+        {
+          "text": "½ cambur muy maduro aplastado",
+          "optional": false,
+          "foods": [
+            [
+              "cambur"
+            ]
+          ]
+        },
+        {
+          "text": "Pizca de anís dulce molido",
+          "optional": false,
+          "foods": [
+            [
+              "anis-dulce"
+            ]
+          ]
+        },
+        {
+          "text": "Agua tibia (la necesaria)",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Mezcla la harina con el cambur, el anís y el aceite; añade agua hasta tener una masa suave.",
@@ -3190,11 +5556,51 @@
         }
       ],
       "ingredients": [
-        "2 huevos",
-        "1 papa pequeña cocida, en cubitos",
-        "½ calabacín rallado y escurrido",
-        "¼ de cebolla picada fina (opcional)",
-        "1 cdta de aceite de oliva"
+        {
+          "text": "2 huevos",
+          "optional": false,
+          "foods": [
+            [
+              "huevo"
+            ]
+          ]
+        },
+        {
+          "text": "1 papa pequeña cocida, en cubitos",
+          "optional": false,
+          "foods": [
+            [
+              "papa"
+            ]
+          ]
+        },
+        {
+          "text": "½ calabacín rallado y escurrido",
+          "optional": false,
+          "foods": [
+            [
+              "calabacin"
+            ]
+          ]
+        },
+        {
+          "text": "¼ de cebolla picada fina (opcional)",
+          "optional": true,
+          "foods": [
+            [
+              "cebolla"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite de oliva",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Sofríe la cebolla y el calabacín 5 min.",
@@ -3245,12 +5651,60 @@
         }
       ],
       "ingredients": [
-        "1 taza de auyama en cubos",
-        "2 cdas de lentejas rojas",
-        "¼ de cebolla",
-        "1 zanahoria",
-        "1 cdta de aceite de oliva",
-        "Agua o caldo casero sin sal"
+        {
+          "text": "1 taza de auyama en cubos",
+          "optional": false,
+          "foods": [
+            [
+              "auyama"
+            ]
+          ]
+        },
+        {
+          "text": "2 cdas de lentejas rojas",
+          "optional": false,
+          "foods": [
+            [
+              "lentejas"
+            ]
+          ]
+        },
+        {
+          "text": "¼ de cebolla",
+          "optional": false,
+          "foods": [
+            [
+              "cebolla"
+            ]
+          ]
+        },
+        {
+          "text": "1 zanahoria",
+          "optional": false,
+          "foods": [
+            [
+              "zanahoria"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite de oliva",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Agua o caldo casero sin sal",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Sofríe la cebolla, añade el resto y cubre con agua.",
@@ -3302,11 +5756,52 @@
         }
       ],
       "ingredients": [
-        "60–80 g de salmón sin piel ni espinas",
-        "½ batata",
-        "2 cdas de guisantes (arvejas) cocidos",
-        "1 cdta de aceite de oliva",
-        "Eneldo o perejil"
+        {
+          "text": "60–80 g de salmón sin piel ni espinas",
+          "optional": false,
+          "foods": [
+            [
+              "salmon"
+            ]
+          ]
+        },
+        {
+          "text": "½ batata",
+          "optional": false,
+          "foods": [
+            [
+              "batata"
+            ]
+          ]
+        },
+        {
+          "text": "2 cdas de guisantes (arvejas) cocidos",
+          "optional": false,
+          "foods": [
+            [
+              "arveja"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite de oliva",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Eneldo o perejil",
+          "optional": false,
+          "foods": [
+            [
+              "eneldo",
+              "perejil"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Hornea la batata en bastones 25 min a 200 °C. En los últimos 12 min añade el salmón a la bandeja.",
@@ -3363,11 +5858,52 @@
         }
       ],
       "ingredients": [
-        "1 taza de granos de maíz tierno (jojoto)",
-        "2–3 cdas de harina de maíz precocida",
-        "2–3 cdas de leche entera",
-        "1 huevo (opcional)",
-        "Queso fresco bajo en sal o ricota"
+        {
+          "text": "1 taza de granos de maíz tierno (jojoto)",
+          "optional": false,
+          "foods": [
+            [
+              "jojoto"
+            ]
+          ]
+        },
+        {
+          "text": "2–3 cdas de harina de maíz precocida",
+          "optional": false,
+          "foods": [
+            [
+              "harina-maiz"
+            ]
+          ]
+        },
+        {
+          "text": "2–3 cdas de leche entera",
+          "optional": false,
+          "foods": [
+            [
+              "leche-entera"
+            ]
+          ]
+        },
+        {
+          "text": "1 huevo (opcional)",
+          "optional": true,
+          "foods": [
+            [
+              "huevo"
+            ]
+          ]
+        },
+        {
+          "text": "Queso fresco bajo en sal o ricota",
+          "optional": false,
+          "foods": [
+            [
+              "queso-fresco",
+              "ricota"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Licúa el maíz con la leche y el huevo hasta que quede lo más liso posible; añade la harina para espesar.",
@@ -3419,12 +5955,63 @@
         }
       ],
       "ingredients": [
-        "¼ taza de cuscús",
-        "¼ taza de agua hirviendo o caldo casero sin sal",
-        "2–3 cdas de pollo mechado (sobras de A1)",
-        "Calabacín y zanahoria cocidos en dados pequeños",
-        "1 cdta de aceite de oliva",
-        "Comino"
+        {
+          "text": "¼ taza de cuscús",
+          "optional": false,
+          "foods": [
+            [
+              "cuscus"
+            ]
+          ]
+        },
+        {
+          "text": "¼ taza de agua hirviendo o caldo casero sin sal",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        },
+        {
+          "text": "2–3 cdas de pollo mechado (sobras de A1)",
+          "optional": false,
+          "foods": [
+            [
+              "pollo"
+            ]
+          ]
+        },
+        {
+          "text": "Calabacín y zanahoria cocidos en dados pequeños",
+          "optional": false,
+          "foods": [
+            [
+              "calabacin"
+            ],
+            [
+              "zanahoria"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite de oliva",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Comino",
+          "optional": false,
+          "foods": [
+            [
+              "comino"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Cubre el cuscús con el agua hirviendo, tapa y deja 5 min. Suelta con un tenedor.",
@@ -3476,12 +6063,60 @@
       ],
       "tags": [],
       "ingredients": [
-        "½ taza de garbanzos cocidos sin sal",
-        "½ taza de brócoli cocido",
-        "2 cdas de queso fresco bajo en sal rallado",
-        "1 huevo",
-        "2 cdas de avena molida",
-        "Ajo en polvo, una pizca"
+        {
+          "text": "½ taza de garbanzos cocidos sin sal",
+          "optional": false,
+          "foods": [
+            [
+              "garbanzos"
+            ]
+          ]
+        },
+        {
+          "text": "½ taza de brócoli cocido",
+          "optional": false,
+          "foods": [
+            [
+              "brocoli"
+            ]
+          ]
+        },
+        {
+          "text": "2 cdas de queso fresco bajo en sal rallado",
+          "optional": false,
+          "foods": [
+            [
+              "queso-fresco"
+            ]
+          ]
+        },
+        {
+          "text": "1 huevo",
+          "optional": false,
+          "foods": [
+            [
+              "huevo"
+            ]
+          ]
+        },
+        {
+          "text": "2 cdas de avena molida",
+          "optional": false,
+          "foods": [
+            [
+              "avena"
+            ]
+          ]
+        },
+        {
+          "text": "Ajo en polvo, una pizca",
+          "optional": false,
+          "foods": [
+            [
+              "ajo-polvo"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Tritura los garbanzos y el brócoli (que quede con algo de textura).",
@@ -3533,11 +6168,56 @@
         }
       ],
       "ingredients": [
-        "80 g de tofu firme",
-        "1 cdta de aceite de oliva",
-        "Pimentón rojo y calabacín",
-        "Orégano o comino",
-        "Acompañamiento: quinoa (D6, sin la pera) o batata"
+        {
+          "text": "80 g de tofu firme",
+          "optional": false,
+          "foods": [
+            [
+              "tofu"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite de oliva",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Pimentón rojo y calabacín",
+          "optional": false,
+          "foods": [
+            [
+              "pimenton"
+            ],
+            [
+              "calabacin"
+            ]
+          ]
+        },
+        {
+          "text": "Orégano o comino",
+          "optional": false,
+          "foods": [
+            [
+              "oregano",
+              "comino"
+            ]
+          ]
+        },
+        {
+          "text": "Acompañamiento: quinoa (D6, sin la pera) o batata",
+          "optional": false,
+          "foods": [
+            [
+              "quinoa",
+              "batata"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Escurre el tofu y córtalo en bastones gruesos.",
@@ -3596,12 +6276,67 @@
         }
       ],
       "ingredients": [
-        "1 papa mediana en cubitos",
-        "Cebollín y cilantro picados",
-        "1 cdta de mantequilla sin sal o aceite",
-        "150 ml de agua y 50 ml de leche entera",
-        "1 huevo",
-        "1 cda de queso fresco bajo en sal"
+        {
+          "text": "1 papa mediana en cubitos",
+          "optional": false,
+          "foods": [
+            [
+              "papa"
+            ]
+          ]
+        },
+        {
+          "text": "Cebollín y cilantro picados",
+          "optional": false,
+          "foods": [
+            [
+              "cebollin"
+            ],
+            [
+              "cilantro"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de mantequilla sin sal o aceite",
+          "optional": false,
+          "foods": [
+            [
+              "mantequilla",
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "150 ml de agua y 50 ml de leche entera",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ],
+            [
+              "leche-entera"
+            ]
+          ]
+        },
+        {
+          "text": "1 huevo",
+          "optional": false,
+          "foods": [
+            [
+              "huevo"
+            ]
+          ]
+        },
+        {
+          "text": "1 cda de queso fresco bajo en sal",
+          "optional": false,
+          "foods": [
+            [
+              "queso-fresco"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Sofríe el cebollín; añade la papa y el agua. Cocina 15 min, hasta que esté muy blanda.",
@@ -3648,12 +6383,63 @@
         }
       ],
       "ingredients": [
-        "1 trozo de apio criollo (≈100 g)",
-        "½ zanahoria",
-        "¼ de cebolla y ½ diente de ajo",
-        "2–3 cdas de pollo desmechado",
-        "1 cdta de aceite",
-        "Caldo casero sin sal (P1) o agua"
+        {
+          "text": "1 trozo de apio criollo (≈100 g)",
+          "optional": false,
+          "foods": [
+            [
+              "apio-criollo"
+            ]
+          ]
+        },
+        {
+          "text": "½ zanahoria",
+          "optional": false,
+          "foods": [
+            [
+              "zanahoria"
+            ]
+          ]
+        },
+        {
+          "text": "¼ de cebolla y ½ diente de ajo",
+          "optional": false,
+          "foods": [
+            [
+              "cebolla"
+            ],
+            [
+              "ajo"
+            ]
+          ]
+        },
+        {
+          "text": "2–3 cdas de pollo desmechado",
+          "optional": false,
+          "foods": [
+            [
+              "pollo"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Caldo casero sin sal (P1) o agua",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Pela y corta el apio criollo y la zanahoria.",
@@ -3707,12 +6493,60 @@
         }
       ],
       "ingredients": [
-        "1–2 arepitas blandas (P5)",
-        "3 cdas de pollo desmechado fino",
-        "¼ de aguacate maduro",
-        "Unas gotas de limón",
-        "Cilantro picado fino",
-        "Opcional: 1 cda de yogur natural"
+        {
+          "text": "1–2 arepitas blandas (P5)",
+          "optional": false,
+          "foods": [
+            [
+              "harina-maiz"
+            ]
+          ]
+        },
+        {
+          "text": "3 cdas de pollo desmechado fino",
+          "optional": false,
+          "foods": [
+            [
+              "pollo"
+            ]
+          ]
+        },
+        {
+          "text": "¼ de aguacate maduro",
+          "optional": false,
+          "foods": [
+            [
+              "aguacate"
+            ]
+          ]
+        },
+        {
+          "text": "Unas gotas de limón",
+          "optional": false,
+          "foods": [
+            [
+              "limon"
+            ]
+          ]
+        },
+        {
+          "text": "Cilantro picado fino",
+          "optional": false,
+          "foods": [
+            [
+              "cilantro"
+            ]
+          ]
+        },
+        {
+          "text": "Opcional: 1 cda de yogur natural",
+          "optional": true,
+          "foods": [
+            [
+              "yogur-natural"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Aplasta el aguacate con el limón, el cilantro y el yogur.",
@@ -3765,11 +6599,51 @@
       ],
       "tags": [],
       "ingredients": [
-        "½ plátano maduro (P4)",
-        "2 huevos",
-        "1 cda de queso fresco bajo en sal rallado",
-        "Cebollín picado",
-        "1 cdta de aceite"
+        {
+          "text": "½ plátano maduro (P4)",
+          "optional": false,
+          "foods": [
+            [
+              "platano"
+            ]
+          ]
+        },
+        {
+          "text": "2 huevos",
+          "optional": false,
+          "foods": [
+            [
+              "huevo"
+            ]
+          ]
+        },
+        {
+          "text": "1 cda de queso fresco bajo en sal rallado",
+          "optional": false,
+          "foods": [
+            [
+              "queso-fresco"
+            ]
+          ]
+        },
+        {
+          "text": "Cebollín picado",
+          "optional": false,
+          "foods": [
+            [
+              "cebollin"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Corta el plátano en rodajas finas o aplástalo.",
@@ -3829,12 +6703,60 @@
         }
       ],
       "ingredients": [
-        "1 taza de granos de jojoto",
-        "½ calabacín",
-        "¼ de cebolla",
-        "1 cdta de aceite",
-        "Agua o caldo casero (P1)",
-        "1 huevo duro"
+        {
+          "text": "1 taza de granos de jojoto",
+          "optional": false,
+          "foods": [
+            [
+              "jojoto"
+            ]
+          ]
+        },
+        {
+          "text": "½ calabacín",
+          "optional": false,
+          "foods": [
+            [
+              "calabacin"
+            ]
+          ]
+        },
+        {
+          "text": "¼ de cebolla",
+          "optional": false,
+          "foods": [
+            [
+              "cebolla"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Agua o caldo casero (P1)",
+          "optional": false,
+          "foods": [
+            [
+              "agua"
+            ]
+          ]
+        },
+        {
+          "text": "1 huevo duro",
+          "optional": false,
+          "foods": [
+            [
+              "huevo"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Sofríe la cebolla; añade el jojoto, el calabacín y el líquido justo para cubrir. Cocina 15 min.",
@@ -3888,13 +6810,88 @@
         }
       ],
       "ingredients": [
-        "½ taza de pasta",
-        "100 g de carne molida de res",
-        "2 tomates maduros (o 4 cdas de tomate triturado sin sal añadida)",
-        "1 cubo de sofrito (P2)",
-        "½ zanahoria rallada",
-        "Orégano o albahaca",
-        "1 cdta de aceite"
+        {
+          "text": "½ taza de pasta",
+          "optional": false,
+          "foods": [
+            [
+              "pasta"
+            ]
+          ]
+        },
+        {
+          "text": "100 g de carne molida de res",
+          "optional": false,
+          "foods": [
+            [
+              "res"
+            ]
+          ]
+        },
+        {
+          "text": "2 tomates maduros (o 4 cdas de tomate triturado sin sal añadida)",
+          "optional": false,
+          "foods": [
+            [
+              "tomate"
+            ]
+          ]
+        },
+        {
+          "text": "1 cubo de sofrito (P2)",
+          "optional": false,
+          "foods": [
+            [
+              "cebolla"
+            ],
+            [
+              "pimenton"
+            ],
+            [
+              "aji-dulce"
+            ],
+            [
+              "ajo"
+            ],
+            [
+              "tomate"
+            ],
+            [
+              "cebollin"
+            ],
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "½ zanahoria rallada",
+          "optional": false,
+          "foods": [
+            [
+              "zanahoria"
+            ]
+          ]
+        },
+        {
+          "text": "Orégano o albahaca",
+          "optional": false,
+          "foods": [
+            [
+              "oregano",
+              "albahaca"
+            ]
+          ]
+        },
+        {
+          "text": "1 cdta de aceite",
+          "optional": false,
+          "foods": [
+            [
+              "aceite"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Sofríe el sofrito; añade la carne y desgránala hasta que no quede rosada.",
@@ -3947,9 +6944,45 @@
         }
       ],
       "ingredients": [
-        "Masa de arepitas (P5), media receta",
-        "3 cdas de picadillo de carne (A8) muy fino",
-        "2 tomates licuados con 1 ají dulce y ¼ de cebolla"
+        {
+          "text": "Masa de arepitas (P5), media receta",
+          "optional": false,
+          "foods": [
+            [
+              "harina-maiz"
+            ]
+          ]
+        },
+        {
+          "text": "3 cdas de picadillo de carne (A8) muy fino",
+          "optional": false,
+          "foods": [
+            [
+              "res"
+            ],
+            [
+              "papa"
+            ],
+            [
+              "zanahoria"
+            ]
+          ]
+        },
+        {
+          "text": "2 tomates licuados con 1 ají dulce y ¼ de cebolla",
+          "optional": false,
+          "foods": [
+            [
+              "tomate"
+            ],
+            [
+              "aji-dulce"
+            ],
+            [
+              "cebolla"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Forma bollitos alargados (no esferas) con poca masa y un poco de relleno dentro.",
@@ -4003,11 +7036,70 @@
         }
       ],
       "ingredients": [
-        "½ taza de caraotas negras sin sal (P3) con su caldo",
-        "1 cubo de sofrito (P2)",
-        "Comino",
-        "1 arepita blanda (P5)",
-        "De acompañante: tomate o mandarina"
+        {
+          "text": "½ taza de caraotas negras sin sal (P3) con su caldo",
+          "optional": false,
+          "foods": [
+            [
+              "caraotas"
+            ]
+          ]
+        },
+        {
+          "text": "1 cubo de sofrito (P2)",
+          "optional": false,
+          "foods": [
+            [
+              "cebolla"
+            ],
+            [
+              "pimenton"
+            ],
+            [
+              "aji-dulce"
+            ],
+            [
+              "ajo"
+            ],
+            [
+              "tomate"
+            ],
+            [
+              "cebollin"
+            ],
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "Comino",
+          "optional": false,
+          "foods": [
+            [
+              "comino"
+            ]
+          ]
+        },
+        {
+          "text": "1 arepita blanda (P5)",
+          "optional": false,
+          "foods": [
+            [
+              "harina-maiz"
+            ]
+          ]
+        },
+        {
+          "text": "De acompañante: tomate o mandarina",
+          "optional": true,
+          "foods": [
+            [
+              "tomate",
+              "mandarina"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Licúa las caraotas con el sofrito y un poco de su caldo hasta tener una crema espesa.",
@@ -4057,10 +7149,61 @@
       ],
       "tags": [],
       "ingredients": [
-        "½ chayote",
-        "3 cdas de pollo desmechado",
-        "1 cubo de sofrito (P2)",
-        "1 cda de ricota o queso fresco bajo en sal"
+        {
+          "text": "½ chayote",
+          "optional": false,
+          "foods": [
+            [
+              "chayote"
+            ]
+          ]
+        },
+        {
+          "text": "3 cdas de pollo desmechado",
+          "optional": false,
+          "foods": [
+            [
+              "pollo"
+            ]
+          ]
+        },
+        {
+          "text": "1 cubo de sofrito (P2)",
+          "optional": false,
+          "foods": [
+            [
+              "cebolla"
+            ],
+            [
+              "pimenton"
+            ],
+            [
+              "aji-dulce"
+            ],
+            [
+              "ajo"
+            ],
+            [
+              "tomate"
+            ],
+            [
+              "cebollin"
+            ],
+            [
+              "aceite"
+            ]
+          ]
+        },
+        {
+          "text": "1 cda de ricota o queso fresco bajo en sal",
+          "optional": false,
+          "foods": [
+            [
+              "ricota",
+              "queso-fresco"
+            ]
+          ]
+        }
       ],
       "steps": [
         "Hierve el chayote partido 20 min, hasta que esté muy blando.",

@@ -70,6 +70,7 @@ export const recipeIngredient = recetario.table(
       .references(() => recipe.id, { onDelete: "cascade" }),
     position: smallint().notNull(),
     description: text().notNull(),
+    isOptional: boolean("is_optional").notNull().default(false), // línea opcional: nunca bloquea la receta
   },
   (t) => [
     unique("recipe_ingredient_recipe_id_position_key").on(
@@ -219,3 +220,45 @@ export const fruitCutGuide = recetario.table("fruit_cut_guide", {
   caution: text(),
   sortOrder: smallint("sort_order").notNull(),
 });
+
+// Alimentos del catálogo. Los «básicos» (agua, aceite, hierbas y especias) se asumen siempre disponibles
+// y no se muestran en la despensa de la familia.
+export const foodCategory = recetario.enum("food_category", [
+  "basicos",
+  "proteinas",
+  "lacteos",
+  "verduras",
+  "tuberculos",
+  "frutas",
+  "cereales",
+  "legumbres",
+  "semillas",
+  "otros",
+]);
+
+export const food = recetario.table("food", {
+  id: smallint().primaryKey().generatedAlwaysAsIdentity(),
+  slug: text().notNull().unique(),
+  name: text().notNull(),
+  category: foodCategory().notNull(),
+  isStaple: boolean("is_staple").notNull().default(false),
+});
+
+// Alimentos de una línea de ingredientes. Las filas con el mismo `alt_group` son alternativas (basta una);
+// los distintos grupos de la misma línea son todos necesarios.
+export const recipeIngredientFood = recetario.table(
+  "recipe_ingredient_food",
+  {
+    ingredientId: integer("ingredient_id")
+      .notNull()
+      .references(() => recipeIngredient.id, { onDelete: "cascade" }),
+    foodId: smallint("food_id")
+      .notNull()
+      .references(() => food.id),
+    altGroup: smallint("alt_group").notNull(),
+  },
+  (t) => [
+    primaryKey({ columns: [t.ingredientId, t.foodId] }),
+    index("recipe_ingredient_food_food_idx").on(t.foodId),
+  ],
+);

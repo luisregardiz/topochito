@@ -1,0 +1,446 @@
+[
+  {
+    "slug": "agua",
+    "name": "Agua",
+    "category": "basicos",
+    "staple": true
+  },
+  {
+    "slug": "aceite",
+    "name": "Aceite (oliva o vegetal)",
+    "category": "basicos",
+    "staple": true
+  },
+  {
+    "slug": "leche-materna",
+    "name": "Leche materna o fórmula",
+    "category": "basicos",
+    "staple": true
+  },
+  {
+    "slug": "canela",
+    "name": "Canela",
+    "category": "basicos",
+    "staple": true
+  },
+  {
+    "slug": "comino",
+    "name": "Comino",
+    "category": "basicos",
+    "staple": true
+  },
+  {
+    "slug": "oregano",
+    "name": "Orégano",
+    "category": "basicos",
+    "staple": true
+  },
+  {
+    "slug": "curcuma",
+    "name": "Cúrcuma",
+    "category": "basicos",
+    "staple": true
+  },
+  {
+    "slug": "onoto",
+    "name": "Onoto",
+    "category": "basicos",
+    "staple": true
+  },
+  {
+    "slug": "nuez-moscada",
+    "name": "Nuez moscada",
+    "category": "basicos",
+    "staple": true
+  },
+  {
+    "slug": "anis-dulce",
+    "name": "Anís dulce",
+    "category": "basicos",
+    "staple": true
+  },
+  {
+    "slug": "ajo-polvo",
+    "name": "Ajo en polvo",
+    "category": "basicos",
+    "staple": true
+  },
+  {
+    "slug": "albahaca",
+    "name": "Albahaca",
+    "category": "basicos",
+    "staple": true
+  },
+  {
+    "slug": "cilantro",
+    "name": "Cilantro",
+    "category": "basicos",
+    "staple": true
+  },
+  {
+    "slug": "perejil",
+    "name": "Perejil",
+    "category": "basicos",
+    "staple": true
+  },
+  {
+    "slug": "eneldo",
+    "name": "Eneldo",
+    "category": "basicos",
+    "staple": true
+  },
+  {
+    "slug": "cebollin",
+    "name": "Cebollín",
+    "category": "basicos",
+    "staple": true
+  },
+  {
+    "slug": "pollo",
+    "name": "Pollo",
+    "category": "proteinas"
+  },
+  {
+    "slug": "higado-pollo",
+    "name": "Hígado de pollo",
+    "category": "proteinas"
+  },
+  {
+    "slug": "res",
+    "name": "Carne de res",
+    "category": "proteinas"
+  },
+  {
+    "slug": "pescado-blanco",
+    "name": "Pescado blanco (merluza, pargo, corvina)",
+    "category": "proteinas",
+    "allergen": "pescado"
+  },
+  {
+    "slug": "salmon",
+    "name": "Salmón",
+    "category": "proteinas",
+    "allergen": "pescado"
+  },
+  {
+    "slug": "sardina",
+    "name": "Sardinas",
+    "category": "proteinas",
+    "allergen": "pescado"
+  },
+  {
+    "slug": "atun",
+    "name": "Atún en lata",
+    "category": "proteinas",
+    "allergen": "pescado"
+  },
+  {
+    "slug": "huevo",
+    "name": "Huevo",
+    "category": "proteinas",
+    "allergen": "huevo"
+  },
+  {
+    "slug": "tofu",
+    "name": "Tofu",
+    "category": "proteinas",
+    "allergen": "soya"
+  },
+  {
+    "slug": "leche-entera",
+    "name": "Leche entera",
+    "category": "lacteos",
+    "allergen": "lacteos"
+  },
+  {
+    "slug": "yogur-natural",
+    "name": "Yogur natural",
+    "category": "lacteos",
+    "allergen": "lacteos"
+  },
+  {
+    "slug": "queso-fresco",
+    "name": "Queso fresco bajo en sal",
+    "category": "lacteos",
+    "allergen": "lacteos"
+  },
+  {
+    "slug": "ricota",
+    "name": "Ricota o requesón",
+    "category": "lacteos",
+    "allergen": "lacteos"
+  },
+  {
+    "slug": "mantequilla",
+    "name": "Mantequilla sin sal",
+    "category": "lacteos",
+    "allergen": "lacteos"
+  },
+  {
+    "slug": "cebolla",
+    "name": "Cebolla",
+    "category": "verduras"
+  },
+  {
+    "slug": "ajo",
+    "name": "Ajo",
+    "category": "verduras"
+  },
+  {
+    "slug": "tomate",
+    "name": "Tomate",
+    "category": "verduras"
+  },
+  {
+    "slug": "pimenton",
+    "name": "Pimentón",
+    "category": "verduras"
+  },
+  {
+    "slug": "aji-dulce",
+    "name": "Ají dulce",
+    "category": "verduras"
+  },
+  {
+    "slug": "zanahoria",
+    "name": "Zanahoria",
+    "category": "verduras"
+  },
+  {
+    "slug": "auyama",
+    "name": "Auyama (calabaza)",
+    "category": "verduras"
+  },
+  {
+    "slug": "calabacin",
+    "name": "Calabacín",
+    "category": "verduras"
+  },
+  {
+    "slug": "brocoli",
+    "name": "Brócoli",
+    "category": "verduras"
+  },
+  {
+    "slug": "vainita",
+    "name": "Vainitas",
+    "category": "verduras"
+  },
+  {
+    "slug": "arveja",
+    "name": "Arvejas (guisantes)",
+    "category": "verduras"
+  },
+  {
+    "slug": "chayote",
+    "name": "Chayote",
+    "category": "verduras"
+  },
+  {
+    "slug": "jojoto",
+    "name": "Jojoto (maíz tierno)",
+    "category": "verduras"
+  },
+  {
+    "slug": "papa",
+    "name": "Papa",
+    "category": "tuberculos"
+  },
+  {
+    "slug": "yuca",
+    "name": "Yuca",
+    "category": "tuberculos"
+  },
+  {
+    "slug": "ocumo",
+    "name": "Ocumo",
+    "category": "tuberculos"
+  },
+  {
+    "slug": "name",
+    "name": "Ñame",
+    "category": "tuberculos"
+  },
+  {
+    "slug": "apio-criollo",
+    "name": "Apio criollo",
+    "category": "tuberculos"
+  },
+  {
+    "slug": "batata",
+    "name": "Batata (boniato)",
+    "category": "tuberculos"
+  },
+  {
+    "slug": "platano",
+    "name": "Plátano",
+    "category": "tuberculos"
+  },
+  {
+    "slug": "cambur",
+    "name": "Cambur (banana)",
+    "category": "frutas"
+  },
+  {
+    "slug": "mango",
+    "name": "Mango",
+    "category": "frutas"
+  },
+  {
+    "slug": "pera",
+    "name": "Pera",
+    "category": "frutas"
+  },
+  {
+    "slug": "manzana",
+    "name": "Manzana",
+    "category": "frutas"
+  },
+  {
+    "slug": "parchita",
+    "name": "Parchita (maracuyá)",
+    "category": "frutas"
+  },
+  {
+    "slug": "lechosa",
+    "name": "Lechosa (papaya)",
+    "category": "frutas"
+  },
+  {
+    "slug": "patilla",
+    "name": "Patilla (sandía)",
+    "category": "frutas"
+  },
+  {
+    "slug": "guayaba",
+    "name": "Guayaba",
+    "category": "frutas"
+  },
+  {
+    "slug": "mandarina",
+    "name": "Mandarina",
+    "category": "frutas"
+  },
+  {
+    "slug": "fresa",
+    "name": "Fresas",
+    "category": "frutas"
+  },
+  {
+    "slug": "limon",
+    "name": "Limón",
+    "category": "frutas"
+  },
+  {
+    "slug": "aguacate",
+    "name": "Aguacate",
+    "category": "frutas"
+  },
+  {
+    "slug": "coco-rallado",
+    "name": "Coco rallado sin azúcar",
+    "category": "frutas"
+  },
+  {
+    "slug": "avena",
+    "name": "Avena",
+    "category": "cereales"
+  },
+  {
+    "slug": "harina-maiz",
+    "name": "Harina de maíz precocida",
+    "category": "cereales"
+  },
+  {
+    "slug": "fororo",
+    "name": "Fororo (harina de maíz tostado)",
+    "category": "cereales"
+  },
+  {
+    "slug": "quinoa",
+    "name": "Quinoa",
+    "category": "cereales"
+  },
+  {
+    "slug": "arroz",
+    "name": "Arroz blanco",
+    "category": "cereales"
+  },
+  {
+    "slug": "pasta",
+    "name": "Pasta",
+    "category": "cereales",
+    "allergen": "trigo"
+  },
+  {
+    "slug": "cuscus",
+    "name": "Cuscús",
+    "category": "cereales",
+    "allergen": "trigo"
+  },
+  {
+    "slug": "pan-integral",
+    "name": "Pan integral bajo en sal",
+    "category": "cereales",
+    "allergen": "trigo"
+  },
+  {
+    "slug": "pan-rallado",
+    "name": "Pan rallado",
+    "category": "cereales",
+    "allergen": "trigo"
+  },
+  {
+    "slug": "polvo-hornear",
+    "name": "Polvo de hornear",
+    "category": "cereales"
+  },
+  {
+    "slug": "caraotas",
+    "name": "Caraotas negras",
+    "category": "legumbres"
+  },
+  {
+    "slug": "lentejas",
+    "name": "Lentejas",
+    "category": "legumbres"
+  },
+  {
+    "slug": "quinchonchos",
+    "name": "Quinchonchos",
+    "category": "legumbres"
+  },
+  {
+    "slug": "garbanzos",
+    "name": "Garbanzos",
+    "category": "legumbres"
+  },
+  {
+    "slug": "crema-mani",
+    "name": "Crema de maní 100%",
+    "category": "semillas",
+    "allergen": "mani"
+  },
+  {
+    "slug": "crema-almendra",
+    "name": "Crema de almendras o merey",
+    "category": "semillas",
+    "allergen": "frutos_secos"
+  },
+  {
+    "slug": "tahini",
+    "name": "Tahini (crema de ajonjolí)",
+    "category": "semillas",
+    "allergen": "sesamo"
+  },
+  {
+    "slug": "chia-linaza",
+    "name": "Semillas de chía o linaza",
+    "category": "semillas"
+  },
+  {
+    "slug": "leche-coco",
+    "name": "Leche de coco sin azúcar",
+    "category": "otros"
+  }
+]

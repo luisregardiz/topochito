@@ -1,83 +1,32 @@
-// Carga idempotente de src/db/seed/recetario.json. Uso: pnpm db:seed (local o contra Neon según DATABASE_URL).
+// Carga idempotente del dataset. Uso: pnpm db:seed (local o contra Neon según DATABASE_URL).
+//   pnpm db:check   valida los archivos sin tocar ninguna base de datos (no necesita DATABASE_URL).
+// Archivos: recetario.json (base), foods.json (catálogo de alimentos), recipes/*.json (recetas nuevas) y media.json.
 // No importa server-only ni lib/env: corre fuera de Next.
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { eq, inArray, sql } from "drizzle-orm";
 import { Pool } from "pg";
 import { z } from "zod";
 import { isValidPublicId } from "@/lib/cloudinary-url";
+import {
+  baseSchema,
+  buildSeed,
+  extraSchema,
+  foodSchema,
+  type ExtraSeed,
+} from "./seed.schema";
 import * as s from "./schema";
 
-const meal = z.enum(["base", "desayuno", "almuerzo", "merienda", "cena"]);
-const nullableInt = z.number().int().nullable();
+const DIR = "src/db/seed";
+const readJson = (file: string) =>
+  JSON.parse(readFileSync(`${DIR}/${file}`, "utf8"));
 
-const dataSchema = z.object({
-  allergens: z.array(
-    z.object({
-      slug: z.string(),
-      name: z.string(),
-      howToIntroduce: z.string(),
-    }),
-  ),
-  recipes: z.array(
-    z.object({
-      code: z.string(),
-      title: z.string(),
-      mealType: meal,
-      minAgeMonths: nullableInt,
-      sortOrder: z.number().int(),
-      iron: z.object({ isSource: z.boolean(), note: z.string().nullable() }),
-      note: z.string().nullable(),
-      allergens: z.array(
-        z.object({
-          slug: z.string(),
-          optional: z.boolean(),
-          condition: z.string().nullable(),
-        }),
-      ),
-      tags: z.array(
-        z.object({ slug: z.string(), name: z.string(), label: z.string() }),
-      ),
-      ingredients: z.array(z.string()),
-      steps: z.array(z.string()),
-      ageAdaptations: z.array(
-        z.object({
-          minAgeMonths: z.number().int(),
-          maxAgeMonths: nullableInt,
-          instructions: z.string(),
-        }),
-      ),
-      references: z.array(z.string()),
-    }),
-  ),
-  foodGuide: z.array(
-    z.object({
-      food: z.string(),
-      fromAge: z.string(),
-      preparation: z.string(),
-      caution: z.string().nullable(),
-      sortOrder: z.number().int(),
-    }),
-  ),
-  fruitCutGuide: z.array(
-    z.object({
-      fruit: z.string(),
-      age7to8: z.string(),
-      age9to11: z.string(),
-      caution: z.string().nullable(),
-      sortOrder: z.number().int(),
-    }),
-  ),
-  mealPlan: z.array(
-    z.object({
-      week: z.number().int(),
-      dayOfWeek: z.number().int(),
-      mealType: meal,
-      recipeCode: z.string(),
-      label: z.string(),
-    }),
-  ),
-});
+function parseFile<T>(file: string, schema: z.ZodType<T>): T {
+  const parsed = schema.safeParse(readJson(file));
+  if (!parsed.success)
+    throw new Error(`${file}:\n${z.prettifyError(parsed.error)}`);
+  return parsed.data;
+}
 
 // Medios (opcional): src/db/seed/media.json → { "D10": { "image": "recetario/D10", "video": "recetario/D10-video" } }.
 // Solo toca las recetas que aparecen; `null` borra el medio y omitir la clave lo deja como está.
@@ -96,26 +45,53 @@ const mediaSchema = z.record(
     })
     .strict(),
 );
-const MEDIA_FILE = "src/db/seed/media.json";
 const loadMedia = () =>
-  existsSync(MEDIA_FILE)
-    ? mediaSchema.parse(JSON.parse(readFileSync(MEDIA_FILE, "utf8")))
-    : {};
+  existsSync(`${DIR}/media.json`) ? parseFile("media.json", mediaSchema) : {};
+
+function loadSeed() {
+  const base = parseFile("recetario.json", baseSchema);
+  const catalog = parseFile("foods.json", z.array(foodSchema));
+  const extras = existsSync(`${DIR}/recipes`)
+    ? readdirSync(`${DIR}/recipes`)
+        .filter((f) => f.endsWith(".json"))
+        .sort()
+        .map((f) => ({
+          file: `recipes/${f}`,
+          data: parseFile<ExtraSeed>(`recipes/${f}`, extraSchema),
+        }))
+    : [];
+  const { seed, problems } = buildSeed(base, catalog, extras);
+  if (problems.length) {
+    throw new Error(
+      `Los archivos del seed tienen ${problems.length} problema(s):\n - ${problems.join("\n - ")}`,
+    );
+  }
+  return { seed, extras };
+}
 
 async function main() {
+  const { seed, extras } = loadSeed();
+  const { base, foods, recipes } = seed;
+  const media = loadMedia();
+
+  if (process.argv.includes("--check")) {
+    const staples = foods.filter((f) => f.staple).length;
+    console.log(
+      `Seed válido: ${recipes.length} recetas (${extras.reduce((n, e) => n + e.data.recipes.length, 0)} en recipes/), ` +
+        `${foods.length} alimentos (${staples} básicos), ${Object.keys(media).length} con medios.`,
+    );
+    return;
+  }
+
   const url = process.env.DATABASE_URL;
   if (!url) throw new Error("Falta DATABASE_URL");
-  const data = dataSchema.parse(
-    JSON.parse(readFileSync("src/db/seed/recetario.json", "utf8")),
-  );
-
   const pool = new Pool({ connectionString: url });
   const db = drizzle(pool);
   await db.transaction(async (tx) => {
     // Catálogos por slug
     await tx
       .insert(s.allergen)
-      .values(data.allergens)
+      .values(base.allergens)
       .onConflictDoUpdate({
         target: s.allergen.slug,
         set: {
@@ -123,24 +99,44 @@ async function main() {
           howToIntroduce: sql`excluded.how_to_introduce`,
         },
       });
+    await tx
+      .insert(s.food)
+      .values(
+        foods.map((f) => ({
+          slug: f.slug,
+          name: f.name,
+          category: f.category,
+          isStaple: f.staple ?? false,
+        })),
+      )
+      .onConflictDoUpdate({
+        target: s.food.slug,
+        set: {
+          name: sql`excluded.name`,
+          category: sql`excluded.category`,
+          isStaple: sql`excluded.is_staple`,
+        },
+      });
     const tags = [
       ...new Map(
-        data.recipes.flatMap((r) => r.tags).map((t) => [t.slug, t]),
+        recipes.flatMap((r) => r.tags).map((t) => [t.slug, t]),
       ).values(),
     ];
-    await tx
-      .insert(s.tag)
-      .values(tags.map(({ slug, name }) => ({ slug, name })))
-      .onConflictDoUpdate({
-        target: s.tag.slug,
-        set: { name: sql`excluded.name` },
-      });
+    if (tags.length) {
+      await tx
+        .insert(s.tag)
+        .values(tags.map(({ slug, name }) => ({ slug, name })))
+        .onConflictDoUpdate({
+          target: s.tag.slug,
+          set: { name: sql`excluded.name` },
+        });
+    }
 
     // Recetas por code
-    const recipes = await tx
+    const stored = await tx
       .insert(s.recipe)
       .values(
-        data.recipes.map((r) => ({
+        recipes.map((r) => ({
           code: r.code,
           title: r.title,
           mealType: r.mealType,
@@ -165,26 +161,27 @@ async function main() {
         },
       })
       .returning({ id: s.recipe.id, code: s.recipe.code });
-    const recipeId = new Map(recipes.map((r) => [r.code, r.id]));
+    const recipeId = new Map(stored.map((r) => [r.code, r.id]));
     const idOf = (code: string) => {
       const id = recipeId.get(code);
       if (id === undefined) throw new Error(`Receta desconocida: ${code}`);
       return id;
     };
-    const allergenId = new Map(
-      (
-        await tx
-          .select({ id: s.allergen.id, slug: s.allergen.slug })
-          .from(s.allergen)
-      ).map((a) => [a.slug, a.id]),
+    const idsBySlug = async <T extends { id: number; slug: string }>(
+      rows: Promise<T[]>,
+    ) => new Map((await rows).map((r) => [r.slug, r.id]));
+    const allergenId = await idsBySlug(
+      tx.select({ id: s.allergen.id, slug: s.allergen.slug }).from(s.allergen),
     );
-    const tagId = new Map(
-      (await tx.select({ id: s.tag.id, slug: s.tag.slug }).from(s.tag)).map(
-        (t) => [t.slug, t.id],
-      ),
+    const tagId = await idsBySlug(
+      tx.select({ id: s.tag.id, slug: s.tag.slug }).from(s.tag),
+    );
+    const foodId = await idsBySlug(
+      tx.select({ id: s.food.id, slug: s.food.slug }).from(s.food),
     );
 
-    // Hijos: borrar y reinsertar (refleja también filas eliminadas del JSON)
+    // Hijos: borrar y reinsertar (refleja también filas eliminadas del JSON).
+    // Borrar los ingredientes arrastra, por cascada, sus vínculos con alimentos.
     const ids = [...recipeId.values()];
     await tx
       .delete(s.recipeIngredient)
@@ -201,70 +198,92 @@ async function main() {
       .delete(s.recipeReference)
       .where(inArray(s.recipeReference.recipeId, ids));
 
-    const pos = (xs: string[]) => xs.map((v, i) => [i + 1, v] as const);
-    await tx.insert(s.recipeIngredient).values(
-      data.recipes.flatMap((r) =>
-        pos(r.ingredients).map(([position, description]) => ({
-          recipeId: idOf(r.code),
-          position,
-          description,
+    const lines = recipes.flatMap((r) =>
+      r.ingredients.map((ing, i) => ({
+        recipeId: idOf(r.code),
+        position: i + 1,
+        ing,
+      })),
+    );
+    const insertedIngredients = await tx
+      .insert(s.recipeIngredient)
+      .values(
+        lines.map((l) => ({
+          recipeId: l.recipeId,
+          position: l.position,
+          description: l.ing.text,
+          isOptional: l.ing.optional,
+        })),
+      )
+      .returning({
+        id: s.recipeIngredient.id,
+        recipeId: s.recipeIngredient.recipeId,
+        position: s.recipeIngredient.position,
+      });
+    const ingredientId = new Map(
+      insertedIngredients.map((i) => [`${i.recipeId}:${i.position}`, i.id]),
+    );
+    const links = lines.flatMap((l) =>
+      l.ing.foods.flatMap((group, altGroup) =>
+        group.map((slug) => ({
+          ingredientId: ingredientId.get(`${l.recipeId}:${l.position}`)!,
+          foodId: foodId.get(slug)!,
+          altGroup,
         })),
       ),
     );
+    if (links.length)
+      await tx
+        .insert(s.recipeIngredientFood)
+        .values(links)
+        .onConflictDoNothing();
+
     await tx.insert(s.recipeStep).values(
-      data.recipes.flatMap((r) =>
-        pos(r.steps).map(([position, instruction]) => ({
+      recipes.flatMap((r) =>
+        r.steps.map((instruction, i) => ({
           recipeId: idOf(r.code),
-          position,
+          position: i + 1,
           instruction,
         })),
       ),
     );
-    await tx
-      .insert(s.recipeAgeAdaptation)
-      .values(
-        data.recipes.flatMap((r) =>
-          r.ageAdaptations.map((a) => ({ recipeId: idOf(r.code), ...a })),
-        ),
-      );
-    await tx.insert(s.recipeAllergen).values(
-      data.recipes.flatMap((r) =>
-        r.allergens.map((a) => {
-          const id = allergenId.get(a.slug);
-          if (id === undefined)
-            throw new Error(`Alérgeno desconocido: ${a.slug}`);
-          return {
-            recipeId: idOf(r.code),
-            allergenId: id,
-            isOptional: a.optional,
-            condition: a.condition,
-          };
-        }),
-      ),
+    const adaptations = recipes.flatMap((r) =>
+      r.ageAdaptations.map((a) => ({ recipeId: idOf(r.code), ...a })),
     );
-    await tx.insert(s.recipeTag).values(
-      data.recipes.flatMap((r) =>
-        r.tags.map((t) => ({
-          recipeId: idOf(r.code),
-          tagId: tagId.get(t.slug)!,
-          label: t.label,
-        })),
-      ),
+    if (adaptations.length)
+      await tx.insert(s.recipeAgeAdaptation).values(adaptations);
+    const recipeAllergens = recipes.flatMap((r) =>
+      r.allergens.map((a) => ({
+        recipeId: idOf(r.code),
+        allergenId: allergenId.get(a.slug)!,
+        isOptional: a.optional,
+        condition: a.condition,
+      })),
     );
-    await tx.insert(s.recipeReference).values(
-      data.recipes.flatMap((r) =>
-        r.references.map((c) => ({
-          recipeId: idOf(r.code),
-          referencedRecipeId: idOf(c),
-        })),
-      ),
+    if (recipeAllergens.length)
+      await tx.insert(s.recipeAllergen).values(recipeAllergens);
+    const recipeTags = recipes.flatMap((r) =>
+      r.tags.map((t) => ({
+        recipeId: idOf(r.code),
+        tagId: tagId.get(t.slug)!,
+        label: t.label,
+      })),
     );
+    if (recipeTags.length) await tx.insert(s.recipeTag).values(recipeTags);
+    const references = recipes.flatMap((r) =>
+      r.references.map((c) => ({
+        recipeId: idOf(r.code),
+        referencedRecipeId: idOf(c),
+      })),
+    );
+    if (references.length)
+      await tx.insert(s.recipeReference).values(references);
 
     // Plan de ejemplo: upsert por (semana, día, comida)
     await tx
       .insert(s.mealPlanEntry)
       .values(
-        data.mealPlan.map(({ recipeCode, ...e }) => ({
+        base.mealPlan.map(({ recipeCode, ...e }) => ({
           ...e,
           recipeId: idOf(recipeCode),
         })),
@@ -279,7 +298,7 @@ async function main() {
       });
 
     // Medios de las recetas (imagen y video de Cloudinary)
-    for (const [code, m] of Object.entries(loadMedia())) {
+    for (const [code, m] of Object.entries(media)) {
       const patch = {
         ...(m.image !== undefined && { imagePublicId: m.image }),
         ...(m.video !== undefined && { videoPublicId: m.video }),
@@ -293,10 +312,10 @@ async function main() {
 
     // Guías sin clave natural: se reemplazan completas
     await tx.delete(s.foodGuide);
-    await tx.insert(s.foodGuide).values(data.foodGuide);
+    await tx.insert(s.foodGuide).values(base.foodGuide);
     await tx.delete(s.fruitCutGuide);
     await tx.insert(s.fruitCutGuide).values(
-      data.fruitCutGuide.map(({ age7to8, age9to11, ...f }) => ({
+      base.fruitCutGuide.map(({ age7to8, age9to11, ...f }) => ({
         ...f,
         age78: age7to8,
         age911: age9to11,
@@ -309,6 +328,6 @@ async function main() {
 }
 
 main().catch((e) => {
-  console.error(e);
+  console.error(e instanceof Error ? e.message : e);
   process.exit(1);
 });

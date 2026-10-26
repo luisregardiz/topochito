@@ -43,6 +43,13 @@
       "when": 1792972132622,
       "tag": "0005_medios_receta",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1792979256414,
+      "tag": "0006_alimentos_y_despensa",
+      "breakpoints": true
     }
   ]
 }
