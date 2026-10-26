@@ -1,0 +1,428 @@
+{
+  "foods": [],
+  "recipes": [
+    {
+      "code": "P7",
+      "title": "Carne mechada base (sin sal)",
+      "mealType": "base",
+      "minAgeMonths": null,
+      "sortOrder": 72,
+      "iron": {"isSource": true, "note": "res"},
+      "allergens": [],
+      "tags": [
+        {"slug": "se-congela", "name": "Se congela", "label": "Se congela"},
+        {"slug": "olla-de-presion", "name": "Olla de presión", "label": "Olla de presión"},
+        {"slug": "sin-sal", "name": "Sin sal", "label": "Sin sal"}
+      ],
+      "ingredients": [
+        {"text": "300 g de falda de res", "optional": false, "foods": [["res"]]},
+        {"text": "½ cebolla", "optional": false, "foods": [["cebolla"]]},
+        {"text": "2 dientes de ajo", "optional": false, "foods": [["ajo"]]},
+        {"text": "1 ají dulce sin semillas", "optional": false, "foods": [["aji-dulce"]]},
+        {"text": "½ cdta de comino", "optional": false, "foods": [["comino"]]},
+        {"text": "Agua para cubrir", "optional": false, "foods": [["agua"]]}
+      ],
+      "steps": [
+        "Corta la falda en 3 o 4 trozos y ponla en la olla de presión con la cebolla, el ajo, el ají dulce y el comino; cubre con agua.",
+        "Cocina 35–40 min desde que la olla tome presión (o 2 h en olla normal), hasta que la carne se deshaga al apretarla.",
+        "Deja entibiar y desmecha a favor de la fibra en hebras muy finas. No añadas sal.",
+        "Guarda la carne con un poco de su caldo, en porciones pequeñas; el caldo sobrante sirve para cocinar granos, arroz o cremas."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Hebras muy finas, mezcladas con puré o con su caldo para que estén húmedas."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Hebras cortas o picadas."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Como la carne mechada de la familia (la sal, solo en el plato de los adultos)."}
+      ],
+      "note": "Evita darla seca o en hebras largas: es difícil de manejar en la boca. Para el bebé, siempre húmeda y bien desmenuzada.",
+      "references": []
+    },
+    {
+      "code": "D17",
+      "title": "Arepitas de lentejas y zanahoria",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 73,
+      "iron": {"isSource": true, "note": "vegetal"},
+      "allergens": [],
+      "tags": [
+        {"slug": "harina-enriquecida", "name": "Harina enriquecida", "label": "Harina enriquecida"},
+        {"slug": "sin-gluten", "name": "Sin gluten", "label": "Sin gluten"},
+        {"slug": "se-congela", "name": "Se congela", "label": "Se congela"}
+      ],
+      "ingredients": [
+        {"text": "½ taza de harina de maíz precocida", "optional": false, "foods": [["harina-maiz"]]},
+        {"text": "⅓ taza de lentejas cocidas sin sal, muy blandas y bien aplastadas", "optional": false, "foods": [["lentejas"]]},
+        {"text": "2 cdas de zanahoria rallada fina", "optional": false, "foods": [["zanahoria"]]},
+        {"text": "1 cdta de aceite", "optional": false, "foods": [["aceite"]]},
+        {"text": "Agua tibia, la necesaria", "optional": false, "foods": [["agua"]]},
+        {"text": "Pizca de comino", "optional": true, "foods": [["comino"]]},
+        {"text": "De acompañante: mandarina o guayaba", "optional": true, "foods": [["mandarina", "guayaba"]]}
+      ],
+      "steps": [
+        "Mezcla la harina con las lentejas aplastadas, la zanahoria, el aceite y el comino.",
+        "Añade agua tibia poco a poco hasta tener una masa suave que no se agriete.",
+        "Forma arepitas finas (≈1 cm) y cocínalas en budare o sartén tapada, a fuego bajo, 6–8 min por lado, hasta que estén cocidas y blandas.",
+        "Sirve con la fruta: su vitamina C ayuda a absorber el hierro de las lentejas."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Tiras blandas, sin costra dura."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Trocitos."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Enteras, solas o untadas con aguacate."}
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "D18",
+      "title": "Arepita de carne mechada y aguacate",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 74,
+      "iron": {"isSource": true, "note": "res"},
+      "allergens": [],
+      "tags": [
+        {"slug": "harina-enriquecida", "name": "Harina enriquecida", "label": "Harina enriquecida"},
+        {"slug": "grasas-saludables", "name": "Grasas saludables", "label": "Grasas saludables"},
+        {"slug": "listo-en-15-min-con-sobras", "name": "Listo en 15 min con sobras", "label": "Listo en 15 min con sobras"}
+      ],
+      "ingredients": [
+        {"text": "1–2 arepitas blandas (P5)", "optional": false, "foods": [["harina-maiz"], ["agua"], ["aceite"]]},
+        {"text": "2–3 cdas de carne mechada base (P7), con un poco de su caldo", "optional": false, "foods": [["res"], ["cebolla"], ["ajo"], ["aji-dulce"], ["comino"], ["agua"]]},
+        {"text": "¼ de aguacate maduro", "optional": false, "foods": [["aguacate"]]},
+        {"text": "Unas gotas de limón", "optional": true, "foods": [["limon"]]},
+        {"text": "De acompañante: tomate maduro sin piel, picado", "optional": true, "foods": [["tomate"]]}
+      ],
+      "steps": [
+        "Calienta la carne mechada con su caldo hasta que esté jugosa.",
+        "Aplasta el aguacate con el limón.",
+        "Abre las arepitas, úntalas con el aguacate y rellénalas con la carne."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Tiras de arepa untadas con aguacate y la carne muy fina por encima."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Trocitos rellenos."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Arepa entera rellena."}
+      ],
+      "note": null,
+      "references": ["P5", "P7"]
+    },
+    {
+      "code": "D19",
+      "title": "Tortitas de cambur, avena y caraotas (sin huevo)",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 75,
+      "iron": {"isSource": true, "note": "vegetal"},
+      "allergens": [],
+      "tags": [
+        {"slug": "avena-puede-contener-gluten", "name": "Avena: puede contener gluten", "label": "Avena: puede contener gluten"},
+        {"slug": "dulce-natural", "name": "Dulce natural", "label": "Dulce natural"},
+        {"slug": "sin-azucar", "name": "Sin azúcar", "label": "Sin azúcar"},
+        {"slug": "se-congela", "name": "Se congela", "label": "Se congela"}
+      ],
+      "ingredients": [
+        {"text": "1 cambur muy maduro", "optional": false, "foods": [["cambur"]]},
+        {"text": "3 cdas de caraotas negras sin sal (P3), escurridas", "optional": false, "foods": [["caraotas"]]},
+        {"text": "4 cdas de avena en hojuelas finas", "optional": false, "foods": [["avena"]]},
+        {"text": "½ cdta de polvo de hornear", "optional": false, "foods": [["polvo-hornear"]]},
+        {"text": "Pizca de canela", "optional": false, "foods": [["canela"]]},
+        {"text": "2–3 cdas de agua o leche materna", "optional": false, "foods": [["agua", "leche-materna"]]},
+        {"text": "Unas gotas de aceite", "optional": false, "foods": [["aceite"]]}
+      ],
+      "steps": [
+        "Licúa o aplasta muy bien el cambur con las caraotas hasta tener una pasta lisa, sin granos enteros.",
+        "Añade la avena, el polvo de hornear, la canela y el líquido; mezcla y deja reposar 5 min.",
+        "Cocina cucharadas de mezcla en sartén antiadherente con unas gotas de aceite, a fuego medio-bajo, 3 min por lado.",
+        "Como no llevan huevo, hazlas pequeñas y finas para que el centro quede bien cocido."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Tiras."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Trocitos para practicar la pinza."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Enteras, con fruta."}
+      ],
+      "note": "Nunca dejes granos de caraota enteros en la mezcla: a esta edad son difíciles de manejar y pueden causar atragantamiento.",
+      "references": ["P3"]
+    },
+    {
+      "code": "D20",
+      "title": "Revoltillo de huevo con caraotas y tomate",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 76,
+      "iron": {"isSource": true, "note": "caraotas y huevo"},
+      "allergens": [
+        {"slug": "huevo", "optional": false, "condition": null}
+      ],
+      "tags": [
+        {"slug": "vitamina-c", "name": "Vitamina C", "label": "Vitamina C del tomate"},
+        {"slug": "listo-en-15-min-con-sobras", "name": "Listo en 15 min con sobras", "label": "Listo en 15 min con sobras"}
+      ],
+      "ingredients": [
+        {"text": "1 huevo", "optional": false, "foods": [["huevo"]]},
+        {"text": "2 cdas de caraotas negras sin sal (P3), aplastadas", "optional": false, "foods": [["caraotas"]]},
+        {"text": "½ tomate maduro sin piel ni semillas, picado", "optional": false, "foods": [["tomate"]]},
+        {"text": "1 cdta de aceite", "optional": false, "foods": [["aceite"]]},
+        {"text": "1 cda de cebollín picado fino", "optional": true, "foods": [["cebollin"]]},
+        {"text": "De acompañante: 1 arepita blanda (P5)", "optional": true, "foods": [["harina-maiz"], ["agua"], ["aceite"]]}
+      ],
+      "steps": [
+        "Sofríe el tomate y el cebollín en el aceite 2 min.",
+        "Añade las caraotas aplastadas y caliéntalas.",
+        "Incorpora el huevo batido y remueve a fuego bajo hasta que esté totalmente cuajado, sin partes líquidas."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Revoltillo aplastado, con cuchara o untado en tiras de arepita."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Trocitos."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Con arepa, como la familia."}
+      ],
+      "note": null,
+      "references": ["P3", "P5"]
+    },
+    {
+      "code": "M16",
+      "title": "Untable de pollo y auyama con bastones de plátano",
+      "mealType": "merienda",
+      "minAgeMonths": 7,
+      "sortOrder": 77,
+      "iron": {"isSource": true, "note": "muslo"},
+      "allergens": [],
+      "tags": [
+        {"slug": "vitamina-a", "name": "Vitamina A", "label": "Vitamina A"},
+        {"slug": "listo-en-15-min-con-sobras", "name": "Listo en 15 min con sobras", "label": "Listo en 15 min con sobras"}
+      ],
+      "ingredients": [
+        {"text": "3 cdas de pollo cocido sin piel (mejor muslo), desmechado", "optional": false, "foods": [["pollo"]]},
+        {"text": "3 cdas de auyama cocida", "optional": false, "foods": [["auyama"]]},
+        {"text": "1 cdta de aceite de oliva", "optional": false, "foods": [["aceite"]]},
+        {"text": "1–2 cdas de agua de cocción del pollo, para aflojar", "optional": false, "foods": [["agua"]]},
+        {"text": "½ plátano maduro horneado (P4)", "optional": false, "foods": [["platano"]]},
+        {"text": "Pizca de comino u orégano", "optional": true, "foods": [["comino", "oregano"]]}
+      ],
+      "steps": [
+        "Tritura el pollo con la auyama, el aceite y el agua hasta tener una pasta untable y húmeda.",
+        "Corta el plátano en bastones del tamaño de un dedo adulto.",
+        "Unta los bastones con la pasta de pollo o sírvela al lado para mojar."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Bastones de plátano untados con la pasta."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Trozos de plátano para mojar en la pasta."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Como relleno de arepa o pan."}
+      ],
+      "note": null,
+      "references": ["P4"]
+    },
+    {
+      "code": "M17",
+      "title": "Mini-panes de lentejas y zanahoria (sin huevo)",
+      "mealType": "merienda",
+      "minAgeMonths": 8,
+      "sortOrder": 78,
+      "iron": {"isSource": true, "note": "vegetal"},
+      "allergens": [],
+      "tags": [
+        {"slug": "harina-enriquecida", "name": "Harina enriquecida", "label": "Harina enriquecida"},
+        {"slug": "sin-gluten", "name": "Sin gluten", "label": "Sin gluten"},
+        {"slug": "se-congela", "name": "Se congela", "label": "Se congela"}
+      ],
+      "ingredients": [
+        {"text": "½ taza de lentejas cocidas sin sal, aplastadas", "optional": false, "foods": [["lentejas"]]},
+        {"text": "½ taza de harina de maíz precocida", "optional": false, "foods": [["harina-maiz"]]},
+        {"text": "1 zanahoria pequeña rallada fina", "optional": false, "foods": [["zanahoria"]]},
+        {"text": "½ cdta de polvo de hornear", "optional": false, "foods": [["polvo-hornear"]]},
+        {"text": "2 cdas de aceite", "optional": false, "foods": [["aceite"]]},
+        {"text": "≈ ½ taza de agua tibia", "optional": false, "foods": [["agua"]]},
+        {"text": "Pizca de comino u orégano", "optional": true, "foods": [["comino", "oregano"]]}
+      ],
+      "steps": [
+        "Precalienta el horno a 180 °C y engrasa un molde de mini-muffins.",
+        "Mezcla todo hasta tener una masa húmeda y suave, más blanda que la de arepa.",
+        "Reparte en el molde y hornea 18–20 min, hasta que estén firmes por fuera y tiernos por dentro.",
+        "Deja enfriar antes de desmoldar."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Desde 8 meses: en tiras blandas que se deshagan al apretarlas."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "En trozos."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Enteros, ideales para salidas."}
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "M18",
+      "title": "Bastones de plátano con caraotas untables y mango",
+      "mealType": "merienda",
+      "minAgeMonths": 7,
+      "sortOrder": 79,
+      "iron": {"isSource": true, "note": "vegetal"},
+      "allergens": [],
+      "tags": [
+        {"slug": "vitamina-c", "name": "Vitamina C", "label": "Vitamina C"},
+        {"slug": "dulce-natural", "name": "Dulce natural", "label": "Dulce natural"},
+        {"slug": "listo-en-15-min-con-sobras", "name": "Listo en 15 min con sobras", "label": "Listo en 15 min con sobras"}
+      ],
+      "ingredients": [
+        {"text": "½ plátano maduro horneado (P4)", "optional": false, "foods": [["platano"]]},
+        {"text": "3 cdas de caraotas negras sin sal (P3), con un poco de su caldo", "optional": false, "foods": [["caraotas"]]},
+        {"text": "3–4 tiras de mango maduro", "optional": false, "foods": [["mango"]]},
+        {"text": "Pizca de comino", "optional": true, "foods": [["comino"]]}
+      ],
+      "steps": [
+        "Calienta las caraotas y aplástalas con el comino hasta formar una pasta untable.",
+        "Corta el plátano en bastones y úntalos con las caraotas.",
+        "Sirve con el mango: su vitamina C ayuda a absorber el hierro de las caraotas."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Bastones untados; mango en tiras gruesas."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Trozos de plátano para mojar; mango en dados."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Plátano entero con caraotas y fruta."}
+      ],
+      "note": null,
+      "references": ["P3", "P4"]
+    },
+    {
+      "code": "A19",
+      "title": "Pescado guisado criollo con papa y zanahoria",
+      "mealType": "almuerzo",
+      "minAgeMonths": 7,
+      "sortOrder": 80,
+      "iron": {"isSource": false, "note": null},
+      "allergens": [
+        {"slug": "pescado", "optional": false, "condition": null}
+      ],
+      "tags": [
+        {"slug": "proteina-magra", "name": "Proteína magra", "label": "Proteína magra"},
+        {"slug": "sabor-sin-sal", "name": "Sabor sin sal", "label": "Sabor sin sal"}
+      ],
+      "ingredients": [
+        {"text": "100 g de filete de pescado blanco (merluza, pargo o corvina), sin piel ni espinas", "optional": false, "foods": [["pescado-blanco"]]},
+        {"text": "1 papa pequeña en cubitos", "optional": false, "foods": [["papa"]]},
+        {"text": "½ zanahoria en rodajas finas", "optional": false, "foods": [["zanahoria"]]},
+        {"text": "1 cubo de sofrito (P2)", "optional": false, "foods": [["cebolla"], ["pimenton"], ["aji-dulce"], ["ajo"], ["tomate"], ["cebollin"], ["aceite"]]},
+        {"text": "½ tomate maduro rallado", "optional": false, "foods": [["tomate"]]},
+        {"text": "½ taza de agua", "optional": false, "foods": [["agua"]]},
+        {"text": "Pizca de onoto o cúrcuma", "optional": true, "foods": [["onoto", "curcuma"]]}
+      ],
+      "steps": [
+        "Calienta el sofrito con el tomate y el onoto 3 min.",
+        "Añade la papa, la zanahoria y el agua; tapa y cocina 12–15 min, hasta que estén blandas.",
+        "Coloca el pescado encima, tapa y cocina 6–8 min más, hasta que se separe en láminas.",
+        "Desmenuza el pescado con los dedos, revisando que no queden espinas, y mézclalo con la salsa."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Pescado en láminas blandas o aplastado con la papa y la salsa."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Trocitos de pescado y verduras."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Plato familiar, con arroz o arepa."}
+      ],
+      "note": "Revisa siempre el pescado con los dedos: aunque el filete diga «sin espinas», pueden quedar algunas.",
+      "references": ["P2"]
+    },
+    {
+      "code": "A20",
+      "title": "Arroz con sardinas, auyama y arvejas",
+      "mealType": "almuerzo",
+      "minAgeMonths": 7,
+      "sortOrder": 81,
+      "iron": {"isSource": true, "note": "sardina"},
+      "allergens": [
+        {"slug": "pescado", "optional": false, "condition": null}
+      ],
+      "tags": [
+        {"slug": "arroz-con-moderacion", "name": "Arroz con moderación", "label": "Arroz con moderación"},
+        {"slug": "omega-3", "name": "Omega-3", "label": "Omega-3"},
+        {"slug": "calcio", "name": "Calcio", "label": "Calcio (espinas blandas de lata)"}
+      ],
+      "ingredients": [
+        {"text": "¼ taza de arroz blanco", "optional": false, "foods": [["arroz"]]},
+        {"text": "2 sardinas en lata, en agua o aceite (sin salsa), escurridas", "optional": false, "foods": [["sardina"]]},
+        {"text": "½ taza de auyama en cubitos", "optional": false, "foods": [["auyama"]]},
+        {"text": "2 cdas de arvejas", "optional": false, "foods": [["arveja"]]},
+        {"text": "1 cubo de sofrito (P2)", "optional": false, "foods": [["cebolla"], ["pimenton"], ["aji-dulce"], ["ajo"], ["tomate"], ["cebollin"], ["aceite"]]},
+        {"text": "Agua, unas 3 veces el volumen del arroz", "optional": false, "foods": [["agua"]]}
+      ],
+      "steps": [
+        "Calienta el sofrito y añade el arroz, la auyama, las arvejas y el agua.",
+        "Tapa y cocina a fuego bajo 20–25 min, hasta que el arroz quede blando y meloso.",
+        "Aplasta las sardinas con un tenedor (las espinas de lata son blandas y se deshacen) e incorpóralas los últimos 2 min."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Meloso y aplastado, con las arvejas bien aplastadas."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Arroz suelto con trocitos de sardina; arvejas aplastadas con el dedo."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Plato familiar."}
+      ],
+      "note": "Evita las arvejas enteras antes de los 12 meses: son pequeñas y redondas, con riesgo de atragantamiento. Aplástalas.",
+      "references": ["P2"]
+    },
+    {
+      "code": "C17",
+      "title": "Crema de auyama y papa con pescado desmenuzado",
+      "mealType": "cena",
+      "minAgeMonths": 8,
+      "sortOrder": 82,
+      "iron": {"isSource": false, "note": null},
+      "allergens": [
+        {"slug": "pescado", "optional": false, "condition": null}
+      ],
+      "tags": [
+        {"slug": "ligera", "name": "Ligera", "label": "Ligera"},
+        {"slug": "vitamina-a", "name": "Vitamina A", "label": "Vitamina A"},
+        {"slug": "proteina-magra", "name": "Proteína magra", "label": "Proteína magra"}
+      ],
+      "ingredients": [
+        {"text": "1 taza de auyama en trozos", "optional": false, "foods": [["auyama"]]},
+        {"text": "½ papa pequeña", "optional": false, "foods": [["papa"]]},
+        {"text": "¼ de cebolla", "optional": false, "foods": [["cebolla"]]},
+        {"text": "1 cdta de aceite", "optional": false, "foods": [["aceite"]]},
+        {"text": "Agua para cubrir", "optional": false, "foods": [["agua"]]},
+        {"text": "60 g de pescado blanco sin piel ni espinas", "optional": false, "foods": [["pescado-blanco"]]},
+        {"text": "Perejil o cilantro picado fino", "optional": true, "foods": [["perejil", "cilantro"]]}
+      ],
+      "steps": [
+        "Sofríe la cebolla en el aceite; añade la auyama, la papa y agua justo para cubrir. Cocina 15 min.",
+        "Agrega el pescado y cocina 6 min más.",
+        "Retira el pescado y desmenúzalo revisando espinas; licúa las verduras con poco líquido para que la crema quede espesa.",
+        "Sirve la crema con el pescado y el perejil por encima."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Crema espesa con el pescado mezclado dentro."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Escamas de pescado encima, para cuchara o mano."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Crema familiar con el pescado en trozos."}
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "C18",
+      "title": "Arepita de pescado mechado",
+      "mealType": "cena",
+      "minAgeMonths": 8,
+      "sortOrder": 83,
+      "iron": {"isSource": false, "note": null},
+      "allergens": [
+        {"slug": "pescado", "optional": false, "condition": null}
+      ],
+      "tags": [
+        {"slug": "sin-cazon", "name": "Sin cazón", "label": "Sin cazón"},
+        {"slug": "receta-tradicional-venezolana", "name": "Receta tradicional venezolana", "label": "Receta tradicional venezolana"},
+        {"slug": "harina-enriquecida", "name": "Harina enriquecida", "label": "Harina enriquecida"}
+      ],
+      "ingredients": [
+        {"text": "1–2 arepitas blandas (P5)", "optional": false, "foods": [["harina-maiz"], ["agua"], ["aceite"]]},
+        {"text": "80 g de pescado blanco (merluza, pargo o corvina), sin piel ni espinas", "optional": false, "foods": [["pescado-blanco"]]},
+        {"text": "1 cubo de sofrito (P2)", "optional": false, "foods": [["cebolla"], ["pimenton"], ["aji-dulce"], ["ajo"], ["tomate"], ["cebollin"], ["aceite"]]},
+        {"text": "½ tomate maduro rallado", "optional": false, "foods": [["tomate"]]},
+        {"text": "Cilantro picado fino", "optional": true, "foods": [["cilantro"]]}
+      ],
+      "steps": [
+        "Cocina el pescado al vapor o en poca agua 6–8 min y desmenúzalo con los dedos, revisando espinas.",
+        "Guísalo 5 min con el sofrito y el tomate, hasta que quede jugoso.",
+        "Abre las arepitas y rellénalas con el pescado."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Tiras de arepa con el pescado jugoso por encima."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Trocitos rellenos."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Arepa entera rellena."}
+      ],
+      "note": "Evita el cazón de la arepa tradicional: es tiburón, alto en mercurio. Con pescado blanco queda igual de rica.",
+      "references": ["P2", "P5"]
+    }
+  ]
+}
