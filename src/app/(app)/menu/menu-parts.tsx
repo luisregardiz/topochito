@@ -4,7 +4,9 @@ import {
   ChevronRight,
   CircleCheck,
   LoaderCircle,
+  Plus,
   RefreshCw,
+  Search,
   TriangleAlert,
 } from "lucide-react";
 import Link from "next/link";
@@ -100,6 +102,7 @@ export function MealCard({
   busy,
   avoid,
   onChange,
+  onPick,
 }: {
   day: number;
   meal: MenuMeal;
@@ -107,6 +110,7 @@ export function MealCard({
   busy: boolean;
   avoid: readonly string[];
   onChange: () => void;
+  onPick: () => void;
 }) {
   return (
     <Card>
@@ -149,6 +153,47 @@ export function MealCard({
           aria-label={`Cambiar ${MEALS[meal].label.toLowerCase()} del ${dayName(day)}`}
         >
           {spin(busy)} Cambiar esta comida
+        </Button>
+        <Button
+          variant="outline"
+          size="lg"
+          className="w-full"
+          onClick={onPick}
+          aria-label={`Elegir ${MEALS[meal].label.toLowerCase()} del ${dayName(day)}`}
+        >
+          <Search aria-hidden /> Elegir yo la receta
+        </Button>
+      </CardContent>
+    </Card>
+  );
+}
+
+// Hueco sin receta (menú armado a mano): se llena eligiendo una del catálogo.
+export function EmptyMealCard({
+  day,
+  meal,
+  onPick,
+}: {
+  day: number;
+  meal: MenuMeal;
+  onPick: () => void;
+}) {
+  const Icon = MEALS[meal].icon;
+  return (
+    <Card className="border-dashed">
+      <CardContent className="flex flex-col gap-3">
+        <p className="flex items-center gap-2 text-base text-muted-foreground">
+          <Icon className="size-5" aria-hidden /> {MEALS[meal].label} · sin
+          receta
+        </p>
+        <Button
+          size="lg"
+          variant="outline"
+          className="w-full"
+          onClick={onPick}
+          aria-label={`Elegir ${MEALS[meal].label.toLowerCase()} del ${dayName(day)}`}
+        >
+          <Plus aria-hidden /> Elegir receta
         </Button>
       </CardContent>
     </Card>
@@ -241,14 +286,18 @@ export function WeekGrid({
   avoid,
   onChangeMeal,
   onChangeDay,
+  onPick,
+  canChangeDay,
 }: {
   menu: Menu;
   pending: Pending;
   avoid: readonly string[];
   onChangeMeal: (day: number, meal: MenuMeal) => void;
   onChangeDay: (day: number) => void;
+  onPick: (day: number, meal: MenuMeal) => void;
+  canChangeDay: boolean;
 }) {
-  const meals = menu.days[0]!.meals.map((m) => m.meal);
+  const meals = menu.meals;
   return (
     <div
       className="grid gap-2"
@@ -274,6 +323,8 @@ export function WeekGrid({
           avoid={avoid}
           onChangeMeal={onChangeMeal}
           onChangeDay={onChangeDay}
+          onPick={onPick}
+          canChangeDay={canChangeDay}
         />
       ))}
     </div>
@@ -287,6 +338,8 @@ function WeekRow({
   avoid,
   onChangeMeal,
   onChangeDay,
+  onPick,
+  canChangeDay,
 }: {
   menu: Menu;
   day: MenuDay;
@@ -294,6 +347,8 @@ function WeekRow({
   avoid: readonly string[];
   onChangeMeal: (day: number, meal: MenuMeal) => void;
   onChangeDay: (day: number) => void;
+  onPick: (day: number, meal: MenuMeal) => void;
+  canChangeDay: boolean;
 }) {
   const today = day.day === menu.today;
   return (
@@ -311,62 +366,97 @@ function WeekRow({
             {today && " · Hoy"}
           </p>
         </div>
-        <Button
-          variant="outline"
-          size="sm"
-          className="h-9 text-sm"
-          disabled={!!pending && pending.day === day.day}
-          onClick={() => onChangeDay(day.day)}
-          aria-label={`Cambiar el día ${dayName(day.day)}`}
-        >
-          {spin(
-            !!pending && pending.day === day.day && pending.meal === undefined,
-          )}{" "}
-          Cambiar día
-        </Button>
-      </div>
-      {day.meals.map(({ meal, recipe }) => (
-        <div
-          key={meal}
-          className={cn(
-            "flex flex-col gap-2 rounded-md border bg-card p-3",
-            today && "border-primary/40",
-          )}
-        >
-          <Link
-            href={`/recetas/${recipe.code}`}
-            className="flex flex-col gap-1 rounded-sm outline-none hover:underline focus-visible:ring-3 focus-visible:ring-ring/50"
-          >
-            <span className="font-mono text-sm text-muted-foreground">
-              {recipe.code}
-            </span>
-            <span className="line-clamp-2 leading-snug font-bold">
-              {recipe.title}
-            </span>
-          </Link>
-          <div className="flex flex-wrap gap-1">
-            <MissingFoodsBadge foods={recipe.missingFoods} />
-            {recipe.isIronSource && <IronBadge note={recipe.ironNote} />}
-            {recipe.allergens.map((a) => (
-              <AllergenBadge
-                key={a.slug}
-                allergen={a}
-                avoid={avoid.includes(a.slug)}
-              />
-            ))}
-          </div>
+        {canChangeDay && (
           <Button
-            variant="ghost"
+            variant="outline"
             size="sm"
-            className="h-9 w-fit px-2 text-sm"
-            disabled={isPending(pending, day.day, meal)}
-            onClick={() => onChangeMeal(day.day, meal)}
-            aria-label={`Cambiar ${MEALS[meal].label.toLowerCase()} del ${dayName(day.day)}`}
+            className="h-9 text-sm"
+            disabled={!!pending && pending.day === day.day}
+            onClick={() => onChangeDay(day.day)}
+            aria-label={`Cambiar el día ${dayName(day.day)}`}
           >
-            {spin(isPending(pending, day.day, meal))} Cambiar
+            {spin(
+              !!pending &&
+                pending.day === day.day &&
+                pending.meal === undefined,
+            )}{" "}
+            Cambiar día
           </Button>
-        </div>
-      ))}
+        )}
+      </div>
+      {menu.meals.map((meal) => {
+        const recipe = day.meals.find((m) => m.meal === meal)?.recipe;
+        if (!recipe)
+          return (
+            <div
+              key={meal}
+              className="flex flex-col justify-center rounded-md border border-dashed bg-card p-3"
+            >
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-9 w-fit px-2 text-sm"
+                onClick={() => onPick(day.day, meal)}
+                aria-label={`Elegir ${MEALS[meal].label.toLowerCase()} del ${dayName(day.day)}`}
+              >
+                <Plus aria-hidden /> Elegir receta
+              </Button>
+            </div>
+          );
+        return (
+          <div
+            key={meal}
+            className={cn(
+              "flex flex-col gap-2 rounded-md border bg-card p-3",
+              today && "border-primary/40",
+            )}
+          >
+            <Link
+              href={`/recetas/${recipe.code}`}
+              className="flex flex-col gap-1 rounded-sm outline-none hover:underline focus-visible:ring-3 focus-visible:ring-ring/50"
+            >
+              <span className="font-mono text-sm text-muted-foreground">
+                {recipe.code}
+              </span>
+              <span className="line-clamp-2 leading-snug font-bold">
+                {recipe.title}
+              </span>
+            </Link>
+            <div className="flex flex-wrap gap-1">
+              <MissingFoodsBadge foods={recipe.missingFoods} />
+              {recipe.isIronSource && <IronBadge note={recipe.ironNote} />}
+              {recipe.allergens.map((a) => (
+                <AllergenBadge
+                  key={a.slug}
+                  allergen={a}
+                  avoid={avoid.includes(a.slug)}
+                />
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-1">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-9 w-fit px-2 text-sm"
+                disabled={isPending(pending, day.day, meal)}
+                onClick={() => onChangeMeal(day.day, meal)}
+                aria-label={`Cambiar ${MEALS[meal].label.toLowerCase()} del ${dayName(day.day)}`}
+              >
+                {spin(isPending(pending, day.day, meal))} Cambiar
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-9 w-fit px-2 text-sm"
+                onClick={() => onPick(day.day, meal)}
+                aria-label={`Elegir ${MEALS[meal].label.toLowerCase()} del ${dayName(day.day)}`}
+              >
+                <Search aria-hidden /> Elegir
+              </Button>
+            </div>
+          </div>
+        );
+      })}
     </>
   );
 }

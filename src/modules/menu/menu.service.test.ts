@@ -184,17 +184,37 @@ describe("menú semanal", () => {
     expect(r.previous.every((p) => p.day === 4)).toBe(true);
   });
 
-  it("regenerar o poner recetas sin menú falla con no_menu", async () => {
+  it("regenerar sin menú falla con no_menu", async () => {
     const { deps } = fakeDeps();
     expect(await regenerate(deps, "h1", { scope: "day", day: 1 })).toEqual({
       ok: false,
       error: "no_menu",
     });
-    expect(
-      await setEntries(deps, "h1", {
-        entries: [{ day: 1, meal: "desayuno", recipe: "D1" }],
-      }),
-    ).toEqual({ ok: false, error: "no_menu" });
+  });
+
+  it("se puede armar un menú a mano: los huecos vacíos cuentan como faltantes", async () => {
+    const { deps, rows } = fakeDeps();
+    const r = await setEntries(deps, "h1", {
+      entries: [{ day: 1, meal: "desayuno", recipe: "D1" }],
+    });
+    if (!r.ok) throw new Error(r.error);
+    expect(rows.size).toBe(1);
+    expect(r.menu.meals).toContain("almuerzo");
+    expect(r.menu.days[0]!.meals.map((m) => m.meal)).toEqual(["desayuno"]);
+    const check = (key: string) => r.menu.checks.find((c) => c.key === key)!;
+    expect(check("iron").ok).toBe(false);
+    expect(check("fish").ok).toBe(false);
+  });
+
+  it("cambiar un día con huecos vacíos los llena, pero solo se deshace lo que ya tenía receta", async () => {
+    const { deps } = fakeDeps();
+    await setEntries(deps, "h1", {
+      entries: [{ day: 2, meal: "desayuno", recipe: "D1" }],
+    });
+    const r = await regenerate(deps, "h1", { scope: "day", day: 2 });
+    if (!r.ok) throw new Error(r.error);
+    expect(r.menu.days[1]!.meals.length).toBe(r.menu.meals.length);
+    expect(r.previous.every((p) => p.meal === "desayuno")).toBe(true);
   });
 
   it("valida que la receta sea de esa comida y que la comida exista a esa edad", async () => {

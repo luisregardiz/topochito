@@ -40,6 +40,7 @@ export type Menu = {
   weekStart: string; // lunes, YYYY-MM-DD
   today: number; // 1–7, en la zona horaria de la app
   ageMonths: number;
+  meals: MenuMeal[]; // huecos de cada día según la edad; un día puede tener alguno sin receta
   days: MenuDay[];
   checks: MenuCheck[];
 };

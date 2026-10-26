@@ -3,6 +3,7 @@
 import {
   Baby,
   CalendarPlus,
+  ClipboardList,
   LoaderCircle,
   Moon,
   RefreshCw,
@@ -32,6 +33,7 @@ import { avoidedAllergens, useBaby } from "@/modules/babies/baby.queries";
 import { allergenWithArticle } from "@/modules/recipes/recipes.format";
 import { dayName, formatDayLong, formatRange } from "@/modules/menu/menu.dates";
 import { mealsForAge } from "@/modules/menu/menu.generator";
+import { weekOf } from "@/modules/menu/menu.week";
 import {
   useGenerateMenu,
   useMenu,
@@ -39,9 +41,11 @@ import {
   useSetEntries,
 } from "@/modules/menu/menu.queries";
 import type { EntryRef, Menu, MenuMeal } from "@/modules/menu/menu.schemas";
+import type { RecipeListItem } from "@/modules/recipes/recipes.schemas";
 import { MEALS } from "@/components/recetario/meal";
 import {
   DayPicker,
+  EmptyMealCard,
   isPending,
   MealCard,
   SummaryAccordion,
@@ -49,6 +53,7 @@ import {
   SummaryChips,
   WeekGrid,
 } from "./menu-parts";
+import { RecipePicker, type PickTarget } from "./recipe-picker";
 
 const Title = ({ children }: { children?: React.ReactNode }) => (
   <h1 className="font-display text-[32px] leading-tight md:text-4xl xl:text-[32px]">
@@ -125,10 +130,19 @@ export function MenuScreen() {
   );
 }
 
+// Semana sin recetas para armarla a mano; solo existe en pantalla hasta que se elige la primera receta.
+const blankMenu = (ageMonths: number): Menu => ({
+  ...weekOf(new Date()),
+  ageMonths,
+  meals: mealsForAge(ageMonths),
+  days: [1, 2, 3, 4, 5, 6, 7].map((day) => ({ day, meals: [] })),
+  checks: [],
+});
+
 function MenuView({
   ageMonths,
   avoid,
-  menu,
+  menu: stored,
 }: {
   ageMonths: number;
   avoid: string[];
@@ -139,6 +153,9 @@ function MenuView({
   const setEntries = useSetEntries();
   const [day, setDay] = useState<number | null>(null);
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const [manual, setManual] = useState(false);
+  const [picking, setPicking] = useState<PickTarget | null>(null);
+  const menu = stored ?? (manual ? blankMenu(ageMonths) : null);
 
   const selected = day ?? menu?.today ?? 1;
   const mealCount = mealsForAge(ageMonths).length;
@@ -166,6 +183,26 @@ function MenuView({
       description: "Revisa tu conexión e inténtalo de nuevo.",
     });
 
+  function pick(target: PickTarget, recipe: RecipeListItem) {
+    const before = menu?.days
+      .find((d) => d.day === target.day)
+      ?.meals.find((m) => m.meal === target.meal)?.recipe;
+    setPicking(null);
+    setEntries.mutate([{ ...target, recipe: recipe.code }], {
+      onSuccess: () =>
+        toast.success(`Pusimos ${recipe.title}`, {
+          ...(before && {
+            action: {
+              label: "Deshacer",
+              onClick: () =>
+                setEntries.mutate([{ ...target, recipe: before.code }]),
+            },
+          }),
+        }),
+      onError: failed,
+    });
+  }
+
   const changeMeal = (d: number, meal: MenuMeal) =>
     regen.mutate(
       { scope: "meal", day: d, meal },
@@ -191,10 +228,10 @@ function MenuView({
   const generateButton = (className?: string) => (
     <Button
       size="lg"
-      variant={menu ? "outline" : "default"}
+      variant={stored ? "outline" : "default"}
       className={cn("w-full", className)}
       disabled={gen.isPending}
-      onClick={() => (menu ? setConfirmOpen(true) : generate())}
+      onClick={() => (stored ? setConfirmOpen(true) : generate())}
     >
       {gen.isPending ? (
         <>
@@ -247,6 +284,14 @@ function MenuView({
           >
             {genError}
             {generateButton()}
+            <Button
+              size="lg"
+              variant="outline"
+              className="w-full"
+              onClick={() => setManual(true)}
+            >
+              <ClipboardList aria-hidden /> Armar yo mi menú
+            </Button>
           </EmptyState>
         )}
       </>
@@ -352,17 +397,29 @@ function MenuView({
             <h2 className="text-[22px] font-bold">
               {formatDayLong(menu.weekStart, selected)}
             </h2>
-            {dayMeals.map(({ meal, recipe }) => (
-              <MealCard
-                key={meal}
-                day={selected}
-                meal={meal}
-                recipe={recipe}
-                avoid={avoid}
-                busy={isPending(pending, selected, meal)}
-                onChange={() => changeMeal(selected, meal)}
-              />
-            ))}
+            {menu.meals.map((meal) => {
+              const recipe = dayMeals.find((m) => m.meal === meal)?.recipe;
+              const target = { day: selected, meal };
+              return recipe ? (
+                <MealCard
+                  key={meal}
+                  day={selected}
+                  meal={meal}
+                  recipe={recipe}
+                  avoid={avoid}
+                  busy={isPending(pending, selected, meal)}
+                  onChange={() => changeMeal(selected, meal)}
+                  onPick={() => setPicking(target)}
+                />
+              ) : (
+                <EmptyMealCard
+                  key={meal}
+                  day={selected}
+                  meal={meal}
+                  onPick={() => setPicking(target)}
+                />
+              );
+            })}
             {ageMonths < 8 && (
               <Alert>
                 <Moon />
@@ -375,15 +432,17 @@ function MenuView({
                 </AlertDescription>
               </Alert>
             )}
-            <Button
-              variant="outline"
-              size="lg"
-              className="w-full"
-              disabled={pending?.day === selected}
-              onClick={() => changeDay(selected)}
-            >
-              <RefreshCw aria-hidden /> Cambiar este día
-            </Button>
+            {stored && (
+              <Button
+                variant="outline"
+                size="lg"
+                className="w-full"
+                disabled={pending?.day === selected}
+                onClick={() => changeDay(selected)}
+              >
+                <RefreshCw aria-hidden /> Cambiar este día
+              </Button>
+            )}
             <div className="md:hidden">
               <SummaryAccordion checks={menu.checks} />
             </div>
@@ -403,8 +462,18 @@ function MenuView({
           avoid={avoid}
           onChangeMeal={changeMeal}
           onChangeDay={changeDay}
+          onPick={(d, meal) => setPicking({ day: d, meal })}
+          canChangeDay={!!stored}
         />
       </div>
+
+      <RecipePicker
+        target={picking}
+        ageMonths={ageMonths}
+        avoid={avoid}
+        onClose={() => setPicking(null)}
+        onPick={pick}
+      />
 
       <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
         <DialogContent

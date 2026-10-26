@@ -88,12 +88,13 @@ const toRefs = (plan: Plan): EntryRef[] =>
 
 function buildMenu(entries: StoredEntry[], ageMonths: number, now: Date): Menu {
   const week = weekOf(now);
-  const meals = MENU_MEALS.filter((m) => entries.some((e) => e.meal === m));
+  const meals = mealsForAge(ageMonths); // los huecos sin receta (menú armado a mano) cuentan como faltantes
   const byCode = new Map(entries.map((e) => [e.recipe.code, toCandidate(e)]));
   return {
     weekStart: week.weekStart,
     today: week.today,
     ageMonths,
+    meals,
     days: [1, 2, 3, 4, 5, 6, 7].map((day) => ({
       day,
       meals: meals.flatMap((meal) => {
@@ -191,10 +192,11 @@ export async function regenerate(
   const changed = toRefs(result.plan).filter(
     (r) => plan[slotKey(r.day, r.meal)] !== r.recipe,
   );
-  const previous = changed.map((r) => ({
-    ...r,
-    recipe: plan[slotKey(r.day, r.meal)]!,
-  }));
+  // Los huecos que estaban vacíos no se pueden deshacer (no hay receta anterior que restaurar).
+  const previous = changed.flatMap((r) => {
+    const recipe = plan[slotKey(r.day, r.meal)];
+    return recipe ? [{ ...r, recipe }] : [];
+  });
   if (changed.length)
     await deps.menu.setEntries(householdId, weekStart, changed);
 
@@ -208,8 +210,8 @@ export async function regenerate(
   };
 }
 
-// Pone recetas concretas en huecos del menú (deshacer, «Poner en el menú»). No filtra por alérgenos:
-// la familia puede elegir «Poner en el menú igual».
+// Pone recetas concretas en huecos del menú (elegir a mano, deshacer, «Poner en el menú»); también arma un menú
+// desde cero. No filtra por alérgenos: la familia puede elegir «Poner en el menú igual».
 export async function setEntries(
   deps: Deps,
   householdId: string,
@@ -217,7 +219,6 @@ export async function setEntries(
 ): Promise<{ ok: true; menu: Menu } | Fail> {
   const state = await load(deps, householdId);
   if (!state) return fail("baby_required");
-  if (state.entries.length === 0) return fail("no_menu");
 
   const entries = input.entries.map((e) => ({
     ...e,

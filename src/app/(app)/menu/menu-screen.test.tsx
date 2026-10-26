@@ -27,6 +27,7 @@ const menuWith = (ageMonths: number, tag = "v1"): Menu => ({
   weekStart: "2026-10-26",
   today: 3,
   ageMonths,
+  meals: MEALS,
   days: [1, 2, 3, 4, 5, 6, 7].map((day) => ({
     day,
     meals: MEALS.map((meal) => ({
@@ -168,6 +169,96 @@ describe("menú semanal", () => {
         .length,
     ).toBeGreaterThan(0);
     expect(screen.getByText("Hay cosas por revisar")).toBeTruthy();
+  });
+
+  it("armar el menú a mano: elegir receta en un hueco vacío y recibir el menú con avisos", async () => {
+    api.get.mockImplementation(async (url: string) =>
+      url === "/baby"
+        ? { data: { baby: BABY(7) } }
+        : url === "/recipes"
+          ? {
+              data: {
+                recipes: [
+                  {
+                    ...menuWith(7).days[0]!.meals[0]!.recipe,
+                    code: "D9",
+                    title: "Avena con pera",
+                    allergens: [
+                      { slug: "gluten", name: "Gluten", isOptional: false },
+                    ],
+                  },
+                ],
+              },
+            }
+          : { data: { menu: null } },
+    );
+    api.put.mockResolvedValue({ data: { menu: menuWith(7) } });
+    const user = userEvent.setup();
+    renderWithQuery(<MenuScreen />);
+
+    await user.click(
+      await screen.findByRole("button", { name: "Armar yo mi menú" }),
+    );
+    const slots = await dayView.findByText(/Desayuno · sin receta/);
+    expect(slots).toBeTruthy();
+    await user.click(
+      dayView.getByRole("button", { name: /^Elegir desayuno del/ }),
+    );
+    await user.click(await screen.findByText("Avena con pera"));
+
+    await waitFor(() =>
+      expect(api.put).toHaveBeenCalledWith("/menu/entries", {
+        entries: [{ day: expect.any(Number), meal: "desayuno", recipe: "D9" }],
+      }),
+    );
+    expect(api.get).toHaveBeenCalledWith(
+      "/recipes",
+      expect.objectContaining({
+        params: expect.objectContaining({ meal: "desayuno", age: 7 }),
+      }),
+    );
+  });
+
+  it("elegir a mano una receta con un alérgeno que se evita pide confirmación", async () => {
+    api.get.mockImplementation(async (url: string) =>
+      url === "/baby"
+        ? { data: { baby: { ...BABY(7), allergens: { gluten: "avoid" } } } }
+        : url === "/recipes"
+          ? {
+              data: {
+                recipes: [
+                  {
+                    ...menuWith(7).days[0]!.meals[0]!.recipe,
+                    code: "D9",
+                    title: "Avena con pera",
+                    allergens: [
+                      { slug: "gluten", name: "Gluten", isOptional: false },
+                    ],
+                  },
+                ],
+              },
+            }
+          : { data: { menu: null } },
+    );
+    api.put.mockResolvedValue({ data: { menu: menuWith(7) } });
+    const user = userEvent.setup();
+    renderWithQuery(<MenuScreen />);
+
+    await user.click(
+      await screen.findByRole("button", { name: "Armar yo mi menú" }),
+    );
+    await user.click(
+      await within(await screen.findByTestId("day-view")).findByRole("button", {
+        name: /^Elegir desayuno del/,
+      }),
+    );
+    await user.click(await screen.findByText("Avena con pera"));
+    expect(api.put).not.toHaveBeenCalled();
+
+    await user.click(
+      await screen.findByRole("button", { name: "Poner en el menú igual" }),
+    );
+    await waitFor(() => expect(api.put).toHaveBeenCalledTimes(1));
   });
 
   it("cambiar una comida actualiza el menú y permite deshacer", async () => {
