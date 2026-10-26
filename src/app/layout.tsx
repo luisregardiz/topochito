@@ -25,7 +25,7 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Recetario",
+  title: "topochito",
   description: "Recetas y menú semanal para la alimentación complementaria",
 };
 

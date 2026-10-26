@@ -38,11 +38,11 @@ export function AccessScreen({ deleted }: { deleted: boolean }) {
       <header>
         {deleted ? (
           <p className="font-display text-[32px] leading-tight md:text-4xl xl:text-[32px]">
-            Recetario<span className="text-primary">.</span>
+            topochito<span className="text-primary">.</span>
           </p>
         ) : (
           <h1 className="font-display text-[32px] leading-tight md:text-4xl xl:text-[32px]">
-            Recetario<span className="text-primary">.</span>
+            topochito<span className="text-primary">.</span>
           </h1>
         )}
         <p className="mt-2 text-lg text-muted-foreground xl:text-base">

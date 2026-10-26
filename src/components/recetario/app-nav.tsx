@@ -72,8 +72,8 @@ export function AppNav({
         aria-label="Principal"
         className="sticky top-0 hidden h-dvh w-56 shrink-0 flex-col gap-1 border-r bg-card p-4 xl:flex"
       >
-        <p className="font-display text-3xl leading-none">
-          Recetario<span className="text-primary">.</span>
+        <p className="font-display text-3xl leading-none mb-4">
+          topochito<span className="text-primary">.</span>
         </p>
         <div className="mb-4 text-sm text-muted-foreground">
           <p className="truncate">{familyName}</p>
