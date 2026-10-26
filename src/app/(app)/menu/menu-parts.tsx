@@ -110,7 +110,7 @@ export function MealCard({
           href={`/recetas/${recipe.code}`}
           className="flex gap-3 rounded-md outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
         >
-          <MealThumb meal={recipe.mealType} />
+          <MealThumb meal={recipe.mealType} src={recipe.thumbUrl} />
           <div className="flex min-w-0 flex-1 flex-col gap-2">
             <div className="flex items-center justify-between gap-2 text-base text-muted-foreground">
               <span>

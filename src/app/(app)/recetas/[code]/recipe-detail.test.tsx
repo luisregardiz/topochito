@@ -27,6 +27,9 @@ const d10: RecipeDetail = {
   minAgeMonths: 7,
   isIronSource: true,
   ironNote: null,
+  thumbUrl: null,
+  imageUrl: null,
+  video: null,
   note: "La harina de maíz precocida está enriquecida con hierro.",
   allergens: [
     { slug: "lacteos", name: "Lácteos", isOptional: false, condition: null },
@@ -217,5 +220,46 @@ describe("detalle con el perfil del bebé", () => {
       await screen.findByText("Tiras de arepa untadas, sin costra dura."),
     ).toBeTruthy();
     expect(screen.queryByText("✓ Tu bebé")).toBeNull();
+  });
+});
+
+describe("detalle con foto y video", () => {
+  const media = {
+    ...d10,
+    imageUrl:
+      "https://res.cloudinary.com/demo/image/upload/c_fill/recetario/D10",
+    video: {
+      src: "https://res.cloudinary.com/demo/video/upload/q_auto/recetario/D10-video.mp4",
+      poster:
+        "https://res.cloudinary.com/demo/video/upload/so_0/recetario/D10-video.jpg",
+    },
+  };
+
+  it("muestra la foto principal y, al final, la sección del video", async () => {
+    get.mockResolvedValue({ data: media });
+    renderWithQuery(<RecipeDetailScreen code="D10" />);
+
+    const photo = await screen.findByRole("img", {
+      name: `Foto de ${d10.title}`,
+    });
+    expect(photo.getAttribute("src")).toBe(media.imageUrl);
+    expect(
+      screen.getByRole("heading", { name: "Video de la preparación" }),
+    ).toBeTruthy();
+    expect(
+      screen.getByRole("button", { name: /Reproducir video/ }),
+    ).toBeTruthy();
+  });
+
+  it("sin video no hay sección, y sin foto se ve el placeholder 4:3", async () => {
+    get.mockResolvedValue({ data: d10 });
+    renderWithQuery(<RecipeDetailScreen code="D10" />);
+
+    await screen.findByRole("heading", { name: /Arepita dominó/ });
+    expect(
+      screen.queryByRole("heading", { name: "Video de la preparación" }),
+    ).toBeNull();
+    expect(screen.queryByRole("img", { name: /Foto de/ })).toBeNull();
+    expect(screen.getByText("Desayuno", { selector: "span" })).toBeTruthy(); // etiqueta del placeholder
   });
 });

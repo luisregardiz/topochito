@@ -45,11 +45,14 @@ export type RecipeListItem = {
   minAgeMonths: number | null;
   isIronSource: boolean;
   ironNote: string | null;
+  thumbUrl: string | null; // miniatura 1:1; null si la receta aún no tiene foto
   allergens: RecipeAllergen[];
 };
 
 export type RecipeDetail = RecipeListItem & {
   note: string | null;
+  imageUrl: string | null; // imagen principal 4:3
+  video: { src: string; poster: string } | null;
   ingredients: string[];
   steps: string[];
   ageAdaptations: {

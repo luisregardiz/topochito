@@ -1,10 +1,11 @@
 // Carga idempotente de src/db/seed/recetario.json. Uso: pnpm db:seed (local o contra Neon según DATABASE_URL).
 // No importa server-only ni lib/env: corre fuera de Next.
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { drizzle } from "drizzle-orm/node-postgres";
-import { inArray, sql } from "drizzle-orm";
+import { eq, inArray, sql } from "drizzle-orm";
 import { Pool } from "pg";
 import { z } from "zod";
+import { isValidPublicId } from "@/lib/cloudinary-url";
 import * as s from "./schema";
 
 const meal = z.enum(["base", "desayuno", "almuerzo", "merienda", "cena"]);
@@ -77,6 +78,29 @@ const dataSchema = z.object({
     }),
   ),
 });
+
+// Medios (opcional): src/db/seed/media.json → { "D10": { "image": "recetario/D10", "video": "recetario/D10-video" } }.
+// Solo toca las recetas que aparecen; `null` borra el medio y omitir la clave lo deja como está.
+const publicId = z
+  .string()
+  .refine(
+    isValidPublicId,
+    "public ID inválido (solo letras, números, _, - y /)",
+  );
+const mediaSchema = z.record(
+  z.string().regex(/^[A-Za-z]\d{1,2}$/),
+  z
+    .object({
+      image: publicId.nullable().optional(),
+      video: publicId.nullable().optional(),
+    })
+    .strict(),
+);
+const MEDIA_FILE = "src/db/seed/media.json";
+const loadMedia = () =>
+  existsSync(MEDIA_FILE)
+    ? mediaSchema.parse(JSON.parse(readFileSync(MEDIA_FILE, "utf8")))
+    : {};
 
 async function main() {
   const url = process.env.DATABASE_URL;
@@ -253,6 +277,19 @@ async function main() {
         ],
         set: { recipeId: sql`excluded.recipe_id`, label: sql`excluded.label` },
       });
+
+    // Medios de las recetas (imagen y video de Cloudinary)
+    for (const [code, m] of Object.entries(loadMedia())) {
+      const patch = {
+        ...(m.image !== undefined && { imagePublicId: m.image }),
+        ...(m.video !== undefined && { videoPublicId: m.video }),
+      };
+      if (Object.keys(patch).length === 0) continue;
+      await tx
+        .update(s.recipe)
+        .set(patch)
+        .where(eq(s.recipe.id, idOf(code.toUpperCase())));
+    }
 
     // Guías sin clave natural: se reemplazan completas
     await tx.delete(s.foodGuide);

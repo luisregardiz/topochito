@@ -15,7 +15,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { BackButton } from "@/components/recetario/back-button";
 import { EmptyState } from "@/components/recetario/empty-state";
-import { MEALS, RecipeImage } from "@/components/recetario/meal";
+import { MEALS, RecipeImage, RecipeVideo } from "@/components/recetario/meal";
 import { AllergenBadge, IronBadge } from "@/components/recetario/recipe-badges";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
@@ -183,7 +183,11 @@ function Recipe({
         )}
 
         <header className="order-1 flex flex-col gap-4">
-          <RecipeImage meal={recipe.mealType} />
+          <RecipeImage
+            meal={recipe.mealType}
+            src={recipe.imageUrl}
+            alt={`Foto de ${recipe.title}`}
+          />
           <div>
             <p className="text-base text-muted-foreground">
               {meal.label} · <span className="font-mono">{recipe.code}</span>
@@ -246,7 +250,7 @@ function Recipe({
             {recipe.steps.map((step, i) => (
               <li key={i} className="flex gap-4">
                 <span
-                  className="font-display w-8 shrink-0 text-[40px] leading-none text-primary"
+                  className="font-display w-10 shrink-0 text-4xl leading-none text-primary"
                   aria-hidden
                 >
                   {i + 1}
@@ -269,7 +273,7 @@ function Recipe({
                   href={`/recetas/${u.code}`}
                   className="rounded-md outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
                 >
-                  <Card className="transition-colors hover:bg-muted/50">
+                  <Card className="transition-[background-color,box-shadow] hover:bg-muted/50 hover:shadow-(--glow-soft)">
                     <CardContent className="flex min-h-10 items-center gap-3">
                       <CookingPot
                         className="size-6 shrink-0 text-primary"
@@ -290,6 +294,12 @@ function Recipe({
                 </Link>
               ))}
             </div>
+          </Section>
+        )}
+
+        {recipe.video && (
+          <Section title="Video de la preparación" className="order-7">
+            <RecipeVideo video={recipe.video} title={recipe.title} />
           </Section>
         )}
       </div>

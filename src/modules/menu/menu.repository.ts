@@ -1,6 +1,7 @@
 import "server-only";
 import { and, asc, eq, inArray, lte, ne, notExists, sql } from "drizzle-orm";
 import { getDb } from "@/db/client";
+import { thumbUrlOf } from "@/lib/media";
 import {
   allergen,
   householdMenuEntry,
@@ -111,6 +112,7 @@ export const menuRepository = {
         minAgeMonths: recipe.minAgeMonths,
         isIronSource: recipe.isIronSource,
         ironNote: recipe.ironNote,
+        imagePublicId: recipe.imagePublicId,
       })
       .from(householdMenuEntry)
       .innerJoin(recipe, eq(recipe.id, householdMenuEntry.recipeId))
@@ -125,12 +127,16 @@ export const menuRepository = {
       allergensByRecipeId(rows.map((r) => r.id)),
       flagSets(),
     ]);
-    return rows.map(({ id, day, meal, ...r }) => ({
+    return rows.map(({ id, day, meal, imagePublicId, ...r }) => ({
       day,
       meal: meal as MenuMeal,
       isFish: flags.fish.has(id),
       isMaxOnce: flags.maxOnce.has(id),
-      recipe: { ...r, allergens: allergens.get(id) ?? [] },
+      recipe: {
+        ...r,
+        thumbUrl: thumbUrlOf(imagePublicId),
+        allergens: allergens.get(id) ?? [],
+      },
     }));
   },
 

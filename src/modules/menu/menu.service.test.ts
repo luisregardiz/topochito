@@ -52,6 +52,7 @@ function fakeDeps(
     minAgeMonths: 7,
     isIronSource: CATALOG.find((c) => c.code === code)!.isIron,
     ironNote: null,
+    thumbUrl: null,
     allergens: [],
   });
   const deps: Deps = {

@@ -14,6 +14,7 @@ import {
   type SQL,
 } from "drizzle-orm";
 import { getDb } from "@/db/client";
+import { heroUrlOf, thumbUrlOf, videoOf } from "@/lib/media";
 import {
   allergen,
   recipe,
@@ -125,6 +126,7 @@ export const recipesRepository = {
         minAgeMonths: recipe.minAgeMonths,
         isIronSource: recipe.isIronSource,
         ironNote: recipe.ironNote,
+        imagePublicId: recipe.imagePublicId,
       })
       .from(recipe)
       .where(and(...where))
@@ -133,8 +135,9 @@ export const recipesRepository = {
 
     const byRecipe = await allergensByRecipeId(rows.map((r) => r.id));
 
-    return rows.map(({ id, ...r }) => ({
+    return rows.map(({ id, imagePublicId, ...r }) => ({
       ...r,
+      thumbUrl: thumbUrlOf(imagePublicId),
       allergens: byRecipe.get(id) ?? [],
     }));
   },
@@ -159,6 +162,9 @@ export const recipesRepository = {
       minAgeMonths: r.minAgeMonths,
       isIronSource: r.isIronSource,
       ironNote: r.ironNote,
+      thumbUrl: thumbUrlOf(r.imagePublicId),
+      imageUrl: heroUrlOf(r.imagePublicId),
+      video: videoOf(r.videoPublicId),
       note: r.note,
       allergens: r.allergens
         .toSorted((a, b) => a.allergen.id - b.allergen.id)

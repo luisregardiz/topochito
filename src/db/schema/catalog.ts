@@ -37,6 +37,9 @@ export const recipe = recetario.table(
     isIronSource: boolean("is_iron_source").notNull().default(false),
     ironNote: text("iron_note"),
     note: text(),
+    // Public IDs de Cloudinary (p. ej. "recetario/D10"); la URL se arma en src/lib/media.ts. null = sin medio.
+    imagePublicId: text("image_public_id"),
+    videoPublicId: text("video_public_id"),
     sortOrder: smallint("sort_order").notNull(),
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()

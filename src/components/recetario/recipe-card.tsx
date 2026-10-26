@@ -11,9 +11,9 @@ export function RecipeCard({ recipe }: { recipe: RecipeListItem }) {
       href={`/recetas/${recipe.code}`}
       className="block rounded-md outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
     >
-      <Card className="transition-colors hover:bg-muted/50">
+      <Card className="transition-[background-color,box-shadow] hover:bg-muted/50 hover:shadow-(--glow-soft)">
         <CardContent className="flex gap-3">
-          <MealThumb meal={recipe.mealType} />
+          <MealThumb meal={recipe.mealType} src={recipe.thumbUrl} />
           <div className="flex min-w-0 flex-1 flex-col gap-2">
             <div className="flex items-center justify-between gap-2 text-base text-muted-foreground">
               <span>

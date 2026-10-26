@@ -36,6 +36,13 @@
       "when": 1792965152399,
       "tag": "0004_bebe_y_menu",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1792972132622,
+      "tag": "0005_medios_receta",
+      "breakpoints": true
     }
   ]
 }

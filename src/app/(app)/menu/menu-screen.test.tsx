@@ -38,6 +38,7 @@ const menuWith = (ageMonths: number, tag = "v1"): Menu => ({
         minAgeMonths: 7,
         isIronSource: meal === "almuerzo",
         ironNote: null,
+        thumbUrl: null,
         allergens: [],
       },
     })),

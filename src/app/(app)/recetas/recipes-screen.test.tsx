@@ -19,6 +19,7 @@ const recipe = (over: Partial<RecipeListItem>): RecipeListItem => ({
   minAgeMonths: 7,
   isIronSource: true,
   ironNote: "si usas avena enriquecida",
+  thumbUrl: null,
   allergens: [
     { slug: "mani", name: "Maní", isOptional: false, condition: null },
   ],
