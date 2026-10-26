@@ -16,6 +16,11 @@ import {
 import { getDb } from "@/db/client";
 import { heroUrlOf, thumbUrlOf, videoOf } from "@/lib/media";
 import {
+  missingFoods,
+  missingInLine,
+} from "@/modules/pantry/pantry.availability";
+import { pantryRepository } from "@/modules/pantry/pantry.repository";
+import {
   allergen,
   recipe,
   recipeAllergen,
@@ -58,7 +63,10 @@ export async function allergensByRecipeId(ids: number[]) {
 }
 
 export const recipesRepository = {
-  list: async (f: RecipeListQuery): Promise<RecipeListItem[]> => {
+  list: async (
+    f: RecipeListQuery,
+    householdId: string,
+  ): Promise<RecipeListItem[]> => {
     const db = getDb();
     const where: (SQL | undefined)[] = [];
 
@@ -133,16 +141,29 @@ export const recipesRepository = {
       .orderBy(asc(recipe.sortOrder));
     if (rows.length === 0) return [];
 
-    const byRecipe = await allergensByRecipeId(rows.map((r) => r.id));
+    const [byRecipe, pantry] = await Promise.all([
+      allergensByRecipeId(rows.map((r) => r.id)),
+      pantryRepository.availability(householdId),
+    ]);
 
-    return rows.map(({ id, imagePublicId, ...r }) => ({
+    const items = rows.map(({ id, imagePublicId, ...r }) => ({
       ...r,
       thumbUrl: thumbUrlOf(imagePublicId),
+      missingFoods: missingFoods(
+        pantry.requirements.get(id) ?? [],
+        pantry.unavailable,
+      ),
       allergens: byRecipe.get(id) ?? [],
     }));
+    return f.cookable
+      ? items.filter((i) => i.missingFoods.length === 0)
+      : items;
   },
 
-  findByCode: async (code: string): Promise<RecipeDetail | null> => {
+  findByCode: async (
+    code: string,
+    householdId: string,
+  ): Promise<RecipeDetail | null> => {
     const r = await getDb().query.recipe.findFirst({
       where: eq(recipe.code, code),
       with: {
@@ -155,6 +176,8 @@ export const recipesRepository = {
       },
     });
     if (!r) return null;
+    const pantry = await pantryRepository.availability(householdId);
+    const requirements = pantry.requirements.get(r.id) ?? [];
     return {
       code: r.code,
       title: r.title,
@@ -174,7 +197,19 @@ export const recipesRepository = {
           isOptional: x.isOptional,
           condition: x.condition,
         })),
-      ingredients: r.ingredients.map((i) => i.description),
+      missingFoods: missingFoods(requirements, pantry.unavailable),
+      ingredients: r.ingredients.map((i) => ({
+        text: i.description,
+        optional: i.isOptional,
+        missing: missingInLine(
+          requirements.find((q) => q.position === i.position) ?? {
+            position: i.position,
+            optional: false,
+            groups: [],
+          },
+          pantry.unavailable,
+        ),
+      })),
       steps: r.steps.map((s) => s.instruction),
       ageAdaptations: r.ageAdaptations.map((a) => ({
         minAgeMonths: a.minAgeMonths,

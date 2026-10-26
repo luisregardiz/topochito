@@ -7,6 +7,7 @@ import {
   Moon,
   RefreshCw,
   ShieldAlert,
+  ShoppingBasket,
   TriangleAlert,
   WifiOff,
 } from "lucide-react";
@@ -190,6 +191,7 @@ function MenuView({
   const generateButton = (className?: string) => (
     <Button
       size="lg"
+      variant={menu ? "outline" : "default"}
       className={cn("w-full", className)}
       disabled={gen.isPending}
       onClick={() => (menu ? setConfirmOpen(true) : generate())}
@@ -266,6 +268,14 @@ function MenuView({
     ).values(),
   ];
 
+  // Lo mismo con la despensa: la familia pudo marcar un alimento como «no lo consigo» después de generar el menú.
+  const lacking = menu.days
+    .flatMap((d) => d.meals)
+    .filter((m) => m.recipe.missingFoods.length > 0);
+  const lackingNames = [
+    ...new Set(lacking.flatMap((m) => m.recipe.missingFoods)),
+  ];
+
   return (
     <>
       <header className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
@@ -286,6 +296,28 @@ function MenuView({
       </header>
 
       {genError}
+
+      {lacking.length > 0 && (
+        <Alert variant="warning">
+          <ShoppingBasket />
+          <AlertTitle className="font-bold">
+            Este menú tiene recetas con alimentos que no consigues
+          </AlertTitle>
+          <AlertDescription>
+            Te faltan: {lackingNames.join(", ")}.{" "}
+            {lacking.length === 1
+              ? "Está en 1 comida"
+              : `Están en ${lacking.length} comidas`}{" "}
+            de este menú. Genera un menú nuevo para cambiarlas.
+            <Button
+              className="mt-3 w-full"
+              onClick={() => setConfirmOpen(true)}
+            >
+              <RefreshCw aria-hidden /> Generar menú nuevo
+            </Button>
+          </AlertDescription>
+        </Alert>
+      )}
 
       {conflicts.length > 0 && (
         <Alert variant="destructive">
@@ -313,6 +345,7 @@ function MenuView({
 
       {/* Móvil y tablet: un día a la vez */}
       <div className="flex flex-col gap-4 xl:hidden" data-testid="day-view">
+        {generateButton()}
         <DayPicker menu={menu} value={selected} onChange={setDay} />
         <div className="flex flex-col gap-6 md:grid md:grid-cols-[minmax(0,640px)_260px] md:items-start">
           <div className="flex flex-col gap-3">
@@ -358,9 +391,6 @@ function MenuView({
           <div className="hidden md:block">
             <SummaryCard checks={menu.checks} />
           </div>
-        </div>
-        <div className="sticky bottom-[88px] z-30 md:static">
-          {generateButton("shadow-lg md:shadow-none")}
         </div>
       </div>
 

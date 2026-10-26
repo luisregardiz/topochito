@@ -39,6 +39,7 @@ const menuWith = (ageMonths: number, tag = "v1"): Menu => ({
         isIronSource: meal === "almuerzo",
         ironNote: null,
         thumbUrl: null,
+        missingFoods: [],
         allergens: [],
       },
     })),
@@ -348,5 +349,79 @@ describe("menú con un alérgeno que ahora se evita", () => {
     renderWithQuery(<MenuScreen />);
     await dayView.findByText("desayuno del día 3 v1");
     expect(screen.queryByText(/Este menú tiene recetas con/)).toBeNull();
+  });
+});
+
+describe("menú con alimentos que ya no se consiguen", () => {
+  const lacksSalmon = (): Menu => {
+    const menu = menuWith(7);
+    const lunch = menu.days[2]!.meals.find((m) => m.meal === "almuerzo")!;
+    lunch.recipe.missingFoods = ["salmón"];
+    return menu;
+  };
+
+  it("avisa, marca la receta y ofrece generar de nuevo", async () => {
+    serve(BABY(7), lacksSalmon());
+    renderWithQuery(<MenuScreen />);
+
+    expect(
+      await screen.findByText(
+        "Este menú tiene recetas con alimentos que no consigues",
+      ),
+    ).toBeTruthy();
+    expect(screen.getByText(/Te faltan: salmón/)).toBeTruthy();
+    expect(screen.getByText(/Está en 1 comida de este menú/)).toBeTruthy();
+    expect(dayView.getByText("Te falta: salmón")).toBeTruthy();
+    expect(
+      screen.getByRole("button", { name: "Generar menú nuevo" }),
+    ).toBeTruthy();
+  });
+
+  it("sin faltantes no hay aviso", async () => {
+    serve(BABY(7), menuWith(7));
+    renderWithQuery(<MenuScreen />);
+    await dayView.findByText("desayuno del día 3 v1");
+    expect(screen.queryByText(/alimentos que no consigues/)).toBeNull();
+    expect(screen.queryByText(/Te falta/)).toBeNull();
+  });
+});
+
+describe("selector de días y botón de generar", () => {
+  it("el selector no hereda la altura fija de 32 px de shadcn (recortaba los días)", async () => {
+    serve(BABY(7), menuWith(7));
+    renderWithQuery(<MenuScreen />);
+    const tablist = await screen.findByRole("tablist", {
+      name: "Día de la semana",
+    });
+    expect(tablist.className).toContain("group-data-horizontal/tabs:h-auto");
+    expect(tablist.className).not.toContain("group-data-horizontal/tabs:h-8");
+    // cada día muestra letra, número y la fila de «Hoy» en un alto de 76 px
+    const hoy = screen
+      .getAllByRole("tab")
+      .find((t) => t.getAttribute("aria-label")?.includes("(hoy)"));
+    expect(hoy?.className).toContain("h-[76px]");
+    expect(hoy?.textContent).toContain("Hoy");
+  });
+
+  it("con menú, «Generar menú» queda arriba de los días, sin flotar, y es secundario", async () => {
+    serve(BABY(7), menuWith(7));
+    renderWithQuery(<MenuScreen />);
+    const view = await screen.findByTestId("day-view");
+    const button = within(view).getByRole("button", {
+      name: "Generar menú de la semana",
+    });
+    expect(view.firstElementChild).toBe(button); // primero de la vista, antes del selector de días
+    expect(button.closest(".sticky")).toBeNull();
+    expect(button.className).toContain("border"); // variante outline
+    expect(button.className).not.toContain("bg-primary");
+  });
+
+  it("sin menú, generar es la acción principal", async () => {
+    serve(BABY(7), null);
+    renderWithQuery(<MenuScreen />);
+    const button = await screen.findByRole("button", {
+      name: "Generar menú de la semana",
+    });
+    expect(button.className).toContain("bg-primary");
   });
 });

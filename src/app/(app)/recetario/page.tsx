@@ -1,4 +1,5 @@
-import { Clock } from "lucide-react";
+import { ChevronRight, Clock, ShoppingBasket } from "lucide-react";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { GuideLinks } from "@/components/recetario/guide-links";
@@ -55,6 +56,35 @@ async function Panel() {
           Si nadie abre este recetario en 30 días, se borra
         </AlertTitle>
       </Alert>
+      <section aria-labelledby="despensa" className="flex flex-col gap-3">
+        <h2 id="despensa" className="text-[22px] font-bold xl:text-xl">
+          Mi despensa
+        </h2>
+        <Card className="py-0">
+          <CardContent className="px-0">
+            <Link
+              href="/despensa"
+              className="flex min-h-16 items-center gap-3 px-4 py-3 outline-none hover:bg-muted/50 focus-visible:bg-muted"
+            >
+              <ShoppingBasket
+                className="size-6 shrink-0 text-primary"
+                aria-hidden
+              />
+              <span className="flex-1">
+                <span className="block font-bold">Alimentos que consigues</span>
+                <span className="block text-base text-muted-foreground">
+                  Marca lo que no compras y solo te propondremos recetas que
+                  puedas cocinar
+                </span>
+              </span>
+              <ChevronRight
+                className="size-5 shrink-0 text-muted-foreground"
+                aria-hidden
+              />
+            </Link>
+          </CardContent>
+        </Card>
+      </section>
       <GuideLinks />
     </>
   );

@@ -1,3 +1,4 @@
+import { requireHouseholdId } from "@/lib/current-session";
 import { handle, json } from "@/lib/http";
 import { recipesRepository } from "@/modules/recipes/recipes.repository";
 import { recipeListQuery } from "@/modules/recipes/recipes.schemas";
@@ -8,5 +9,8 @@ export const GET = handle(async (req) => {
   const raw = Object.fromEntries(
     [...new URL(req.url).searchParams].filter(([, v]) => v !== ""),
   );
-  return json(await listRecipes(recipesRepository, recipeListQuery.parse(raw)));
+  const query = recipeListQuery.parse(raw);
+  return json(
+    await listRecipes(recipesRepository, query, await requireHouseholdId()),
+  );
 });

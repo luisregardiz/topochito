@@ -34,6 +34,7 @@ import {
 } from "@/modules/recipes/recipes.queries";
 import { MEAL_TYPES, type MealType } from "@/modules/recipes/recipes.schemas";
 import { avoidedAllergens, useBaby } from "@/modules/babies/baby.queries";
+import { usePantry } from "@/modules/pantry/pantry.queries";
 import { RecipeFilters } from "./recipe-filters";
 
 const MEAL_CHIPS: { value: MealType | "all"; label: string }[] = [
@@ -47,13 +48,16 @@ const MEAL_CHIPS: { value: MealType | "all"; label: string }[] = [
 
 export function RecipesScreen() {
   const baby = useBaby().data;
+  const pantry = usePantry().data;
   // La edad y los alérgenos a evitar del perfil son el punto de partida; lo que la persona cambie los reemplaza.
-  const defaults: Partial<Filters> = baby
-    ? {
-        age: baby.ageMonths >= 6 ? Math.min(baby.ageMonths, 36) : null,
-        exclude: avoidedAllergens(baby),
-      }
-    : {};
+  // «Solo lo que puedo cocinar» arranca activo si la familia ya marcó algo que no consigue.
+  const defaults: Partial<Filters> = {
+    ...(baby && {
+      age: baby.ageMonths >= 6 ? Math.min(baby.ageMonths, 36) : null,
+      exclude: avoidedAllergens(baby),
+    }),
+    ...(pantry && { cookable: pantry.unavailable.length > 0 }),
+  };
   const [overrides, setOverrides] = useState<Partial<Filters>>({});
   const filters: Filters = { ...EMPTY_FILTERS, ...defaults, ...overrides };
   const [sheetOpen, setSheetOpen] = useState(false);
@@ -65,6 +69,7 @@ export function RecipesScreen() {
       age: null,
       exclude: [],
       iron: false,
+      cookable: false,
       tags: [],
     }));
 
@@ -77,6 +82,7 @@ export function RecipesScreen() {
 
   const summary = [
     filters.age !== null && `Para un bebé de ${filters.age} meses`,
+    filters.cookable && "con lo que consigues",
     filters.exclude.length > 0 &&
       `sin ${filters.exclude
         .map(

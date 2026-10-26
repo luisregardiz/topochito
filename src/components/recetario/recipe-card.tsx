@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import type { RecipeListItem } from "@/modules/recipes/recipes.schemas";
 import { MEALS, MealThumb } from "./meal";
-import { AllergenBadge, IronBadge } from "./recipe-badges";
+import { AllergenBadge, IronBadge, MissingFoodsBadge } from "./recipe-badges";
 
 export function RecipeCard({ recipe }: { recipe: RecipeListItem }) {
   return (
@@ -26,6 +26,7 @@ export function RecipeCard({ recipe }: { recipe: RecipeListItem }) {
               {recipe.title}
             </h3>
             <div className="flex flex-wrap gap-2">
+              <MissingFoodsBadge foods={recipe.missingFoods} />
               {recipe.isIronSource && <IronBadge note={recipe.ironNote} />}
               {recipe.allergens.map((a) => (
                 <AllergenBadge key={a.slug} allergen={a} />

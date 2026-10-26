@@ -20,6 +20,7 @@ const recipe = (over: Partial<RecipeListItem>): RecipeListItem => ({
   isIronSource: true,
   ironNote: "si usas avena enriquecida",
   thumbUrl: null,
+  missingFoods: [],
   allergens: [
     { slug: "mani", name: "Maní", isOptional: false, condition: null },
   ],
@@ -44,13 +45,39 @@ const lastRecipeParams = () =>
   get.mock.calls.filter(([url]) => url === "/recipes").at(-1)?.[1]
     .params as Record<string, unknown>;
 
+const PANTRY = {
+  foods: [],
+  unavailable: [] as string[],
+  recipes: { cookable: 71, total: 71 },
+};
+type Baby = {
+  birthMonth: number;
+  birthYear: number;
+  ageMonths: number;
+  allergens: Record<string, string>;
+};
+
+// Respuestas de cada endpoint que usa la pantalla del catálogo.
+function serve(
+  o: {
+    baby?: Baby | null;
+    pantry?: typeof PANTRY;
+    recipes?: RecipeListItem[];
+    fail?: boolean;
+  } = {},
+) {
+  get.mockImplementation(async (url: string) => {
+    if (url === "/allergens") return { data: { allergens: ALLERGENS } };
+    if (url === "/baby") return { data: { baby: o.baby ?? null } };
+    if (url === "/pantry") return { data: o.pantry ?? PANTRY };
+    if (o.fail) throw new Error("red");
+    return { data: { recipes: o.recipes ?? LIST } };
+  });
+}
+
 beforeEach(() => {
   get.mockReset();
-  get.mockImplementation(async (url: string) =>
-    url === "/allergens"
-      ? { data: { allergens: ALLERGENS } }
-      : { data: { recipes: LIST } },
-  );
+  serve();
 });
 
 describe("catálogo de recetas", () => {
@@ -105,11 +132,7 @@ describe("catálogo de recetas", () => {
   });
 
   it("sin resultados explica qué probar", async () => {
-    get.mockImplementation(async (url: string) =>
-      url === "/allergens"
-        ? { data: { allergens: ALLERGENS } }
-        : { data: { recipes: [] } },
-    );
+    serve({ recipes: [] });
     renderWithQuery(<RecipesScreen />);
     expect(await screen.findByText("No encontramos recetas")).toBeTruthy();
     expect(
@@ -118,10 +141,7 @@ describe("catálogo de recetas", () => {
   });
 
   it("si falla la carga ofrece reintentar", async () => {
-    get.mockImplementation(async (url: string) => {
-      if (url === "/allergens") return { data: { allergens: ALLERGENS } };
-      throw new Error("red");
-    });
+    serve({ fail: true });
     renderWithQuery(<RecipesScreen />);
     expect(
       await screen.findByText(
@@ -142,13 +162,7 @@ describe("catálogo con el perfil del bebé", () => {
     allergens: { mani: "avoid", huevo: "introduced" },
   };
 
-  beforeEach(() => {
-    get.mockImplementation(async (url: string) => {
-      if (url === "/baby") return { data: { baby: BABY } };
-      if (url === "/allergens") return { data: { allergens: ALLERGENS } };
-      return { data: { recipes: LIST } };
-    });
-  });
+  beforeEach(() => serve({ baby: BABY }));
 
   it("parte de la edad y de los alérgenos a evitar del perfil", async () => {
     renderWithQuery(<RecipesScreen />);
@@ -178,13 +192,73 @@ describe("catálogo con el perfil del bebé", () => {
   });
 
   it("un bebé menor de 6 meses no manda una edad inválida al API", async () => {
-    get.mockImplementation(async (url: string) => {
-      if (url === "/baby") return { data: { baby: { ...BABY, ageMonths: 3 } } };
-      if (url === "/allergens") return { data: { allergens: ALLERGENS } };
-      return { data: { recipes: LIST } };
-    });
+    serve({ baby: { ...BABY, ageMonths: 3 } });
     renderWithQuery(<RecipesScreen />);
     await screen.findByRole("link", { name: /Avena cremosa/ });
     expect(lastRecipeParams().age).toBeUndefined();
+  });
+});
+
+describe("catálogo con la despensa de la familia", () => {
+  const sinSalmon = {
+    foods: [],
+    unavailable: ["salmon"],
+    recipes: { cookable: 52, total: 71 },
+  };
+
+  it("sin nada marcado como «no lo consigo» no filtra por despensa", async () => {
+    serve();
+    renderWithQuery(<RecipesScreen />);
+    await screen.findByRole("link", { name: /Avena cremosa/ });
+    expect(lastRecipeParams().cookable).toBeUndefined();
+  });
+
+  it("si la familia marcó algo, arranca mostrando solo lo que puede cocinar", async () => {
+    serve({ pantry: sinSalmon });
+    renderWithQuery(<RecipesScreen />);
+    await waitFor(() => expect(lastRecipeParams().cookable).toBe("1"));
+    expect(
+      (await screen.findAllByText("con lo que consigues")).length,
+    ).toBeGreaterThan(0);
+  });
+
+  it("se puede ver todo desde el Sheet de filtros", async () => {
+    serve({ pantry: sinSalmon });
+    const user = userEvent.setup();
+    renderWithQuery(<RecipesScreen />);
+    await waitFor(() => expect(lastRecipeParams().cookable).toBe("1"));
+
+    await user.click(screen.getByRole("button", { name: /Filtros/ }));
+    const dialog = await screen.findByRole("dialog");
+    expect(
+      within(dialog)
+        .getByRole("link", { name: "Cambiar mi despensa" })
+        .getAttribute("href"),
+    ).toBe("/despensa");
+    await user.click(
+      within(dialog).getByRole("switch", { name: "Solo lo que puedo cocinar" }),
+    );
+    await waitFor(() => expect(lastRecipeParams().cookable).toBeUndefined());
+  });
+
+  it("las recetas a las que les falta algo lo dicen", async () => {
+    serve({
+      recipes: [
+        recipe({}),
+        recipe({
+          code: "A6",
+          title: "Pasta con salmón",
+          missingFoods: ["salmón"],
+        }),
+      ],
+    });
+    renderWithQuery(<RecipesScreen />);
+    const link = await screen.findByRole("link", { name: /Pasta con salmón/ });
+    expect(within(link).getByText("Te falta: salmón")).toBeTruthy();
+    expect(
+      within(screen.getByRole("link", { name: /Avena cremosa/ })).queryByText(
+        /Te falta/,
+      ),
+    ).toBeNull();
   });
 });

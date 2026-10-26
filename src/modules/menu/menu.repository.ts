@@ -2,6 +2,8 @@ import "server-only";
 import { and, asc, eq, inArray, lte, ne, notExists, sql } from "drizzle-orm";
 import { getDb } from "@/db/client";
 import { thumbUrlOf } from "@/lib/media";
+import { missingFoods } from "@/modules/pantry/pantry.availability";
+import { pantryRepository } from "@/modules/pantry/pantry.repository";
 import {
   allergen,
   householdMenuEntry,
@@ -51,12 +53,17 @@ async function idsByCode(codes: string[]) {
 
 export const menuRepository = {
   // Recetas aptas: de la edad del bebé y sin ningún alérgeno que deba evitar (aunque sea opcional).
+  // Recetas aptas: de la edad del bebé, sin alérgenos que evite y que la familia puede cocinar con su despensa.
   candidates: async (
     ageMonths: number,
     avoid: string[],
+    householdId: string,
   ): Promise<Candidate[]> => {
     const db = getDb();
-    const flags = await flagSets();
+    const [flags, pantry] = await Promise.all([
+      flagSets(),
+      pantryRepository.availability(householdId),
+    ]);
     const rows = await db
       .select({
         id: recipe.id,
@@ -89,7 +96,12 @@ export const menuRepository = {
         ),
       )
       .orderBy(asc(recipe.sortOrder));
-    return rows.map(({ id, ...r }) => ({
+    const cookable = rows.filter(
+      (r) =>
+        missingFoods(pantry.requirements.get(r.id) ?? [], pantry.unavailable)
+          .length === 0,
+    );
+    return cookable.map(({ id, ...r }) => ({
       ...r,
       meal: r.meal as MenuMeal,
       isFish: flags.fish.has(id),
@@ -123,9 +135,10 @@ export const menuRepository = {
         ),
       )
       .orderBy(asc(householdMenuEntry.dayOfWeek));
-    const [allergens, flags] = await Promise.all([
+    const [allergens, flags, pantry] = await Promise.all([
       allergensByRecipeId(rows.map((r) => r.id)),
       flagSets(),
+      pantryRepository.availability(householdId),
     ]);
     return rows.map(({ id, day, meal, imagePublicId, ...r }) => ({
       day,
@@ -135,6 +148,10 @@ export const menuRepository = {
       recipe: {
         ...r,
         thumbUrl: thumbUrlOf(imagePublicId),
+        missingFoods: missingFoods(
+          pantry.requirements.get(id) ?? [],
+          pantry.unavailable,
+        ),
         allergens: allergens.get(id) ?? [],
       },
     }));

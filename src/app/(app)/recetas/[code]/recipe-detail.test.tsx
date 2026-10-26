@@ -34,10 +34,11 @@ const d10: RecipeDetail = {
   allergens: [
     { slug: "lacteos", name: "Lácteos", isOptional: false, condition: null },
   ],
+  missingFoods: [],
   ingredients: [
-    "1–2 arepitas blandas (P5)",
-    "3 cdas de caraotas negras",
-    "1 cda de queso fresco",
+    { text: "1–2 arepitas blandas (P5)", optional: false, missing: [] },
+    { text: "3 cdas de caraotas negras", optional: false, missing: [] },
+    { text: "1 cda de queso fresco", optional: false, missing: [] },
   ],
   steps: ["Calienta las caraotas.", "Abre las arepitas y úntalas."],
   ageAdaptations: [
@@ -103,7 +104,9 @@ describe("detalle de receta", () => {
     await user.click(
       screen.getByRole("button", { name: /Copiar ingredientes/ }),
     );
-    expect(copyText).toHaveBeenCalledWith(d10.ingredients.join("\n"));
+    expect(copyText).toHaveBeenCalledWith(
+      d10.ingredients.map((i) => i.text).join("\n"),
+    );
     expect(toast.success).toHaveBeenCalledWith("Ingredientes copiados");
   });
 
@@ -261,5 +264,46 @@ describe("detalle con foto y video", () => {
     ).toBeNull();
     expect(screen.queryByRole("img", { name: /Foto de/ })).toBeNull();
     expect(screen.getByText("Desayuno", { selector: "span" })).toBeTruthy(); // etiqueta del placeholder
+  });
+});
+
+describe("detalle con la despensa de la familia", () => {
+  const sinSalmon: RecipeDetail = {
+    ...d10,
+    missingFoods: ["salmón"],
+    ingredients: [
+      { text: "1–2 arepitas blandas (P5)", optional: false, missing: [] },
+      { text: "60 g de salmón sin piel", optional: false, missing: ["salmón"] },
+    ],
+  };
+
+  it("avisa de lo que falta, marca el ingrediente y ofrece cambiar la despensa", async () => {
+    get.mockImplementation(async (url: string) =>
+      url === "/baby" ? { data: { baby: null } } : { data: sinSalmon },
+    );
+    renderWithQuery(<RecipeDetailScreen code="D10" />);
+
+    expect(await screen.findByText("Te falta: salmón")).toBeTruthy();
+    expect(screen.getByText(/lo consigues en Mi despensa/)).toBeTruthy();
+    expect(
+      screen
+        .getByRole("link", { name: "Cambiar mi despensa" })
+        .getAttribute("href"),
+    ).toBe("/despensa");
+    expect(
+      screen
+        .getByRole("link", { name: "Ver recetas que sí puedes cocinar" })
+        .getAttribute("href"),
+    ).toBe("/recetas");
+    expect(screen.getByText("No lo consigues: salmón")).toBeTruthy();
+    expect(screen.getAllByText(/No lo consigues/)).toHaveLength(1); // solo en la línea afectada
+  });
+
+  it("sin faltantes no hay aviso ni marcas", async () => {
+    get.mockResolvedValue({ data: d10 });
+    renderWithQuery(<RecipeDetailScreen code="D10" />);
+    await screen.findByRole("heading", { name: /Arepita dominó/ });
+    expect(screen.queryByText(/Te falta/)).toBeNull();
+    expect(screen.queryByText(/No lo consigues/)).toBeNull();
   });
 });

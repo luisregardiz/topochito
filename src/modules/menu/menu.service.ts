@@ -31,7 +31,11 @@ export type MenuError =
 
 export type Deps = {
   menu: {
-    candidates: (ageMonths: number, avoid: string[]) => Promise<Candidate[]>;
+    candidates: (
+      ageMonths: number,
+      avoid: string[],
+      householdId: string,
+    ) => Promise<Candidate[]>;
     getWeek: (householdId: string, weekStart: string) => Promise<StoredEntry[]>;
     replaceWeek: (
       householdId: string,
@@ -115,12 +119,13 @@ async function load(deps: Deps, householdId: string) {
 
 async function context(
   deps: Deps,
+  householdId: string,
   ageMonths: number,
   avoid: string[],
   known: Candidate[] = [],
 ): Promise<Ctx | null> {
   const meals = mealsForAge(ageMonths);
-  const candidates = await deps.menu.candidates(ageMonths, avoid);
+  const candidates = await deps.menu.candidates(ageMonths, avoid, householdId);
   const pools = Object.fromEntries(
     MENU_MEALS.map((m) => [m, candidates.filter((c) => c.meal === m)]),
   ) as Pools;
@@ -140,7 +145,7 @@ export async function generateMenu(
 ): Promise<{ ok: true; menu: Menu } | Fail> {
   const state = await load(deps, householdId);
   if (!state) return fail("baby_required");
-  const ctx = await context(deps, state.ageMonths, state.avoid);
+  const ctx = await context(deps, householdId, state.ageMonths, state.avoid);
   const plan = ctx && generateWeek(ctx);
   if (!plan) return fail("not_enough_recipes");
 
@@ -171,6 +176,7 @@ export async function regenerate(
 
   const ctx = await context(
     deps,
+    householdId,
     state.ageMonths,
     state.avoid,
     state.entries.map(toCandidate),

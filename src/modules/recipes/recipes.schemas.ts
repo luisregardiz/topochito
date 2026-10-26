@@ -26,6 +26,7 @@ export const recipeListQuery = z.object({
   exclude: slugList.optional(), // slugs de alérgenos a evitar
   tags: slugList.optional(), // todas las etiquetas indicadas
   iron: z.literal("1").optional(),
+  cookable: z.literal("1").optional(), // solo recetas que la familia puede cocinar con su despensa
 });
 export type RecipeListQuery = z.infer<typeof recipeListQuery>;
 
@@ -46,6 +47,7 @@ export type RecipeListItem = {
   isIronSource: boolean;
   ironNote: string | null;
   thumbUrl: string | null; // miniatura 1:1; null si la receta aún no tiene foto
+  missingFoods: string[]; // alimentos que la familia no consigue y la receta necesita; vacío = se puede cocinar
   allergens: RecipeAllergen[];
 };
 
@@ -53,7 +55,7 @@ export type RecipeDetail = RecipeListItem & {
   note: string | null;
   imageUrl: string | null; // imagen principal 4:3
   video: { src: string; poster: string } | null;
-  ingredients: string[];
+  ingredients: { text: string; optional: boolean; missing: string[] }[];
   steps: string[];
   ageAdaptations: {
     minAgeMonths: number;

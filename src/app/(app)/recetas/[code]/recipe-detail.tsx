@@ -8,6 +8,7 @@ import {
   Info,
   MapPinOff,
   ShieldAlert,
+  ShoppingBasket,
   TriangleAlert,
 } from "lucide-react";
 import Link from "next/link";
@@ -182,6 +183,43 @@ function Recipe({
           </Alert>
         )}
 
+        {recipe.missingFoods.length > 0 && (
+          <Alert variant="warning" className="order-first">
+            <ShoppingBasket />
+            <AlertTitle className="font-bold">
+              Te falta: {recipe.missingFoods.join(", ")}
+            </AlertTitle>
+            <AlertDescription>
+              Marcaste{" "}
+              {recipe.missingFoods.length === 1
+                ? "ese alimento"
+                : "esos alimentos"}{" "}
+              como que no
+              {recipe.missingFoods.length === 1
+                ? " lo consigues"
+                : " los consigues"}{" "}
+              en Mi despensa.
+              <div className="mt-3 flex flex-col gap-2">
+                <Link
+                  href="/recetas"
+                  className={cn(
+                    buttonVariants({ variant: "outline" }),
+                    "w-full",
+                  )}
+                >
+                  Ver recetas que sí puedes cocinar
+                </Link>
+                <Link
+                  href="/despensa"
+                  className={cn(buttonVariants({ variant: "ghost" }), "w-full")}
+                >
+                  Cambiar mi despensa
+                </Link>
+              </div>
+            </AlertDescription>
+          </Alert>
+        )}
+
         <header className="order-1 flex flex-col gap-4">
           <RecipeImage
             meal={recipe.mealType}
@@ -311,7 +349,7 @@ function Ingredients({
   items,
   className,
 }: {
-  items: string[];
+  items: RecipeDetail["ingredients"];
   className?: string;
 }) {
   const [checked, setChecked] = useState<ReadonlySet<number>>(new Set());
@@ -325,19 +363,27 @@ function Ingredients({
   return (
     <Section title="Ingredientes" className={className}>
       <ul className="flex flex-col divide-y rounded-md border">
-        {items.map((text, i) => (
+        {items.map((item, i) => (
           <li key={i}>
             <Label className="flex min-h-14 cursor-pointer items-center gap-3 px-4 py-2 text-lg font-normal xl:text-base">
               <Checkbox
                 checked={checked.has(i)}
                 onCheckedChange={() => toggle(i)}
               />
-              <span
-                className={cn(
-                  checked.has(i) && "text-muted-foreground line-through",
+              <span className="flex flex-col items-start gap-1">
+                <span
+                  className={cn(
+                    checked.has(i) && "text-muted-foreground line-through",
+                  )}
+                >
+                  {item.text}
+                </span>
+                {item.missing.length > 0 && (
+                  <Badge variant="warning">
+                    <ShoppingBasket aria-hidden />
+                    No lo consigues: {item.missing.join(", ")}
+                  </Badge>
                 )}
-              >
-                {text}
               </span>
             </Label>
           </li>
@@ -348,7 +394,7 @@ function Ingredients({
         size="lg"
         className="w-full"
         onClick={async () => {
-          await copyText(items.join("\n"));
+          await copyText(items.map((i) => i.text).join("\n"));
           toast.success("Ingredientes copiados");
         }}
       >

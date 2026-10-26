@@ -44,7 +44,9 @@ function fakeDeps(
   } = {},
 ) {
   const rows = new Map<string, string>(); // "día:comida" → código
-  const calls = { candidates: [] as { age: number; avoid: string[] }[] };
+  const calls = {
+    candidates: [] as { age: number; avoid: string[]; householdId: string }[],
+  };
   const recipe = (code: string, meal: MenuMeal): RecipeListItem => ({
     code,
     title: `Receta ${code}`,
@@ -53,12 +55,13 @@ function fakeDeps(
     isIronSource: CATALOG.find((c) => c.code === code)!.isIron,
     ironNote: null,
     thumbUrl: null,
+    missingFoods: [],
     allergens: [],
   });
   const deps: Deps = {
     menu: {
-      candidates: async (age, avoid) => (
-        calls.candidates.push({ age, avoid }),
+      candidates: async (age, avoid, householdId) => (
+        calls.candidates.push({ age, avoid, householdId }),
         CATALOG.filter((c) => c.meal !== "cena" || age >= 8)
       ),
       getWeek: async () =>
@@ -117,7 +120,10 @@ describe("menú semanal", () => {
     const { deps, calls } = fakeDeps();
     const r = await generateMenu(deps, "h1");
     if (!r.ok) throw new Error(r.error);
-    expect(calls.candidates).toEqual([{ age: 7, avoid: ["mani"] }]); // 7 meses, sin cena
+    // 7 meses, sin cena; recibe la familia para aplicar su despensa
+    expect(calls.candidates).toEqual([
+      { age: 7, avoid: ["mani"], householdId: "h1" },
+    ]);
     expect(r.menu.ageMonths).toBe(7);
     expect(r.menu.weekStart).toBe("2026-10-26");
     expect(r.menu.today).toBe(3);

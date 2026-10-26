@@ -1,6 +1,8 @@
 "use client";
 
 import { Check, X } from "lucide-react";
+import { useId } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import {
@@ -48,10 +50,12 @@ export function RecipeFilters({
   onClear: () => void;
   onApply?: () => void;
 }) {
+  // Este panel se monta dos veces (panel fijo de escritorio y Sheet): los ids deben ser únicos en cada copia.
+  const uid = useId();
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
-        <Label htmlFor="edad" className="text-base font-bold">
+        <Label htmlFor={`${uid}-edad`} className="text-base font-bold">
           Edad del bebé
         </Label>
         <Select
@@ -61,7 +65,7 @@ export function RecipeFilters({
             onChange({ age: v === null || v === "any" ? null : Number(v) })
           }
         >
-          <SelectTrigger id="edad" className="w-full">
+          <SelectTrigger id={`${uid}-edad`} className="w-full">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -98,12 +102,28 @@ export function RecipeFilters({
         </ToggleGroup>
       </fieldset>
 
+      <div className="flex flex-col gap-1">
+        <div className="flex min-h-14 items-center justify-between gap-4">
+          <Label htmlFor={`${uid}-cocinable`} className="text-lg xl:text-base">
+            Solo lo que puedo cocinar
+          </Label>
+          <Switch
+            id={`${uid}-cocinable`}
+            checked={value.cookable}
+            onCheckedChange={(cookable) => onChange({ cookable })}
+          />
+        </div>
+        <Link href="/despensa" className="w-fit text-base underline">
+          Cambiar mi despensa
+        </Link>
+      </div>
+
       <div className="flex min-h-14 items-center justify-between gap-4">
-        <Label htmlFor="hierro" className="text-lg xl:text-base">
+        <Label htmlFor={`${uid}-hierro`} className="text-lg xl:text-base">
           Solo fuente de hierro
         </Label>
         <Switch
-          id="hierro"
+          id={`${uid}-hierro`}
           checked={value.iron}
           onCheckedChange={(iron) => onChange({ iron })}
         />

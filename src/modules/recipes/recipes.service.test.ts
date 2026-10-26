@@ -45,14 +45,14 @@ describe("servicio de recetas", () => {
   it("normaliza la búsqueda antes de llegar al repositorio", async () => {
     let received: unknown;
     const repo = { list: async (f: unknown) => ((received = f), []) };
-    await listRecipes(repo, { q: "Salmón", age: 8 });
+    await listRecipes(repo, { q: "Salmón", age: 8 }, "h1");
     expect(received).toEqual({ q: "salmon", age: 8 });
   });
 
   it("busca el código en mayúsculas", async () => {
     let received = "";
     const repo = { findByCode: async (c: string) => ((received = c), null) };
-    expect(await getRecipe(repo, "d10")).toBeNull();
+    expect(await getRecipe(repo, "d10", "h1")).toBeNull();
     expect(received).toBe("D10");
   });
 });

@@ -16,6 +16,7 @@ export type RecipeFilters = {
   exclude: string[];
   iron: boolean;
   tags: string[];
+  cookable: boolean; // solo recetas que la familia puede cocinar con su despensa
 };
 
 export const EMPTY_FILTERS: RecipeFilters = {
@@ -25,6 +26,7 @@ export const EMPTY_FILTERS: RecipeFilters = {
   exclude: [],
   iron: false,
   tags: [],
+  cookable: false,
 };
 
 // Filtros activos del Sheet (la búsqueda y la comida tienen su propio control).
@@ -32,6 +34,7 @@ export const activeFilterCount = (f: RecipeFilters) =>
   (f.age !== null ? 1 : 0) +
   f.exclude.length +
   (f.iron ? 1 : 0) +
+  (f.cookable ? 1 : 0) +
   f.tags.length;
 
 export function useRecipes(f: RecipeFilters) {
@@ -48,6 +51,7 @@ export function useRecipes(f: RecipeFilters) {
             exclude: f.exclude.join(",") || undefined,
             tags: f.tags.join(",") || undefined,
             iron: f.iron ? "1" : undefined,
+            cookable: f.cookable ? "1" : undefined,
           },
         })
       ).data.recipes,

@@ -23,21 +23,31 @@ export function normalizeSearch(q: string) {
 }
 
 type Repo = {
-  list: (filters: RecipeListQuery) => Promise<RecipeListItem[]>;
-  findByCode: (code: string) => Promise<RecipeDetail | null>;
+  list: (
+    filters: RecipeListQuery,
+    householdId: string,
+  ) => Promise<RecipeListItem[]>;
+  findByCode: (
+    code: string,
+    householdId: string,
+  ) => Promise<RecipeDetail | null>;
   listAllergens: () => Promise<AllergenOption[]>;
 };
 
 export async function listRecipes(
   repo: Pick<Repo, "list">,
   query: RecipeListQuery,
+  householdId: string,
 ) {
   const q = query.q ? normalizeSearch(query.q) : undefined;
-  return { recipes: await repo.list({ ...query, q }) };
+  return { recipes: await repo.list({ ...query, q }, householdId) };
 }
 
-export const getRecipe = (repo: Pick<Repo, "findByCode">, code: string) =>
-  repo.findByCode(code.toUpperCase());
+export const getRecipe = (
+  repo: Pick<Repo, "findByCode">,
+  code: string,
+  householdId: string,
+) => repo.findByCode(code.toUpperCase(), householdId);
 
 export const listAllergens = (repo: Pick<Repo, "listAllergens">) =>
   repo.listAllergens();

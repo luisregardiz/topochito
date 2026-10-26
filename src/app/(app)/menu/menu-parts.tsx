@@ -9,7 +9,11 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { MEALS, MealThumb } from "@/components/recetario/meal";
-import { AllergenBadge, IronBadge } from "@/components/recetario/recipe-badges";
+import {
+  AllergenBadge,
+  IronBadge,
+  MissingFoodsBadge,
+} from "@/components/recetario/recipe-badges";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -58,8 +62,9 @@ export function DayPicker({
   return (
     <Tabs value={String(value)} onValueChange={(v) => onChange(Number(v))}>
       <ScrollArea className="w-full">
+        {/* El TabsList de shadcn trae h-8 con un selector más específico: sin este override recorta los días. */}
         <TabsList
-          className="h-auto w-max gap-2 bg-transparent p-0 pb-3"
+          className="h-auto w-max gap-2 bg-transparent p-1 pb-3 group-data-horizontal/tabs:h-auto"
           aria-label="Día de la semana"
         >
           {menu.days.map(({ day }) => (
@@ -123,6 +128,7 @@ export function MealCard({
               {recipe.title}
             </h3>
             <div className="flex flex-wrap gap-2">
+              <MissingFoodsBadge foods={recipe.missingFoods} />
               {recipe.isIronSource && <IronBadge note={recipe.ironNote} />}
               {recipe.allergens.map((a) => (
                 <AllergenBadge
@@ -339,6 +345,7 @@ function WeekRow({
             </span>
           </Link>
           <div className="flex flex-wrap gap-1">
+            <MissingFoodsBadge foods={recipe.missingFoods} />
             {recipe.isIronSource && <IronBadge note={recipe.ironNote} />}
             {recipe.allergens.map((a) => (
               <AllergenBadge
