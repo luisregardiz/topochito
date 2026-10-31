@@ -1,0 +1,1793 @@
+{
+  "id": "9ef0798c-e05e-420f-a507-ae00ffb7e591",
+  "prevId": "17f35e84-cefc-4264-8b46-63bbb99255f9",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "recetario.baby_allergen": {
+      "name": "baby_allergen",
+      "schema": "recetario",
+      "columns": {
+        "household_id": {
+          "name": "household_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "allergen_id": {
+          "name": "allergen_id",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "status": {
+          "name": "status",
+          "type": "allergen_status",
+          "typeSchema": "recetario",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "baby_allergen_household_id_household_id_fk": {
+          "name": "baby_allergen_household_id_household_id_fk",
+          "tableFrom": "baby_allergen",
+          "tableTo": "household",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "household_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "baby_allergen_allergen_id_allergen_id_fk": {
+          "name": "baby_allergen_allergen_id_allergen_id_fk",
+          "tableFrom": "baby_allergen",
+          "tableTo": "allergen",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "allergen_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "baby_allergen_household_id_allergen_id_pk": {
+          "name": "baby_allergen_household_id_allergen_id_pk",
+          "columns": [
+            "household_id",
+            "allergen_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "recetario.baby_profile": {
+      "name": "baby_profile",
+      "schema": "recetario",
+      "columns": {
+        "household_id": {
+          "name": "household_id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "birth_month": {
+          "name": "birth_month",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "birth_year": {
+          "name": "birth_year",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "nickname": {
+          "name": "nickname",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "baby_profile_household_id_household_id_fk": {
+          "name": "baby_profile_household_id_household_id_fk",
+          "tableFrom": "baby_profile",
+          "tableTo": "household",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "household_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "baby_profile_month_check": {
+          "name": "baby_profile_month_check",
+          "value": "\"recetario\".\"baby_profile\".\"birth_month\" BETWEEN 1 AND 12"
+        },
+        "baby_profile_year_check": {
+          "name": "baby_profile_year_check",
+          "value": "\"recetario\".\"baby_profile\".\"birth_year\" BETWEEN 2000 AND 2100"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "recetario.allergen": {
+      "name": "allergen",
+      "schema": "recetario",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "smallint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "allergen_id_seq",
+            "schema": "recetario",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "32767",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "how_to_introduce": {
+          "name": "how_to_introduce",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "allergen_slug_unique": {
+          "name": "allergen_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "recetario.food": {
+      "name": "food",
+      "schema": "recetario",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "smallint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "food_id_seq",
+            "schema": "recetario",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "32767",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "category": {
+          "name": "category",
+          "type": "food_category",
+          "typeSchema": "recetario",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "is_staple": {
+          "name": "is_staple",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "food_slug_unique": {
+          "name": "food_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "recetario.food_guide": {
+      "name": "food_guide",
+      "schema": "recetario",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "smallint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "food_guide_id_seq",
+            "schema": "recetario",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "32767",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "food": {
+          "name": "food",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "from_age": {
+          "name": "from_age",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "preparation": {
+          "name": "preparation",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "caution": {
+          "name": "caution",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sort_order": {
+          "name": "sort_order",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "recetario.fruit_cut_guide": {
+      "name": "fruit_cut_guide",
+      "schema": "recetario",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "smallint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "fruit_cut_guide_id_seq",
+            "schema": "recetario",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "32767",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "fruit": {
+          "name": "fruit",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "age_7_8": {
+          "name": "age_7_8",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "age_9_11": {
+          "name": "age_9_11",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "caution": {
+          "name": "caution",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sort_order": {
+          "name": "sort_order",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "recetario.meal_plan_entry": {
+      "name": "meal_plan_entry",
+      "schema": "recetario",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "meal_plan_entry_id_seq",
+            "schema": "recetario",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "week": {
+          "name": "week",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "day_of_week": {
+          "name": "day_of_week",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "meal_type": {
+          "name": "meal_type",
+          "type": "meal_type",
+          "typeSchema": "recetario",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "recipe_id": {
+          "name": "recipe_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "label": {
+          "name": "label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "meal_plan_recipe_idx": {
+          "name": "meal_plan_recipe_idx",
+          "columns": [
+            {
+              "expression": "recipe_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "meal_plan_entry_recipe_id_recipe_id_fk": {
+          "name": "meal_plan_entry_recipe_id_recipe_id_fk",
+          "tableFrom": "meal_plan_entry",
+          "tableTo": "recipe",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "recipe_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "meal_plan_entry_week_day_of_week_meal_type_key": {
+          "name": "meal_plan_entry_week_day_of_week_meal_type_key",
+          "nullsNotDistinct": false,
+          "columns": [
+            "week",
+            "day_of_week",
+            "meal_type"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "meal_plan_entry_week_check": {
+          "name": "meal_plan_entry_week_check",
+          "value": "\"recetario\".\"meal_plan_entry\".\"week\" >= 1"
+        },
+        "meal_plan_entry_day_check": {
+          "name": "meal_plan_entry_day_check",
+          "value": "\"recetario\".\"meal_plan_entry\".\"day_of_week\" BETWEEN 1 AND 7"
+        },
+        "meal_plan_entry_meal_type_check": {
+          "name": "meal_plan_entry_meal_type_check",
+          "value": "\"recetario\".\"meal_plan_entry\".\"meal_type\" <> 'base'"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "recetario.recipe": {
+      "name": "recipe",
+      "schema": "recetario",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "recipe_id_seq",
+            "schema": "recetario",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "code": {
+          "name": "code",
+          "type": "varchar(4)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "meal_type": {
+          "name": "meal_type",
+          "type": "meal_type",
+          "typeSchema": "recetario",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "min_age_months": {
+          "name": "min_age_months",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_iron_source": {
+          "name": "is_iron_source",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "iron_note": {
+          "name": "iron_note",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "note": {
+          "name": "note",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_public_id": {
+          "name": "image_public_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "video_public_id": {
+          "name": "video_public_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sort_order": {
+          "name": "sort_order",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "recipe_meal_age_idx": {
+          "name": "recipe_meal_age_idx",
+          "columns": [
+            {
+              "expression": "meal_type",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "min_age_months",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "recipe_title_fts_idx": {
+          "name": "recipe_title_fts_idx",
+          "columns": [
+            {
+              "expression": "to_tsvector('spanish', \"title\")",
+              "asc": true,
+              "isExpression": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "gin",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "recipe_code_unique": {
+          "name": "recipe_code_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "code"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "recipe_min_age_months_check": {
+          "name": "recipe_min_age_months_check",
+          "value": "\"recetario\".\"recipe\".\"min_age_months\" BETWEEN 6 AND 36"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "recetario.recipe_age_adaptation": {
+      "name": "recipe_age_adaptation",
+      "schema": "recetario",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "recipe_age_adaptation_id_seq",
+            "schema": "recetario",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "recipe_id": {
+          "name": "recipe_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "min_age_months": {
+          "name": "min_age_months",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "max_age_months": {
+          "name": "max_age_months",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "instructions": {
+          "name": "instructions",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "recipe_age_adaptation_recipe_id_recipe_id_fk": {
+          "name": "recipe_age_adaptation_recipe_id_recipe_id_fk",
+          "tableFrom": "recipe_age_adaptation",
+          "tableTo": "recipe",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "recipe_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "recipe_age_adaptation_recipe_id_min_age_months_key": {
+          "name": "recipe_age_adaptation_recipe_id_min_age_months_key",
+          "nullsNotDistinct": false,
+          "columns": [
+            "recipe_id",
+            "min_age_months"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "recipe_age_adaptation_max_check": {
+          "name": "recipe_age_adaptation_max_check",
+          "value": "\"recetario\".\"recipe_age_adaptation\".\"max_age_months\" IS NULL OR \"recetario\".\"recipe_age_adaptation\".\"max_age_months\" >= \"recetario\".\"recipe_age_adaptation\".\"min_age_months\""
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "recetario.recipe_allergen": {
+      "name": "recipe_allergen",
+      "schema": "recetario",
+      "columns": {
+        "recipe_id": {
+          "name": "recipe_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "allergen_id": {
+          "name": "allergen_id",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "is_optional": {
+          "name": "is_optional",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "condition": {
+          "name": "condition",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "recipe_allergen_allergen_idx": {
+          "name": "recipe_allergen_allergen_idx",
+          "columns": [
+            {
+              "expression": "allergen_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "recipe_allergen_recipe_id_recipe_id_fk": {
+          "name": "recipe_allergen_recipe_id_recipe_id_fk",
+          "tableFrom": "recipe_allergen",
+          "tableTo": "recipe",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "recipe_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "recipe_allergen_allergen_id_allergen_id_fk": {
+          "name": "recipe_allergen_allergen_id_allergen_id_fk",
+          "tableFrom": "recipe_allergen",
+          "tableTo": "allergen",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "allergen_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "recipe_allergen_recipe_id_allergen_id_pk": {
+          "name": "recipe_allergen_recipe_id_allergen_id_pk",
+          "columns": [
+            "recipe_id",
+            "allergen_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "recetario.recipe_ingredient": {
+      "name": "recipe_ingredient",
+      "schema": "recetario",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "recipe_ingredient_id_seq",
+            "schema": "recetario",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "recipe_id": {
+          "name": "recipe_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "position": {
+          "name": "position",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "is_optional": {
+          "name": "is_optional",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        }
+      },
+      "indexes": {
+        "recipe_ingredient_fts_idx": {
+          "name": "recipe_ingredient_fts_idx",
+          "columns": [
+            {
+              "expression": "to_tsvector('spanish', \"description\")",
+              "asc": true,
+              "isExpression": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "gin",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "recipe_ingredient_recipe_id_recipe_id_fk": {
+          "name": "recipe_ingredient_recipe_id_recipe_id_fk",
+          "tableFrom": "recipe_ingredient",
+          "tableTo": "recipe",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "recipe_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "recipe_ingredient_recipe_id_position_key": {
+          "name": "recipe_ingredient_recipe_id_position_key",
+          "nullsNotDistinct": false,
+          "columns": [
+            "recipe_id",
+            "position"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "recetario.recipe_ingredient_food": {
+      "name": "recipe_ingredient_food",
+      "schema": "recetario",
+      "columns": {
+        "ingredient_id": {
+          "name": "ingredient_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "food_id": {
+          "name": "food_id",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "alt_group": {
+          "name": "alt_group",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "recipe_ingredient_food_food_idx": {
+          "name": "recipe_ingredient_food_food_idx",
+          "columns": [
+            {
+              "expression": "food_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "recipe_ingredient_food_ingredient_id_recipe_ingredient_id_fk": {
+          "name": "recipe_ingredient_food_ingredient_id_recipe_ingredient_id_fk",
+          "tableFrom": "recipe_ingredient_food",
+          "tableTo": "recipe_ingredient",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "ingredient_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "recipe_ingredient_food_food_id_food_id_fk": {
+          "name": "recipe_ingredient_food_food_id_food_id_fk",
+          "tableFrom": "recipe_ingredient_food",
+          "tableTo": "food",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "food_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "recipe_ingredient_food_ingredient_id_food_id_pk": {
+          "name": "recipe_ingredient_food_ingredient_id_food_id_pk",
+          "columns": [
+            "ingredient_id",
+            "food_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "recetario.recipe_reference": {
+      "name": "recipe_reference",
+      "schema": "recetario",
+      "columns": {
+        "recipe_id": {
+          "name": "recipe_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "referenced_recipe_id": {
+          "name": "referenced_recipe_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "recipe_reference_ref_idx": {
+          "name": "recipe_reference_ref_idx",
+          "columns": [
+            {
+              "expression": "referenced_recipe_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "recipe_reference_recipe_id_recipe_id_fk": {
+          "name": "recipe_reference_recipe_id_recipe_id_fk",
+          "tableFrom": "recipe_reference",
+          "tableTo": "recipe",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "recipe_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "recipe_reference_referenced_recipe_id_recipe_id_fk": {
+          "name": "recipe_reference_referenced_recipe_id_recipe_id_fk",
+          "tableFrom": "recipe_reference",
+          "tableTo": "recipe",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "referenced_recipe_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "recipe_reference_recipe_id_referenced_recipe_id_pk": {
+          "name": "recipe_reference_recipe_id_referenced_recipe_id_pk",
+          "columns": [
+            "recipe_id",
+            "referenced_recipe_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "recipe_reference_check": {
+          "name": "recipe_reference_check",
+          "value": "\"recetario\".\"recipe_reference\".\"recipe_id\" <> \"recetario\".\"recipe_reference\".\"referenced_recipe_id\""
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "recetario.recipe_step": {
+      "name": "recipe_step",
+      "schema": "recetario",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "recipe_step_id_seq",
+            "schema": "recetario",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "recipe_id": {
+          "name": "recipe_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "position": {
+          "name": "position",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "instruction": {
+          "name": "instruction",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "recipe_step_recipe_id_recipe_id_fk": {
+          "name": "recipe_step_recipe_id_recipe_id_fk",
+          "tableFrom": "recipe_step",
+          "tableTo": "recipe",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "recipe_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "recipe_step_recipe_id_position_key": {
+          "name": "recipe_step_recipe_id_position_key",
+          "nullsNotDistinct": false,
+          "columns": [
+            "recipe_id",
+            "position"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "recetario.recipe_tag": {
+      "name": "recipe_tag",
+      "schema": "recetario",
+      "columns": {
+        "recipe_id": {
+          "name": "recipe_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tag_id": {
+          "name": "tag_id",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "label": {
+          "name": "label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "recipe_tag_tag_idx": {
+          "name": "recipe_tag_tag_idx",
+          "columns": [
+            {
+              "expression": "tag_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "recipe_tag_recipe_id_recipe_id_fk": {
+          "name": "recipe_tag_recipe_id_recipe_id_fk",
+          "tableFrom": "recipe_tag",
+          "tableTo": "recipe",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "recipe_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "recipe_tag_tag_id_tag_id_fk": {
+          "name": "recipe_tag_tag_id_tag_id_fk",
+          "tableFrom": "recipe_tag",
+          "tableTo": "tag",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "tag_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "recipe_tag_recipe_id_tag_id_pk": {
+          "name": "recipe_tag_recipe_id_tag_id_pk",
+          "columns": [
+            "recipe_id",
+            "tag_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "recetario.tag": {
+      "name": "tag",
+      "schema": "recetario",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "smallint",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "tag_id_seq",
+            "schema": "recetario",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "32767",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "tag_slug_unique": {
+          "name": "tag_slug_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "slug"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "recetario.household": {
+      "name": "household",
+      "schema": "recetario",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "access_code_lookup": {
+          "name": "access_code_lookup",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "access_code_enc": {
+          "name": "access_code_enc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "time_zone": {
+          "name": "time_zone",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'America/Caracas'"
+        },
+        "country": {
+          "name": "country",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "meal_times": {
+          "name": "meal_times",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "last_seen_at": {
+          "name": "last_seen_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "household_access_code_lookup_unique": {
+          "name": "household_access_code_lookup_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "access_code_lookup"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "recetario.household_invite": {
+      "name": "household_invite",
+      "schema": "recetario",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "household_id": {
+          "name": "household_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "token_hash": {
+          "name": "token_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expires_at": {
+          "name": "expires_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "revoked_at": {
+          "name": "revoked_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "household_invite_household_idx": {
+          "name": "household_invite_household_idx",
+          "columns": [
+            {
+              "expression": "household_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "household_invite_household_id_household_id_fk": {
+          "name": "household_invite_household_id_household_id_fk",
+          "tableFrom": "household_invite",
+          "tableTo": "household",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "household_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "household_invite_token_hash_unique": {
+          "name": "household_invite_token_hash_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "token_hash"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "recetario.household_member": {
+      "name": "household_member",
+      "schema": "recetario",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "household_id": {
+          "name": "household_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "label": {
+          "name": "label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "last_seen_at": {
+          "name": "last_seen_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "revoked_at": {
+          "name": "revoked_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "household_member_household_idx": {
+          "name": "household_member_household_idx",
+          "columns": [
+            {
+              "expression": "household_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "household_member_household_id_household_id_fk": {
+          "name": "household_member_household_id_household_id_fk",
+          "tableFrom": "household_member",
+          "tableTo": "household",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "household_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "recetario.household_menu_entry": {
+      "name": "household_menu_entry",
+      "schema": "recetario",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "identity": {
+            "type": "always",
+            "name": "household_menu_entry_id_seq",
+            "schema": "recetario",
+            "increment": "1",
+            "startWith": "1",
+            "minValue": "1",
+            "maxValue": "2147483647",
+            "cache": "1",
+            "cycle": false
+          }
+        },
+        "household_id": {
+          "name": "household_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "week_start": {
+          "name": "week_start",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "day_of_week": {
+          "name": "day_of_week",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "meal_type": {
+          "name": "meal_type",
+          "type": "meal_type",
+          "typeSchema": "recetario",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "recipe_id": {
+          "name": "recipe_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "household_menu_entry_week_idx": {
+          "name": "household_menu_entry_week_idx",
+          "columns": [
+            {
+              "expression": "household_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "week_start",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "household_menu_entry_household_id_household_id_fk": {
+          "name": "household_menu_entry_household_id_household_id_fk",
+          "tableFrom": "household_menu_entry",
+          "tableTo": "household",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "household_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "household_menu_entry_recipe_id_recipe_id_fk": {
+          "name": "household_menu_entry_recipe_id_recipe_id_fk",
+          "tableFrom": "household_menu_entry",
+          "tableTo": "recipe",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "recipe_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "household_menu_entry_slot_key": {
+          "name": "household_menu_entry_slot_key",
+          "nullsNotDistinct": false,
+          "columns": [
+            "household_id",
+            "week_start",
+            "day_of_week",
+            "meal_type"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {
+        "household_menu_entry_day_check": {
+          "name": "household_menu_entry_day_check",
+          "value": "\"recetario\".\"household_menu_entry\".\"day_of_week\" BETWEEN 1 AND 7"
+        },
+        "household_menu_entry_meal_check": {
+          "name": "household_menu_entry_meal_check",
+          "value": "\"recetario\".\"household_menu_entry\".\"meal_type\" <> 'base'"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "recetario.household_unavailable_food": {
+      "name": "household_unavailable_food",
+      "schema": "recetario",
+      "columns": {
+        "household_id": {
+          "name": "household_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "food_id": {
+          "name": "food_id",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "household_unavailable_food_household_id_household_id_fk": {
+          "name": "household_unavailable_food_household_id_household_id_fk",
+          "tableFrom": "household_unavailable_food",
+          "tableTo": "household",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "household_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "household_unavailable_food_food_id_food_id_fk": {
+          "name": "household_unavailable_food_food_id_food_id_fk",
+          "tableFrom": "household_unavailable_food",
+          "tableTo": "food",
+          "schemaTo": "recetario",
+          "columnsFrom": [
+            "food_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "household_unavailable_food_household_id_food_id_pk": {
+          "name": "household_unavailable_food_household_id_food_id_pk",
+          "columns": [
+            "household_id",
+            "food_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "recetario.meal_type": {
+      "name": "meal_type",
+      "schema": "recetario",
+      "values": [
+        "base",
+        "desayuno",
+        "almuerzo",
+        "merienda",
+        "cena"
+      ]
+    },
+    "recetario.allergen_status": {
+      "name": "allergen_status",
+      "schema": "recetario",
+      "values": [
+        "introduced",
+        "avoid"
+      ]
+    },
+    "recetario.food_category": {
+      "name": "food_category",
+      "schema": "recetario",
+      "values": [
+        "basicos",
+        "proteinas",
+        "lacteos",
+        "verduras",
+        "tuberculos",
+        "frutas",
+        "cereales",
+        "legumbres",
+        "semillas",
+        "otros"
+      ]
+    }
+  },
+  "schemas": {
+    "recetario": "recetario"
+  },
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

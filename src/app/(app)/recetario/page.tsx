@@ -9,7 +9,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getCurrentHousehold } from "@/modules/households/current-household";
+import { MembersSection } from "./members-section";
 import { RecetarioActions } from "./recetario-actions";
+import { SettingsSection } from "./settings-section";
 
 export default function RecetarioPage() {
   return (
@@ -45,7 +47,8 @@ async function Panel() {
               {household.code}
             </p>
             <p className="text-base">
-              Con este código cualquier persona de la familia puede entrar.
+              Con este código cualquier persona de la familia puede entrar. Para
+              sumar a alguien, mejor envíale una invitación.
             </p>
           </div>
           <RecetarioActions code={household.code} />
@@ -57,6 +60,8 @@ async function Panel() {
           Si nadie abre este recetario en 30 días, se borra
         </AlertTitle>
       </Alert>
+      <MembersSection familyName={household.name} />
+      <SettingsSection />
       <section aria-labelledby="despensa" className="flex flex-col gap-3">
         <h2 id="despensa" className="text-[22px] font-bold xl:text-xl">
           Mi despensa

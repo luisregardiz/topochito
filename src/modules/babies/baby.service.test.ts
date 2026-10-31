@@ -11,7 +11,11 @@ const fakeRepo = () => {
     get: async (id: string) => {
       const s = saved.findLast((x) => x.id === id)?.baby;
       return s
-        ? { ...s, allergens: s.allergens as Record<string, AllergenStatus> }
+        ? {
+            ...s,
+            nickname: s.nickname ?? null,
+            allergens: s.allergens as Record<string, AllergenStatus>,
+          }
         : null;
     },
     allergenSlugs: async () => ["huevo", "mani", "lacteos"],
@@ -28,7 +32,10 @@ describe("saveBaby", () => {
   it("guarda y devuelve el perfil con la edad calculada", async () => {
     const repo = fakeRepo();
     const result = await saveBaby(repo, "h1", valid, now);
-    expect(result).toEqual({ ok: true, baby: { ...valid, ageMonths: 7 } });
+    expect(result).toEqual({
+      ok: true,
+      baby: { ...valid, nickname: null, ageMonths: 7 },
+    });
     expect(repo.saved).toHaveLength(1);
   });
 

@@ -4,6 +4,7 @@ import type { AllergenStatus, BabyInput, BabyProfile } from "./baby.schemas";
 export const MAX_BABY_AGE_MONTHS = 36;
 
 type Stored = {
+  nickname: string | null;
   birthMonth: number;
   birthYear: number;
   allergens: Record<string, AllergenStatus>;
@@ -32,6 +33,20 @@ export async function getBaby(
   return stored ? toProfile(stored, now) : null;
 }
 
+// Fecha de nacimiento aceptable: ni futura ni de un niño mayor de 3 años.
+export function checkBirth(
+  birth: { birthMonth: number; birthYear: number },
+  now: Date,
+) {
+  const age = ageInMonths(
+    { month: birth.birthMonth, year: birth.birthYear },
+    now,
+  );
+  if (age < 0) return "future_date" as const;
+  if (age > MAX_BABY_AGE_MONTHS) return "too_old" as const;
+  return null;
+}
+
 export type SaveBabyResult =
   | { ok: true; baby: BabyProfile }
   | { ok: false; reason: "future_date" | "too_old" | "unknown_allergen" };
@@ -42,12 +57,8 @@ export async function saveBaby(
   input: BabyInput,
   now: Date,
 ): Promise<SaveBabyResult> {
-  const age = ageInMonths(
-    { month: input.birthMonth, year: input.birthYear },
-    now,
-  );
-  if (age < 0) return { ok: false, reason: "future_date" };
-  if (age > MAX_BABY_AGE_MONTHS) return { ok: false, reason: "too_old" };
+  const invalid = checkBirth(input, now);
+  if (invalid) return { ok: false, reason: invalid };
 
   const known = new Set(await repo.allergenSlugs());
   if (Object.keys(input.allergens).some((slug) => !known.has(slug))) {
@@ -55,5 +66,8 @@ export async function saveBaby(
   }
 
   await repo.save(householdId, input);
-  return { ok: true, baby: toProfile(input, now) };
+  return {
+    ok: true,
+    baby: toProfile({ ...input, nickname: input.nickname || null }, now),
+  };
 }

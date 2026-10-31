@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -121,6 +122,7 @@ function BabyForm({
     initial?.birthMonth ?? null,
   );
   const [year, setYear] = useState<number | null>(initial?.birthYear ?? null);
+  const [nickname, setNickname] = useState(initial?.nickname ?? "");
   const [statuses, setStatuses] = useState<Record<string, AllergenStatus>>(
     initial?.allergens ?? {},
   );
@@ -145,7 +147,12 @@ function BabyForm({
     if (!month || !year) return setMissingDate(true);
     if (dateProblem) return;
     save.mutate(
-      { birthMonth: month, birthYear: year, allergens: statuses },
+      {
+        nickname: nickname.trim() || undefined,
+        birthMonth: month,
+        birthYear: year,
+        allergens: statuses,
+      },
       {
         onSuccess: (saved) =>
           toast.success("Guardamos los datos del bebé", {
@@ -178,6 +185,20 @@ function BabyForm({
       <div className="flex flex-col gap-6 xl:grid xl:grid-cols-[340px_1fr] xl:items-start">
         <Card>
           <CardContent className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="apodo" className="text-base font-bold">
+                Apodo (opcional)
+              </Label>
+              <Input
+                id="apodo"
+                value={nickname}
+                onChange={(e) => setNickname(e.target.value)}
+                placeholder="Ej.: Topo"
+                maxLength={30}
+                autoComplete="off"
+              />
+            </div>
+            <Separator />
             <h2 className="text-[22px] font-bold xl:text-xl">
               Fecha de nacimiento
             </h2>

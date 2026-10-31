@@ -6,6 +6,9 @@ import {
   randomBytes,
   randomInt,
 } from "node:crypto";
+import { checkBirth } from "@/modules/babies/baby.service";
+import { CREATOR_MEMBER_LABEL } from "@/modules/members/members.service";
+import type { OnboardingInput } from "./households.schemas";
 
 // Sin 0/O, 1/I/L ni U/V: legible al dictarlo por teléfono.
 const ALPHABET = "ABCDEFGHJKMNPQRSTWXYZ23456789";
@@ -84,10 +87,11 @@ export async function authenticate(
   return (await repo.findByLookup(lookupCode(code, keys))) ?? null;
 }
 
-// Devuelve null si ya se alcanzó el tope de familias.
-export async function createHousehold(
+// Devuelve null si ya se alcanzó el tope de familias. `insert` puede crear más cosas en la misma transacción
+// (cuidador, bebé…) y devolverlas junto al id.
+export async function createHousehold<R extends { id: string }>(
   repo: {
-    insert: (row: InsertRow) => Promise<{ id: string } | undefined>;
+    insert: (row: InsertRow) => Promise<R | undefined>;
     count: () => Promise<number>;
   },
   name: string,
@@ -106,9 +110,94 @@ export async function createHousehold(
       accessCodeLookup: lookupCode(code, keys),
       accessCodeEnc: encryptCode(code, keys),
     });
-    if (row) return { id: row.id, name, code };
+    if (row) return { ...row, name, code };
   }
   throw new Error("no se pudo generar un código único");
+}
+
+// Código nuevo para la familia: el anterior deja de servir (las sesiones abiertas siguen).
+export async function regenerateCode(
+  repo: {
+    updateCode: (
+      householdId: string,
+      row: Omit<InsertRow, "name">,
+    ) => Promise<boolean>; // false ante colisión del índice único
+  },
+  householdId: string,
+  keys: CodeKeys,
+  rand?: (max: number) => number,
+) {
+  for (let attempt = 0; attempt < 5; attempt++) {
+    const code = generateAccessCode(rand);
+    const updated = await repo.updateCode(householdId, {
+      accessCodeLookup: lookupCode(code, keys),
+      accessCodeEnc: encryptCode(code, keys),
+    });
+    if (updated) return code;
+  }
+  throw new Error("no se pudo generar un código único");
+}
+
+export type FamilyExtras = Omit<
+  OnboardingInput,
+  "name" | "website" | "label"
+> & {
+  label: string;
+};
+export type StartFamilyError =
+  "future_date" | "too_old" | "unknown_allergen" | "signup_closed";
+
+// Alta autoservicio (/empezar): familia, su primer cuidador y el bebé, en una sola transacción.
+export async function startFamily(
+  repo: {
+    allergenSlugs: () => Promise<string[]>;
+    count: () => Promise<number>;
+    insertFamily: (
+      row: InsertRow,
+      extras: FamilyExtras,
+    ) => Promise<{ id: string; memberId: string } | undefined>;
+  },
+  input: OnboardingInput,
+  keys: CodeKeys,
+  {
+    now,
+    maxHouseholds,
+    rand,
+  }: { now: Date; maxHouseholds?: number; rand?: (max: number) => number },
+): Promise<
+  | { ok: true; householdId: string; memberId: string; code: string }
+  | { ok: false; error: StartFamilyError }
+> {
+  const invalid = checkBirth(input.baby, now);
+  if (invalid) return { ok: false, error: invalid };
+  const known = new Set(await repo.allergenSlugs());
+  if (input.baby.introduced.some((s) => !known.has(s)))
+    return { ok: false, error: "unknown_allergen" };
+
+  const { name, label, baby, mealTimes, country, timeZone } = input;
+  const extras: FamilyExtras = {
+    baby,
+    mealTimes,
+    country,
+    timeZone,
+    label: label || CREATOR_MEMBER_LABEL,
+  };
+  const created = await createHousehold(
+    {
+      count: repo.count,
+      insert: (row) => repo.insertFamily(row, extras),
+    },
+    name,
+    keys,
+    { maxHouseholds, rand },
+  );
+  if (!created) return { ok: false, error: "signup_closed" };
+  return {
+    ok: true,
+    householdId: created.id,
+    memberId: created.memberId,
+    code: created.code,
+  };
 }
 
 export function shareCodeOf(household: HouseholdRow, keys: CodeKeys) {

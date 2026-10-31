@@ -20,6 +20,7 @@ const ALLERGENS = [
   { slug: "lacteos", name: "Lácteos" },
 ];
 const BABY: BabyProfile = {
+  nickname: null,
   birthMonth: 3,
   birthYear: 2026,
   ageMonths: 7,

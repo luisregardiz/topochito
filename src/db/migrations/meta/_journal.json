@@ -50,6 +50,13 @@
       "when": 1792979256414,
       "tag": "0006_alimentos_y_despensa",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1793405493978,
+      "tag": "0007_members_invites",
+      "breakpoints": true
     }
   ]
 }

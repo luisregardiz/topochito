@@ -6,6 +6,7 @@ import { SESSION_COOKIE, verifySession } from "@/lib/session";
 
 const PUBLIC_PATHS = new Set([
   "/acceso",
+  "/empezar",
   "/limite",
   "/api/access",
   "/api/access/logout",
@@ -13,12 +14,14 @@ const PUBLIC_PATHS = new Set([
   "/api/households",
   "/api/cron/purge-inactive", // sin sesión: se protege con CRON_SECRET
 ]);
+const PUBLIC_PREFIXES = ["/join/", "/invitacion/", "/api/invitations/"];
 const isPublic = (pathname: string) =>
-  PUBLIC_PATHS.has(pathname) || pathname.startsWith("/join/");
+  PUBLIC_PATHS.has(pathname) ||
+  PUBLIC_PREFIXES.some((p) => pathname.startsWith(p));
 const SAFE_METHODS = new Set(["GET", "HEAD", "OPTIONS"]);
 
 type Limiters = Record<
-  "api" | "access" | "create" | "createGlobal",
+  "api" | "access" | "create" | "createGlobal" | "invite",
   RateLimiter
 >;
 let limiters: Limiters | undefined;
@@ -33,6 +36,11 @@ const getLimiters = () =>
     create: createRateLimiter({
       prefix: "create",
       limit: 5,
+      windowSeconds: 60 * 60,
+    }),
+    invite: createRateLimiter({
+      prefix: "invite",
+      limit: 10,
       windowSeconds: 60 * 60,
     }),
     // Tope global: protege la base aunque el abuso venga de muchas IPs.
@@ -83,7 +91,7 @@ function sameOrigin(req: NextRequest) {
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const isApi = pathname.startsWith("/api/");
-  const { api, access, create, createGlobal } = getLimiters();
+  const { api, access, create, createGlobal, invite } = getLimiters();
   const ip = clientIp(req);
 
   if (isApi) {
@@ -93,13 +101,17 @@ export async function proxy(req: NextRequest) {
 
   // Cada superficie que acepta un código (formulario o enlace) comparte el límite anti fuerza bruta.
   const isCreate = pathname === "/api/households" && req.method === "POST";
+  const isRedeem =
+    pathname.startsWith("/api/invitations/") && req.method === "POST";
   const attemptsLimiter =
     (pathname === "/api/access" && req.method === "POST") ||
     pathname.startsWith("/join/")
       ? access
       : isCreate
         ? create
-        : null;
+        : isRedeem
+          ? invite
+          : null;
   if (attemptsLimiter) {
     const attempts = await attemptsLimiter.limit(ip);
     if (!attempts.success) return tooMany(req, attempts.retryAfterSeconds);

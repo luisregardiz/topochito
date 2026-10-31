@@ -9,7 +9,11 @@ import {
   lookupCode,
   normalizeAccessCode,
   purgeInactive,
+  regenerateCode,
+  startFamily,
 } from "./households.service";
+import { DEFAULT_MEAL_TIMES, isTimeZone } from "./households.schemas";
+import type { OnboardingInput } from "./households.schemas";
 
 const keys = deriveCodeKeys("k".repeat(32));
 
@@ -111,6 +115,109 @@ describe("familias", () => {
       await createHousehold(memoryRepo(), "X", keys, { maxHouseholds: 0 }),
     ).toBeNull();
     expect(repo.rows).toHaveLength(1);
+  });
+});
+
+describe("alta autoservicio y código nuevo", () => {
+  const now = new Date("2026-10-30T12:00:00Z");
+  const input: OnboardingInput = {
+    name: "Familia Pérez",
+    label: "Mamá",
+    website: "",
+    baby: {
+      nickname: "Topo",
+      birthMonth: 3,
+      birthYear: 2026,
+      introduced: ["huevo"],
+    },
+    mealTimes: DEFAULT_MEAL_TIMES,
+    country: "VE",
+    timeZone: "America/Caracas",
+  };
+  const repo = () => {
+    const families: { row: { name: string }; extras: unknown }[] = [];
+    return {
+      families,
+      allergenSlugs: async () => ["huevo", "mani"],
+      count: async () => families.length,
+      insertFamily: async (row: { name: string }, extras: unknown) => {
+        families.push({ row, extras });
+        return { id: `h${families.length}`, memberId: "m1" };
+      },
+    };
+  };
+
+  it("crea familia, cuidador y bebé de una vez y devuelve el código", async () => {
+    const r = repo();
+    const result = await startFamily(r, input, keys, { now });
+    expect(result).toMatchObject({
+      ok: true,
+      householdId: "h1",
+      memberId: "m1",
+    });
+    expect(result.ok && result.code).toMatch(/^[A-Z2-9]{4}-[A-Z2-9]{4}$/);
+    expect(r.families[0]!.row.name).toBe("Familia Pérez");
+    expect(r.families[0]!.extras).toMatchObject({
+      label: "Mamá",
+      timeZone: "America/Caracas",
+      baby: { nickname: "Topo", introduced: ["huevo"] },
+    });
+    expect(r.families[0]!.extras).not.toHaveProperty("website");
+  });
+
+  it("valida la fecha y los alérgenos antes de crear nada; respeta el tope", async () => {
+    const r = repo();
+    const future = { ...input, baby: { ...input.baby, birthYear: 2027 } };
+    const unknown = { ...input, baby: { ...input.baby, introduced: ["x"] } };
+    expect(await startFamily(r, future, keys, { now })).toEqual({
+      ok: false,
+      error: "future_date",
+    });
+    expect(await startFamily(r, unknown, keys, { now })).toEqual({
+      ok: false,
+      error: "unknown_allergen",
+    });
+    expect(r.families).toHaveLength(0);
+    expect(
+      await startFamily(r, input, keys, { now, maxHouseholds: 0 }),
+    ).toEqual({ ok: false, error: "signup_closed" });
+  });
+
+  it("sin etiqueta, el primer cuidador queda como «Quien creó el recetario»", async () => {
+    const r = repo();
+    await startFamily(r, { ...input, label: undefined }, keys, { now });
+    expect(r.families[0]!.extras).toMatchObject({
+      label: "Quien creó el recetario",
+    });
+  });
+
+  it("regenerar el código reintenta ante colisión y el código nuevo es el que entra", async () => {
+    const taken = lookupCode("AAAA-AAAA", keys);
+    const saved: string[] = [];
+    const seq = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1];
+    let i = 0;
+    const code = await regenerateCode(
+      {
+        updateCode: async (_id, row) => {
+          if (row.accessCodeLookup === taken) return false;
+          saved.push(row.accessCodeLookup);
+          return true;
+        },
+      },
+      "h1",
+      keys,
+      () => seq[i++]!,
+    );
+    expect(code).toBe("BBBB-BBBB");
+    expect(saved).toEqual([lookupCode("BBBB-BBBB", keys)]);
+  });
+
+  it("zona horaria: acepta IANA y rechaza inventos", () => {
+    expect(isTimeZone("America/Santiago")).toBe(true);
+    expect(isTimeZone("America/Argentina/Buenos_Aires")).toBe(true);
+    expect(isTimeZone("UTC")).toBe(true);
+    expect(isTimeZone("Marte/Olympus")).toBe(false);
+    expect(isTimeZone("GMT-4; DROP")).toBe(false);
   });
 });
 

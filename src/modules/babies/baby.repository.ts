@@ -19,6 +19,7 @@ export const babyRepository = {
       .where(eq(babyAllergen.householdId, householdId))
       .orderBy(asc(allergen.id));
     return {
+      nickname: profile.nickname,
       birthMonth: profile.birthMonth,
       birthYear: profile.birthYear,
       allergens: Object.fromEntries(
@@ -38,12 +39,14 @@ export const babyRepository = {
         .insert(babyProfile)
         .values({
           householdId,
+          nickname: baby.nickname || null,
           birthMonth: baby.birthMonth,
           birthYear: baby.birthYear,
         })
         .onConflictDoUpdate({
           target: babyProfile.householdId,
           set: {
+            nickname: baby.nickname || null,
             birthMonth: baby.birthMonth,
             birthYear: baby.birthYear,
             updatedAt: new Date(),

@@ -3,6 +3,7 @@ import {
   check,
   primaryKey,
   smallint,
+  text,
   timestamp,
   uuid,
 } from "drizzle-orm/pg-core";
@@ -10,7 +11,7 @@ import { recetario } from "./_schema";
 import { allergen } from "./catalog";
 import { household } from "./households";
 
-// Perfil mínimo del bebé (sin nombre ni datos sensibles): un bebé por familia.
+// Perfil mínimo del bebé (sin nombre completo ni datos sensibles; apodo opcional): un bebé por familia.
 export const babyProfile = recetario.table(
   "baby_profile",
   {
@@ -19,6 +20,7 @@ export const babyProfile = recetario.table(
       .references(() => household.id, { onDelete: "cascade" }),
     birthMonth: smallint("birth_month").notNull(),
     birthYear: smallint("birth_year").notNull(),
+    nickname: text(), // apodo opcional, solo para la interfaz
     updatedAt: timestamp("updated_at", { withTimezone: true })
       .notNull()
       .defaultNow(),
