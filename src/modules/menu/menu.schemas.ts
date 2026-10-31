@@ -55,3 +55,17 @@ export type StoredEntry = {
   isFish: boolean;
   isMaxOnce: boolean;
 };
+
+// «Hoy» (GET /api/today): comidas del día con su hora local («HH:MM») y su instante exacto (ISO).
+export type TodayMeal = {
+  meal: MenuMeal;
+  time: string;
+  startsAt: string;
+  recipe: RecipeListItem | null;
+};
+export type Today = {
+  date: string; // YYYY-MM-DD en la zona de la familia
+  day: number; // 1 = lunes
+  timeZone: string;
+  meals: TodayMeal[];
+};

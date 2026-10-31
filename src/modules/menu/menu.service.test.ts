@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { DEFAULT_MEAL_TIMES } from "@/modules/households/households.schemas";
 import type { RecipeListItem } from "@/modules/recipes/recipes.schemas";
 import type { Candidate } from "./menu.generator";
 import type { EntryRef, MenuMeal, StoredEntry } from "./menu.schemas";
@@ -100,6 +101,10 @@ function fakeDeps(
     babyAge: (b, now) =>
       (now.getUTCFullYear() - b.birthYear) * 12 +
       (now.getUTCMonth() + 1 - b.birthMonth),
+    household: async () => ({
+      timeZone: "America/Caracas",
+      mealTimes: DEFAULT_MEAL_TIMES,
+    }),
     now: () => NOW,
     random: seeded(opts.seed ?? 1),
   };

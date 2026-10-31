@@ -1,15 +1,16 @@
 "use client";
 
-import { Baby, BookOpen, CalendarDays, House } from "lucide-react";
+import { Baby, BookOpen, CalendarDays, House, Sun } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const ITEMS = [
+  { href: "/hoy", label: "Hoy", icon: Sun },
   { href: "/menu", label: "Menú", icon: CalendarDays },
   { href: "/recetas", label: "Recetas", icon: BookOpen },
   { href: "/bebe", label: "Bebé", icon: Baby },
-  { href: "/recetario", label: "Mi recetario", icon: House },
+  { href: "/recetario", label: "Familia", icon: House }, // «Mi recetario»: no cabe en la barra de 5 en móvil
 ] as const;
 
 // Una sola navegación en tres formas: barra inferior (móvil), superior (tablet) y lateral (escritorio).

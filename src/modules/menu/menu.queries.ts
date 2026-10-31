@@ -2,7 +2,7 @@
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/api-client";
-import type { EntryRef, Menu, RegenerateInput } from "./menu.schemas";
+import type { EntryRef, Menu, RegenerateInput, Today } from "./menu.schemas";
 
 export const useMenu = () =>
   useQuery({
@@ -18,7 +18,10 @@ function useMenuMutation<TVars, TData extends { menu: Menu }>(
   const qc = useQueryClient();
   return useMutation({
     mutationFn: request,
-    onSuccess: (data) => qc.setQueryData(["menu"], data.menu),
+    onSuccess: (data) => {
+      qc.setQueryData(["menu"], data.menu);
+      void qc.invalidateQueries({ queryKey: ["today"] });
+    },
   });
 }
 
@@ -43,3 +46,10 @@ export const useSetEntries = () =>
     async (entries: EntryRef[]) =>
       (await api.put<{ menu: Menu }>("/menu/entries", { entries })).data,
   );
+
+export const useToday = () =>
+  useQuery({
+    queryKey: ["today"],
+    queryFn: async ({ signal }) =>
+      (await api.get<{ today: Today | null }>("/today", { signal })).data.today,
+  });

@@ -1,5 +1,6 @@
 "use client";
 
+import { clearPrivateCaches } from "@/components/service-worker";
 import { Copy, KeyRound, LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -24,6 +25,7 @@ export function RecetarioActions({ code }: { code: string }) {
   async function leave() {
     setLeaving(true);
     await api.post("/access/logout");
+    await clearPrivateCaches();
     router.replace("/acceso");
     router.refresh();
   }

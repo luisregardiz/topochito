@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "topochito",
     short_name: "topochito",
     description: "Recetas y menú semanal para la alimentación complementaria",
-    start_url: "/menu", // sin sesión, proxy.ts lo envía a /acceso
+    start_url: "/hoy", // sin sesión, proxy.ts lo envía a /acceso
     scope: "/",
     display: "standalone",
     lang: "es",

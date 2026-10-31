@@ -7,6 +7,7 @@ import { SESSION_COOKIE, verifySession } from "@/lib/session";
 const PUBLIC_PATHS = new Set([
   "/acceso",
   "/empezar",
+  "/offline",
   "/limite",
   "/api/access",
   "/api/access/logout",
@@ -141,6 +142,6 @@ export async function proxy(req: NextRequest) {
 export const config = {
   // El manifiesto (y los iconos .png) los pide el navegador sin cookie: no pueden pasar por el gate de sesión.
   matcher: [
-    "/((?!_next/static|_next/image|favicon\\.ico|manifest\\.webmanifest|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
+    "/((?!_next/static|_next/image|favicon\\.ico|manifest\\.webmanifest|sw\\.js|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
   ],
 };

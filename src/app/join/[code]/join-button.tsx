@@ -1,5 +1,6 @@
 "use client";
 
+import { clearPrivateCaches } from "@/components/service-worker";
 import { Clock, LoaderCircle, Lock } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -20,8 +21,9 @@ export function JoinButton({ code, name }: { code: string; name: string }) {
     setFailed(false);
     try {
       await api.post("/access", { code });
+      await clearPrivateCaches();
       toast.success(`Entraste al recetario de ${name}`);
-      router.replace("/menu"); // ya dentro, la URL no lleva el código
+      router.replace("/hoy"); // ya dentro, la URL no lleva el código
       router.refresh();
     } catch (e) {
       setPending(false);

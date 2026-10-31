@@ -1,5 +1,5 @@
-// Zona horaria fija de la app (todas las familias están en Venezuela por ahora).
-// shortcut: no hay zona por familia; si la app sale de ese huso, guardar la zona en el household.
+// Zona por defecto (familias anteriores a la zona por familia). El menú, «Hoy» y los recordatorios usan household.time_zone.
+// shortcut: la edad en meses se calcula en esta zona; solo difiere unas horas el día 1 de cada mes.
 export const APP_TIME_ZONE = "America/Caracas";
 
 export function currentYearMonth(now: Date, timeZone = APP_TIME_ZONE) {

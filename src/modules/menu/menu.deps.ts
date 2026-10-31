@@ -1,6 +1,8 @@
 import "server-only";
 import { HttpError } from "@/lib/http";
-import { ageInMonths } from "@/modules/babies/baby.age";
+import { ageInMonths, APP_TIME_ZONE } from "@/modules/babies/baby.age";
+import { householdsRepository } from "@/modules/households/households.repository";
+import { DEFAULT_MEAL_TIMES } from "@/modules/households/households.schemas";
 import { babyRepository } from "@/modules/babies/baby.repository";
 import { menuRepository } from "./menu.repository";
 import type { Deps, MenuError } from "./menu.service";
@@ -10,6 +12,13 @@ export const menuDeps = (): Deps => ({
   baby: babyRepository,
   babyAge: (b, now) =>
     ageInMonths({ month: b.birthMonth, year: b.birthYear }, now),
+  household: async (householdId) => {
+    const s = await householdsRepository.settings(householdId);
+    return {
+      timeZone: s?.timeZone ?? APP_TIME_ZONE,
+      mealTimes: s?.mealTimes ?? DEFAULT_MEAL_TIMES,
+    };
+  },
   now: () => new Date(),
   random: Math.random,
 });

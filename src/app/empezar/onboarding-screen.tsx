@@ -1,5 +1,6 @@
 "use client";
 
+import { clearPrivateCaches } from "@/components/service-worker";
 import {
   ArrowLeft,
   Clock,
@@ -146,6 +147,7 @@ export function OnboardingScreen({
         country: country === "otro" ? null : (country as Country),
         timeZone,
       });
+      await clearPrivateCaches();
       setCode(data.code);
     } catch (e) {
       const err = e instanceof ApiError ? e : null;
@@ -482,7 +484,7 @@ function Done({ code, name }: { code: string; name: string }) {
         variant="outline"
         className="w-full"
         onClick={() => {
-          router.replace("/menu");
+          router.replace("/hoy");
           router.refresh();
         }}
       >

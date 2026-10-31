@@ -1,5 +1,6 @@
 "use client";
 
+import { clearPrivateCaches } from "@/components/service-worker";
 import { Clock, Lock, LoaderCircle, Trash2, TriangleAlert } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -20,7 +21,10 @@ export function AccessScreen({ deleted }: { deleted: boolean }) {
 
   useEffect(() => {
     // Recetario borrado o acceso revocado: la cookie ya no sirve.
-    if (deleted) void api.post("/access/logout").catch(() => {});
+    if (deleted) {
+      void api.post("/access/logout").catch(() => {});
+      void clearPrivateCaches();
+    }
     // Los enlaces «Escribir el código a mano» llegan con #codigo.
     if (window.location.hash === "#codigo") codeRef.current?.focus();
   }, [deleted]);
@@ -109,7 +113,8 @@ function CodeCard({ inputRef }: { inputRef: React.Ref<HTMLInputElement> }) {
     setProblem(null);
     try {
       await api.post("/access", { code });
-      router.replace("/menu");
+      await clearPrivateCaches();
+      router.replace("/hoy");
       router.refresh();
     } catch (e) {
       setPending(false);

@@ -34,6 +34,7 @@ import { allergenWithArticle } from "@/modules/recipes/recipes.format";
 import { dayName, formatDayLong, formatRange } from "@/modules/menu/menu.dates";
 import { mealsForAge } from "@/modules/menu/menu.generator";
 import { weekOf } from "@/modules/menu/menu.week";
+import { useSettings } from "@/modules/households/households.queries";
 import {
   useGenerateMenu,
   useMenu,
@@ -131,8 +132,8 @@ export function MenuScreen() {
 }
 
 // Semana sin recetas para armarla a mano; solo existe en pantalla hasta que se elige la primera receta.
-const blankMenu = (ageMonths: number): Menu => ({
-  ...weekOf(new Date()),
+const blankMenu = (ageMonths: number, timeZone?: string): Menu => ({
+  ...weekOf(new Date(), timeZone),
   ageMonths,
   meals: mealsForAge(ageMonths),
   days: [1, 2, 3, 4, 5, 6, 7].map((day) => ({ day, meals: [] })),
@@ -155,7 +156,8 @@ function MenuView({
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [manual, setManual] = useState(false);
   const [picking, setPicking] = useState<PickTarget | null>(null);
-  const menu = stored ?? (manual ? blankMenu(ageMonths) : null);
+  const timeZone = useSettings().data?.timeZone;
+  const menu = stored ?? (manual ? blankMenu(ageMonths, timeZone) : null);
 
   const selected = day ?? menu?.today ?? 1;
   const mealCount = mealsForAge(ageMonths).length;

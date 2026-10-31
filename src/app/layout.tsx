@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Mono, IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
+import { ServiceWorker } from "@/components/service-worker";
 import { Providers } from "@/components/providers";
 import { OfflineBanner } from "@/components/recetario/offline-banner";
 import { Toaster } from "@/components/ui/sonner";
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Providers>{children}</Providers>
         <OfflineBanner />
         <Toaster />
+        <ServiceWorker />
       </body>
     </html>
   );

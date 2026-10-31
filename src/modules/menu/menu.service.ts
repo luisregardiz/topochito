@@ -10,7 +10,9 @@ import {
   type Plan,
   type Pools,
 } from "./menu.generator";
+import type { MealTimes } from "@/modules/households/households.schemas";
 import { summarize } from "./menu.summary";
+import { todayPlan } from "./menu.today";
 import { weekOf } from "./menu.week";
 import {
   MENU_MEALS,
@@ -62,6 +64,9 @@ export type Deps = {
     baby: { birthMonth: number; birthYear: number },
     now: Date,
   ) => number;
+  household: (
+    householdId: string,
+  ) => Promise<{ timeZone: string; mealTimes: MealTimes }>;
   now: () => Date;
   random: () => number;
 };
@@ -86,8 +91,13 @@ const toRefs = (plan: Plan): EntryRef[] =>
     return { day: Number(day), meal: meal as MenuMeal, recipe };
   });
 
-function buildMenu(entries: StoredEntry[], ageMonths: number, now: Date): Menu {
-  const week = weekOf(now);
+type Week = ReturnType<typeof weekOf>;
+
+function buildMenu(
+  entries: StoredEntry[],
+  ageMonths: number,
+  week: Week,
+): Menu {
   const meals = mealsForAge(ageMonths); // los huecos sin receta (menú armado a mano) cuentan como faltantes
   const byCode = new Map(entries.map((e) => [e.recipe.code, toCandidate(e)]));
   return {
@@ -111,11 +121,14 @@ async function load(deps: Deps, householdId: string) {
   if (!baby) return null;
   const now = deps.now();
   const ageMonths = deps.babyAge(baby, now);
-  const entries = await deps.menu.getWeek(householdId, weekOf(now).weekStart);
+  // La semana y el «hoy» se cuentan en la zona horaria de la familia, no en la del servidor.
+  const household = await deps.household(householdId);
+  const week = weekOf(now, household.timeZone);
+  const entries = await deps.menu.getWeek(householdId, week.weekStart);
   const avoid = Object.entries(baby.allergens)
     .filter(([, status]) => status === "avoid")
     .map(([slug]) => slug);
-  return { baby, now, ageMonths, entries, avoid };
+  return { baby, now, week, household, ageMonths, entries, avoid };
 }
 
 async function context(
@@ -137,7 +150,7 @@ async function context(
 export async function getMenu(deps: Deps, householdId: string) {
   const state = await load(deps, householdId);
   if (!state || state.entries.length === 0) return { menu: null };
-  return { menu: buildMenu(state.entries, state.ageMonths, state.now) };
+  return { menu: buildMenu(state.entries, state.ageMonths, state.week) };
 }
 
 export async function generateMenu(
@@ -150,16 +163,9 @@ export async function generateMenu(
   const plan = ctx && generateWeek(ctx);
   if (!plan) return fail("not_enough_recipes");
 
-  await deps.menu.replaceWeek(
-    householdId,
-    weekOf(state.now).weekStart,
-    toRefs(plan),
-  );
-  const entries = await deps.menu.getWeek(
-    householdId,
-    weekOf(state.now).weekStart,
-  );
-  return { ok: true, menu: buildMenu(entries, state.ageMonths, state.now) };
+  await deps.menu.replaceWeek(householdId, state.week.weekStart, toRefs(plan));
+  const entries = await deps.menu.getWeek(householdId, state.week.weekStart);
+  return { ok: true, menu: buildMenu(entries, state.ageMonths, state.week) };
 }
 
 // Cambia una comida o un día. `previous` permite deshacer; vacío si no había alternativa.
@@ -188,7 +194,7 @@ export async function regenerate(
       ? regenerateMeal(ctx, plan, input.day, input.meal)
       : regenerateDay(ctx, plan, input.day);
 
-  const weekStart = weekOf(state.now).weekStart;
+  const weekStart = state.week.weekStart;
   const changed = toRefs(result.plan).filter(
     (r) => plan[slotKey(r.day, r.meal)] !== r.recipe,
   );
@@ -205,7 +211,7 @@ export async function regenerate(
     : state.entries;
   return {
     ok: true,
-    menu: buildMenu(entries, state.ageMonths, state.now),
+    menu: buildMenu(entries, state.ageMonths, state.week),
     previous,
   };
 }
@@ -230,8 +236,22 @@ export async function setEntries(
   if (entries.some((e) => meals.get(e.recipe) !== e.meal))
     return fail("invalid_recipe");
 
-  const weekStart = weekOf(state.now).weekStart;
+  const weekStart = state.week.weekStart;
   await deps.menu.setEntries(householdId, weekStart, entries);
   const updated = await deps.menu.getWeek(householdId, weekStart);
-  return { ok: true, menu: buildMenu(updated, state.ageMonths, state.now) };
+  return { ok: true, menu: buildMenu(updated, state.ageMonths, state.week) };
+}
+
+// «Hoy»: las comidas del día con su hora en la zona de la familia (pantalla /hoy y app móvil).
+export async function getToday(deps: Deps, householdId: string) {
+  const state = await load(deps, householdId);
+  if (!state) return { today: null };
+  return {
+    today: todayPlan({
+      entries: state.entries,
+      week: state.week,
+      ageMonths: state.ageMonths,
+      ...state.household,
+    }),
+  };
 }

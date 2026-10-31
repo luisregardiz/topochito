@@ -1,5 +1,6 @@
 "use client";
 
+import { clearPrivateCaches } from "@/components/service-worker";
 import { Clock, LoaderCircle, TriangleAlert } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -23,8 +24,9 @@ export function AcceptForm({ token, name }: { token: string; name: string }) {
     setProblem(null);
     try {
       await api.post(`/invitations/${token}`, { label });
+      await clearPrivateCaches();
       toast.success(`Entraste al recetario de ${name}`);
-      router.replace("/menu"); // ya dentro, la URL no lleva el token
+      router.replace("/hoy"); // ya dentro, la URL no lleva el token
       router.refresh();
     } catch (e) {
       setPending(false);
