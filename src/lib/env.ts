@@ -19,11 +19,25 @@ const schema = z
     // Autoriza al cron de Vercel. Sin ella el endpoint de purga responde 401.
     CRON_SECRET: optional,
     ACCESS_CODE_KEY: z.string().min(32, "mínimo 32 caracteres"),
+    // Web push (opcional: sin claves, la app funciona y solo se apagan los avisos push).
+    VAPID_PUBLIC_KEY: optional,
+    VAPID_PRIVATE_KEY: optional,
+    VAPID_SUBJECT: optional.refine(
+      (v) => !v || /^(mailto:|https:\/\/)/.test(v),
+      "debe empezar con mailto: o https://",
+    ),
+    // QStash dispara /api/cron/reminders; solo se aceptan peticiones firmadas con estas claves.
+    QSTASH_TOKEN: optional,
+    QSTASH_CURRENT_SIGNING_KEY: optional,
+    QSTASH_NEXT_SIGNING_KEY: optional,
     UPSTASH_REDIS_REST_URL: optional,
     UPSTASH_REDIS_REST_TOKEN: optional,
   })
   .refine((e) => !!e.UPSTASH_REDIS_REST_URL === !!e.UPSTASH_REDIS_REST_TOKEN, {
     message: "UPSTASH_REDIS_REST_URL y UPSTASH_REDIS_REST_TOKEN van juntas",
+  })
+  .refine((e) => !!e.VAPID_PUBLIC_KEY === !!e.VAPID_PRIVATE_KEY, {
+    message: "VAPID_PUBLIC_KEY y VAPID_PRIVATE_KEY van juntas",
   });
 
 export type Env = z.infer<typeof schema>;

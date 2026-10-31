@@ -100,3 +100,41 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(staleWhileRevalidate(event));
   }
 });
+
+// --- Avisos push (los envía /api/cron/reminders) ---
+self.addEventListener("push", (event) => {
+  let data = {};
+  try {
+    data = event.data ? event.data.json() : {};
+  } catch {
+    data = { body: event.data ? event.data.text() : "" };
+  }
+  event.waitUntil(
+    self.registration.showNotification(data.title || "topochito", {
+      body: data.body || "",
+      icon: "/icon-192.png",
+      badge: "/icon-192.png",
+      tag: data.tag, // el mismo recordatorio reemplaza al anterior en vez de apilarse
+      data: { url: data.url || "/hoy" },
+    }),
+  );
+});
+
+// Al tocar el aviso: abre la receta (reutiliza una pestaña de la app si ya hay una).
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  const target = new URL(
+    event.notification.data?.url || "/hoy",
+    self.location.origin,
+  );
+  if (target.origin !== self.location.origin) return; // solo enlaces propios
+  event.waitUntil(
+    self.clients
+      .matchAll({ type: "window", includeUncontrolled: true })
+      .then((wins) => {
+        const win = wins.find((w) => new URL(w.url).origin === target.origin);
+        if (win) return win.focus().then(() => win.navigate(target.href));
+        return self.clients.openWindow(target.href);
+      }),
+  );
+});

@@ -50,21 +50,53 @@ El schema Drizzle (`src/db/schema/`) es la fuente de verdad. `src/db/seed/receta
 | `pnpm db:pull`     | Introspección de una base existente                                |
 | `pnpm db:studio`   | Explorador visual                                                  |
 
-## Acceso por código de familia
+## Acceso: familias, cuidadores e invitaciones
 
-No hay usuarios ni contraseñas. Cada familia (`household`) tiene un código `XXXX-XXXX`.
+No hay usuarios ni contraseñas. Cada familia (`household`) tiene un código `XXXX-XXXX` y uno o varios **cuidadores**
+(`household_member`: «Mamá», «Abuela»…). La cookie de sesión lleva `householdId` + `memberId`.
 
-- **Crear:** en `/acceso`, "Crear mi recetario" pide el nombre de la persona o familia, genera el código y entra directo.
-- **Compartir:** en el inicio, el botón "Compartir recetario" copia al portapapeles solo el enlace (`{origen}/join/XXXX-XXXX`); en local, `http://localhost:3000/join/XXXX-XXXX`.
-  El enlace es `/join/XXXX-XXXX`: muestra "Te invitaron al recetario de …" y, al confirmar, inicia sesión y redirige a `/` (sin el código en la URL).
-  Pide confirmación porque un simple GET no debe cambiarte de cuenta.
-- **Entrar con código:** `/acceso` → "Acceder al recetario de mi bebé" (acepta minúsculas, espacios y guiones).
+- **Crear:** `/empezar` (público): bebé (apodo opcional, mes y año, alérgenos que ya come), horarios de comida y país/zona
+  horaria (se detecta del navegador). Al terminar muestra el código, con "Copiar" y "Enviar a WhatsApp", y entra directo.
+- **Invitar:** en "Mi recetario" → "Invitar a alguien" crea un enlace `/invitacion/<token>` (32 bytes, solo se guarda su
+  SHA-256, vence a los 7 días, sirve para varias personas hasta que vence o se desactiva). Quien lo abre elige su etiqueta y recibe su propia sesión.
+- **Revocar:** "Mi recetario" → Cuidadores → "Quitar". Se verifica en el servidor (`requireSession()` y `getCurrentHousehold()`);
+  `proxy.ts` solo valida la firma de la cookie.
+- **Cambiar el código:** "Mi recetario" → "Cambiar el código" invalida el anterior (y los enlaces `/join/<código>` viejos). Las sesiones abiertas siguen.
+- **Entrar con código:** `/acceso` (acepta minúsculas, espacios y guiones) o el enlace `/join/XXXX-XXXX`, que sigue funcionando.
+  Cada dispositivo que entra con el código es un cuidador propio («Entró con el código»).
 - **Por CLI:** `pnpm household:create "Familia Pérez"` imprime el código y la ruta del enlace.
+- **Cookies anteriores a los cuidadores:** siguen valiendo; la primera llamada a la API crea su cuidador («Dispositivo anterior») y reemite la cookie.
 
-El código se guarda **cifrado** (AES-256-GCM) con `ACCESS_CODE_KEY` y se busca por un índice HMAC, para poder volver a mostrarlo
-y compartirlo. Si pierdes o cambias `ACCESS_CODE_KEY`, los códigos existentes dejan de funcionar (la sesión usa otro secreto).
-Límites: 5 creaciones por hora por IP y 30 por hora en total; 5 intentos de código cada 15 minutos por IP.
-`MAX_HOUSEHOLDS` (por defecto 200) es el tope de recetarios; con `0` se cierra la creación (en Vercel, cambiar la variable requiere un redeploy).
+El código se guarda **cifrado** (AES-256-GCM) con `ACCESS_CODE_KEY` y se busca por un índice HMAC, para poder volver a mostrarlo.
+Si pierdes o cambias `ACCESS_CODE_KEY`, los códigos existentes dejan de funcionar (la sesión usa otro secreto).
+Tokens y hashes se comparan en tiempo constante. Límites por IP: 5 creaciones por hora (30 por hora en total), 5 intentos de
+código cada 15 minutos, 10 canjes de invitación por hora y 60 consultas por hora a cada feed de calendario. El formulario de
+creación tiene un campo trampa (honeypot). `MAX_HOUSEHOLDS` (por defecto 200) es el tope de recetarios; con `0` se cierra la creación.
+
+## Hoy, instalación y modo sin conexión
+
+- `/hoy` es la pantalla de inicio: las comidas del día con su hora, en la **zona horaria de la familia** (`household.time_zone`), y "Compartir menú de hoy" por WhatsApp.
+  La API es `GET /api/today` (la reutilizará la app móvil).
+- Instalable: `app/manifest.ts` (`start_url: /hoy`), iconos en `public/`. Android muestra "Instalar app"; en iPhone, una guía
+  (Compartir → Agregar a inicio). El aviso se puede descartar (se recuerda en `localStorage`).
+- Sin conexión: `public/sw.js`, escrito a mano (Serwist no tiene soporte estable para Turbopack). Cache-first para `/_next/static`,
+  network-first para las páginas (sin red: la última versión vista o `/offline`) y stale-while-revalidate para recetas, menú, hoy y bebé.
+  Esos datos son de una familia: la app borra la caché al entrar o salir. El service worker solo se registra en producción.
+
+## Recordatorios: calendario y avisos push
+
+Ambos canales consumen el mismo concepto, `ReminderSource` (`src/modules/reminders`): para una familia y un rango produce
+eventos `{ key, title, startsAt, url }`. Hoy hay una fuente: las comidas del plan.
+
+- **Calendario (.ics), el canal principal:** "Mi recetario" → Recordatorios → "Crear enlace". `GET /api/calendar/<token>.ics` es
+  público (se autentica por el token, uno por familia, guardado con hash) y devuelve los eventos desde hoy hasta 14 días (en la práctica,
+  lo que queda de la semana del menú). UID estable por (familia, fecha, comida); 30 minutos; alarma a la hora o 15 minutos antes.
+  Las horas van en UTC (válido en RFC 5545) con `X-WR-TIMEZONE`, sin `VTIMEZONE`. Crear un enlace nuevo invalida el anterior.
+- **Push, el complementario:** "Activar avisos" pide permiso solo al tocarlo (en iPhone, solo con la app instalada). El cron
+  `POST /api/cron/reminders` lo dispara un schedule de **QStash cada 5 minutos**, verifica la firma, es idempotente (`reminder_delivery`)
+  y borra las suscripciones que el servicio de push da por muertas (404/410). Sin claves VAPID el push se apaga con un aviso en el log.
+- Probar el cron en local: `pnpm reminders:run` (en desarrollo acepta el Bearer `CRON_SECRET`; en producción, solo la firma de QStash).
+- Claves VAPID: `npx web-push generate-vapid-keys`.
 
 ## Purga por inactividad
 
@@ -78,14 +110,17 @@ vez al día), así que usar la app con la sesión abierta cuenta como actividad.
 
 ## Variables de entorno
 
-| Variable                                              | Obligatoria | Uso                                                                         |
-| ----------------------------------------------------- | ----------- | --------------------------------------------------------------------------- |
-| `DATABASE_URL`                                        | sí          | PostgreSQL. En producción, la cadena **pooled** de Neon                     |
-| `SESSION_SECRET`                                      | sí (≥32)    | Firma de la cookie de acceso (HS256)                                        |
-| `ACCESS_CODE_KEY`                                     | sí (≥32)    | Cifra los códigos de familia. Distinta de `SESSION_SECRET`                  |
-| `CRON_SECRET`                                         | prod        | Autoriza el cron de purga. Sin ella `/api/cron/purge-inactive` responde 401 |
-| `MAX_HOUSEHOLDS`                                      | no          | Tope de recetarios (200 por defecto). `0` cierra la creación                |
-| `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN` | prod        | Rate limit. Sin ellas usa memoria (solo desarrollo) y avisa en el log       |
+| Variable                                                   | Obligatoria | Uso                                                                           |
+| ---------------------------------------------------------- | ----------- | ----------------------------------------------------------------------------- |
+| `DATABASE_URL`                                             | sí          | PostgreSQL. En producción, la cadena **pooled** de Neon                       |
+| `SESSION_SECRET`                                           | sí (≥32)    | Firma de la cookie de acceso (HS256)                                          |
+| `ACCESS_CODE_KEY`                                          | sí (≥32)    | Cifra los códigos de familia. Distinta de `SESSION_SECRET`                    |
+| `CRON_SECRET`                                              | prod        | Autoriza el cron de purga. Sin ella `/api/cron/purge-inactive` responde 401   |
+| `MAX_HOUSEHOLDS`                                           | no          | Tope de recetarios (200 por defecto). `0` cierra la creación                  |
+| `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`      | prod        | Rate limit. Sin ellas usa memoria (solo desarrollo) y avisa en el log         |
+| `VAPID_PUBLIC_KEY` / `VAPID_PRIVATE_KEY` / `VAPID_SUBJECT` | no          | Avisos push. Sin ellas, el push se desactiva (el resto funciona)              |
+| `QSTASH_CURRENT_SIGNING_KEY` / `QSTASH_NEXT_SIGNING_KEY`   | prod (push) | Verifican que `/api/cron/reminders` lo llame QStash                           |
+| `QSTASH_TOKEN`                                             | no          | Solo para administrar el schedule desde código; la app no lo usa para recibir |
 
 La app valida el entorno al arrancar y falla con un mensaje claro si falta algo. Nada lleva prefijo `NEXT_PUBLIC_`.
 

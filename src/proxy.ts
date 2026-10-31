@@ -14,15 +14,23 @@ const PUBLIC_PATHS = new Set([
   "/api/health",
   "/api/households",
   "/api/cron/purge-inactive", // sin sesión: se protege con CRON_SECRET
+  "/api/cron/reminders", // sin sesión: se protege con la firma de QStash
 ]);
-const PUBLIC_PREFIXES = ["/join/", "/invitacion/", "/api/invitations/"];
+const PUBLIC_PREFIXES = [
+  "/join/",
+  "/invitacion/",
+  "/api/invitations/",
+  "/api/calendar/", // el feed se autentica por su token (/api/calendar a secas sí exige sesión)
+];
+// Firmadas por un servicio externo, sin navegador ni Origin: el CSRF no aplica.
+const SIGNED_PATHS = new Set(["/api/cron/reminders"]);
 const isPublic = (pathname: string) =>
   PUBLIC_PATHS.has(pathname) ||
   PUBLIC_PREFIXES.some((p) => pathname.startsWith(p));
 const SAFE_METHODS = new Set(["GET", "HEAD", "OPTIONS"]);
 
 type Limiters = Record<
-  "api" | "access" | "create" | "createGlobal" | "invite",
+  "api" | "access" | "create" | "createGlobal" | "invite" | "calendar",
   RateLimiter
 >;
 let limiters: Limiters | undefined;
@@ -42,6 +50,11 @@ const getLimiters = () =>
     invite: createRateLimiter({
       prefix: "invite",
       limit: 10,
+      windowSeconds: 60 * 60,
+    }),
+    calendar: createRateLimiter({
+      prefix: "calendar",
+      limit: 60,
       windowSeconds: 60 * 60,
     }),
     // Tope global: protege la base aunque el abuso venga de muchas IPs.
@@ -92,7 +105,7 @@ function sameOrigin(req: NextRequest) {
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const isApi = pathname.startsWith("/api/");
-  const { api, access, create, createGlobal, invite } = getLimiters();
+  const { api, access, create, createGlobal, invite, calendar } = getLimiters();
   const ip = clientIp(req);
 
   if (isApi) {
@@ -112,9 +125,13 @@ export async function proxy(req: NextRequest) {
         ? create
         : isRedeem
           ? invite
-          : null;
+          : pathname.startsWith("/api/calendar/")
+            ? calendar
+            : null;
   if (attemptsLimiter) {
-    const attempts = await attemptsLimiter.limit(ip);
+    // El feed se cuenta por IP y token: Google y Apple consultan muchos calendarios desde pocas IPs.
+    const key = attemptsLimiter === calendar ? `${ip}:${pathname}` : ip;
+    const attempts = await attemptsLimiter.limit(key);
     if (!attempts.success) return tooMany(req, attempts.retryAfterSeconds);
   }
   if (isCreate) {
@@ -123,7 +140,11 @@ export async function proxy(req: NextRequest) {
   }
 
   // Complementa SameSite=Lax: los métodos que modifican datos deben venir del mismo origen.
-  if (!SAFE_METHODS.has(req.method) && !sameOrigin(req)) {
+  if (
+    !SAFE_METHODS.has(req.method) &&
+    !SIGNED_PATHS.has(pathname) &&
+    !sameOrigin(req)
+  ) {
     return errorResponse(403, "bad_origin", "Origen no permitido");
   }
 

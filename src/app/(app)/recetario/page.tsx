@@ -10,6 +10,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { getCurrentHousehold } from "@/modules/households/current-household";
 import { MembersSection } from "./members-section";
 import { RecetarioActions } from "./recetario-actions";
+import { RemindersSection } from "./reminders-section";
 import { SettingsSection } from "./settings-section";
 
 export default function RecetarioPage() {
@@ -61,6 +62,7 @@ async function Panel() {
       </Alert>
       <MembersSection familyName={household.name} />
       <SettingsSection />
+      <RemindersSection />
       <section aria-labelledby="despensa" className="flex flex-col gap-3">
         <h2 id="despensa" className="text-[22px] font-bold xl:text-xl">
           Mi despensa
