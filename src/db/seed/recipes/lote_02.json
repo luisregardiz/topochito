@@ -1,0 +1,380 @@
+{
+  "foods": [],
+  "recipes": [
+    {
+      "code": "P8",
+      "title": "Lentejas rojas exprés (sin remojo)",
+      "mealType": "base",
+      "minAgeMonths": null,
+      "sortOrder": 84,
+      "iron": {"isSource": true, "note": "vegetal"},
+      "allergens": [],
+      "tags": [
+        {"slug": "listo-en-20-min", "name": "Listo en 20 min", "label": "Listo en 20 min"},
+        {"slug": "se-congela", "name": "Se congela", "label": "Se congela"},
+        {"slug": "sin-sal", "name": "Sin sal", "label": "Sin sal"}
+      ],
+      "ingredients": [
+        {"text": "1 taza de lentejas rojas", "optional": false, "foods": [["lentejas"]]},
+        {"text": "2½ tazas de agua", "optional": false, "foods": [["agua"]]},
+        {"text": "½ cdta de comino", "optional": true, "foods": [["comino"]]},
+        {"text": "Pizca de cúrcuma", "optional": true, "foods": [["curcuma"]]}
+      ],
+      "steps": [
+        "Lava las lentejas en un colador hasta que el agua salga clara.",
+        "Cocínalas con el agua y las especias a fuego medio 12–15 min, removiendo de vez en cuando, hasta que se deshagan; las rojas no necesitan remojo.",
+        "Aplasta con un tenedor: quedan como un puré espeso. No añadas sal.",
+        "Reparte en cubitera o envases pequeños y congela; se recalientan en 2 minutos."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Puré espeso tal cual, o mezclado con otros purés."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Como untable o para espesar guisos."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Como guarnición o crema familiar."}
+      ],
+      "note": null,
+      "references": []
+    },
+    {
+      "code": "D21",
+      "title": "Tostada blanda de caraotas, aguacate y tomate",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 85,
+      "iron": {"isSource": true, "note": "vegetal"},
+      "allergens": [
+        {"slug": "trigo", "optional": false, "condition": null}
+      ],
+      "tags": [
+        {"slug": "listo-en-10-min", "name": "Listo en 10 min", "label": "Listo en 10 min"},
+        {"slug": "vitamina-c", "name": "Vitamina C", "label": "Vitamina C del tomate"},
+        {"slug": "grasas-saludables", "name": "Grasas saludables", "label": "Grasas saludables"}
+      ],
+      "ingredients": [
+        {"text": "1 rebanada de pan integral bajo en sal", "optional": false, "foods": [["pan-integral"]]},
+        {"text": "2 cdas de caraotas negras sin sal (P3), calientes", "optional": false, "foods": [["caraotas"]]},
+        {"text": "¼ de aguacate maduro", "optional": false, "foods": [["aguacate"]]},
+        {"text": "½ tomate maduro sin piel, rallado", "optional": false, "foods": [["tomate"]]}
+      ],
+      "steps": [
+        "Tuesta ligeramente el pan, solo hasta que esté firme por fuera, sin endurecerlo.",
+        "Aplasta las caraotas con un tenedor y úntalas sobre el pan.",
+        "Cubre con el aguacate aplastado y el tomate rallado: su vitamina C ayuda a absorber el hierro de las caraotas."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Tiras de dos dedos de ancho, sin corteza dura."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Cuadritos."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Rebanada entera."}
+      ],
+      "note": "Evita darlo todos los días: el pan es una fuente de sal oculta. Elige uno bajo en sal.",
+      "references": ["P3"]
+    },
+    {
+      "code": "D22",
+      "title": "Arepita con sardinas y tomate",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 86,
+      "iron": {"isSource": true, "note": "sardina"},
+      "allergens": [
+        {"slug": "pescado", "optional": false, "condition": null}
+      ],
+      "tags": [
+        {"slug": "listo-en-10-min", "name": "Listo en 10 min", "label": "Listo en 10 min"},
+        {"slug": "omega-3", "name": "Omega-3", "label": "Omega-3"},
+        {"slug": "harina-enriquecida", "name": "Harina enriquecida", "label": "Harina enriquecida"}
+      ],
+      "ingredients": [
+        {"text": "1–2 arepitas blandas (P5), recalentadas", "optional": false, "foods": [["harina-maiz"], ["agua"], ["aceite"]]},
+        {"text": "1 sardina en lata, en agua o aceite (sin salsa), escurrida", "optional": false, "foods": [["sardina"]]},
+        {"text": "½ tomate maduro sin piel, rallado", "optional": false, "foods": [["tomate"]]},
+        {"text": "Unas gotas de limón", "optional": true, "foods": [["limon"]]},
+        {"text": "Perejil picado fino", "optional": true, "foods": [["perejil"]]}
+      ],
+      "steps": [
+        "Recalienta las arepitas en la sartén tapada, a fuego bajo, 3–4 min.",
+        "Aplasta la sardina con el tomate y el limón hasta tener una pasta; las espinas de lata son blandas y se deshacen.",
+        "Abre las arepitas y úntalas con la pasta de sardina."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Tiras untadas, sin costra dura."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Trocitos rellenos."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Arepa entera rellena, como la familia."}
+      ],
+      "note": null,
+      "references": ["P5"]
+    },
+    {
+      "code": "D23",
+      "title": "Perico con carne mechada",
+      "mealType": "desayuno",
+      "minAgeMonths": 7,
+      "sortOrder": 87,
+      "iron": {"isSource": true, "note": "res y huevo"},
+      "allergens": [
+        {"slug": "huevo", "optional": false, "condition": null}
+      ],
+      "tags": [
+        {"slug": "listo-en-10-min", "name": "Listo en 10 min", "label": "Listo en 10 min"},
+        {"slug": "receta-tradicional-venezolana", "name": "Receta tradicional venezolana", "label": "Receta tradicional venezolana"}
+      ],
+      "ingredients": [
+        {"text": "1 huevo", "optional": false, "foods": [["huevo"]]},
+        {"text": "2 cdas de carne mechada base (P7)", "optional": false, "foods": [["res"], ["cebolla"], ["ajo"], ["aji-dulce"], ["comino"], ["agua"]]},
+        {"text": "¼ de tomate maduro sin piel, picado", "optional": false, "foods": [["tomate"]]},
+        {"text": "1 cdta de aceite", "optional": false, "foods": [["aceite"]]},
+        {"text": "1 cda de cebollín picado fino", "optional": true, "foods": [["cebollin"]]}
+      ],
+      "steps": [
+        "Sofríe el tomate y el cebollín en el aceite 1–2 min.",
+        "Añade la carne mechada y caliéntala 1 min.",
+        "Agrega el huevo batido y remueve a fuego bajo hasta que esté totalmente cuajado, sin partes líquidas."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Aplastado, con cuchara o untado en tiras de arepita."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Trocitos."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Con arepa, como la familia."}
+      ],
+      "note": null,
+      "references": ["P7"]
+    },
+    {
+      "code": "M19",
+      "title": "Garbanzos aplastados con aguacate y mango",
+      "mealType": "merienda",
+      "minAgeMonths": 7,
+      "sortOrder": 88,
+      "iron": {"isSource": true, "note": "vegetal"},
+      "allergens": [],
+      "tags": [
+        {"slug": "listo-en-10-min", "name": "Listo en 10 min", "label": "Listo en 10 min"},
+        {"slug": "sin-cocinar", "name": "Sin cocinar", "label": "Sin cocinar"},
+        {"slug": "vitamina-c", "name": "Vitamina C", "label": "Vitamina C del mango"}
+      ],
+      "ingredients": [
+        {"text": "3 cdas de garbanzos cocidos sin sal (de lata, escurridos y enjuagados)", "optional": false, "foods": [["garbanzos"]]},
+        {"text": "¼ de aguacate maduro", "optional": false, "foods": [["aguacate"]]},
+        {"text": "3–4 tiras de mango maduro", "optional": false, "foods": [["mango"]]},
+        {"text": "Unas gotas de limón", "optional": true, "foods": [["limon"]]}
+      ],
+      "steps": [
+        "Quita la piel a los garbanzos apretándolos entre los dedos: tarda 2 minutos y la textura queda más suave.",
+        "Aplástalos con el aguacate y el limón hasta tener una pasta untable, sin garbanzos enteros.",
+        "Sirve con el mango: su vitamina C ayuda a absorber el hierro de los garbanzos."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Pasta con cuchara precargada, o untada en las tiras de mango."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Para mojar trozos de mango o arepita."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Untada en pan o arepa."}
+      ],
+      "note": "Nunca ofrezcas garbanzos enteros: son redondos y firmes, con riesgo de atragantamiento. Aplástalos siempre.",
+      "references": []
+    },
+    {
+      "code": "M20",
+      "title": "Batata de microondas con untable de lentejas",
+      "mealType": "merienda",
+      "minAgeMonths": 7,
+      "sortOrder": 89,
+      "iron": {"isSource": true, "note": "vegetal"},
+      "allergens": [],
+      "tags": [
+        {"slug": "listo-en-15-min-con-sobras", "name": "Listo en 15 min con sobras", "label": "Listo en 15 min con sobras"},
+        {"slug": "vitamina-a", "name": "Vitamina A", "label": "Vitamina A"}
+      ],
+      "ingredients": [
+        {"text": "1 batata pequeña", "optional": false, "foods": [["batata"]]},
+        {"text": "3 cdas de lentejas rojas exprés (P8)", "optional": false, "foods": [["lentejas"], ["agua"]]},
+        {"text": "¼ de tomate maduro rallado", "optional": false, "foods": [["tomate"]]},
+        {"text": "1 cdta de aceite de oliva", "optional": false, "foods": [["aceite"]]},
+        {"text": "Pizca de comino", "optional": true, "foods": [["comino"]]}
+      ],
+      "steps": [
+        "Lava la batata, pínchala varias veces con un tenedor y cocínala en el microondas 5–7 min, dándole la vuelta a la mitad, hasta que esté muy blanda.",
+        "Mientras, calienta las lentejas y mézclalas con el tomate, el aceite y el comino.",
+        "Pela la batata, córtala en bastones y sírvela con el untable; el tomate aporta vitamina C para absorber el hierro."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Bastones de batata untados."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Trozos para mojar."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Batata abierta con las lentejas encima."}
+      ],
+      "note": "El microondas deja puntos muy calientes: deja salir el vapor, remueve y prueba la temperatura antes de servir.",
+      "references": ["P8"]
+    },
+    {
+      "code": "M21",
+      "title": "Avena remojada con cambur y chía (sin cocinar)",
+      "mealType": "merienda",
+      "minAgeMonths": 7,
+      "sortOrder": 90,
+      "iron": {"isSource": false, "note": null},
+      "allergens": [],
+      "tags": [
+        {"slug": "sin-cocinar", "name": "Sin cocinar", "label": "Sin cocinar"},
+        {"slug": "avena-puede-contener-gluten", "name": "Avena: puede contener gluten", "label": "Avena: puede contener gluten"},
+        {"slug": "dulce-natural", "name": "Dulce natural", "label": "Dulce natural"}
+      ],
+      "ingredients": [
+        {"text": "3 cdas de avena en hojuelas finas", "optional": false, "foods": [["avena"]]},
+        {"text": "5 cdas de leche materna o agua", "optional": false, "foods": [["leche-materna", "agua"]]},
+        {"text": "½ cambur maduro", "optional": false, "foods": [["cambur"]]},
+        {"text": "½ cdta de semillas de chía o linaza molidas", "optional": true, "foods": [["chia-linaza"]]},
+        {"text": "Pizca de canela", "optional": true, "foods": [["canela"]]}
+      ],
+      "steps": [
+        "La noche anterior, mezcla la avena con el líquido, la chía molida y la canela en un frasco pequeño.",
+        "Tapa y guarda en la nevera al menos 4 horas.",
+        "Al servir, aplasta el cambur y mézclalo con la avena."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Mezclado y aplastado, con cuchara precargada."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Con trocitos de cambur."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Con frutas en trozos por encima."}
+      ],
+      "note": "Usa la chía o la linaza molidas o bien remojadas: secas y enteras pueden pegarse en la garganta.",
+      "references": []
+    },
+    {
+      "code": "A21",
+      "title": "Pasta con atún y tomate en 15 minutos",
+      "mealType": "almuerzo",
+      "minAgeMonths": 7,
+      "sortOrder": 91,
+      "iron": {"isSource": false, "note": null},
+      "allergens": [
+        {"slug": "trigo", "optional": false, "condition": null},
+        {"slug": "pescado", "optional": false, "condition": null}
+      ],
+      "tags": [
+        {"slug": "listo-en-20-min", "name": "Listo en 20 min", "label": "Listo en 20 min"},
+        {"slug": "atun-claro", "name": "Atún claro", "label": "Atún claro"}
+      ],
+      "ingredients": [
+        {"text": "½ taza de pasta corta o fusilli", "optional": false, "foods": [["pasta"]]},
+        {"text": "Agua para cocer la pasta", "optional": false, "foods": [["agua"]]},
+        {"text": "2 cdas de atún claro en lata, en agua, escurrido", "optional": false, "foods": [["atun"]]},
+        {"text": "1 tomate maduro sin piel, rallado", "optional": false, "foods": [["tomate"]]},
+        {"text": "1 cubo de sofrito (P2)", "optional": false, "foods": [["cebolla"], ["pimenton"], ["aji-dulce"], ["ajo"], ["tomate"], ["cebollin"], ["aceite"]]},
+        {"text": "1 cdta de aceite de oliva", "optional": false, "foods": [["aceite"]]},
+        {"text": "Orégano o albahaca", "optional": true, "foods": [["oregano", "albahaca"]]}
+      ],
+      "steps": [
+        "Cuece la pasta en agua sin sal hasta que esté muy blanda, unos minutos más de lo que indica el paquete.",
+        "Mientras, calienta el sofrito con el tomate rallado 5 min.",
+        "Añade el atún desmenuzado y el orégano, y calienta 1 min.",
+        "Mezcla con la pasta escurrida y el aceite."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Fusilli grande muy cocido para agarrar, con la salsa pegada."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Pasta corta."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Plato familiar."}
+      ],
+      "note": "Evita el atún blanco o albacora, que tiene más mercurio: usa atún claro (light) en agua.",
+      "references": ["P2"]
+    },
+    {
+      "code": "A22",
+      "title": "Funche salado con carne mechada",
+      "mealType": "almuerzo",
+      "minAgeMonths": 7,
+      "sortOrder": 92,
+      "iron": {"isSource": true, "note": "res"},
+      "allergens": [],
+      "tags": [
+        {"slug": "listo-en-15-min-con-sobras", "name": "Listo en 15 min con sobras", "label": "Listo en 15 min con sobras"},
+        {"slug": "harina-enriquecida", "name": "Harina enriquecida", "label": "Harina enriquecida"},
+        {"slug": "maiz", "name": "Maíz", "label": "Maíz"}
+      ],
+      "ingredients": [
+        {"text": "3 cdas de harina de maíz precocida", "optional": false, "foods": [["harina-maiz"]]},
+        {"text": "200 ml de agua", "optional": false, "foods": [["agua"]]},
+        {"text": "3 cdas de carne mechada base (P7), con su caldo", "optional": false, "foods": [["res"], ["cebolla"], ["ajo"], ["aji-dulce"], ["comino"], ["agua"]]},
+        {"text": "1 cubo de sofrito (P2)", "optional": false, "foods": [["cebolla"], ["pimenton"], ["aji-dulce"], ["ajo"], ["tomate"], ["cebollin"], ["aceite"]]},
+        {"text": "2 cdas de auyama cocida y aplastada", "optional": true, "foods": [["auyama"]]}
+      ],
+      "steps": [
+        "Disuelve la harina en el agua fría y cocina a fuego bajo 5 min, removiendo, hasta que espese; añade la auyama si la usas.",
+        "En otra sartén, calienta el sofrito con la carne mechada y su caldo 3 min, hasta que quede jugosa.",
+        "Sirve el funche con la carne por encima."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Funche cremoso con la carne muy fina mezclada."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Funche más firme en cuadritos, con la carne picada encima."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Plato familiar, con aguacate o ensalada."}
+      ],
+      "note": null,
+      "references": ["P2", "P7"]
+    },
+    {
+      "code": "C19",
+      "title": "Pescado al vapor en sartén con calabacín y tomate",
+      "mealType": "cena",
+      "minAgeMonths": 8,
+      "sortOrder": 93,
+      "iron": {"isSource": false, "note": null},
+      "allergens": [
+        {"slug": "pescado", "optional": false, "condition": null}
+      ],
+      "tags": [
+        {"slug": "listo-en-20-min", "name": "Listo en 20 min", "label": "Listo en 20 min"},
+        {"slug": "ligera", "name": "Ligera", "label": "Ligera"},
+        {"slug": "proteina-magra", "name": "Proteína magra", "label": "Proteína magra"}
+      ],
+      "ingredients": [
+        {"text": "80 g de pescado blanco (merluza, pargo o corvina), sin piel ni espinas", "optional": false, "foods": [["pescado-blanco"]]},
+        {"text": "½ calabacín en rodajas finas", "optional": false, "foods": [["calabacin"]]},
+        {"text": "½ tomate maduro en rodajas", "optional": false, "foods": [["tomate"]]},
+        {"text": "1 cdta de aceite de oliva", "optional": false, "foods": [["aceite"]]},
+        {"text": "3 cdas de agua", "optional": false, "foods": [["agua"]]},
+        {"text": "Eneldo o perejil", "optional": true, "foods": [["eneldo", "perejil"]]},
+        {"text": "De acompañante: 1 arepita blanda (P5)", "optional": true, "foods": [["harina-maiz"], ["agua"], ["aceite"]]}
+      ],
+      "steps": [
+        "En una sartén con tapa, pon el aceite, el calabacín y el tomate; coloca el pescado encima y añade el agua.",
+        "Tapa y cocina a fuego medio-bajo 8–10 min, hasta que el pescado se separe en láminas y el calabacín esté muy blando.",
+        "Desmenuza el pescado con los dedos, revisando espinas, y sírvelo con las verduras y su jugo."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Desde 8 meses: pescado en láminas blandas y calabacín aplastado con su jugo."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Escamas de pescado y rodajas de calabacín para agarrar."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Plato familiar, con arepa o papa."}
+      ],
+      "note": "Revisa siempre el pescado con los dedos: aunque el filete diga «sin espinas», pueden quedar algunas.",
+      "references": ["P5"]
+    },
+    {
+      "code": "C20",
+      "title": "Canoa exprés de plátano con carne mechada",
+      "mealType": "cena",
+      "minAgeMonths": 8,
+      "sortOrder": 94,
+      "iron": {"isSource": true, "note": "res"},
+      "allergens": [
+        {"slug": "lacteos", "optional": true, "condition": "si usas queso"}
+      ],
+      "tags": [
+        {"slug": "listo-en-15-min-con-sobras", "name": "Listo en 15 min con sobras", "label": "Listo en 15 min con sobras"},
+        {"slug": "receta-tradicional-venezolana", "name": "Receta tradicional venezolana", "label": "Receta tradicional venezolana"},
+        {"slug": "dulce-natural", "name": "Dulce natural", "label": "Dulce natural"}
+      ],
+      "ingredients": [
+        {"text": "½ plátano bien maduro, con concha", "optional": false, "foods": [["platano"]]},
+        {"text": "3 cdas de carne mechada base (P7), con su caldo", "optional": false, "foods": [["res"], ["cebolla"], ["ajo"], ["aji-dulce"], ["comino"], ["agua"]]},
+        {"text": "1 cubo de sofrito (P2)", "optional": false, "foods": [["cebolla"], ["pimenton"], ["aji-dulce"], ["ajo"], ["tomate"], ["cebollin"], ["aceite"]]},
+        {"text": "1 cda de queso fresco bajo en sal desmenuzado", "optional": true, "foods": [["queso-fresco"]]}
+      ],
+      "steps": [
+        "Haz un corte a lo largo en la concha del plátano y cocínalo en el microondas 3–4 min, hasta que esté muy blando (o usa plátano ya horneado).",
+        "Calienta la carne mechada con el sofrito 3 min.",
+        "Abre el plátano como una canoa y rellénalo con la carne; pon el queso encima si lo usas."
+      ],
+      "ageAdaptations": [
+        {"minAgeMonths": 7, "maxAgeMonths": 8, "instructions": "Desde 8 meses: plátano aplastado mezclado con la carne muy fina."},
+        {"minAgeMonths": 9, "maxAgeMonths": 11, "instructions": "Trozos de plátano con la carne."},
+        {"minAgeMonths": 12, "maxAgeMonths": null, "instructions": "Canoa entera, como la familia."}
+      ],
+      "note": "El microondas deja puntos muy calientes: deja salir el vapor, remueve y prueba la temperatura antes de servir.",
+      "references": ["P2", "P7"]
+    }
+  ]
+}
